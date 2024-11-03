@@ -13,31 +13,35 @@ const SectionRenderer = ({ section }) => {
 
   return (
     <div>
-      {/* Title and Content Section - Full Height */}
-      <section className="w-screen h-screen flex items-center justify-center p-10 text-slate-500">
-        <div className="text-center">
-          <h2 className="text-5xl md:text-8xl font-bold">{title}</h2>
-          <p className="text-2xl md:text-4xl mt-4">{content}</p>
+      {/* Title, Content, and Image Section - Horizontal Alignment */}
+      <section className="w-screen h-screen flex items-center p-10 text-slate-500">
+        <div className="flex flex-col md:flex-row items-center justify-between w-full">
+          {/* Title and Content */}
+          <div className="flex-1 p-5 md:p-10">
+            <h2 className="text-5xl md:text-8xl font-bold">{title}</h2>
+            <p className="text-2xl md:text-4xl mt-4">{content}</p>
+          </div>
+          
+          {/* Image */}
+          {image && (
+            <div className="flex-1 p-5 md:p-10 flex items-center justify-center">
+              <Image
+                src={image}
+                alt={`${title} Image`}
+                width={600}
+                height={400}
+                className="object-contain"
+              />
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Special Component or Image Section */}
-      {SpecialComponent ? (
+      {/* Special Component Section */}
+      {SpecialComponent && (
         <section className="w-screen h-screen flex items-center justify-center">
           <SpecialComponent />
         </section>
-      ) : (
-        image && (
-          <section className="w-screen h-screen flex items-center justify-center">
-            <Image
-              src={image}
-              alt={`${title} Image`}
-              width={600}
-              height={400}
-              className="object-contain"
-            />
-          </section>
-        )
       )}
     </div>
   );
