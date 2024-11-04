@@ -53,7 +53,7 @@ const SectionRenderer = ({ section }) => {
 
       {/* Special Component Section */}
       {SpecialComponent ? (
-        <section className="container mx-auto">
+        <section className="container mx-auto grid-cols-6">
           <SpecialComponent />
         </section>
       ) : (

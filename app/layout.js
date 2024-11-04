@@ -1,16 +1,28 @@
 // app/layout.js
-import './globals.css';
+'use client';
+import React from 'react';
+import Head from 'next/head'; // For setting meta tags
+import './globals.css'; // Global CSS
+import Header from './components/Header'; // Header component
+import Footer from './components/Footer'; // Footer component
 
-import Footer from './components/Footer';
-
-export default function RootLayout({ children }) {
+const Layout = ({ children }) => {
   return (
-    <html lang="fr">
-      <body className="bg-slate-50">
-        {/* Header is included in Page component, so we can omit it here */}
-        <main className="min-h-screen">{children}</main>
+    <html lang="en">
+      <Head>
+        <title>Care Prestige</title>
+        <meta name="description" content="conciergerie de prestige " />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <body className="bg-gray-100 text-gray-800 font-sans">
+        <Header />
+
+        <main className="">{children}</main>
+
         <Footer />
       </body>
     </html>
   );
-}
+};
+
+export default Layout;
