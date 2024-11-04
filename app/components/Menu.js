@@ -82,7 +82,7 @@ const Menu = ({ onSelect, activeSection }) => {
       }`}
     >
       {/* Logo */}
-      <h1 className="text-2xl font-bold text-slate-700">Care Prestige</h1>
+      <h1 className="text-2xl font-bold text-slate-700">C</h1>
 
       {/* Desktop Menu */}
       <ul className="hidden md:flex space-x-8">

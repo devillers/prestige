@@ -1,4 +1,5 @@
 // app/api/sections/route.js
+
 export async function GET(request) {
   console.log('API route accessed:', request.url); // Log API route access
 
@@ -14,28 +15,28 @@ export async function GET(request) {
       id: 'collection',
       title: 'La Collection',
       content: 'Nos biens préférés',
-      component: null,
+      component: 'accommodationlist', // Ensure lowercase
       image: null,
     },
     {
       id: 'services',
       title: 'Nos Services',
       content: 'de conciergerie',
-      component: 'services',
+      component: 'services', // Lowercase
       image: null,
     },
     {
       id: 'blog',
-      title: 'Blog  ',
+      title: 'Blog',
       content: 'astuces',
-      component: null,
+      component: null, // Changed to lowercase
       image: null,
     },
     {
       id: 'contact',
       title: 'Contactez-nous',
       content: 'Notre formulaire',
-      component: 'contact',
+      component: 'contact', // Lowercase
       image: null,
     },
   ];
