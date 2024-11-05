@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
         <meta name="description" content="conciergerie de prestige " />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <body className="bg-gray-100 text-gray-800 font-sans">
+      <body className="bg-gray-50 text-gray-800 font-sans">
         <Header />
 
         <main className="">{children}</main>

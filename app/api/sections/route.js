@@ -8,7 +8,7 @@ export async function GET(request) {
       id: 'home',
       title: 'Bienvenue',
       content: 'chez Care Prestige',
-      component: 'test',
+      component: null,
       image: '/images/image.png',
     },
     {

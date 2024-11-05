@@ -3,28 +3,28 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white  mt-1 pt-10 pb-20">
+    <footer className="bg-gray-50  mt-1 pt-10 pb-20">
       <div className="container mx-auto px-4 opacity-50">
         <div className="flex justify-between items-center flex-wrap">
           {/* Footer Navigation */}
           <div className="w-full sm:w-auto mb-6 sm:mb-0">
             <nav className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">
-              <Link href="/" className="">
+              <Link href="/" className="text-gray-600 text-sm">
                 Accueil
               </Link>
 
-              <Link href="/#about" className="text-white">
+              <Link href="/#about" className="text-gray-600 text-sm">
                 A propos
               </Link>
 
-              <Link href="/#prestations" className="text-white">
+              <Link href="/#prestations" className="text-gray-600 text-sm">
                 Prestations
               </Link>
 
-              {/* <Link href="/#tarifs" className="text-white">
+              <Link href="/#tarifs" className="text-gray-600 text-sm">
                 Tarifs
-              </Link> */}
-              <Link href="/#contact" className="text-white">
+              </Link>
+              <Link href="/#contact" className="text-gray-600 text-sm">
                 Contact
               </Link>
             </nav>
