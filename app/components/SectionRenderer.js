@@ -25,11 +25,11 @@ const SectionRenderer = ({ section }) => {
 
   return (
     <div key={section.title} className={`transition-container ${fadeClass}`}>
-      {/* Title, Content, and Image Section - Horizontal Alignment */}
-      <section className="w-screen mt-[100px] md:mt-0 md:h-screen flex items-center p-1 md:p-10 text-slate-500">
-        <div className="flex flex-col md:flex-row items-center justify-between w-full">
+      {/* Title, Content, and Image Section with Background Image */}
+      <section className="w-screen flex items-center text-slate-500">
+        <div className="flex flex-col mt-[100px] md:flex-row items-center justify-between w-full bg-[url('/images/womanHeader.jpeg')] bg-cover bg-center bg-no-repeat">
           {/* Title and Content */}
-          <div className="flex-1 md:p-10">
+          <div className="h-[450px]">
             <h2 className="text-7xl sm:text-5xl md:text-8xl font-bold">
               {title}
             </h2>
@@ -37,7 +37,7 @@ const SectionRenderer = ({ section }) => {
           </div>
 
           {/* Image - Hidden on medium screens */}
-          {image && (
+          {/* {image && (
             <div className="hidden md:flex flex-1 p-5 md:p-10 items-center justify-center">
               <Image
                 src={image}
@@ -47,13 +47,13 @@ const SectionRenderer = ({ section }) => {
                 className="object-contain"
               />
             </div>
-          )}
+          )} */}
         </div>
       </section>
 
       {/* Special Component Section */}
       {SpecialComponent ? (
-        <section className="container mx-auto grid-cols-6">
+        <section className="mx-auto  grid-cols-4">
           <SpecialComponent />
         </section>
       ) : (

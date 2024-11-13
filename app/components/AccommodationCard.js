@@ -84,9 +84,9 @@ const AccommodationCard = ({ accommodation }) => {
   }, [validImages]);
 
   return (
-    <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden mb-6">
+    <div className="max-w-lg mx-auto bg-gray-50 rounded-md shadow-sm overflow-hidden mb-6">
       {/* Image Slider */}
-      <div className="relative">
+      <div className="relative bg-zinc-950">
         {validImages.length > 0 ? (
           <img
             src={validImages[currentImage]}

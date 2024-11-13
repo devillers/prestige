@@ -1,61 +1,49 @@
-// components/Footer.js
-import Link from 'next/link';
+import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-50  mt-1 pt-10 pb-20">
-      <div className="container mx-auto px-4 opacity-50">
-        <div className="flex justify-between items-center flex-wrap">
-          {/* Footer Navigation */}
-          <div className="w-full sm:w-auto mb-6 sm:mb-0">
-            <nav className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">
-              <Link href="/" className="text-gray-600 text-sm">
-                Accueil
-              </Link>
-
-              <Link href="/#about" className="text-gray-600 text-sm">
-                A propos
-              </Link>
-
-              <Link href="/#prestations" className="text-gray-600 text-sm">
-                Prestations
-              </Link>
-
-              <Link href="/#tarifs" className="text-gray-600 text-sm">
-                Tarifs
-              </Link>
-              <Link href="/#contact" className="text-gray-600 text-sm">
-                Contact
-              </Link>
-            </nav>
-          </div>
-
-          {/* Social Media Links */}
-          <div className="w-full sm:w-auto flex space-x-4">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M7.75 2h8.5A5.25 5.25 0 0121.5 7.25v8.5A5.25 5.25 0 0116.25 21h-8.5A5.25 5.25 0 012.5 15.75v-8.5A5.25 5.25 0 017.75 2zm7.75 5.25a.75.75 0 100 1.5.75.75 0 000-1.5zM12 8.75A3.25 3.25 0 1112 15.25 3.25 3.25 0 0112 8.75z"
-                />
-              </svg>
-            </a>
-          </div>
+    <footer className=" py-8 mt-16">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
+        <div>
+          <h3 className="font-bold">Care Concierge Properties</h3>
+          <p className="text-[10px] text-gray-600 mt-2">
+            Care Concierge & Properties est une société de gestion immobilière
+            et mobilière spécialisée dans la conciergerie.
+          </p>
         </div>
+        <div>
+          <h3 className="font-bold">Pages</h3>
+          <ul className="text-[10px] text-gray-600 space-y-2 mt-2">
+            <li>Taris</li>
+            <li>Réservations Directes</li>
+            <li>À propos de nous</li>
+            <li>Contact</li>
+            <li>La Collection</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-bold">Services</h3>
+          <ul className="text-[10px] text-gray-600 space-y-2 mt-2">
+            <li>Gestion Immobilière</li>
+            <li>Conciergerie</li>
+            <li>Agence de Location</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="font-bold">Zones que nous desservons</h3>
+          <ul className="text-[10px] text-gray-600 space-y-2 mt-2">
+            <li>Argentière - 74400</li>
+            <li>Chamonix - 74400</li>
+            <li>Les Houches - 74310</li>
+            <li>Saint Gervais les Bains - 74170</li>
+            <li>Megève - 74120</li>
+            <li>Sallanches - 74700</li>
+          </ul>
+        </div>
+      </div>
+      <div className="text-center text-gray-500 text-[10px] mt-8">
+        <p>Informations Légales</p>
+        <button className="text-gray-600 hover:underline">Français</button>
       </div>
     </footer>
   );

@@ -29,7 +29,7 @@ export async function GET(request) {
       id: 'blog',
       title: 'Blog',
       content: 'astuces',
-      component: null, // Changed to lowercase
+      component: 'blog', // Changed to lowercase
       image: null,
     },
     {

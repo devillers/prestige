@@ -1,11 +1,12 @@
-// Header.js (Adjusted to use a unique z-index)
-import React from 'react';
-import Menu from './Menu';
+// components/Header.js
 
-const Header = ({ onSelect = () => {}, activeSection }) => {
+import React from 'react';
+import MegaMenu from './MegaMenu';
+
+const Header = ({ onMenuToggle }) => {
   return (
-    <header className="fixed top-0 w-full z-50 ">
-      <Menu onSelect={onSelect} activeSection={activeSection} />
+    <header>
+      <MegaMenu onMenuToggle={onMenuToggle} />
     </header>
   );
 };
