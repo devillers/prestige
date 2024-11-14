@@ -2,17 +2,18 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className=" py-8 mt-16">
+    <footer className=" py-8 mt-[100px] border border-t-[2px] border-black">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
         <div>
-          <h3 className="font-bold">Care Concierge Properties</h3>
-          <p className="text-[10px] text-gray-600 mt-2">
-            Care Concierge & Properties est une société de gestion immobilière
-            et mobilière spécialisée dans la conciergerie.
+          <h3 className="font-bold text-[12px]">Care Prestige</h3>
+          <p className="text-[10px] text-gray-600 mt-2 text-justify">
+            Care Prestige est une marque de Care Concierge & Properties,société
+            de gestion immobilière et mobilière spécialisée dans la gestion
+            locative courte durée.
           </p>
         </div>
         <div>
-          <h3 className="font-bold">Pages</h3>
+          <h3 className="font-bold text-[12px]">Pages</h3>
           <ul className="text-[10px] text-gray-600 space-y-2 mt-2">
             <li>Taris</li>
             <li>Réservations Directes</li>
@@ -22,7 +23,7 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <h3 className="font-bold">Services</h3>
+          <h3 className="font-bold text-[12px]">Services</h3>
           <ul className="text-[10px] text-gray-600 space-y-2 mt-2">
             <li>Gestion Immobilière</li>
             <li>Conciergerie</li>
@@ -30,7 +31,7 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <h3 className="font-bold">Zones que nous desservons</h3>
+          <h3 className="font-bold text-[12px]">Zones que nous desservons</h3>
           <ul className="text-[10px] text-gray-600 space-y-2 mt-2">
             <li>Argentière - 74400</li>
             <li>Chamonix - 74400</li>
@@ -41,10 +42,10 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="text-center text-gray-500 text-[10px] mt-8">
+      {/* <div className="text-center text-gray-500 text-[10px] mt-8">
         <p>Informations Légales</p>
         <button className="text-gray-600 hover:underline">Français</button>
-      </div>
+      </div> */}
     </footer>
   );
 };

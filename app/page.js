@@ -2,9 +2,15 @@
 
 import React from 'react';
 import ChaletDetails from './components/ChaletDetails';
+import PropertyCard from './components/PropertyCard';
 
 const Page = () => {
-  return <ChaletDetails />;
+  return (
+    <>
+      <ChaletDetails />
+      <PropertyCard />
+    </>
+  );
 };
 
 export default Page;

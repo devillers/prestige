@@ -1,34 +1,34 @@
-// layout.js
+// RootLayout.js
 
 'use client';
-
 import './globals.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import MegaMenu from './components/MegaMenu';
+import Footer from './components/Footer'; // Import the Footer component
 
 export default function RootLayout({ children }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAnyMenuOpen, setIsAnyMenuOpen] = useState(false);
 
-  const handleMenuToggle = (state) => {
-    setIsMenuOpen(state);
+  const handleMenuToggle = (isOpen) => {
+    setIsAnyMenuOpen(isOpen);
   };
 
   return (
     <html lang="en">
-      <head>{/* Your head elements */}</head>
-      <body className="font-sans">
-        <Header onMenuToggle={handleMenuToggle} />
-
+      <body className="relative">
+        <header>
+          <MegaMenu onMenuToggle={handleMenuToggle} />
+        </header>
         <main
-          className={`px-8 md:px-16 lg:px-32 py-8 transition-[margin-top] duration-500 ease-in-out ${
-            isMenuOpen ? 'mt-48' : 'mt-0'
-          }`}
+          className={`transition-all duration-500 ease-in-out ${
+            isAnyMenuOpen ? 'md:mt-[300px]' : 'mt-0'
+          } relative z-0`}
         >
           {children}
         </main>
-
-        <Footer />
+        <footer>
+          <Footer />
+        </footer>
       </body>
     </html>
   );

@@ -1,0 +1,23 @@
+{
+  "title": "Le répertoire",
+  "chaletName": "Chalet Rémy",
+  "location": "Saint Gervais les bains",
+  "guestCapacity": 26,
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
+  "features": [
+    { "icon": "FaSwimmer", "label": "Pool" },
+    { "icon": "FaSpa", "label": "Spa" },
+    { "icon": "FaFilm", "label": "Cinema Room" },
+    { "icon": "FaWifi", "label": "WiFi" }
+  ],
+  "mainImage": "/images/remy/Dollhouse-View.png",
+
+  "galleryImages": [
+    "/images/remy/06_Chalet.Remy_Chambre2.jpg",
+    "/images/remy/07_Chalet.Remy_SDB.Chambre2.jpg",
+    "/images/remy/08_Chalet.Remy_SDB.Chambre2.jpg",
+    "/images/remy/08_Chalet.Remy_SDB.Chambre2.jpg",
+    "/images/remy/011_Chalet.Remy_SDB.Chambre3.jpg",
+    "/images/remy/010_Chalet.Remy_Chambre3.jpg"
+  ]
+}
