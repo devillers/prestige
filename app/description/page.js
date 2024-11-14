@@ -12,12 +12,12 @@ const page = () => {
     setIsExpanded(!isExpanded);
   };
   return (
-    <section className="max-w-[1000px] mx-auto text-slate-600  ">
+    <section className="max-w-[900px] mx-auto text-slate-600  ">
       {/* Header */}
       <div className="font-sans">
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col ">
           {/* first part */}
-          <div className="mt-4 md:w-1/2 p-6">
+          <div className="mt-4 md:w-1/1 p-6">
             <h1 className="text-3xl font-semibold leading-14 text-center">
               "Enjoy the peace and tranquility of the mountains at this superb
               chalet surrounded by nature"
@@ -30,7 +30,7 @@ const page = () => {
 
           {/* second part - Badges Section */}
           <div className="flex flex-wrap justify-start gap-3 p-6 md:w-1/2">
-            <div className="flex items-center gap-2 px-4 py-2 bg-[#eedec6] text-gray-800 rounded-sm uppercase text-[12px]">
+            <div className="flex items-center gap-2 px-2 py-1 bg-[#eedec6] text-gray-800 rounded-sm uppercase text-[12px]">
               <span className="text-white text-[14px]">
                 <FaCheck />
               </span>
@@ -134,7 +134,20 @@ const page = () => {
             </button>
           </div>
         </section>
-        <PhotoGallery />
+        {/* videos */}
+        <section className="md:mt-8 ">
+          <PhotoGallery />
+          <div className="p-6">
+            <iframe
+              width="100%"
+              height="50%"
+              src="https://my.matterport.com/show/?m=im5vSpoe44Q"
+              frameBorder="0"
+              allowFullScreen
+              allow="xr-spatial-tracking"
+            ></iframe>
+          </div>
+        </section>
       </div>
     </section>
   );

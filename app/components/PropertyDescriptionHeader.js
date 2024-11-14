@@ -5,7 +5,7 @@ import React from 'react';
 const PropertyDescriptionHeader = () => {
   return (
     <section className="p-2 flex justify-center">
-      <div className="relative max-w-[1000px] w-full">
+      <div className="relative max-w-[900px] w-full">
         {/* Navigation */}
         <nav className="absolute w-full flex justify-end items-center p-4 text-white z-10">
           <div className="text-md font-bold absolute top-0 left-0 p-2">
