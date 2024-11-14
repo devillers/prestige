@@ -18,9 +18,9 @@ const page = () => {
         <div className="flex flex-col md:flex-row">
           {/* first part */}
           <div className="mt-4 md:w-1/2 p-6">
-            <h1 className="text-3xl font-semibold leading-14">
-              Enjoy the peace and tranquility of the mountains at this superb
-              chalet surrounded by nature
+            <h1 className="text-3xl font-semibold leading-14 text-center">
+              "Enjoy the peace and tranquility of the mountains at this superb
+              chalet surrounded by nature"
             </h1>
             <p className="text-gray-600 my-6 text-[12px] flex justify-center items-center gap-2">
               <FaMapMarkerAlt className="text-gray-600" /> France · Megève /
@@ -69,12 +69,12 @@ const page = () => {
           </div>
         </div>
 
-        {/* Feature Toggle */}
-        <div className="flex px-6">
-          <button className="flex items-center gap-2 px-4 py-2 text-[12px] border-[#eedec6] border text-gray-800  rounded-sm uppercase">
+        {/* Feature Toggle button a reler */}
+        {/* <div className="flex px-6">
+          <button className="flex items-center gap-2 px-4 py-2 text-[12px] border-[#eedec6] border text-gray-800 rounded-sm uppercase mt-4 transition duration-300 ease-in-out hover:bg-[#eedec6] hover:text-white">
             <span className="text-slate-600 text-[12px]">voir</span> +
           </button>
-        </div>
+        </div> */}
 
         {/* Property Tour Section */}
         <section className="mt-8 p-6">

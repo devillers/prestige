@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "url": "/images/remy/cr.jpg",
+    "chaletName": "chalet rémy",
+    "description": "chambre 1"
+  },
+  {
+    "id": 2,
+    "url": "/images/remy/07_Chalet.Remy_SDB.Chambre2.jpg",
+    "chaletName": "Chalet Rémy",
+    "description": "chambre 1 bis"
+  },
+  {
+    "id": 3,
+    "url": "/images/remy/08_Chalet.Remy_SDB.Chambre2.jpg",
+    "chaletName": "Chalet Rémy",
+    "description": "chambre 1 ter"
+  },
+  {
+    "id": 4,
+    "url": "/images/remy/010_Chalet.Remy_Chambre3.jpg",
+    "chaletName": "Chalet Rémy",
+    "description": "chambre 2"
+  },
+  {
+    "id": 5,
+    "url": "/images/remy/013_Chalet.Remy_Chambre4.jpg",
+    "chaletName": "Chalet Rémy",
+    "description": "chambre 4"
+  },
+  {
+    "id": 6,
+    "url": "/images/remy/015_Chalet.Remy_SDB.Chambre4.jpg",
+    "chaletName": "Chalet Rémy",
+    "description": "chambre 5"
+  },
+  {
+    "id": 7,
+    "url": "/images/remy/012_Chalet.Remy_SDB.Chambre3.jpg",
+    "chaletName": "Chalet Rémy",
+    "description": "chambre 6"
+  },
+  {
+    "id": 8,
+    "url": "/images/remy/09_Chalet.Remy_Chambre3.jpg",
+    "chaletName": "Chalet Rémy",
+    "description": "chambre 7"
+  },
+  {
+    "id": 9,
+    "url": "/images/remy/015_Chalet.Remy_SDB.Chambre4.jpg",
+    "chaletName": "Chalet Rémy",
+    "description": "chambre 8"
+  },
+  {
+    "id": 10,
+    "url": "/images/remy/015_Chalet.Remy_SDB.Chambre4.jpg",
+    "chaletName": "Chalet Rémy",
+    "description": "chambre 9"
+  }
+]
