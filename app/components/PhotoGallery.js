@@ -67,7 +67,7 @@ const PhotoGallery = () => {
               className="w-full h-full object-cover"
             />
             {/* Description in the Bottom Left Corner */}
-            <div className="absolute bottom-0 left-0 w-auto bg-black bg-opacity-60 rounded rounded-tl-none rounded-br-none  text-white text-[10px] px-2 py-1 flex flex-col">
+            <div className="hidden absolute bottom-0 left-0 w-auto bg-black bg-opacity-60 rounded rounded-tl-none rounded-br-none  text-white text-[10px] px-2 py-1 sm:flex sm:flex-col">
               <span className="text-sm">{photo.chaletName}</span>
               <span>{photo.description}</span>
             </div>
