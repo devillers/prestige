@@ -1,16 +1,15 @@
 //app/descrition/page
-import React from 'react';
-import {
-  FaMapMarkerAlt,
-  FaBicycle,
-  FaHome,
-  FaMountain,
-  FaBath,
-  FaLaptop,
-  FaChild,
-} from 'react-icons/fa';
+'use client';
+import React, { useState } from 'react';
+
+import { FaMapMarkerAlt, FaCheck } from 'react-icons/fa';
 
 const page = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleAccordion = () => {
+    setIsExpanded(!isExpanded);
+  };
   return (
     <section className="max-w-[1000px] mx-auto ">
       <div className="font-sans">
@@ -29,53 +28,53 @@ const page = () => {
         {/* Badges Section */}
         <div className="flex flex-wrap justify-start gap-3 mt-4 text-[12px] p-6">
           <div className="flex items-center gap-2 px-4 py-2 bg-[#eedec6] text-gray-800 rounded-sm uppercase  ">
-            <span className="text-white text-[16px]">
-              <FaHome />
+            <span className="text-white text-[14px]">
+              <FaCheck />
             </span>
             Chalet
           </div>
           <div className="flex items-center gap-2 px-4 py-2 bg-[#eedec6] text-gray-800 rounded-sm uppercase ">
-            <span className="text-white text-[16px]">
-              <FaMountain />{' '}
+            <span className="text-white text-[14px]">
+              <FaCheck />{' '}
             </span>{' '}
             Slopes 7 km, Village 7 km
           </div>
           <div className="flex items-center gap-2 px-4 py-2 bg-[#eedec6] text-gray-800 rounded-sm uppercase">
-            <span className="text-white text-[16px]">
-              <FaBath />{' '}
+            <span className="text-white text-[14px]">
+              <FaCheck />{' '}
             </span>
             Nordic bath with great views
           </div>
           <div className="flex items-center gap-2 px-4 py-2 bg-[#eedec6] text-gray-800 rounded-sm uppercase">
-            <span className="text-white text-[16px]">
-              <FaLaptop />{' '}
+            <span className="text-white text-[14px]">
+              <FaCheck />{' '}
             </span>
             Office for remote working
           </div>
           <div className="flex items-center gap-2 px-4 py-2 bg-[#eedec6] text-gray-800 rounded-sm uppercase">
-            <span className="text-white text-[16px]">
-              <FaChild />{' '}
+            <span className="text-white text-[14px]">
+              <FaCheck />{' '}
             </span>{' '}
             Mezzanine play area
           </div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-[#eedec6] text-gray-800 rounded-sm uppercase">
-            <span className="text-white text-[16px]">
-              <FaBicycle />{' '}
+          <div className="flex items-center gap-2 px-4 py-2 bg-[#eedec6] text-gray-800  rounded-sm uppercase">
+            <span className="text-white text-[14px]">
+              <FaCheck />{' '}
             </span>{' '}
             Equipped for cyclists
           </div>
         </div>
 
         {/* Feature Toggle */}
-        <div className="flex justify-center mt-4">
-          <button className="text-gray-600 font-medium underline">
-            View all features +
+        <div className="flex px-6">
+          <button className="flex items-center gap-2 px-4 py-2 text-[12px] bg-[#eedec6] text-gray-800  rounded-sm uppercase">
+            <span className="text-white text-[12px]">voir</span> +
           </button>
         </div>
 
         {/* Property Tour Section */}
         <section className="mt-8 p-6">
-          <h2 className="text-2xl ">Property tour</h2>
+          {/* <h2 className="text-2xl ">Property tour</h2> */}
           <div className="mt-4">
             <h3 className="text-lg uppercase">CHALET Rémy...</h3>
             <p className="text-gray-700 mt-2 text-[13px] leading-8">
@@ -86,14 +85,26 @@ const page = () => {
               du Goûter will make you feel as if you're in the middle of
               nowhere.
             </p>
-            <p className="text-gray-700 mt-2 text-[13px] leading-8">
-              It's perfect for those seeking a quiet retreat, surrounded by
-              nature. The owner has three electric bikes and several pairs of
-              snowshoes available for guests to use – great ways to explore in
-              summer and winter!
-            </p>
-            <button className="text-yellow-600 font-medium underline mt-2">
-              Read more +
+
+            <div
+              className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                isExpanded ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
+              <p className="text-gray-700 mt-2 text-[13px] leading-8">
+                It's perfect for those seeking a quiet retreat, surrounded by
+                nature. The owner has three electric bikes and several pairs of
+                snowshoes available for guests to use – great ways to explore in
+                summer and winter!
+              </p>
+            </div>
+
+            {/* Accordion Toggle Button */}
+            <button
+              onClick={toggleAccordion}
+              className="text-yellow-600 font-medium  mt-2 text-[12px]"
+            >
+              {isExpanded ? 'voir -' : 'voir +'}
             </button>
           </div>
         </section>
