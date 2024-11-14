@@ -56,36 +56,39 @@ const PropertyDescriptionHeader = () => {
             <p className="text-white text-[12px] py-3">
               Chalet for 26 - cinéma - sauna - jacuzzi
             </p>
-            <p className="text-white text-[10px] opacity-50">REF : CARE2589</p>
-            <div className="w-full md:w-auto flex flex-wrap gap-4 py-4 relative mt-6 text-white border-dashed border-t">
+            <p className="text-white text-[10px] opacity-60">REF : CARE2589</p>
+            <div
+              className="w-full md:w-auto flex flex-wrap gap-4 py-4 relative mt-6 justify-between text-white border-dashed border-t"
+              style={{ borderColor: 'rgba(255, 255, 255, 0.35)' }}
+            >
               <div className="flex flex-col">
-                <p className="text-[12px] uppercase opacity-50">Sleeps</p>
+                <p className="text-[12px] uppercase opacity-60">Sleeps</p>
                 <div className="flex flex-col mt-3">
                   <p className="text-sm">12</p>
                   <p className="text-[10px]">10 Adults</p>
                 </div>
               </div>
               <div className="flex flex-col">
-                <p className="text-[12px] uppercase opacity-50">Bedrooms</p>
+                <p className="text-[12px] uppercase opacity-60">Bedrooms</p>
                 <p className="text-sm mt-3">5</p>
               </div>
               <div className="flex flex-col">
-                <p className="text-[12px] uppercase opacity-50">Bathrooms</p>
+                <p className="text-[12px] uppercase opacity-60">Bathrooms</p>
                 <p className="text-sm mt-3">4</p>
               </div>
               <div className="flex flex-col">
-                <p className="text-[12px] uppercase opacity-50">Area m²</p>
+                <p className="text-[12px] uppercase opacity-60">Area m²</p>
                 <p className="text-sm mt-3">160</p>
               </div>
-              <div className="flex flex-col">
-                <p className="text-[12px] uppercase opacity-50">Pets</p>
+              <div className=" flex-col hidden sm:flex">
+                <p className="text-[12px] uppercase opacity-60">Pets</p>
                 <p className="text-sm mt-3">No</p>
               </div>
             </div>
           </div>
 
           {/* Button */}
-          <button className="absolute right-10 bottom-10 border border-yellow-400 uppercase text-white p-2 rounded-md text-sm">
+          <button className="absolute right-10 bottom-10 border border-yellow-400 uppercase text-white p-2 rounded-md text-[12px] opacity-35 hover:opacity-100 transition duration-300 ease-in-out">
             voir les photos
           </button>
         </div>
