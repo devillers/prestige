@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
         <div>
           <h3 className="font-bold text-[12px]">Care Prestige</h3>
-          <p className="text-[10px] text-gray-600 mt-2 text-justify">
+          <p className="text-[10px] text-gray-600 mt-2 text-justify leading-6">
             Care Prestige est une marque de Care Concierge & Properties,société
             de gestion immobilière et mobilière spécialisée dans la gestion
             locative courte durée.

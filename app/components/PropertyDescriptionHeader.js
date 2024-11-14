@@ -51,14 +51,15 @@ const PropertyDescriptionHeader = () => {
         <div
           className="relative h-[600px] bg-cover bg-center rounded-md"
           style={{
-            backgroundImage: `url('/images/remy/09_Chalet.Remy_Chambre3.jpg')`,
+            backgroundImage: `url('/images/remy/09_Chalet.Remy_Chambre3.jpg ')`,
           }}
         >
           <div
             className="absolute inset-0 rounded-sm flex flex-col justify-center items-start px-6"
             style={{
               background:
-                'linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))',
+                'linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0))',
+              borderRadius: '0.375rem',
             }}
           >
             <div className="text-yellow-400 text-xl flex items-center">
