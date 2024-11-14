@@ -14,22 +14,6 @@ const PropertyDescriptionHeader = () => {
           <ul className="flex gap-6 pr-4">
             <li>
               <a
-                href="#home"
-                className="hover:text-yellow-400 text-[11px] uppercase tracking-widest"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="#features"
-                className="hover:text-yellow-400 text-[11px] uppercase tracking-widest"
-              >
-                Features
-              </a>
-            </li>
-            <li>
-              <a
                 href="#services"
                 className="hover:text-yellow-400 text-[11px] uppercase tracking-widest"
               >
