@@ -72,7 +72,7 @@ const PropertyDescriptionHeader = () => {
               Chalet for 26 - cinéma - sauna - jacuzzi
             </p>
             <p className="text-white text-[10px] opacity-50">REF : CARE2589</p>
-            <div className="flex flex-wrap gap-4 py-4 relative mt-6 text-white border-dashed border-t">
+            <div className="w-full md:w-auto flex flex-wrap gap-4 py-4 relative mt-6 text-white border-dashed border-t">
               <div className="flex flex-col">
                 <p className="text-[12px] uppercase opacity-50">Sleeps</p>
                 <div className="flex flex-col mt-3">
