@@ -40,7 +40,7 @@ const PhotoGallery = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6" id="#picture">
       <h3 className="text-lg uppercase py-4">photo gallery...</h3>
 
       {/* Custom CSS Grid Layout with Limited to One Row on Mobile */}

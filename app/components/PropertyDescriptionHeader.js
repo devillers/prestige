@@ -5,7 +5,7 @@ import React from 'react';
 const PropertyDescriptionHeader = () => {
   return (
     <section className="p-2 flex justify-center">
-      <div className="relative max-w-[900px] w-full">
+      <div className="relative max-w-auto w-full">
         {/* Navigation */}
         <nav className="absolute w-full flex justify-end items-center p-4 text-white z-10">
           <div className="text-md font-bold absolute top-0 left-0 p-2">
@@ -42,7 +42,7 @@ const PropertyDescriptionHeader = () => {
             className="absolute inset-0 rounded-sm flex flex-col justify-center items-start px-6"
             style={{
               background:
-                'linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0))',
+                'linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))',
               borderRadius: '0.375rem',
             }}
           >
@@ -88,9 +88,12 @@ const PropertyDescriptionHeader = () => {
           </div>
 
           {/* Button */}
-          <button className="absolute right-10 bottom-10 border border-yellow-400 uppercase text-white p-2 rounded-md text-[12px] opacity-35 hover:opacity-100 transition duration-300 ease-in-out">
+          <a
+            href="#picture"
+            className="absolute right-10 bottom-10 border border-yellow-400 uppercase text-white p-2 rounded-md text-[12px] opacity-35 hover:opacity-100 transition duration-300 ease-in-out"
+          >
             voir les photos
-          </button>
+          </a>
         </div>
       </div>
     </section>

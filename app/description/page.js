@@ -140,7 +140,7 @@ const page = () => {
           <div className="p-6">
             <iframe
               width="100%"
-              height="50%"
+              height="100%"
               src="https://my.matterport.com/show/?m=im5vSpoe44Q"
               frameBorder="0"
               allowFullScreen
