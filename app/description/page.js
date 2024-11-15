@@ -135,7 +135,7 @@ const page = () => {
           </div>
         </section>
         {/* videos */}
-        <section className="md:mt-8 ">
+        {/* <section className="md:mt-8 ">
           <PhotoGallery />
           <div className="p-6">
             <iframe
@@ -147,7 +147,7 @@ const page = () => {
               allow="xr-spatial-tracking"
             ></iframe>
           </div>
-        </section>
+        </section> */}
       </div>
     </section>
   );
