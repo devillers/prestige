@@ -41,7 +41,8 @@ const PhotoGallery = () => {
 
   return (
     <div className="p-6" id="#picture">
-      <h3 className="text-lg uppercase py-4">photo gallery...</h3>
+      <h3 className="text-lg uppercase py-4">photo gallery</h3>
+      <h4 className="text-md uppercase py-4">Les chambres</h4>
 
       {/* Custom CSS Grid Layout with Limited to One Row on Mobile */}
       <div
@@ -80,7 +81,7 @@ const PhotoGallery = () => {
         onClick={toggleShowAllPhotos}
         className="flex items-center gap-2 px-4 py-2 text-[12px] border-[#eedec6] border text-gray-800 rounded-sm uppercase mt-4 transition duration-300 ease-in-out hover:bg-[#eedec6] hover:text-white"
       >
-        {showAllPhotos ? 'Show Less' : 'Show More'}
+        {showAllPhotos ? 'voir moins' : 'voir plus'}
       </button>
 
       {/* Lightbox Modal */}

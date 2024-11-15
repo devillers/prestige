@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "url": "/images/remy/cr.jpg",
+    "url": "/images/remy/020_Chalet.Remy_Chambre6.jpg",
     "chaletName": "chalet rémy",
     "description": "chambre 1"
   },
@@ -52,11 +52,5 @@
     "url": "/images/remy/015_Chalet.Remy_SDB.Chambre4.jpg",
     "chaletName": "Chalet Rémy",
     "description": "chambre 8"
-  },
-  {
-    "id": 10,
-    "url": "/images/remy/015_Chalet.Remy_SDB.Chambre4.jpg",
-    "chaletName": "Chalet Rémy",
-    "description": "chambre 9"
   }
 ]
