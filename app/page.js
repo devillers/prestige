@@ -1,16 +1,8 @@
-// app/page.js
-
 import React from 'react';
-//import ChaletDetails from './components/ChaletDetails';
-//import PropertyCard from './components/PropertyCard';
 
-const Page = () => {
+
+const index = () => {
   return (
-    <>
-      {/* <ChaletDetails /> */}
-      {/* <PropertyCard /> */}
-    </>
-  );
-};
+    <div >index</div>)}
 
-export default Page;
+    export default index;

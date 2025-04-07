@@ -4,38 +4,17 @@ import React from 'react';
 
 const PropertyDescriptionHeader = () => {
   return (
-    <section className="p-2 flex justify-center">
+    <section className=" flex justify-center">
       <div className="relative max-w-auto w-full">
         {/* Navigation */}
-        <nav className="absolute w-full flex justify-end items-center p-4 text-white z-10">
-          <div className="text-md font-bold absolute top-0 left-0 p-2">
-            Logo
-          </div>
-          <ul className="flex gap-6 pr-4">
-            <li>
-              <a
-                href="#services"
-                className="hover:text-yellow-400 text-[11px] uppercase tracking-widest"
-              >
-                Services
-              </a>
-            </li>
-            <li>
-              <a
-                href="#contact"
-                className="hover:text-yellow-400 text-[11px] uppercase tracking-widest"
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
-        </nav>
+     
 
         {/* Background Image Section */}
         <div
-          className="relative h-[600px] bg-cover bg-center rounded-md"
+          className="relative h-[600px] bg-cover bg-center "
           style={{
-            backgroundImage: `url('/images/remy/09_Chalet.Remy_Chambre3.jpg ')`,
+            // backgroundImage: `url('/images/remy/09_Chalet.Remy_Chambre3.jpg ')`,
+            backgroundImage: `url('/images/05_Chalet.Bionassay_Salon.jpg')`,
           }}
         >
           <div
@@ -48,15 +27,15 @@ const PropertyDescriptionHeader = () => {
           >
             <div className="text-yellow-400 text-xl flex items-center">
               <span>★ ★ ★ ★ ★</span>
-              <span className="ml-4 text-[12px]">5.0 / 9 reviews</span>
+              <span className="ml-4 text-[12px]">5.0</span>
             </div>
             <h1 className="text-white text-7xl font-bold flex flex-col">
-              CHALET <span>REMY</span>
+              FERME DE  <span>BIONNASSAY</span>
             </h1>
             <p className="text-white text-[12px] py-3">
-              Chalet for 26 - cinéma - sauna - jacuzzi
+              Chalet 12-14 PAX - SAUNA - HAMMAM
             </p>
-            <p className="text-white text-[10px] opacity-60">REF : CARE2589</p>
+            <p className="text-white text-[10px] opacity-60">REF : CARE527314</p>
             <div
               className="w-full md:w-auto flex flex-wrap gap-4 py-4 relative mt-6 justify-between text-white border-dashed border-t"
               style={{ borderColor: 'rgba(255, 255, 255, 0.35)' }}
@@ -64,21 +43,21 @@ const PropertyDescriptionHeader = () => {
               <div className="flex flex-col">
                 <p className="text-[12px] uppercase opacity-60">Sleeps</p>
                 <div className="flex flex-col mt-3">
-                  <p className="text-sm">12</p>
+                  <p className="text-sm">12-14</p>
                   <p className="text-[10px]">10 Adults</p>
                 </div>
               </div>
               <div className="flex flex-col">
                 <p className="text-[12px] uppercase opacity-60">Bedrooms</p>
-                <p className="text-sm mt-3">5</p>
+                <p className="text-sm mt-3">6</p>
               </div>
               <div className="flex flex-col">
                 <p className="text-[12px] uppercase opacity-60">Bathrooms</p>
-                <p className="text-sm mt-3">4</p>
+                <p className="text-sm mt-3">6</p>
               </div>
               <div className="flex flex-col">
                 <p className="text-[12px] uppercase opacity-60">Area m²</p>
-                <p className="text-sm mt-3">160</p>
+                <p className="text-sm mt-3">240</p>
               </div>
               <div className=" flex-col hidden sm:flex">
                 <p className="text-[12px] uppercase opacity-60">Pets</p>

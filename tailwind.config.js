@@ -8,20 +8,18 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
-        slideDown: {
-          '0%': { maxHeight: '0', opacity: '0' },
-          '100%': { maxHeight: '500px', opacity: '1' },
-        },
-        slideUp: {
-          '0%': { maxHeight: '500px', opacity: '1' },
-          '100%': { maxHeight: '0', opacity: '0' },
+        'fade-slide': {
+          '0%': { opacity: 0, transform: 'translateY(-10px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
         },
       },
       animation: {
-        slideDown: 'slideDown 0.5s ease-in-out forwards',
-        slideUp: 'slideUp 0.5s ease-in-out forwards',
+        'fade-slide': 'fade-slide 400ms ease-out forwards',
       },
     },
   },
   plugins: [],
 };
+
+
+
