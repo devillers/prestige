@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
 
 const menuItems = [
-  { title: 'Accueil' },
+  { title: 'Accueil', href: '/' },
   {
     title: 'Le Répertoire',
+    href: '/repertoire',
     submenu: [
       { title: 'Combloux - Megeve', items: ['La ferme des Choseaux', 'Le Splendide', 'Le Kramer'] },
       { title: 'Chamonix', items: ['Chalet Sia', 'Chalet Kieppi', 'Chalet des Eaux Rousses', 'Ecrin des Bossons'] },
@@ -14,19 +16,15 @@ const menuItems = [
   },
   {
     title: 'La Conciergerie',
-    submenu: [
-      { title: 'ski', items: ['Location de ski à domicile', 'Réservations forfaits', 'Cours particuliers'] },
-      { title: 'cuisine', items: ['Traiteurs', 'Chefs à domicile '] },
-      { title: 'transferts', items: ['Transferts Aeroports', 'Chauffeurs privés'] },
-      { title: 'bien être', items: ['Yoga', 'Qi Gong'] },
-      { title: 'autres services', items: [' ménage quotidien', 'Décoration florale'] },
-    ],
+    href: '/conciergerie'
   },
   {
-    title: 'Séminaire'
+    title: 'Séminaire',
+    href: '/seminaires'
   },
   {
     title: 'Blog',
+    href: '/blog',
     submenu: [
       { title: 'Sortir à megeve', items: ['', '', ''] },
       { title: 'Sortir à chamonix', items: ['7 Jours pour Explorer le Massif du Mont-Blanc', '', '', ''] },
@@ -35,7 +33,8 @@ const menuItems = [
     ],
   },
   {
-    title: 'Contact'
+    title: 'Contact',
+    href: '/contact'
   },
 ];
 
@@ -73,9 +72,11 @@ export default function MegaMenu() {
               <div
                 key={i}
                 className="relative group"
-                onMouseEnter={() => setActiveMenu(item.title)}
+                onMouseEnter={() => item.submenu && setActiveMenu(item.title)}
               >
-                <button className="text-sm focus:outline-none uppercase leading-4 text-[#293d4c] hover:text-[#bd9254]">{item.title}</button>
+                <Link href={item.href || `/${item.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <span className="text-sm focus:outline-none uppercase leading-4 text-[#293d4c] hover:text-[#bd9254]">{item.title}</span>
+                </Link>
               </div>
             ))}
           </nav>
@@ -103,7 +104,9 @@ export default function MegaMenu() {
                 <ul className="space-y-1">
                   {col.items.map((subItem, idx) => (
                     <li key={idx} className="text-[10px] cursor-pointer leading-6">
-                      <button className="w-full text-left hover:text-[#bd9254] uppercase">{subItem}</button>
+                      <Link href={`/${activeMenu?.toLowerCase().replace(/\s+/g, '-')}/${subItem?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}>
+                        <span className="w-full text-left hover:text-[#bd9254] uppercase block">{subItem}</span>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -123,7 +126,9 @@ export default function MegaMenu() {
           <nav className="flex flex-col space-y-4 px-4 pb-6">
             {menuItems.map((item, i) => (
               <div key={i}>
-                <div className="font-semibold text-md mb-3">{item.title}</div>
+                <Link href={item.href || `/${item.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <div className="font-semibold text-md mb-3 cursor-pointer">{item.title}</div>
+                </Link>
                 {item.submenu && (
                   <div className="grid grid-cols-2 gap-4 pl-4">
                     {item.submenu.map((col, index) => (
@@ -132,7 +137,9 @@ export default function MegaMenu() {
                         <ul className="space-y-1">
                           {col.items.map((subItem, idx) => (
                             <li key={idx} className="text-[10px] uppercase hover:text-[#bd9254] cursor-pointer leading-7">
-                              <button className="w-full text-left">{subItem}</button>
+                              <Link href={`/${item.href?.replace(/^\//, '') || item.title.toLowerCase().replace(/\s+/g, '-')}/${subItem?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}>
+                                <span className="w-full text-left block">{subItem}</span>
+                              </Link>
                             </li>
                           ))}
                         </ul>

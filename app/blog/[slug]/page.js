@@ -7,6 +7,8 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Card from '../../components/Card';
 
+
+
 export default function ArticleDetail() {
   const { slug } = useParams();
   const [article, setArticle] = useState(null);

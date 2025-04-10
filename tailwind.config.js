@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       keyframes: {
         'fade-slide': {
-          '0%': { opacity: 0, transform: 'translateY(-10px)' },
+          '0%': { opacity: 0, transform: 'translateY(20px)' }, // slide UP
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
       },
@@ -20,6 +20,3 @@ module.exports = {
   },
   plugins: [],
 };
-
-
-

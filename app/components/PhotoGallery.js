@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import Modal from 'react-modal';
-import { FaTimes, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import photosData from '../../data/photo.json';
+import React, { useState, useEffect } from "react";
+import Modal from "react-modal";
+import { IoShareSocialOutline } from "react-icons/io5";
+import { AiOutlineClose } from "react-icons/ai";
+import { FaTimes, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-const PhotoGallery = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const PhotoGallery = ({ images = [] }) => {
+  const [modalOpen, setModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [showAllPhotos, setShowAllPhotos] = useState(false);
 
   useEffect(() => {
     Modal.setAppElement(document.body);
@@ -16,105 +16,120 @@ const PhotoGallery = () => {
 
   const openModal = (index) => {
     setCurrentIndex(index);
-    setIsOpen(true);
+    setModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  const closeModal = () => setModalOpen(false);
 
-  const goToPrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? photosData.length - 1 : prevIndex - 1
-    );
-  };
+  const goToPrevious = () =>
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
 
-  const goToNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === photosData.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+  const goToNext = () =>
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 
-  const toggleShowAllPhotos = () => {
-    setShowAllPhotos(!showAllPhotos);
-  };
+  if (!images.length) return null;
 
   return (
     <div className="p-6" id="#picture">
-      <h3 className="text-lg uppercase py-4">photo gallery</h3>
-      <h4 className="text-md uppercase py-4">Les chambres</h4>
+      <h3 className="text-lg uppercase py-4 font-thin">
+        Aperçu de la propriété
+      </h3>
 
-      {/* Custom CSS Grid Layout with Limited to One Row on Mobile */}
-      <div
-        className={`grid gap-3 ${
-          showAllPhotos ? '' : 'max-h-[150px] overflow-hidden'
-        } grid-cols-2 sm:grid-cols-6`}
-      >
-        {photosData.map((photo, index) => (
+      {/* Top full image */}
+      {images[0] && (
+        <div
+          className="w-full h-[300px] md:h-[450px] overflow-hidden mb-4 cursor-pointer "
+          onClick={() => openModal(0)}
+        >
+          <img
+            src={images[0].url}
+            alt={images[0].alt || "Image 1"}
+            className="w-full h-full object-cover "
+          />
+        </div>
+      )}
+
+      {/* Grid of next 5 images */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        {images.slice(1, 7).map((photo, index) => (
           <div
-            key={photo.id}
-            className={`relative overflow-hidden cursor-pointer rounded-sm ${
-              index % 6 === 0
-                ? 'sm:col-span-2 sm:row-span-1'
-                : index % 5 === 0
-                ? 'sm:col-span-2 sm:row-span-1'
-                : 'col-span-1 row-span-1'
-            }`}
-            onClick={() => openModal(index)}
+            key={index + 1}
+            className="overflow-hidden rounded cursor-pointer"
+            onClick={() => openModal(index + 1)}
           >
             <img
               src={photo.url}
-              alt={photo.description}
-              className="w-full h-full object-cover"
+              alt={photo.alt || `Image ${index + 2}`}
+              className="w-full h-40 object-cover"
             />
-            {/* Description in the Bottom Left Corner */}
-            {/* <div className="hidden absolute bottom-0 left-0 w-auto bg-black bg-opacity-60 rounded rounded-tl-none rounded-br-none  text-white text-[10px] px-2 py-1 sm:flex sm:flex-col">
-              <span className="text-sm">{photo.chaletName}</span>
-              <span>{photo.description}</span>
-            </div> */}
           </div>
         ))}
       </div>
 
-      {/* Show More / Show Less Button */}
-      <button
-        onClick={toggleShowAllPhotos}
-        className="flex items-center gap-2 px-4 py-2 text-[12px] border-[#eedec6] border text-gray-800 rounded-sm uppercase mt-4 transition duration-300 ease-in-out hover:bg-[#eedec6] hover:text-white"
-      >
-        {showAllPhotos ? 'voir moins' : 'voir plus'}
-      </button>
-
-      {/* Lightbox Modal */}
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={closeModal}
-        className="relative w-full max-w-3xl mx-auto outline-none"
-        overlayClassName="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80"
-      >
+      {/* Voir toutes les photos */}
+      {images.length > 6 && (
         <button
-          onClick={closeModal}
-          className="absolute top-2 right-2 text-white text-2xl"
+          onClick={() => openModal(0)}
+          className="mt-6 border border-[#bd9254] px-4 py-2 text-sm uppercase text-[#bd9264] rounded hover:bg-[#bd9264] hover:text-white transition"
         >
-          <FaTimes />
+          Voir toutes les photos
         </button>
-        <div className="relative flex items-center justify-center">
-          <button
-            onClick={goToPrevious}
-            className="absolute left-4 text-white text-3xl bg-black bg-opacity-50 p-2 rounded-full"
-          >
-            <FaArrowLeft />
-          </button>
-          <img
-            src={photosData[currentIndex].url}
-            alt={photosData[currentIndex].description}
-            className="max-h-[80vh] object-contain rounded-md"
-          />
-          <button
-            onClick={goToNext}
-            className="absolute right-4 text-white text-3xl bg-black bg-opacity-50 p-2 rounded-full"
-          >
-            <FaArrowRight />
-          </button>
+      )}
+
+      {/* Lightbox modal */}
+      <Modal
+        isOpen={modalOpen}
+        onRequestClose={closeModal}
+        className="
+         w-full mx-auto max-h-none outline-none"
+        overlayClassName="fixed inset-0 z-50 bg-white overflow-y-auto px-4 py-10"
+      >
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <h2 className="text-2xl font-light mb-8 mt-2">Galerie complète</h2>
+          <div className="flex jsustify-between items-center gap-4">
+           
+            <div className="flex items-center  gap-2 cursor-pointer">
+            <IoShareSocialOutline className="text-[20px]" />
+            <a className="uppercase text-sm font-thin">partager</a>
+            </div>
+            <AiOutlineClose
+              onClick={closeModal}
+              className=" text-[35px] p-2 border border-[1px] text-gray-500 z-50 bg-white rounded-full p-1 cursor-pointer  shadow"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-4 auto-rows-[200px] gap-4 max-w-7xl mx-auto">
+          {images.map((img, index) => {
+            let colSpan = "col-span-2";
+            let rowSpan = "row-span-1";
+            const mod = index % 6;
+
+            if (mod === 0) {
+              colSpan = "col-span-4";
+              rowSpan = "row-span-2"; // full-width banner
+            } else if (mod === 3) {
+              colSpan = "col-span-2";
+              rowSpan = "row-span-2"; // tall
+            } else if (mod === 4 || mod === 5) {
+              colSpan = "col-span-1";
+              rowSpan = "row-span-2"; // small fillers
+            }
+
+            return (
+              <div
+                key={index}
+                className={`relative ${colSpan} ${rowSpan} overflow-hidden  cursor-pointer`}
+                onClick={() => setCurrentIndex(index)}
+              >
+                <img
+                  src={img.url}
+                  alt={img.alt || `Image ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            );
+          })}
         </div>
       </Modal>
     </div>
