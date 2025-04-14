@@ -5,11 +5,9 @@
 
 import Header from './components/Header'
 import Footer from './components/Footer'
-import { useLayout } from './LayoutContext'
 
-export default function LayoutWrapper({ children }) {
-    const { hideLayout } = useLayout()
-  
+
+export default function LayoutWrapper({ children, hideLayout = false }) {
     return (
       <>
         {!hideLayout && <Header />}

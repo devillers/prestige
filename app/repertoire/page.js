@@ -185,7 +185,7 @@ export default function PortfolioPage() {
               name="capacity"
               value={filters.capacity}
               onChange={handleFilterChange}
-              className="border px-3 py-2 rounded w-full h-[42px] focus:outline-none focus:ring-0"
+              className="border px-3 py-2 rounded w-full  h-7 border-gray-300 text-xs focus:outline-none focus:ring-0"
             />
           </div>
 
@@ -198,7 +198,7 @@ export default function PortfolioPage() {
               name="priceMax"
               value={filters.priceMax}
               onChange={handleFilterChange}
-              className="border px-3 py-2 rounded w-full h-[42px] focus:outline-none focus:ring-0"
+              className="border px-3 py-2 rounded w-full  h-7 border-gray-300 text-xs focus:outline-none focus:ring-0"
             />
           </div>
 
@@ -208,7 +208,7 @@ export default function PortfolioPage() {
             </label>
             <button
               onClick={clearFilters}
-              className="w-full h-[42px] md:w-[60px] border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded"
+              className="w-full md:w-[60px]  h-7 border border-gray-300 text-xs uppercase text-[#bd9254] rounded"
             >
               Reset
             </button>

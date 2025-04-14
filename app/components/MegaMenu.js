@@ -1,6 +1,9 @@
-import React, { useState, useRef } from 'react';
+'use client';
+
+import React, { useState, useRef, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
 const menuItems = [
   { title: 'Accueil', href: '/' },
@@ -26,12 +29,13 @@ const menuItems = [
     title: 'Blog',
     href: '/blog',
     submenu: [
-      { title: 'Sortir à megeve', items: ['', '', ''] },
-      { title: 'Sortir à chamonix', items: ['7 Jours pour Explorer le Massif du Mont-Blanc', '', '', ''] },
+      { title: 'Sortir à megeve', items: ['7 Jours pour Explorer le Massif du Mont-Blanc'] },
+      { title: 'Sortir à chamonix', items: ['7 Jours pour Explorer le Massif du Mont-Blanc'] },
       { title: 'Sortir à Saint Nicolas', items: [''] },
-      { title: 'Sortir à Saint Gervais', items: [' 7 Jours d’Aventure dans les Alpes', 'Un Paradis pour les Amateurs de Vélo', ''] },
+      { title: 'Sortir à Saint Gervais', items: ['7 Jours d’Aventure dans les Alpes', 'Un Paradis pour les Amateurs de Vélo'] },
     ],
   },
+  { title: 'Vente', href: '/vente' },
   {
     title: 'Contact',
     href: '/contact'
@@ -39,44 +43,63 @@ const menuItems = [
 ];
 
 export default function MegaMenu() {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
-  const [hideTimeout, setHideTimeout] = useState(null);
   const menuContainerRef = useRef(null);
 
   const activeSubmenu = menuItems.find(m => m.title === activeMenu)?.submenu;
   const colCount = activeSubmenu?.length ?? 0;
   const gridCols = colCount > 5 ? 'grid-cols-5' : `grid-cols-${colCount}`;
 
-  const handleMouseLeave = () => {
-    const timeout = setTimeout(() => {
+  const handleClickOutside = (event) => {
+    if (menuContainerRef.current && !menuContainerRef.current.contains(event.target)) {
       setActiveMenu(null);
-    }, 200);
-    setHideTimeout(timeout);
+    }
   };
 
-  const handleMouseEnter = () => {
-    if (hideTimeout) clearTimeout(hideTimeout);
-  };
+  useEffect(() => {
+    if (activeMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [activeMenu]);
+
+  useEffect(() => {
+    setActiveMenu(null);
+    setMobileOpen(false);
+  }, [pathname]);
 
   return (
     <header className="border-b shadow-sm relative z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <img src="/pin.png" alt="Logo" className="h-10 w-auto" />
-          <div className="text-xl uppercase">Care Concierge <span className='text-[#bd9254]'>Luxury</span></div>
+          <div className="md:hidden md:text-md lg:block lg:text-xl uppercase">Care Concierge <span className='text-[#bd9254]'>Luxury</span></div>
         </div>
         <div className="hidden md:flex justify-center flex-1">
           <nav className="flex gap-8 items-center">
             {menuItems.map((item, i) => (
-              <div
-                key={i}
-                className="relative group"
-                onMouseEnter={() => item.submenu && setActiveMenu(item.title)}
-              >
-                <Link href={item.href || `/${item.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                  <span className="text-sm focus:outline-none uppercase leading-4 text-[#293d4c] hover:text-[#bd9254]">{item.title}</span>
-                </Link>
+              <div key={i} className="relative group">
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    className="text-[11px] focus:outline-none uppercase leading-4 text-[#293d4c] hover:text-[#bd9254]"
+                  >
+                    {item.title}
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => setActiveMenu(activeMenu === item.title ? null : item.title)}
+                    className="text-[11px] focus:outline-none uppercase leading-4 text-[#293d4c] hover:text-[#bd9254]"
+                  >
+                    {item.title}
+                  </button>
+                )}
               </div>
             ))}
           </nav>
@@ -90,22 +113,20 @@ export default function MegaMenu() {
 
       <div
         ref={menuContainerRef}
-        onMouseLeave={handleMouseLeave}
-        onMouseEnter={handleMouseEnter}
         className={`transition-all duration-500 ease-in-out ${
-          activeMenu && activeSubmenu ? 'max-h-[500px] opacity-100 py-6 pointer-events-auto' : 'max-h-0 opacity-0 py-0 pointer-events-none'
+          activeMenu && activeSubmenu ? 'max-h-[500px] uppercase opacity-100 py-6 pointer-events-auto' : 'max-h-0 opacity-0 py-0 pointer-events-none'
         } bg-white shadow-sm overflow-hidden`}
       >
         <div className="max-w-7xl mx-auto px-4">
-          <div className={`grid ${gridCols} gap-6`}>
+          <div className={`grid ${gridCols} gap-6 text-[10px] text-[#293d4c]`}>
             {activeSubmenu?.map((col, index) => (
               <div key={index}>
-                {col.title && <div className="uppercase text-md mb-2 text-[#293d4c] select-none">{col.title}</div>}
+                {col.title && <div className="text-[12px] mb-2 text-[#bd9254] select-none">{col.title}</div>}
                 <ul className="space-y-1">
-                  {col.items.map((subItem, idx) => (
+                  {col.items.filter(Boolean).map((subItem, idx) => (
                     <li key={idx} className="text-[10px] cursor-pointer leading-6">
                       <Link href={`/${activeMenu?.toLowerCase().replace(/\s+/g, '-')}/${subItem?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}>
-                        <span className="w-full text-left hover:text-[#bd9254] uppercase block">{subItem}</span>
+                        <span className="w-full text-[10px] text-left hover:text-[#bd9254] uppercase block">{subItem}</span>
                       </Link>
                     </li>
                   ))}
@@ -126,16 +147,19 @@ export default function MegaMenu() {
           <nav className="flex flex-col space-y-4 px-4 pb-6">
             {menuItems.map((item, i) => (
               <div key={i}>
-                <Link href={item.href || `/${item.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                  <div className="font-semibold text-md mb-3 cursor-pointer">{item.title}</div>
-                </Link>
-                {item.submenu && (
+                <button
+                  onClick={() => setActiveMenu(activeMenu === item.title ? null : item.title)}
+                  className="font-semibold uppercase text-sm mb-3 cursor-pointer hover:text-[#bd9254] text-left w-full"
+                >
+                  {item.title}
+                </button>
+                {activeMenu === item.title && item.submenu && (
                   <div className="grid grid-cols-2 gap-4 pl-4">
                     {item.submenu.map((col, index) => (
                       <div key={index}>
-                        {col.title && <div className="text-sm mb-1 font-semibold uppercase">{col.title}</div>}
+                        {col.title && <div className="text-sm mb-1 font-thin text-[#bd9254] uppercase">{col.title}</div>}
                         <ul className="space-y-1">
-                          {col.items.map((subItem, idx) => (
+                          {col.items.filter(Boolean).map((subItem, idx) => (
                             <li key={idx} className="text-[10px] uppercase hover:text-[#bd9254] cursor-pointer leading-7">
                               <Link href={`/${item.href?.replace(/^\//, '') || item.title.toLowerCase().replace(/\s+/g, '-')}/${subItem?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}>
                                 <span className="w-full text-left block">{subItem}</span>

@@ -1,4 +1,3 @@
-// app/LayoutContext.js
 'use client'
 import { createContext, useContext, useState } from 'react'
 
@@ -6,7 +5,6 @@ const LayoutContext = createContext()
 
 export function LayoutProvider({ children }) {
   const [hideLayout, setHideLayout] = useState(false)
-
   return (
     <LayoutContext.Provider value={{ hideLayout, setHideLayout }}>
       {children}
