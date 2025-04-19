@@ -49,7 +49,7 @@ export default function BlogList() {
       <div className="absolute inset-0  bg-gradient-to-bl from-transparent to-black/60 z-1"></div>
     </div>
   </section>
-    <div className="space-y-12 p-4 max-w-7xl mx-auto">
+    {/* <div className="space-y-12 p-4 max-w-7xl mx-auto">
       {Object.entries(data).map(([category, posts]) => (
         <div key={category} className="space-y-8">
           <h2 className="text-2xl font-bold text-gray-800">{category}</h2>
@@ -84,7 +84,7 @@ export default function BlogList() {
           </div>
         </div>
       ))}
-    </div>
+    </div> */}
     </>
   )
 }
