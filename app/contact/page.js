@@ -99,14 +99,27 @@ export default function ContactForm() {
   }
 
   return (
+    <>
+    <section className="relative">
+    <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/seminaire.png)] bg-cover bg-center">
+      <h1 className="text-7xl text-white/70 max-w-[600px] font-bold leading-[70px] mb-6 mt-6 p-6 uppercase z-20">
+      Séjour  <span className="md:text-9xl text-white">haut de gamme</span> en
+        haute savoie
+        {/* <span className="md:text-8xl text-white"></span> */}
+      </h1>
+
+    
+      <div className="absolute inset-0  bg-gradient-to-bl from-transparent to-black/60 z-1"></div>
+    </div>
+  </section>
     <form
       onSubmit={handleSubmit}
       className="max-w-5xl mx-auto p-4 bg-white shadow rounded-lg"
     >
       <div className="flex flex-col md:flex-row gap-8 text-[12px]">
-        <div className="md:w-1/2 flex flex-col items-center justify-center text-justify px-4 py-8 mb-4 ">
-          <h2 className="text-3xl font-bold mb-2">Care Concierge Luxury</h2>
-          <h3 className="text-xl font-semibold mb-4">Contactez-nous</h3>
+        <div className="md:w-1/2 flex flex-col px-4 py-8 mb-4 ">
+          <div className="flex  text-3xl"><h2 className="  mb-2">Care Concierge</h2><span className="ml-2 text-[#bd9254] text-3xl font-thin">Luxury</span></div>
+          <h3 className="text-xl font-thin mb-4">Contactez-nous</h3>
           <p className="text-gray-700 max-w-md leading-6">
             Vous avez une question, une demande de réservation ou un besoin
             particulier ? Nous sommes là pour vous aider. Remplissez le
@@ -303,5 +316,6 @@ export default function ContactForm() {
         </div>
       </div>
     </form>
+    </>
   );
 }

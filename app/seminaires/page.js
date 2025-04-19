@@ -51,34 +51,59 @@ export default function ChamonixHomepage() {
 
   return (
     <>
-      <section className="">
-        <div className="mx-auto justify-center items-center md:items-start flex flex-col h-screen p-6 min-h-screen bg-white bg-[url(/images/montagne.png)] bg-cover bg-center">
-          <h1 className="md:ml-[200px] text-4xl font-thin mb-10">
+      <section className="relative">
+        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/seminaire.png)] bg-cover bg-center">
+          <h1 className="text-7xl text-white/70 max-w-[600px] font-bold leading-[70px] mb-6 mt-6 p-6 uppercase z-20">
+            Votre <span className="md:text-9xl text-white">évenement</span> dans la vallée de <span className="md:text-8xl text-white">chamonix</span>
+          </h1>
+
+          {/* <h1 className="md:ml-[200px] text-white text-4xl font-thin mb-10 z-20">
             Notre service événementiel
           </h1>
-          <h2 className=" md:ml-[200px] text-center md:text-left text-2xl font-thin mb-20 max-w-3xl">
+          <h2 className="md:ml-[200px] text-center text-white md:text-left text-2xl font-thin mb-20 max-w-3xl z-20">
             Organisons ensemble votre événement hors du commun
           </h2>
-          <p className="md:ml-[200px] text-center md:text-left max-w-[700px] font-thin mb-10">
+          <p className="md:ml-[200px] text-center text-white md:text-left max-w-[700px] font-thin mb-10 z-20">
             Imaginez votre prochain événement dans un cadre atypique, agrémenté
             d’expériences extraordinaires. Oubliez les contraintes, notre équipe
             s’occupe de tout et organise pour vous un moment inoubliable
             entièrement sur-mesure.
-          </p>
+          </p> */}
+
+          {/*          
           <a
             href="#contact-form"
-            className="md:ml-[200px] bg-[#bd9254] max-w-[200px] text-white px-6 py-2 rounded mt-10"
+              className="md:ml-[200px] inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95 z-20"
           >
             contactez nous
-          </a>
+          </a> */}
+          <div className="absolute inset-0  bg-gradient-to-bl from-transparent to-black/60 z-1"></div>
         </div>
       </section>
 
       {/* Carousel Section */}
       <section className="max-w-7xl mx-auto text-center mb-12 p-6">
-        <h1 className="text-4xl font-thin mb-6 mt-6 p-6 uppercase">
-          Votre évenement dans la vallée de Chamonix
-        </h1>
+        <div className="relative z-10 mx-auto justify-center items-center flex flex-col ">
+          <h1 className=" text-black text-center text-5xl font-thin mb-10 z-20">
+            Notre service événementiel
+          </h1>
+          <h2 className=" text-center text-black  text-2xl font-thin mb-20 max-w-3xl z-20">
+            Organisons ensemble votre événement hors du commun
+          </h2>
+          <p className=" text-black text-center  max-w-[700px] font-thin mb-10 z-20">
+            Imaginez votre prochain événement dans un cadre atypique, agrémenté
+            d’expériences extraordinaires. Oubliez les contraintes, notre équipe
+            s’occupe de tout et organise pour vous un moment inoubliable
+            entièrement sur-mesure.
+          </p>
+
+          <a
+            href="#contact-form"
+            className=" mb-10 inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95 z-20"
+          >
+            contactez nous
+          </a>
+        </div>
 
         <div
           className="relative w-full max-w-[90%] md:max-w-[1000px] mx-auto"
@@ -146,10 +171,13 @@ export default function ChamonixHomepage() {
           evenement sur mesure ()
         </h2>
 
-        <Link href="/repertoire"
-           className="inline-block bg-[#bd9254] uppercase text-white px-6 py-2 rounded mt-10">
-            découvrez nos emplacements de luxe
-        
+        <Link
+          href="/repertoire"
+          className="inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95 z-20"
+
+          
+        >
+          découvrez nos emplacements de luxe
         </Link>
       </section>
 
@@ -233,7 +261,7 @@ export default function ChamonixHomepage() {
             </label>
             <button
               type="submit"
-              className="bg-[#bd9254] text-white py-2 px-6 rounded col-span-2"
+              className="inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95 z-20 col-span-2"
             >
               Envoyer ma demande
             </button>
