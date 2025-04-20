@@ -48,7 +48,7 @@ export default function VenteImmoCard({ item }) {
         </div>
       )}
 
-      <div className="p-4 flex flex-col flex-grow">
+      <div className="p-4 flex flex-col ">
         <p className='font-semibold uppercase text-xs leading-6'>Ville : <span className='font-thin'>{ville}</span></p>
         <p className='font-semibold uppercase text-xs leading-6'>Surface : <span className='font-thin'>{surface} m²</span></p>
         <p className='font-semibold uppercase text-xs leading-6'>Chambres : <span className='font-thin'>{chambres}</span></p>
@@ -58,7 +58,7 @@ export default function VenteImmoCard({ item }) {
 
         <Link
           href={`/vente/${slug}`}
-          className="mt-4 inline-block bg-[#bd9254] text-white px-4 py-2 rounded uppercase text-[12px] text-center hover:bg-[#a77c40]"
+           className="inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95"
         >
           Voir la description
         </Link>

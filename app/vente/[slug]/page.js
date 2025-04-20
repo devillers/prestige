@@ -40,10 +40,10 @@ export default async function VenteSinglePage({ params }) {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <div className="max-w-5xl mx-auto p-6 shadow mt-6 rounded-lg">
       {/* 🔖 LOGO + Bouton retour */}
       <div className="mb-6 flex justify-between items-center">
-        <Link href="/vente" className="text-[#bd9254]  font-semibold">
+        <Link href="/vente" className="text-[#bd9254]  font-thin">
           ← Retour aux biens
         </Link>
         <Image
@@ -65,50 +65,57 @@ export default async function VenteSinglePage({ params }) {
       )}
 
       {/* 🧾 DESCRIPTION */}
-      <h1 className="text-3xl font-thin mb-4">{title.rendered}</h1>
+      <h1 className="text-3xl font-thin mt-4 p-4">{title.rendered}</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-        <div>
-          <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
-            Ville : <span className="font-thin text-black">{ville}</span>
-          </p>
-          <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
-            Surface : <span className="font-thin text-black">{surface} m²</span>
-          </p>
-          <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
-            Chambres : <span className="font-thin text-black">{chambres}</span>
-          </p>
-          <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
-            SDB : <span className="font-thin text-black">{salles_de_bain}</span>
-          </p>
-          <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
-            Terrain :{" "}
-            <span className="font-thin text-black">{surface_terrain} m²</span>
-          </p>
-          <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
-            Prix :{" "}
-            <span className="font-thin text-black">
-              {formatPrix(prix_vente)} €
-            </span>
-          </p>
+      <div className="flex flex-row mb-4 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <div className="p-4 mt-6">
+            <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
+              Ville : <span className="font-thin text-black">{ville}</span>
+            </p>
+            <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
+              Surface :{" "}
+              <span className="font-thin text-black">{surface} m²</span>
+            </p>
+            <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
+              Chambres :{" "}
+              <span className="font-thin text-black">{chambres}</span>
+            </p>
+            <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
+              SDB :{" "}
+              <span className="font-thin text-black">{salles_de_bain}</span>
+            </p>
+            <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
+              Terrain :{" "}
+              <span className="font-thin text-black">{surface_terrain} m²</span>
+            </p>
+            <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
+              Prix :{" "}
+              <span className="font-thin text-black">
+                {formatPrix(prix_vente)} €
+              </span>
+            </p>
+          </div>
+
+          <div
+            className="prose prose-neutral max-w-none  font-thin p-4 text-justify text-sm leading-6"
+            dangerouslySetInnerHTML={{ __html: content.rendered }}
+          />
+
+          {/* 🔗 SWIXIM */}
+        
         </div>
+        
       </div>
-
-      <div
-        className="prose prose-neutral max-w-none mb-6 font-thin text-justify text-sm leading-6"
-        dangerouslySetInnerHTML={{ __html: content.rendered }}
-      />
-
-      {/* 🔗 SWIXIM */}
       {lien_swixim && (
-        <Link
-          href={lien_swixim}
-          className="inline-block bg-[#bd9254] text-white px-6 py-3 rounded hover:bg-[#a77c40]"
-          target="_blank"
-        >
-          Voir sur Swixim
-        </Link>
-      )}
+            <Link
+              href={lien_swixim}
+              className="inline-flex items-center justify-center px-4 h-[30px] font-thin ml-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-red-600 hover:text-white active:scale-95"
+              target="_blank"
+            >
+              Voir sur Swixim
+            </Link>
+          )}
     </div>
   );
 }

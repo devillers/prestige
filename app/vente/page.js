@@ -68,28 +68,30 @@ export default function VentePage() {
   return (
     <>
       <section className="relative">
-        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/seminaire.png)] bg-cover bg-center">
+        
+        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/immo.png)] bg-cover bg-center">
           <h1 className="text-7xl text-white/70 max-w-[600px] font-bold leading-[70px] mb-6 mt-6 p-6 uppercase z-20">
-          Votre bien  <span className="md:text-9xl text-white">notre expertise</span>
-            <span className="md:text-7xl text-white/70 ">
-              {" "}
-              haut 
-            </span>
-            <span className="md:text-7xl text-white">
-              {" "}
-              de gamme  
-            </span>
-            
+            Votre bien{" "}
+            <span className="md:text-9xl text-white">notre expertise</span>
+            <span className="md:text-7xl text-white/70 "> haut</span>
+            <span className="md:text-7xl text-white"> de gamme</span>
             {/* <span className="md:text-8xl text-white"></span> */}
           </h1>
 
           <div className="absolute inset-0  bg-gradient-to-bl from-transparent to-black/60 z-1"></div>
         </div>
       </section>
-      <div className="max-w-7xl mx-auto p-6 ">
+      <p className="font-thin text-lg mb-6 max-w-4xl mx-auto p-6 border-l-[1px] border-l-gray-900 mt-6">
+            Parce que votre projet immobilier mérite une expertise d’exception,
+            SWIXIM met à votre disposition un réseau international d’experts
+            hautement qualifiés, chacun reconnu dans son domaine, pour vous
+            offrir un accompagnement sur mesure, exclusif et parfaitement aligné
+            avec vos exigences les plus élevées, en France comme à l’étranger
+          </p>
+      <div className="max-w-6xl mx-auto p-6 ">
         {/* FORMULAIRE DE FILTRES */}
-        <div className="mb-8 p-6 bg-white rounded-lg shadow">
-          <h2 className="text-xl font-bold text-gray-800 mb-6">Filtres</h2>
+        <div className="mb-8 p-6 bg-white ">
+          {/* <h2 className="text-xl font-bold text-gray-800 mb-6">Filtres</h2> */}
           <div className="flex flex-wrap items-center gap-8">
             {/* TYPE DE BIEN */}
             <div>
@@ -151,11 +153,15 @@ export default function VentePage() {
                 }
               />
             </div>
+        
           </div>
+        
         </div>
+      
 
         {/* LISTING DES BIENS */}
-        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ">
+         
           {biens.map((item) => (
             <VenteImmoCard key={item.id} item={item} />
           ))}

@@ -125,7 +125,7 @@ export default function PortfolioPage() {
   return (
     <>
       <section className="relative">
-        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/seminaire.png)] bg-cover bg-center">
+        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[740px] p-6 bg-white bg-[url(/images/repertoire.png)] bg-cover bg-center">
           <h1 className="text-7xl text-white/70 max-w-[600px] font-bold leading-[70px] mb-6 mt-6 p-6 uppercase z-20">
           Séjour  <span className="md:text-9xl text-white">haut de gamme</span> en
             haute savoie
@@ -231,7 +231,7 @@ export default function PortfolioPage() {
               </label>
               <button
                 onClick={clearFilters}
-                className="w-full md:w-[60px]  h-7 border border-gray-300 text-xs uppercase text-[#bd9254] rounded"
+              className="inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95"
               >
                 Reset
               </button>
