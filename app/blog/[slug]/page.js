@@ -1,10 +1,12 @@
+//app/repertoire/[slug]/page.js
+
 import { notFound } from 'next/navigation';
 import Breadcrumb from "../../components/BreadCrumb";
 
 async function getPost(slug) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/wp/v2/portfolio?slug=${slug}&_embed`,
-    { next: { revalidate: 60 } }
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/wp/v2/blog?slug=${slug}&_embed`,
+    { next: { revalidate: 60 } } // optionnel : ISR
   );
 
   if (!res.ok) return null;
@@ -16,19 +18,19 @@ async function getPost(slug) {
 export default async function PostPage(props) {
   const { slug } = await Promise.resolve(props.params);
 
-
-
   const post = await getPost(slug);
+
   if (!post || !post.content?.rendered) return notFound();
 
+  const category = post?.categorie?.[0];
   const imageUrl = post?._embedded?.["wp:featuredmedia"]?.[0]?.source_url || null;
 
   return (
     <>
       <section className="relative">
-        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/repertoire-hero.jpg)] bg-cover bg-center">
+        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/blog2.png)] bg-cover bg-center">
           <h1 className="text-7xl text-white/70 max-w-[600px] font-bold leading-[70px] mb-6 mt-6 p-6 uppercase z-20">
-            Le Répertoire <span className="md:text-9xl text-white">nos biens</span> en location
+            Le Blog <span className="md:text-9xl text-white">nos conseils</span> de megève à chamonix
           </h1>
           <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-1" />
         </div>
@@ -38,9 +40,10 @@ export default async function PostPage(props) {
         <Breadcrumb
           items={[
             { label: "Accueil", href: "/" },
-            { label: "Le Répertoire", href: "/repertoire" },
+            { label: "Blog", href: "/blog" },
+            category ? { label: category.name, href: `/categorie-blog/${category.slug}` } : null,
             { label: post.title.rendered },
-          ]}
+          ].filter(Boolean)}
         />
 
         {imageUrl && (

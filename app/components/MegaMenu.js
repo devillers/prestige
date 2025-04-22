@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
-import menuItems from '../data/MenuItems'; // Assuming you have a menuItems.js file with your menu structure
+import menuItems from '../data/menuItems'; // Assuming you have a menuItems.js file with your menu structure
 
 
 export default function MegaMenu() {
