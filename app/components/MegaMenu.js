@@ -5,39 +5,8 @@ import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
-const menuItems = [
-  { title: 'Accueil', href: '/' },
-  {
-    title: 'Le Répertoire',
-    href: '/repertoire',
-    submenu: [
-      { title: 'Combloux - Megeve', items: ['La ferme des Choseaux', 'Le Splendide', 'Le Kramer'] },
-      { title: 'Chamonix', items: ['Chalet Sia', 'Chalet Kieppi', 'Chalet des Eaux Rousses', 'Ecrin des Bossons'] },
-      { title: 'Saint Nicolas', items: ['La ferme Picherie'] },
-      { title: 'Saint Gervais', items: ['Chalet Remy', 'La Ferme de Bionnassay'] },
-    ],
-  },
-  { title: 'La Conciergerie', href: '/conciergerie' },
-  { title: 'Séminaire', href: '/seminaires' },
-  {
-    title: 'Blog',
-    href: '/blog',
-    submenu: [
-      { title: 'Sortir à megeve', items: ['7 Jours pour Explorer le Massif du Mont-Blanc'] },
-      { title: 'Sortir à chamonix', items: ['7 Jours pour Explorer le Massif du Mont-Blanc'] },
-      { title: 'Sortir à Saint Nicolas', items: [''] },
-      { title: 'Sortir à Saint Gervais', items: ['7 Jours d’Aventure dans les Alpes', 'Un Paradis pour les Amateurs de Vélo'] },
-    ],
-  },
-  { title: 'Vente', href: '/vente' },
-  { title: 'Contact', href: '/contact' },
-];
+import menuItems from '../data/MenuItems'; // Assuming you have a menuItems.js file with your menu structure
 
-const slugify = (text) =>
-  text.toLowerCase()
-    .normalize('NFD').replace(/\p{Diacritic}/gu, '')
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '');
 
 export default function MegaMenu() {
   const pathname = usePathname();
@@ -51,21 +20,6 @@ export default function MegaMenu() {
   const activeSubmenu = menuItems.find(m => m.title === activeMenu)?.submenu;
   const colCount = activeSubmenu?.length ?? 0;
   const gridCols = colCount > 5 ? 'grid-cols-5' : `grid-cols-${colCount}`;
-
-  const handleClickOutside = (event) => {
-    if (menuContainerRef.current && !menuContainerRef.current.contains(event.target)) {
-      setActiveMenu(null);
-    }
-  };
-
-  useEffect(() => {
-    if (activeMenu) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [activeMenu]);
 
   useEffect(() => {
     setActiveMenu(null);
@@ -95,7 +49,9 @@ export default function MegaMenu() {
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <img src="/pin.png" alt="Logo" className="h-10 w-auto" />
-          <div className="md:hidden md:text-md lg:block lg:text-xl uppercase">Care Concierge <span className='text-[#bd9254]'>Luxury</span></div>
+          <div className="md:hidden md:text-md lg:block lg:text-xl uppercase">
+            Care Concierge <span className='text-[#bd9254]'>Luxury</span>
+          </div>
         </div>
 
         <div className="hidden md:flex justify-center flex-1">
@@ -145,7 +101,7 @@ export default function MegaMenu() {
         </div>
       </div>
 
-      {/* SOUS-MENU GLOBAL, UNIQUE */}
+      {/* SOUS-MENU GLOBAL */}
       <div
         ref={menuContainerRef}
         onMouseEnter={() => clearTimeout(closeTimeoutRef.current)}
@@ -162,17 +118,17 @@ export default function MegaMenu() {
               <div key={index}>
                 {col.title && <div className="text-[12px] mb-2 text-[#bd9254] select-none">{col.title}</div>}
                 <ul className="space-y-1">
-                  {col.items.filter(Boolean).map((subItem, idx) => (
+                  {col.items?.filter(Boolean).map((subItem, idx) => (
                     <li key={idx}>
                       <Link
-                        href={`/${slugify(activeMenu)}/${slugify(subItem)}`}
+                        href={subItem.href}
                         onClick={() => {
                           clearTimeout(closeTimeoutRef.current);
                           setActiveMenu(null);
                         }}
                         className="block w-full text-[10px] uppercase hover:text-[#bd9254]"
                       >
-                        {subItem}
+                        {subItem.title}
                       </Link>
                     </li>
                   ))}
@@ -183,29 +139,26 @@ export default function MegaMenu() {
         </div>
       </div>
 
+      {/* MENU MOBILE */}
       {mobileOpen && (
         <>
           <div
             className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
             onClick={() => setMenuClosing(true) || setTimeout(() => { setMobileOpen(false); setMenuClosing(false); }, 800)}
           />
-
           <div className={`fixed top-0 right-0 w-3/5 h-full bg-white/30 shadow-lg z-50 transform transition-transform duration-800 ${menuClosing ? 'translate-x-full' : 'animate-slide-in'}`}>
             <div className="flex justify-end p-4">
               <button onClick={() => setMenuClosing(true) || setTimeout(() => { setMobileOpen(false); setMenuClosing(false); }, 800)}>
                 <X size={24} />
               </button>
             </div>
-
             <nav className="flex flex-col space-y-4 px-4 pb-6 animate-fade-in">
               {menuItems.map((item, i) => (
                 <div key={i}>
                   {item.href ? (
                     <button
                       onClick={() => delayedCloseAndNavigate(item.href)}
-                      className={`font-semibold uppercase text-sm mb-3 cursor-pointer hover:text-[#bd9254] hover:bg-white/80 rounded p-2 text-left w-full ${
-                        pathname === item.href ? 'text-[#bd9254]/80 bg-white' : ''
-                      }`}
+                      className={`font-semibold uppercase text-sm mb-3 cursor-pointer hover:text-[#bd9254] hover:bg-white/80 rounded p-2 text-left w-full ${pathname === item.href ? 'text-[#bd9254]/80 bg-white' : ''}`}
                     >
                       {item.title}
                     </button>
@@ -217,24 +170,19 @@ export default function MegaMenu() {
                       {item.title}
                     </button>
                   )}
-
                   {activeMenu === item.title && item.submenu && (
                     <div className="grid grid-cols-2 gap-4 pl-4">
                       {item.submenu.map((col, index) => (
                         <div key={index}>
-                          {col.title && (
-                            <div className="text-sm mb-1 font-thin text-[#bd9254] uppercase">{col.title}</div>
-                          )}
+                          {col.title && <div className="text-sm mb-1 font-thin text-[#bd9254] uppercase">{col.title}</div>}
                           <ul className="space-y-1">
                             {col.items.filter(Boolean).map((subItem, idx) => (
                               <li key={idx}>
                                 <button
-                                  onClick={() =>
-                                    delayedCloseAndNavigateToSub(`/${slugify(item.title)}/${slugify(subItem)}`)
-                                  }
+                                  onClick={() => delayedCloseAndNavigateToSub(subItem.href)}
                                   className="text-[10px] uppercase hover:text-[#bd9254] block leading-7 text-left w-full"
                                 >
-                                  {subItem}
+                                  {subItem.title}
                                 </button>
                               </li>
                             ))}
