@@ -1,6 +1,6 @@
 "use client";
 import Conciergerie_Module from "../components/Conciergerie_Module";
-import Contact from "../components/ContactForm";
+
 
 export default function ServiceSection() {
   return (
@@ -18,7 +18,7 @@ export default function ServiceSection() {
       </section>
 
       <Conciergerie_Module />
-      <Contact />
+     
     </>
   );
 }

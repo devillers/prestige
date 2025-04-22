@@ -65,11 +65,11 @@ export default async function VenteSinglePage({ params }) {
       )}
 
       {/* 🧾 DESCRIPTION */}
-      <h1 className="text-3xl font-thin mt-4 p-4">{title.rendered}</h1>
+      <h1 className="text-3xl font-thin my-4 md:p-4">{title.rendered}</h1>
 
       <div className="flex flex-row mb-4 ">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-          <div className="p-4 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:items-center">
+          <div className="md:ml-16 ">
             <p className="font-semibold uppercase text-xs leading-6 text-[#bd9254]">
               Ville : <span className="font-thin text-black">{ville}</span>
             </p>
@@ -98,7 +98,7 @@ export default async function VenteSinglePage({ params }) {
           </div>
 
           <div
-            className="prose prose-neutral max-w-none  font-thin p-4 text-justify text-sm leading-6"
+            className="prose prose-neutral max-w-none  font-thin md:p-4 text-justify text-sm leading-6"
             dangerouslySetInnerHTML={{ __html: content.rendered }}
           />
 
@@ -110,7 +110,7 @@ export default async function VenteSinglePage({ params }) {
       {lien_swixim && (
             <Link
               href={lien_swixim}
-              className="inline-flex items-center justify-center px-4 h-[30px] font-thin ml-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-red-600 hover:text-white active:scale-95"
+              className="inline-flex items-center justify-center px-4 h-[30px] font-thin md:ml-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-red-600 hover:text-white active:scale-95"
               target="_blank"
             >
               Voir sur Swixim

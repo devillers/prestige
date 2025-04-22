@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
-import { FaTimes, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+
 
 const PhotoGallery = ({ images = [] }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -31,7 +31,7 @@ const PhotoGallery = ({ images = [] }) => {
 
   return (
     <div className="p-6" id="#picture">
-      <h3 className="text-lg uppercase py-4 font-thin">
+      <h3 className="text-3xl uppercase py-4 font-thin">
         Aperçu de la propriété
       </h3>
 
@@ -70,7 +70,7 @@ const PhotoGallery = ({ images = [] }) => {
       {images.length > 6 && (
         <button
           onClick={() => openModal(0)}
-          className="mt-6 border border-[#bd9254] px-4 py-2 text-sm uppercase text-[#bd9264] rounded hover:bg-[#bd9264] hover:text-white transition"
+                className="inline-flex mt-5 items-center justify-center px-4 h-[30px] font-thin border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95"
         >
           Voir toutes les photos
         </button>
@@ -94,7 +94,7 @@ const PhotoGallery = ({ images = [] }) => {
             </div>
             <AiOutlineClose
               onClick={closeModal}
-              className=" text-[35px] p-2 border border-[1px] text-gray-500 z-50 bg-white rounded-full p-1 cursor-pointer  shadow"
+              className=" text-[35px] p-2  border-[1px] text-gray-500 z-50 bg-white rounded-full cursor-pointer  shadow"
             />
           </div>
         </div>

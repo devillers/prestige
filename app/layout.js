@@ -4,6 +4,7 @@ import './globals.css'
 import React from 'react'
 import Script from 'next/script'
 import CookieConsent from 'react-cookie-consent'
+import Head from 'next/head'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -15,6 +16,11 @@ function LayoutWrapper({ children }) {
 
   return (
     <>
+      <Head>
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png" />
+      </Head>
+
       {/* Google Analytics */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-FER4ECWWK3"

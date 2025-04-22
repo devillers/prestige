@@ -1,5 +1,3 @@
-//app/description/slug/page.js
-
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -12,12 +10,21 @@ export default function DescriptionPage() {
   const { slug } = useParams();
   const [property, setProperty] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [hasMoreContent, setHasMoreContent] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(`http://localhost:8888/wordpress/wp-json/wp/v2/portfolio?slug=${slug}&_embed`);
       const data = await res.json();
-      setProperty(data[0]);
+      const prop = data[0];
+
+      // Count <p> tags using DOMParser
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(prop.content.rendered, 'text/html');
+      const pTags = doc.querySelectorAll('p');
+
+      setHasMoreContent(pTags.length > 1);
+      setProperty(prop);
     };
     fetchData();
   }, [slug]);
@@ -37,7 +44,7 @@ export default function DescriptionPage() {
   return (
     <>
       <div className="relative">
-      <PropertyDescriptionHeader property={property} />
+        <PropertyDescriptionHeader property={property} />
       </div>
 
       <section className="max-w-[900px] mx-auto text-slate-600">
@@ -49,8 +56,8 @@ export default function DescriptionPage() {
                 className="text-7xl font-thin leading-14 text-center"
                 dangerouslySetInnerHTML={{ __html: title }}
               />
-              <p className="text-gray-600 my-6 text-xl flex justify-center font-thin  items-center gap-2">
-                <FaMapMarkerAlt className="text-gray-600 " /> {location}
+              <p className="text-gray-600 my-6 text-xl flex justify-center font-thin items-center gap-2">
+                <FaMapMarkerAlt className="text-gray-600" /> {location}
               </p>
             </div>
 
@@ -75,7 +82,9 @@ export default function DescriptionPage() {
           {/* PROPERTY DESCRIPTION */}
           <section className="mt-8 p-6">
             <div className="mt-4">
-              <h3 className="text-lg font-thin uppercase">{title}</h3>
+              <h3 className="text-3xl uppercase py-4 font-thin">{title}</h3>
+
+              {/* First paragraph */}
               <div
                 className="text-gray-700 mt-2 text-[13px] leading-8"
                 dangerouslySetInnerHTML={{
@@ -83,29 +92,34 @@ export default function DescriptionPage() {
                 }}
               />
 
-              <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  isExpanded ? 'h-auto opacity-100' : 'max-h-0 opacity-0'
-                }`}
-              >
-                <div
-                  className="text-gray-700 mt-2 text-[13px] font-thin leading-8"
-                  dangerouslySetInnerHTML={{
-                    __html: content
-                      .split('</p>')
-                      .slice(1)
-                      .join('</p>'),
-                  }}
-                />
-              </div>
+              {/* Hidden content */}
+              {hasMoreContent && (
+                <>
+                  <div
+                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                      isExpanded ? 'h-auto opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <div
+                      className="text-gray-700 mt-2 text-[13px] font-thin leading-8"
+                      dangerouslySetInnerHTML={{
+                        __html: content
+                          .split('</p>')
+                          .slice(1)
+                          .join('</p>'),
+                      }}
+                    />
+                  </div>
 
-              {/* Accordion Toggle */}
-              <button
-                onClick={toggleAccordion}
-                className="text-yellow-600 font-medium mt-2 text-[12px]"
-              >
-                {isExpanded ? 'fermer' : 'voir +'}
-              </button>
+                  {/* Toggle button */}
+                  <button
+                    onClick={toggleAccordion}
+                    className="text-yellow-600 font-thin mt-2 text-[12px]"
+                  >
+                    {isExpanded ? 'fermer' : 'voir +'}
+                  </button>
+                </>
+              )}
             </div>
           </section>
 

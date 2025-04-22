@@ -5,11 +5,13 @@ const NewsletterForm = () => {
   const [email, setEmail] = useState("");
   const [interests, setInterests] = useState([
     "Points de marché en France",
-    "Chalets ",
-    "Immeubles",
-    "Appartements",
-    "Nouveux Biens à louer",
-    "Immobilier passion",
+    "Chalets à vendre",
+    "Immeubles à vendre",
+    "Appartements à vendre",
+    "Nouveaux Biens à louer",
+    "Immobilier de luxe",
+
+   
   ]);
   const [selected, setSelected] = useState(new Set(interests));
   const [success, setSuccess] = useState(false);
@@ -61,12 +63,12 @@ const NewsletterForm = () => {
       <form onSubmit={handleSubmit} className="max-w-4xl mx-auto mt-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left mb-8">
           {interests.map((interest) => (
-            <label key={interest} className="flex items-start gap-2">
+            <label key={interest} className="flex items-start font-thin gap-2">
               <input
                 type="checkbox"
                 checked={selected.has(interest)}
                 onChange={() => toggleInterest(interest)}
-                className="mt-1 w-5 h-5 accent-[#bd9254] text-white checked:bg-[#bd9254]"
+                className="mt-1 w-4 h-4 accent-[#bd9254] text-white "
               />
               <span>{interest}</span>
             </label>

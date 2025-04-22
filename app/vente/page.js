@@ -81,7 +81,7 @@ export default function VentePage() {
           <div className="absolute inset-0  bg-gradient-to-bl from-transparent to-black/60 z-1"></div>
         </div>
       </section>
-      <p className="font-thin text-lg mb-6 max-w-4xl mx-auto p-6 border-l-[1px] border-l-gray-900 mt-6">
+      <p className="font-thin text-lg mb-6 max-w-4xl mx-auto p-6 border-l-[1px] border-l-slate-400 pl-4 mt-6">
             Parce que votre projet immobilier mérite une expertise d’exception,
             SWIXIM met à votre disposition un réseau international d’experts
             hautement qualifiés, chacun reconnu dans son domaine, pour vous

@@ -104,12 +104,12 @@ const PropertyDescriptionHeader = ({ property }) => {
             </div>
           </div>
 
-          <a
+          {/* <a
             href="#picture"
-            className="absolute right-10 bottom-10 border border-yellow-400 uppercase text-white p-2 rounded-md text-[12px] opacity-35 hover:opacity-100 transition duration-300 ease-in-out"
+            className="absolute right-10 bottom-10 border border-white hover:border-[#bd9254] uppercase text-white p-2 rounded-full text-[12px] opacity-80 hover:opacity-100 transition duration-300 ease-in-out z-20"
           >
             voir les photos
-          </a>
+          </a> */}
         </div>
       </div>
     </section>

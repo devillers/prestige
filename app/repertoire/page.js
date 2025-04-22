@@ -125,7 +125,7 @@ export default function PortfolioPage() {
   return (
     <>
       <section className="relative">
-        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[740px] p-6 bg-white bg-[url(/images/repertoire.png)] bg-cover bg-center">
+        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/repertoire.png)] bg-cover bg-center">
           <h1 className="text-7xl text-white/70 max-w-[600px] font-bold leading-[70px] mb-6 mt-6 p-6 uppercase z-20">
           Séjour  <span className="md:text-9xl text-white">haut de gamme</span> en
             haute savoie
@@ -136,17 +136,33 @@ export default function PortfolioPage() {
           <div className="absolute inset-0  bg-gradient-to-bl from-transparent to-black/60 z-1"></div>
         </div>
       </section>
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <h1 className="text-7xl  text-center font-thin mb-6 md:text-left">Le Répertoire</h1>
-          <h1 className=" text-black text-4xl text-center font-thin z-20 md:text-left mb-12">
-            Nos logements haut de gamme
-          </h1>
-          
-          <p className="text-center text-black md:text-left max-w-[700px] font-thin mb-10 z-20 leading-8">
-            Imaginez votre prochain événement dans un cadre atypique, agrémenté
-            d’expériences extraordinaires. Oubliez les contraintes, notre équipe
-            s’occupe de tout et organise pour vous un moment inoubliable
-            entièrement sur-mesure.
+      <div className="max-w-6xl mx-auto px-4 py-12">
+      <ul className="py-4 ">
+          <li>
+            {" "}
+            <h1 className="text-6xl md:text-8xl uppercase font-thin">
+              {" "}
+              Le répertoire
+            </h1>
+          </li>
+          <li>
+            {" "}
+            <h2 className=" text-4xl md:text-6xl uppercase font-thin">
+              {" "}
+              nos logements
+            </h2>
+          </li>
+          <li>
+            {" "}
+            <h3 className="text-3xl md:text-5xl uppercase  font-thin">
+              {" "}
+              haut de gamme
+            </h3>
+          </li>
+        </ul>
+          <p className="text-center text-black md:text-left text-lg md:text-xl font-thin my-10 z-20 leading-8">
+          Partez à la découverte de lieux exclusifs, conçus pour accueillir vos événements les plus raffinés.
+          Dans un décor alpin hors du commun, vivez une expérience sur-mesure, pensée dans les moindres détails. Notre équipe se charge de tout , pour que chaque instant soit unique, fluide, et inoubliable.
           </p> 
 
         {/* Filter Form */}
