@@ -1,6 +1,14 @@
+//app/blog/page.js
+
+import { getMetadataForPage } from '../lib/metadata';
 import BlogGrid from "../components/BlogGrid";
 import Breadcrumb from "../components/BreadCrumb";
 
+export const metadata = getMetadataForPage({
+  title: 'Blog Immobilier & Conciergerie | Care Concierge',
+  description: 'Conseils et inspirations pour l’immobilier haut de gamme et la conciergerie à Megève, Chamonix et en Haute-Savoie.',
+  keywords: ['blog', 'conciergerie', 'immobilier', 'megeve', 'chamonix', 'alpes'],
+});
 export default async function BlogPage() {
   const apiBase = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 

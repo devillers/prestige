@@ -1,5 +1,13 @@
+// ✅ CORRECTION : app/page.js (Home)
 import ProfilesGrid from "./components/ProfilesGrid";
 import NewsletterForm from "./components/NewsletterForm";
+import { getMetadataForPage } from "./lib/metadata";
+
+export const metadata = getMetadataForPage({
+  title: "Accueil | Care Concierge",
+  description: "Des chalets de luxe en Haute-Savoie avec un service d’exception.",
+  keywords: ["chalet", "conciergerie", "luxe", "haute savoie"],
+});
 
 export default async function HomePage() {
   const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;

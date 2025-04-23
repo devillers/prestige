@@ -1,3 +1,27 @@
+//app/categorie-blog/[slug]/page.js
+
+
+export async function generateMetadata({ params }) {
+  const { slug } = await Promise.resolve(params);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/wp/v2/categorie-blog?per_page=100`);
+  const categories = await res.json();
+  const category = categories.find((cat) => cat.slug === slug);
+
+  if (!category) {
+    return getMetadataForPage({
+      title: 'Catégorie introuvable',
+      description: 'Cette catégorie d’articles n’existe pas.',
+    });
+  }
+
+  return getMetadataForPage({
+    title: `${category.name} | Blog Care Concierge`,
+    description: `Explorez les articles de la catégorie "${category.name}" sur le blog Care Concierge.`,
+    keywords: [category.name, 'immobilier', 'conciergerie', 'blog'],
+  });
+}
+
+
 import BlogGrid from "../../components/BlogGrid";
 import Breadcrumb from "../../components/BreadCrumb";
 
@@ -40,7 +64,7 @@ export default async function CategoryPage(props) {
             { label: term.name },
           ]}
         />
-        <h1 className="text-4xl font-bold mb-8 capitalize">{term.name}</h1>
+        {/* <h1 className="text-4xl font-bold mb-8 capitalize">{term.name}</h1> */}
         <BlogGrid groupedPosts={grouped} />
       </div>
     </>

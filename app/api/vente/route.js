@@ -1,3 +1,5 @@
+//APP/API/VENTE/ROUTE.JS
+
 export async function GET(request) {
     const { searchParams } = new URL(request.url)
     const types = searchParams.getAll('type_bien')

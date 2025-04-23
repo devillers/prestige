@@ -1,3 +1,40 @@
+//app/vente/[slug]/page.js
+
+
+import { getMetadataForPage } from '../../lib/metadata';
+import { notFound } from 'next/navigation';
+
+export async function generateMetadata({ params }) {
+  const { slug } = await Promise.resolve(params);
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/wp/v2/vente_immo?slug=${slug}&_embed`
+  );
+  const data = await res.json();
+  const item = data[0];
+
+  if (!item) {
+    return getMetadataForPage({
+      title: 'Bien introuvable',
+      description: 'Ce bien immobilier n’existe pas ou n’est plus disponible.',
+    });
+  }
+
+  const title = item.title?.rendered ?? 'Bien à vendre';
+  const location = item.ville ?? 'Haute-Savoie';
+  const prix = item.prix_vente
+    ? new Intl.NumberFormat("fr-FR").format(item.prix_vente) + ' €'
+    : '';
+  const desc = `Découvrez ce bien à ${location} proposé à ${prix}.`;
+
+  return getMetadataForPage({
+    title: `${title} | Vente immobilière à ${location}`,
+    description: desc,
+    keywords: [title, location, 'immobilier', 'vente', 'bien à vendre'],
+  });
+}
+
+
 import Image from "next/image";
 import Link from "next/link";
 import Carousel from "../../components/Carrousel";
@@ -11,11 +48,12 @@ async function getVenteBySlug(slug) {
   return data[0];
 }
 
-export default async function VenteSinglePage({ params }) {
-  const item = await getVenteBySlug(params.slug);
+export default async function VenteSinglePage(props) {
+  const { slug } = await Promise.resolve(props.params); // ✅ correct async resolution
 
-  if (!item) return <p>Bien introuvable.</p>;
+  const item = await getVenteBySlug(slug);
 
+  if (!item) notFound();
   const {
     title,
     content,
