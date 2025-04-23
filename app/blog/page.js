@@ -1,4 +1,4 @@
-//app/blog/page.js
+// app/blog/page.js
 
 import { getMetadataForPage } from '../lib/metadata';
 import BlogGrid from "../components/BlogGrid";
@@ -9,37 +9,46 @@ export const metadata = getMetadataForPage({
   description: 'Conseils et inspirations pour l’immobilier haut de gamme et la conciergerie à Megève, Chamonix et en Haute-Savoie.',
   keywords: ['blog', 'conciergerie', 'immobilier', 'megeve', 'chamonix', 'alpes'],
 });
+
+// ✅ Force page to be dynamic (avoid prerender errors during build)
+export const dynamic = 'force-dynamic';
+
 export default async function BlogPage() {
   const apiBase = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+  const grouped = {};
 
-  // ✅ Fetch all taxonomy terms from 'categorie-blog'
-// Fetch all categories (terms)
-const categoryRes = await fetch(`${apiBase}/wp-json/wp/v2/categorie-blog?per_page=100`);
-const categories = await categoryRes.json();
+  try {
+    const categoryRes = await fetch(`${apiBase}/wp-json/wp/v2/categorie-blog?per_page=100`);
+    const categories = await categoryRes.json();
 
-const grouped = {};
+    await Promise.all(
+      categories.map(async (category) => {
+        try {
+          const postRes = await fetch(
+            `${apiBase}/wp-json/wp/v2/blog?categorie-blog=${category.id}&per_page=100&_embed`
+          );
+          if (!postRes.ok) {
+            console.warn(`API non disponible pour catégorie ${category.name} (code ${postRes.status})`);
+            return;
+          }
 
-// For each category, fetch blog posts
-await Promise.all(
-  categories.map(async (category) => {
-    const postRes = await fetch(
-      `${apiBase}/wp-json/wp/v2/blog?categorie-blog=${category.id}&per_page=100&_embed`
+          const posts = await postRes.json();
+          if (Array.isArray(posts) && posts.length > 0) {
+            grouped[category.name] = posts;
+          }
+        } catch (err) {
+          console.error(`Erreur API pour catégorie ${category.name}`, err);
+        }
+      })
     );
-    const posts = await postRes.json();
-
-    // ✅ Only add to grouped if there are posts
-    if (Array.isArray(posts) && posts.length > 0) {
-      grouped[category.name] = posts;
-    }
-  })
-);
-
+  } catch (err) {
+    console.error('Erreur globale de chargement des catégories', err);
+  }
 
   return (
     <>
       <section className="relative">
-      <div className="relative z-10 mx-auto justify-center flex flex-col h-screen md:max-h-[640px] overflow-hidden p-6 bg-white bg-[url(/images/blog3.png)] bg-cover bg-center">
-
+        <div className="relative z-10 mx-auto justify-center flex flex-col h-screen md:max-h-[640px] overflow-hidden p-6 bg-white bg-[url(/images/blog3.png)] bg-cover bg-center">
           <h1 className="text-7xl text-white/70 max-w-[600px] font-bold leading-[70px] mb-6 mt-6 p-6 uppercase z-20">
             Le Blog <span className="md:text-9xl text-white">nos conseils</span> de megève à chamonix
           </h1>
