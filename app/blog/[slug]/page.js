@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
   const post = posts?.[0];
 
   if (!post) {
-    return getMetadataForPage({
+    return getMetadataForPage({ 
       title: 'Article introuvable',
       description: 'Cet article n’existe pas ou n’est plus disponible.',
     });
