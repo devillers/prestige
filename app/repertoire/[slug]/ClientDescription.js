@@ -1,5 +1,3 @@
-// app/repertoire/[slug]/ClientDescription.js
-
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -15,14 +13,32 @@ export default function ClientDescription({ slug }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/wp/v2/portfolio?slug=${slug}&_embed`);
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/wp/v2/portfolio?slug=${slug}&_embed`
+        );
+
+        if (!res.ok) {
+          console.warn(`Erreur API : ${res.status}`);
+          return;
+        }
+
         const data = await res.json();
+
+        if (!Array.isArray(data)) {
+          console.error('Données inattendues pour "portfolio"', data);
+          return;
+        }
+
         const prop = data[0];
         if (prop) {
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(prop.content.rendered, 'text/html');
-          const pTags = doc.querySelectorAll('p');
-          setHasMoreContent(pTags.length > 1);
+          try {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(prop.content.rendered, 'text/html');
+            const pTags = doc.querySelectorAll('p');
+            setHasMoreContent(pTags.length > 1);
+          } catch {
+            setHasMoreContent(false);
+          }
           setProperty(prop);
         }
       } catch (error) {
@@ -36,7 +52,11 @@ export default function ClientDescription({ slug }) {
   const toggleAccordion = () => setIsExpanded(prev => !prev);
 
   if (!property) {
-    return <div className="text-center py-20 text-gray-500">Chargement…</div>;
+    return (
+      <div className="text-center py-20 text-gray-500">
+        Propriété introuvable ou en cours de chargement…
+      </div>
+    );
   }
 
   const {

@@ -28,7 +28,18 @@ export default function PortfolioClient() {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/wp/v2/portfolio?_embed`
         );
+        if (!res.ok) {
+          console.warn("Réponse API non OK :", res.status);
+          return;
+        }
+
         const items = await res.json();
+
+        if (!Array.isArray(items)) {
+          console.error("Réponse inattendue pour portfolio :", items);
+          return;
+        }
+
         setPortfolios(items);
         const initialIndexes = {};
         items.forEach((item) => {
@@ -42,13 +53,15 @@ export default function PortfolioClient() {
     getPortfolioItems();
   }, []);
 
+  const safePortfolios = Array.isArray(portfolios) ? portfolios : [];
+
   const uniqueLocations = [
-    ...new Set(portfolios.map((p) => p.location).filter(Boolean)),
+    ...new Set(safePortfolios.map((p) => p.location).filter(Boolean)),
   ].sort((a, b) => a.localeCompare(b));
 
   const uniqueFeatures = [
     ...new Map(
-      portfolios.flatMap((p) => p.features || []).map((f) => [f.id, f])
+      safePortfolios.flatMap((p) => p.features || []).map((f) => [f.id, f])
     ).values(),
   ];
 
@@ -89,7 +102,7 @@ export default function PortfolioClient() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const filteredPortfolios = portfolios.filter((item) => {
+  const filteredPortfolios = safePortfolios.filter((item) => {
     const matchesLocation =
       filters.locations.length === 0 ||
       filters.locations.includes(item.location);
@@ -124,6 +137,8 @@ export default function PortfolioClient() {
           : (prev[itemId] - 1 + imagesLength) % imagesLength,
     }));
   };
+
+  
 
   return (
     <>
