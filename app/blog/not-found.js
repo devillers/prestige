@@ -1,3 +1,5 @@
+//APP/BLOG/not-found.js
+
 export default function VenteNotFound() {
     return (
       <div className="text-center p-20">

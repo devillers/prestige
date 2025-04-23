@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
     });
   }
 
-  const title = chalet.title?.rendered;
+  const title = chalet.title?.rendered || 'Chalet de luxe';
   const location = chalet.location || 'Haute-Savoie';
   const excerpt = chalet.excerpt?.rendered?.replace(/<[^>]+>/g, '') ?? '';
 

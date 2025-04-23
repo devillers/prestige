@@ -1,6 +1,8 @@
+// app/repertoire/[slug]/ClientDescription.js
+
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaMapMarkerAlt, FaCheck } from 'react-icons/fa';
 import PhotoGallery from '../../components/PhotoGallery';
 import PropertyDescriptionHeader from '../../components/PropertyDescriptionHeader';
@@ -12,31 +14,38 @@ export default function ClientDescription({ slug }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`http://localhost:8888/wordpress/wp-json/wp/v2/portfolio?slug=${slug}&_embed`);
-      const data = await res.json();
-      const prop = data[0];
-
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(prop.content.rendered, 'text/html');
-      const pTags = doc.querySelectorAll('p');
-
-      setHasMoreContent(pTags.length > 1);
-      setProperty(prop);
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/wp/v2/portfolio?slug=${slug}&_embed`);
+        const data = await res.json();
+        const prop = data[0];
+        if (prop) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(prop.content.rendered, 'text/html');
+          const pTags = doc.querySelectorAll('p');
+          setHasMoreContent(pTags.length > 1);
+          setProperty(prop);
+        }
+      } catch (error) {
+        console.error('Erreur lors du chargement de la propriété :', error);
+      }
     };
+
     fetchData();
   }, [slug]);
 
-  const toggleAccordion = () => setIsExpanded(!isExpanded);
+  const toggleAccordion = () => setIsExpanded(prev => !prev);
 
-  if (!property) return <div className="text-center py-20 text-gray-500">Chargement…</div>;
+  if (!property) {
+    return <div className="text-center py-20 text-gray-500">Chargement…</div>;
+  }
 
-  const { title, location, content, features: badges = [], gallery_images: gallery = [] } = {
-    title: property.title.rendered,
-    location: property.location || 'Localisation inconnue',
-    content: property.content.rendered,
-    features: property.features,
-    gallery_images: property.gallery_images,
-  };
+  const {
+    title: { rendered: title },
+    location = 'Localisation inconnue',
+    content: { rendered: content },
+    features: badges = [],
+    gallery_images: gallery = [],
+  } = property;
 
   return (
     <>
@@ -44,79 +53,68 @@ export default function ClientDescription({ slug }) {
         <PropertyDescriptionHeader property={property} />
       </div>
 
-      <section className="max-w-[900px] mx-auto text-slate-600">
-        <div className="font-sans">
-          <div className="flex flex-col">
-            <div className="mt-4 md:w-1/1 p-6">
-              <h1
-                className="text-7xl font-thin leading-14 text-center"
-                dangerouslySetInnerHTML={{ __html: title }}
-              />
-              <p className="text-gray-600 my-6 text-xl flex justify-center font-thin items-center gap-2">
-                <FaMapMarkerAlt className="text-gray-600" /> {location}
-              </p>
-            </div>
-
-            {badges.length > 0 && (
-              <div className="flex flex-wrap justify-start gap-3 p-6 md:w-1/2">
-                {badges.map((feature) => (
-                  <div
-                    key={feature.id}
-                    className="flex items-center gap-2 px-4 py-2 bg-[#bd9254] text-white rounded-sm uppercase text-[12px]"
-                  >
-                    <span className="text-white text-[14px]">
-                      <FaCheck />
-                    </span>
-                    {feature.name}
-                  </div>
-                ))}
-              </div>
-            )}
+      <section className="max-w-[900px] mx-auto text-slate-600 font-sans">
+        <div className="flex flex-col items-center">
+          <div className="mt-4 w-full px-6">
+            <h1
+              className="text-5xl md:text-7xl font-thin text-center leading-tight"
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
+            <p className="text-gray-600 my-6 text-xl text-center font-thin flex justify-center items-center gap-2">
+              <FaMapMarkerAlt className="text-gray-600" /> {location}
+            </p>
           </div>
 
-          <section className="mt-8 p-6">
-            <div className="mt-4">
-              <h3 className="text-3xl uppercase py-4 font-thin">{title}</h3>
-
-              <div
-                className="text-gray-700 mt-2 text-[13px] leading-8"
-                dangerouslySetInnerHTML={{
-                  __html: content.split('</p>')[0] + '</p>',
-                }}
-              />
-
-              {hasMoreContent && (
-                <>
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                      isExpanded ? 'h-auto opacity-100' : 'max-h-0 opacity-0'
-                    }`}
-                  >
-                    <div
-                      className="text-gray-700 mt-2 text-[13px] font-thin leading-8"
-                      dangerouslySetInnerHTML={{
-                        __html: content
-                          .split('</p>')
-                          .slice(1)
-                          .join('</p>'),
-                      }}
-                    />
-                  </div>
-                  <button
-                    onClick={toggleAccordion}
-                    className="text-yellow-600 font-thin mt-2 text-[12px]"
-                  >
-                    {isExpanded ? 'fermer' : 'voir +'}
-                  </button>
-                </>
-              )}
+          {badges.length > 0 && (
+            <div className="flex flex-wrap justify-center gap-3 px-6 mb-4">
+              {badges.map(feature => (
+                <div
+                  key={feature.id}
+                  className="flex items-center gap-2 px-4 py-2 bg-[#bd9254] text-white rounded-sm uppercase text-xs"
+                >
+                  <FaCheck className="text-white text-sm" />
+                  {feature.name}
+                </div>
+              ))}
             </div>
-          </section>
+          )}
+        </div>
 
-          <section className="md:mt-8">
+        <section className="px-6 mt-6">
+          <div className="text-gray-700 text-sm leading-8">
+            <div dangerouslySetInnerHTML={{ __html: content.split('</p>')[0] + '</p>' }} />
+
+            {hasMoreContent && (
+              <>
+                <div
+                  className={`transition-all duration-500 ease-in-out ${
+                    isExpanded ? 'max-h-full opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+                  }`}
+                >
+                  <div
+                    className="mt-2 text-[13px] font-thin leading-8"
+                    dangerouslySetInnerHTML={{
+                      __html: content.split('</p>').slice(1).join('</p>'),
+                    }}
+                  />
+                </div>
+                <button
+                  onClick={toggleAccordion}
+                  className="text-yellow-600 font-thin mt-2 text-sm"
+                  aria-expanded={isExpanded}
+                >
+                  {isExpanded ? 'fermer' : 'voir +'}
+                </button>
+              </>
+            )}
+          </div>
+        </section>
+
+        {gallery.length > 0 && (
+          <section className="mt-8 px-6">
             <PhotoGallery images={gallery} />
           </section>
-        </div>
+        )}
       </section>
     </>
   );
