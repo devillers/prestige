@@ -152,7 +152,7 @@ export default function PortfolioClient() {
               </h1>
             </li>
             <li>
-              <h2 className="text-7xl md:text-7xl uppercase  text-white font-bold py-1">
+              <h2 className="text-6xl md:text-7xl uppercase  text-white font-bold py-1">
                 {" "}
                 haut de gamme
               </h2>
@@ -174,21 +174,21 @@ export default function PortfolioClient() {
       <ul className="py-4 ">
           <li>
             {" "}
-            <h1 className="text-6xl md:text-8xl uppercase font-thin">
+            <h1 className="text-5xl md:text-8xl uppercase font-thin">
               {" "}
               Le répertoire
             </h1>
           </li>
           <li>
             {" "}
-            <h2 className=" text-6xl md:text-6xl uppercase font-thin">
+            <h2 className=" text-4xl md:text-6xl uppercase font-thin">
               {" "}
               nos logements
             </h2>
           </li>
           <li>
             {" "}
-            <h3 className="text-6xl md:text-5xl uppercase  font-thin">
+            <h3 className="text-4xl md:text-5xl uppercase  font-thin">
               {" "}
               haut de gamme
             </h3>

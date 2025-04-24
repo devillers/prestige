@@ -50,18 +50,18 @@ export default async function BlogPage() {
         <div className="relative z-10 mx-auto justify-center flex flex-col  md:min-h-[640px]  p-6 bg-white bg-[url(/images/blog.webp)] bg-cover bg-center">
         <ul className=" max-w-[700px] z-20 ">
             <li>
-              <h1 className="text-6xl md:text-6xl uppercase text-white/70 font-bold py-1 ">
+              <h1 className="text-6xl md:text-6xl uppercase text-white/70 font-bold  ">
               Le Blog
               </h1>
             </li>
             <li>
-              <h2 className="text-7xl md:text-7xl uppercase  text-white font-bold py-1">
+              <h2 className="text-6xl md:text-7xl uppercase  text-white font-bold ">
                 {" "}
                 nos conseils
               </h2>
             </li>
             <li>
-              <h3 className="text-6xl md:text-6xl uppercase text-white/70 font-bold py-1">
+              <h3 className="text-6xl md:text-6xl uppercase text-white/70 font-bold ">
               de megève à chamonix
               </h3>
             </li>
