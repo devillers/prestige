@@ -14,7 +14,7 @@ export default function NotFound() {
   return (
     <div
       className="relative w-full h-screen bg-cover bg-center bg-no-repeat text-white text-center"
-      style={{ backgroundImage: "url('/paysage.png')" }}
+      style={{ backgroundImage: "url('/maison.webp')" }}
     >
       <div className="absolute inset-0 bg-black bg-opacity-30 z-0" />
       <div className="relative z-20 flex flex-col items-center justify-center h-full px-6">
@@ -26,7 +26,7 @@ export default function NotFound() {
         </p>
         <a
           href="/"
-          className="px-6 py-3 bg-[#bd9254] text-white rounded-full text-base sm:text-lg hover:shadow-md transition"
+      className="inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-white text-sm uppercase text-white rounded-full transition-all duration-200 hover:bg-gray-900/60 hover:text-white active:scale-95"
         >
           Retour à l'accueil
         </a>
