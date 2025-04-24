@@ -14,7 +14,7 @@ export default function NotFound() {
   return (
     <div
       className="relative w-full h-screen bg-cover bg-center bg-no-repeat text-white text-center"
-      style={{ backgroundImage: "url('/maison.webp')" }}
+      style={{ backgroundImage: "url('/images/maison.webp')" }}
     >
       <div className="absolute inset-0 bg-black bg-opacity-30 z-0" />
       <div className="relative z-20 flex flex-col items-center justify-center h-full px-6">
