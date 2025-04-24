@@ -14,6 +14,8 @@ import { MdOutlinePets } from "react-icons/md";
 const PropertyDescriptionHeader = ({ property }) => {
   if (!property) return null;
 
+  console.log("Featured image URL:", property._embedded?.['wp:featuredmedia']?.[0]?.source_url);
+
   const {
     title,
     reference,
@@ -22,10 +24,11 @@ const PropertyDescriptionHeader = ({ property }) => {
     bedrooms,
     bathrooms,
     reviews,
-} = property;
+  } = property;
 
   const backgroundImage =
-  property._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/images/default-bg.jpg';
+    property._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/images/default-bg.jpg';
+
 
   const rating = parseFloat(reviews) || 0;
   const fullStars = Math.floor(rating);
