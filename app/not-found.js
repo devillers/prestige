@@ -27,7 +27,7 @@ export default function NotFound() {
         <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-20" />
         <a
           href="/"
-      className="inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-white text-sm uppercase text-white rounded-full transition-all duration-200 hover:bg-gray-900/60 hover:text-white active:scale-95 z-10"
+      className="inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-white text-sm uppercase text-white rounded-full transition-all duration-200 hover:bg-gray-900/60 hover:text-white active:scale-95 z-30"
         >
           Retour à l'accueil
         </a>
