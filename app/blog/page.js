@@ -18,14 +18,14 @@ export default async function BlogPage() {
   const grouped = {};
 
   try {
-    const categoryRes = await fetch(`${apiBase}/wp-json/wp/v2/categorie-blog?per_page=100`);
+    const categoryRes = await fetch(`${apiBase}/wp-json/wp/v2/categories?per_page=100`);
     const categories = await categoryRes.json();
 
     await Promise.all(
       categories.map(async (category) => {
         try {
           const postRes = await fetch(
-            `${apiBase}/wp-json/wp/v2/blog?categorie-blog=${category.id}&per_page=100&_embed`
+            `${apiBase}/wp-json/wp/v2/posts?categories=${category.id}&per_page=100&_embed`
           );
           if (!postRes.ok) {
             console.warn(`API non disponible pour catégorie ${category.name} (code ${postRes.status})`);
