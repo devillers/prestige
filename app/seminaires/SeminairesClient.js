@@ -99,9 +99,9 @@ export default function SeminaireClientPage() {
               </h6>
             </li>
             <li>
-              <h7 className="text-3xl md:text-5xl uppercase font-thin">
+              <h6 className="text-3xl md:text-5xl uppercase font-thin">
                 hors du commun
-              </h7>
+              </h6>
             </li>
           </ul>
           <p className=" text-center md:text-left font-thin py-10">

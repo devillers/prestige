@@ -47,7 +47,7 @@ export default async function BlogPage() {
     <>
       <section className="relative">
   
-        <div className="relative z-10 mx-auto justify-center flex flex-col  md:min-h-[640px]  p-6 bg-white bg-[url(/images/blog.webp)] bg-cover bg-center">
+        <div className="relative z-10 mx-auto justify-center flex flex-col  min-h-[640px]  p-6 bg-white bg-[url(/images/blog.webp)] bg-cover bg-center">
         <ul className=" max-w-[700px] z-20 ">
             <li>
               <h1 className="text-6xl md:text-6xl uppercase text-white/70 font-bold  ">
@@ -68,7 +68,7 @@ export default async function BlogPage() {
 
           </ul>
          
-          <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-1" />
+          <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-10" />
         </div>
       </section>
 
@@ -85,9 +85,9 @@ export default async function BlogPage() {
               </h6>
             </li>
             <li>
-              <h7 className="text-3xl md:text-5xl uppercase font-thin">
+              <h6 className="text-3xl md:text-5xl uppercase font-thin">
                 hors du commun
-              </h7>
+              </h6>
             </li>
           </ul>
           <p className=" text-center md:text-left text-lg font-thin py-10">
