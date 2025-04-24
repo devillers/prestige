@@ -55,6 +55,25 @@ export default async function PostPage({ params }) {
     <>
       <section className="relative">
         <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/blog.webp)] bg-cover bg-center">
+        <ul className=" max-w-[660px] z-20 ">
+            <li>
+              <h1 className="text-6xl md:text-8xl uppercase text-white/70 font-bold py-1 ">
+              Séjour
+              </h1>
+            </li>
+            <li>
+              <h2 className="text-7xl md:text-7xl uppercase  text-white font-bold py-1">
+                {" "}
+                haut de gamme
+              </h2>
+            </li>
+            <li>
+              <h3 className="text-6xl md:text-8xl uppercase text-white/70 font-bold py-1">
+              en haute savoie{" "}
+              </h3>
+            </li>
+
+          </ul>
         <h1 className="text-7xl text-white/70 max-w-[600px] font-bold leading-[70px] mb-6 mt-6 p-6 uppercase z-20">
             Le Blog <span className="md:text-9xl text-white">nos conseils</span> de megève à chamonix
           </h1>

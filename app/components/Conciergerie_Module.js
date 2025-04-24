@@ -31,11 +31,7 @@ export default function ServiceSection() {
   return (
     <section className="bg-neutral-50">
       <div className=" text-gray-800 max-w-6xl mx-auto p-4">
-        <ul className="py-4 ">
-          <li>   <h1 className="text-6xl md:text-8xl uppercase font-thin"> nos services  </h1></li>
-          <li>   <h2 className=" text-4xl md:text-6xl uppercase font-thin">  de conciergerie</h2></li>
-          <li>   <h3 className="text-4xl md:text-6xl uppercase  font-thin">  exclusifs</h3></li>
-        </ul>
+       
      
         <div className=" mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 mb-12">
           <div className="col-span-1 md:col-start-1 md:col-span-2 flex items-center justify-center p-2 text-center font-thin text-sm md:text-base">

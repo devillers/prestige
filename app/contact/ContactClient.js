@@ -48,14 +48,28 @@ export default function ContactClient() {
       </Head>
 
       <section className="relative">
-        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-screen md:min-h-[640px] p-6 bg-white bg-[url(/images/contact.webp)] bg-cover bg-center">
-          <h1 className="text-7xl text-white/70 max-w-[600px] font-bold leading-[70px] mb-6 mt-6 p-6 uppercase z-20">
-            Votre projet <span className="md:text-9xl text-white">mérite</span>{" "}
-            notre attention <br />
-            <span className="md:text-7xl text-white">exclusive</span>
-          </h1>
+        <div className="relative z-10 mx-auto justify-center flex flex-col  min-h-[640px] p-6 bg-white bg-[url(/images/contact.webp)] bg-cover bg-center">
+        
+          <ul className=" max-w-[600px] z-20 ">
+            <li>
+              <h1 className="text-6xl md:text-8xl uppercase text-white font-bold  ">
+              Votre projet
+              </h1>
+            </li>
+            <li>
+              <h2 className="text-6xl md:text-6xl uppercase  text-white/70 font-bold ">
+                {" "}
+                mérite
+              </h2>
+            </li>
+            <li>
+              <h3 className="text-6xl md:text-7xl uppercase text-white/70 font-bold ">
+              notre attention 
+              </h3>
+            </li>
+          </ul>
 
-          <div className="md:hidden mt-10 mb-4 flex justify-center animate-bounce z-20">
+          {/* <div className="md:hidden mt-10 mb-4 flex justify-center animate-bounce z-20">
             <a
               href="#contact-form"
               aria-label="Scroll to form"
@@ -63,7 +77,7 @@ export default function ContactClient() {
             >
               <FiChevronDown className="text-3xl" />
             </a>
-          </div>
+          </div> */}
 
           <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-1" />
         </div>
@@ -76,7 +90,7 @@ export default function ContactClient() {
           <li><h3 className="text-3xl md:text-5xl uppercase font-thin">d’exception</h3></li>
         </ul>
 
-        <p className="font-thin py-10">
+        <p className="font-thin py-10 text-sm leading-7">
           Chamonix, Megève ou Saint-Gervais, notre équipe vous accompagne dans la gestion de votre propriété ou l’organisation d’événements d’exception. Mariage, séminaire ou conciergerie locative : chaque demande est traitée avec rigueur, discrétion et un sens aigu du détail.
         </p>
 

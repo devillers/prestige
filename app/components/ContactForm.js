@@ -121,7 +121,7 @@ export default function ContactForm() {
         className="max-w-6xl mx-auto p-4 bg-white shadow rounded-lg"
       >
         <div className="flex flex-col md:flex-row gap-8 text-[12px]">
-          <div className="md:w-1/2 flex flex-col px-4 py-8 mb-4 ">
+          <div className="md:w-1/2 flex flex-col   ">
             <div className="flex text-3xl">
               <h2 className="mb-2">Care Concierge</h2>
               <span className="ml-2 text-[#bd9254] text-3xl font-thin">
@@ -289,7 +289,7 @@ export default function ContactForm() {
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95"
+              className="inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-[#bd9254] w-full md:w-1/2 text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95"
             >
               {loading ? (
                 <>
