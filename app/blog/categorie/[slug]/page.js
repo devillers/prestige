@@ -1,5 +1,8 @@
-//app/categorie-blog/[slug]/page.js
+//app/categorie/[slug]/page.js
 
+import { getMetadataForPage } from '../../../lib/metadata';
+import BlogGrid from "../../../components/BlogGrid";
+import Breadcrumb from "../../../components/BreadCrumb";
 
 export async function generateMetadata({ params }) {
   const { slug } = await Promise.resolve(params);
@@ -21,27 +24,32 @@ export async function generateMetadata({ params }) {
   });
 }
 
-
-import BlogGrid from "../../components/BlogGrid";
-import Breadcrumb from "../../components/BreadCrumb";
-
-export default async function CategoryPage(props) {
-  const { slug } = await Promise.resolve(props.params);
+export default async function CategoryPage({ params }) {
+  const { slug } = await Promise.resolve(params);
   const apiBase = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
-  // Step 1: Fetch all categories
+  // 1. Fetch all categories
   const termRes = await fetch(`${apiBase}/wp-json/wp/v2/categorie-blog?per_page=100`);
   const terms = await termRes.json();
 
-  // Step 2: Match the current slug to a category
+  // 2. Find the category by slug
   const term = terms.find(t => t.slug === slug);
-  if (!term) return <p className="p-6 text-red-500">Catégorie introuvable</p>;
+  if (!term) {
+    return (
+      <div className="text-center p-20">
+        <h1 className="text-4xl font-bold text-[#bd9254] mb-4">Catégorie introuvable</h1>
+        <p className="text-gray-600">
+          Cette catégorie n'existe pas ou a été supprimée.
+        </p>
+      </div>
+    );
+  }
 
-  // Step 3: Fetch all blog posts under this category
+  // 3. Fetch all posts for this category
   const res = await fetch(`${apiBase}/wp-json/wp/v2/blog?categorie-blog=${term.id}&_embed`);
   const posts = await res.json();
 
-  // Step 4: Prepare data for BlogGrid
+  // 4. Prepare group for BlogGrid
   const grouped = {
     [term.name]: posts,
   };
@@ -61,10 +69,10 @@ export default async function CategoryPage(props) {
         <Breadcrumb
           items={[
             { label: "Accueil", href: "/blog" },
+            { label: "Blog", href: "/blog" },
             { label: term.name },
           ]}
         />
-        {/* <h1 className="text-4xl font-bold mb-8 capitalize">{term.name}</h1> */}
         <BlogGrid groupedPosts={grouped} />
       </div>
     </>

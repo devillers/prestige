@@ -48,8 +48,7 @@ export default async function PostPage({ params }) {
   const post = await getPost(slug);
 
   if (!post || !post.content?.rendered) return notFound();
-
-  const category = post?.categorie?.[0];
+  const category = post._embedded?.["wp:term"]?.[0]?.[0];
   const imageUrl = post?._embedded?.["wp:featuredmedia"]?.[0]?.source_url || null;
 
   return (
@@ -68,7 +67,7 @@ export default async function PostPage({ params }) {
           items={[
             { label: "Accueil", href: "/blog" },
             { label: "Blog", href: "/blog" },
-            category ? { label: category.name, href: `/categorie-blog/${category.slug}` } : null,
+            category ? { label: category.name, href: `/blog/categorie/${category.slug}` } : null,
             { label: post.title.rendered },
           ].filter(Boolean)}
         />
