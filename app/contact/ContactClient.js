@@ -48,7 +48,7 @@ export default function ContactClient() {
       </Head>
 
       <section className="relative">
-        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-screen md:min-h-[640px] p-6 bg-white bg-[url(/images/contact.png)] bg-cover bg-center">
+        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-screen md:min-h-[640px] p-6 bg-white bg-[url(/images/contact.webp)] bg-cover bg-center">
           <h1 className="text-7xl text-white/70 max-w-[600px] font-bold leading-[70px] mb-6 mt-6 p-6 uppercase z-20">
             Votre projet <span className="md:text-9xl text-white">mérite</span>{" "}
             notre attention <br />
