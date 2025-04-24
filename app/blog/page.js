@@ -1,49 +1,47 @@
-// app/blog/page.js
-
+//app/blog/page.js
 import { getMetadataForPage } from '../lib/metadata';
 import BlogGrid from "../components/BlogGrid";
 import Breadcrumb from "../components/BreadCrumb";
 
 export const metadata = getMetadataForPage({
   title: 'Blog Immobilier & Conciergerie | Care Concierge',
-  description: 'Conseils et inspirations pour l’immobilier haut de gamme et la conciergerie à Megève, Chamonix et en Haute-Savoie.',
-  keywords: ['blog', 'conciergerie', 'immobilier', 'megeve', 'chamonix', 'alpes'],
+  description: 'Conseils, inspirations et actualités sur la conciergerie haut de gamme et l’immobilier en Haute-Savoie.',
+  keywords: ['blog', 'immobilier', 'conciergerie', 'megeve', 'chamonix'],
 });
-
-// ✅ Force page to be dynamic (avoid prerender errors during build)
-export const dynamic = 'force-dynamic';
 
 export default async function BlogPage() {
   const apiBase = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+
+  // Fetch all categories
+  const categoryRes = await fetch(`${apiBase}/wp-json/wp/v2/categorie-blog?per_page=100`);
+  const categories = await categoryRes.json();
+
   const grouped = {};
 
-  try {
-    const categoryRes = await fetch(`${apiBase}/wp-json/wp/v2/categorie-blog?per_page=100`);
-    const categories = await categoryRes.json();
+  // Paginated fetch for each category
+  await Promise.all(
+    categories.map(async (category) => {
+      let allPosts = [];
+      let page = 1;
+      let morePosts = true;
 
-    await Promise.all(
-      categories.map(async (category) => {
-        try {
-          const postRes = await fetch(
-            `${apiBase}/wp-json/wp/v2/blog?categorie-blog=${category.id}&per_page=100&_embed`
-          );
-          if (!postRes.ok) {
-            console.warn(`API non disponible pour catégorie ${category.name} (code ${postRes.status})`);
-            return;
-          }
+      while (morePosts) {
+        const res = await fetch(`${apiBase}/wp-json/wp/v2/blog?categorie-blog=${category.id}&per_page=100&page=${page}&_embed`);
+        const posts = await res.json();
 
-          const posts = await postRes.json();
-          if (Array.isArray(posts) && posts.length > 0) {
-            grouped[category.name] = posts;
-          }
-        } catch (err) {
-          console.error(`Erreur API pour catégorie ${category.name}`, err);
+        if (!Array.isArray(posts) || posts.length === 0) {
+          morePosts = false;
+        } else {
+          allPosts.push(...posts);
+          page++;
         }
-      })
-    );
-  } catch (err) {
-    console.error('Erreur globale de chargement des catégories', err);
-  }
+      }
+
+      if (allPosts.length > 0) {
+        grouped[category.name] = allPosts;
+      }
+    })
+  );
 
   return (
     <>
