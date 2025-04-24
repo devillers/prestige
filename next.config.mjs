@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost'], // or your backend domain
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'api.careprestige.fr',
+        pathname: '/wp-content/uploads/**',
+      },
+    ],
+    domains: ['localhost'], // optional, if still testing locally
   },
 };
 
