@@ -27,7 +27,7 @@ const PropertyDescriptionHeader = ({ property }) => {
   } = property;
 
   const backgroundImage =
-    property._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/images/default-bg.jpg';
+    property._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/images/default-bg.webp';
 
 
   const rating = parseFloat(reviews) || 0;
@@ -50,7 +50,7 @@ const PropertyDescriptionHeader = ({ property }) => {
             className="absolute inset-0 rounded-sm flex flex-col justify-center items-start px-6"
             style={{
               background:
-                'linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))',
+                'linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0))',
               borderRadius: '0.375rem',
             }}
           >
