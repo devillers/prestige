@@ -3,6 +3,7 @@
 import { getMetadataForPage } from '../../../lib/metadata';
 import BlogGrid from "../../../components/BlogGrid";
 import Breadcrumb from "../../../components/BreadCrumb";
+import { notFound } from 'next/navigation';
 
 export async function generateMetadata({ params }) {
   const { slug } = await Promise.resolve(params);
@@ -34,16 +35,7 @@ export default async function CategoryPage({ params }) {
 
   // 2. Find the category by slug
   const term = terms.find(t => t.slug === slug);
-  if (!term) {
-    return (
-      <div className="text-center p-20">
-        <h1 className="text-4xl font-bold text-[#bd9254] mb-4">Catégorie introuvable</h1>
-        <p className="text-gray-600">
-          Cette catégorie n'existe pas ou a été supprimée.
-        </p>
-      </div>
-    );
-  }
+  if (!term) return notFound();
 
   // 3. Fetch all posts for this category
   const res = await fetch(`${apiBase}/wp-json/wp/v2/blog?categorie-blog=${term.id}&_embed`);
