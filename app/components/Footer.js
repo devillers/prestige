@@ -77,14 +77,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        {/* <div>
-        <h3 className="font-bold text-[12px]">Pages</h3>
-          <ul className="text-[10px] text-gray-600 space-y-2 mt-2">
-            <li>mentions légales</li>
-            <li>régles de confidentialités</li>
-           
-          </ul>
-        </div> */}
+     
         <div>
           <h3 className="font-bold text-[12px]">Zones que nous desservons</h3>
           <ul className="text-[10px] text-gray-600 space-y-2 mt-2">
@@ -98,10 +91,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      {/* <div className="text-center text-gray-500 text-[10px] mt-8">
-        <p>Informations Légales</p>
-        <button className="text-gray-600 hover:underline">Français</button>
-      </div> */}
+    
     </footer>
   );
 };
