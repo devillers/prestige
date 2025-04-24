@@ -69,10 +69,10 @@ const Footer = () => {
             </li>
             <li className="font-semibold hover:text-[#bd9345] cursor-pointer">
               <Link
-                href="/regles-de-confidentialite"
+                href="/politique-de-confidentialite"
                 className="hover:text-[#bd9345] transition-colors duration-200"
               >
-                Régles de confidentialités
+                Politique de Confidentialité
               </Link>
             </li>
           </ul>
