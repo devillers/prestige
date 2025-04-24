@@ -15,9 +15,8 @@ export default function SeminaireClientPage() {
   useEffect(() => {
     async function fetchProperties() {
       try {
-        const res = await fetch(
-          "http://localhost:8888/wordpress/wp-json/wp/v2/portfolio?_embed"
-        );
+        const apiBase = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
+        const res = await fetch(`${apiBase}/wp-json/wp/v2/portfolio?_embed`);
         const data = await res.json();
         setProperties(data);
       } catch (error) {
