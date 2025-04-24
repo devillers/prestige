@@ -6,10 +6,10 @@ const Footer = () => {
     <footer className=" py-8 mt-[100px] ">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
         <div>
-        <div className="flex items-center gap-2">
-  <h3 className="font-bold text-[12px]">Care Concierge</h3>
-  <span className="text-[#bd9254] text-[12px]">Luxury</span>
-</div>
+          <div className="flex items-center gap-2">
+            <h3 className="font-bold text-[12px]">Care Concierge</h3>
+            <span className="text-[#bd9254] text-[12px]">Luxury</span>
+          </div>
           <p className="text-[10px] text-gray-600 mt-2 text-justify pr-6 leading-6">
             est une marque de Care Concierge & Properties, société de gestion
             immobilière et mobilière spécialisée dans la gestion locative courte
