@@ -57,7 +57,7 @@ export default async function CategoryPage({ params }) {
   return (
     <>
       <section className="relative">
-        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[400px] p-6 bg-white bg-[url(/images/blog2.png)] bg-cover bg-center">
+        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[400px] p-6 bg-white bg-[url(/images/blog.webp)] bg-cover bg-center">
           <h1 className="text-6xl text-white/70 font-bold max-w-4xl leading-tight uppercase z-20">
             Le Blog <span className="md:text-8xl text-white">nos conseils</span> de Megève à Chamonix
           </h1>
