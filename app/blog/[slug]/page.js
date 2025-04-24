@@ -56,7 +56,7 @@ export default async function PostPage(props) {
   return (
     <>
       <section className="relative">
-        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/blog2.png)] bg-cover bg-center">
+        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/blog.webp)] bg-cover bg-center">
           <h1 className="text-7xl text-white/70 max-w-[600px] font-bold leading-[70px] mb-6 mt-6 p-6 uppercase z-20">
             Le Blog <span className="md:text-9xl text-white">nos conseils</span> de megève à chamonix
           </h1>
