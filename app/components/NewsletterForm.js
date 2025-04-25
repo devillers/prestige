@@ -49,7 +49,7 @@ const NewsletterForm = () => {
   };
 
   return (
-    <div className="bg-gray-50 px-6 py-12 text-center">
+    <div className="bg-gray-50 px-6 py-12 text-center max-w-5xl mx-auto rounded-lg shadow my-8">
       <h2 className="text-4xl font-thin mb-2">
         S'inscrire à notre newsletter.
       </h2>
@@ -58,9 +58,9 @@ const NewsletterForm = () => {
         <strong className="font-semibold">l'immobilier de luxe</strong> et nos
         évènements{" "}
       </p>
-      <p className="font-thin mt-4">Vous êtes intéressé(e) par ?</p>
+      <p className="font-thin my-6">Vous êtes intéressé(e) par ?</p>
 
-      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto mt-8">
+      <form onSubmit={handleSubmit} className="  ">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left mb-8">
           {interests.map((interest) => (
             <label key={interest} className="flex items-start font-thin gap-2">

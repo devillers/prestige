@@ -50,7 +50,7 @@ export default async function BlogPage() {
         <div className="relative z-10 mx-auto justify-center flex flex-col  min-h-[640px]  p-6 bg-white bg-[url(/images/blog.webp)] bg-cover bg-center">
         <ul className=" max-w-[700px] z-20 ">
             <li>
-              <h1 className="text-6xl md:text-6xl uppercase text-white/70 font-bold  ">
+              <h1 className="text-6xl md:text-8xl uppercase text-white/70 font-bold  ">
               Le Blog
               </h1>
             </li>

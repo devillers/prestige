@@ -53,31 +53,22 @@ export default async function PostPage({ params }) {
 
   return (
     <>
-      <section className="relative">
-        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/blog.webp)] bg-cover bg-center">
-          <ul className=" max-w-[660px] z-20 ">
-            <li>
-              <h1 className="text-6xl md:text-8xl uppercase text-white/70 font-bold ">
-              le blog
-              </h1>
-            </li>
-            <li>
-              <h2 className="text-6xl md:text-7xl uppercase  text-white font-bold ">
-                {" "}
-                nos conseils
-              </h2>
-            </li>
-            <li>
-              <h3 className="text-6xl md:text-8xl uppercase text-white/70 font-bold ">
-         de megève à chamonix
-              </h3>
-            </li>
-
-          </ul>
-        
-          <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-10" />
-        </div>
-      </section>
+    <section className="relative">
+  <div
+    className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-cover bg-center"
+    style={{
+      backgroundImage: `url(${imageUrl || '/images/blog.webp'})`,
+    }}
+  >
+    <div className="max-w-[660px] z-20 text-white">
+      <h1
+        className="text-5xl md:text-7xl uppercase font-bold"
+        dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+      />
+    </div>
+    <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-10" />
+  </div>
+</section>
 
       <div className="max-w-4xl mx-auto p-6">
         <Breadcrumb
@@ -89,7 +80,7 @@ export default async function PostPage({ params }) {
           ].filter(Boolean)}
         />
 
-        {imageUrl && (
+        {/* {imageUrl && (
           <div className="mb-6 rounded-xl overflow-hidden">
             <img src={imageUrl} alt={post.title.rendered} className="w-full object-cover" />
           </div>
@@ -98,7 +89,7 @@ export default async function PostPage({ params }) {
         <h1
           className="text-4xl font-bold mb-6"
           dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-        />
+        /> */}
 
         <article
           className="prose max-w-none"

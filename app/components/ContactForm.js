@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 
-
 export default function ContactForm() {
   useEffect(() => {
     import("smooth-scroll").then((mod) => {
@@ -115,27 +114,23 @@ export default function ContactForm() {
 
   return (
     <>
-      <form
-        id="contact-form"
-        onSubmit={handleSubmit}
-        className="max-w-6xl mx-auto p-4 bg-white shadow rounded-lg"
-      >
+      <form onSubmit={handleSubmit} className="max-w-7xl mx-auto bg-white mt-12 ">
         <div className="flex flex-col md:flex-row gap-8 text-[12px]">
           <div className="md:w-1/2 flex flex-col   ">
             <div className="flex text-3xl">
-              <h2 className="mb-2">Care Concierge</h2>
+              <h2 className="font-thin mb-7">Care Concierge</h2>
               <span className="ml-2 text-[#bd9254] text-3xl font-thin">
                 Luxury
               </span>
             </div>
-            <h3 className="text-xl font-thin mb-4">Contactez-nous</h3>
-            <p className="text-gray-700 max-w-md leading-6 ">
+            {/* <h3 className="text-xl font-thin mb-4">Contactez-nous</h3> */}
+            <p className="text-gray-700 max-w-md leading-6 text-center ">
               Vous avez une question, une demande de réservation ou un besoin
               particulier ? Nous sommes là pour vous aider. Remplissez le
               formulaire ci-dessous et nous vous répondrons dans les plus brefs
               délais.
             </p>
-            <p className="text-gray-700 max-w-md mt-4 leading-6">
+            <p className="text-gray-700 max-w-md mt-4 leading-6 text-center">
               Vous souhaitez louer l’un de nos biens pour un séminaire, un
               mariage, ou bien nous confier votre propre bien en gestion
               locative ? Utilisez notre formulaire de prise de contact.

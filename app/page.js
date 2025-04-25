@@ -18,10 +18,10 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative">
-        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/home.webp)] bg-cover bg-center">
+      <section className="relative ">
+        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px]  bg-white bg-[url(/images/home.webp)] bg-cover bg-center">
           <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/70 z-1"></div>
-          <ul className=" uppercase font-bold max-w-[900px] z-20">
+          <ul className=" uppercase font-bold max-w-[900px] p-6 z-20">
             <li className="md:text-6xl text-6xl text-white/70 ">Valorisez</li>
             <li className="md:text-8xl text-6xl text-white ">votre bien</li>
             <li className="md:text-7xl text-6xl text-white/70 ">avec un</li>
@@ -33,7 +33,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto mb-12 p-6">
+      <div className="max-w-5xl mx-auto mb-12 p-4">
       <div className="text-gray-800 max-w-6xl mx-auto ">
           <ul className="">
             <li>
@@ -52,7 +52,7 @@ export default async function HomePage() {
               </h6>
             </li>
           </ul>
-          <p className=" text-center md:text-left text-lg font-thin py-10">
+          <p className=" text-center md:text-left text-lg font-thin py-10 italic">
             Imaginez votre prochain événement dans un cadre atypique, agrémenté
             d’expériences extraordinaires. Oubliez les contraintes, notre équipe
             s’occupe de tout et organise pour vous un moment inoubliable

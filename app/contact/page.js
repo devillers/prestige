@@ -8,5 +8,5 @@ export const metadata = getMetadataForPage({
 });
 
 export default function ContactPage() {
-  return <ContactClient />;
+  return <ContactClient  />;
 }
