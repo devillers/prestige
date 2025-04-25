@@ -1,4 +1,3 @@
-//app/blog/page.js
 import { getMetadataForPage } from '../lib/metadata';
 import BlogGrid from "../components/BlogGrid";
 import Breadcrumb from "../components/BreadCrumb";
@@ -18,7 +17,7 @@ export default async function BlogPage() {
 
   const grouped = {};
 
-  // Paginated fetch for each category
+  // Paginated fetch for each category WITH _embed to get featured images
   await Promise.all(
     categories.map(async (category) => {
       let allPosts = [];
@@ -46,57 +45,53 @@ export default async function BlogPage() {
   return (
     <>
       <section className="relative">
-  
-        <div className="relative z-10 mx-auto justify-center flex flex-col  min-h-[640px]  p-6 bg-white bg-[url(/images/blog.webp)] bg-cover bg-center">
-        <ul className=" max-w-[700px] z-20 ">
+        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/blog.webp)] bg-cover bg-center">
+          <ul className="max-w-[700px] z-20">
             <li>
-              <h1 className="text-6xl md:text-8xl uppercase text-white/70 font-bold  ">
-              Le Blog
+              <h1 className="text-6xl md:text-8xl uppercase text-white/70 font-bold">
+                Le Blog
               </h1>
             </li>
             <li>
-              <h2 className="text-6xl md:text-7xl uppercase  text-white font-bold ">
-                {" "}
+              <h2 className="text-6xl md:text-7xl uppercase text-white font-bold">
                 nos conseils
               </h2>
             </li>
             <li>
-              <h3 className="text-6xl md:text-6xl uppercase text-white/70 font-bold ">
-              de megève à chamonix
+              <h3 className="text-6xl md:text-6xl uppercase text-white/70 font-bold">
+                de megève à chamonix
               </h3>
             </li>
-
           </ul>
-         
           <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-10" />
         </div>
       </section>
 
-      <div className="text-gray-800 max-w-6xl mx-auto p-6 ">
-          <ul className="">
-            <li>
-              <h5 className="text-4xl md:text-7xl uppercase font-thin">
-                Organisons ensemble
-              </h5>
-            </li>
-            <li>
-              <h6 className="text-4xl md:text-6xl uppercase font-thin">
-                votre événement
-              </h6>
-            </li>
-            <li>
-              <h6 className="text-3xl md:text-5xl uppercase font-thin">
-                hors du commun
-              </h6>
-            </li>
-          </ul>
-          <p className=" text-center md:text-left text-lg font-thin py-10">
-            Imaginez votre prochain événement dans un cadre atypique, agrémenté
-            d’expériences extraordinaires. Oubliez les contraintes, notre équipe
-            s’occupe de tout et organise pour vous un moment inoubliable
-            entièrement sur-mesure.
-          </p>
-        
+      <div className="text-gray-800 max-w-6xl mx-auto p-6">
+        <ul>
+          <li>
+            <h5 className="text-4xl md:text-7xl uppercase font-thin">
+              Organisons ensemble
+            </h5>
+          </li>
+          <li>
+            <h6 className="text-4xl md:text-6xl uppercase font-thin">
+              votre événement
+            </h6>
+          </li>
+          <li>
+            <h6 className="text-3xl md:text-5xl uppercase font-thin">
+              hors du commun
+            </h6>
+          </li>
+        </ul>
+        <p className="text-center md:text-left text-lg font-thin py-10">
+          Imaginez votre prochain événement dans un cadre atypique, agrémenté
+          d’expériences extraordinaires. Oubliez les contraintes, notre équipe
+          s’occupe de tout et organise pour vous un moment inoubliable
+          entièrement sur-mesure.
+        </p>
+
         <Breadcrumb items={[{ label: "Accueil", href: "/blog" }, { label: "Blog" }]} />
         <BlogGrid groupedPosts={grouped} />
       </div>
