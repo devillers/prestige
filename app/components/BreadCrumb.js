@@ -1,23 +1,27 @@
-//app/components/BreadCrumb.js
-
+"use client";
 import Link from "next/link";
 
-const BreadCrumb = ({ items }) => {
+const BreadCrumb = ({ items = [] }) => {
+  if (!Array.isArray(items) || items.length === 0) return null;
+
   return (
-    <nav className="text-sm text-gray-600 mb-4">
+    <nav className="text-sm mb-6">
       <ol className="flex flex-wrap items-center gap-x-1">
-        {items.map((item, index) => (
-          <li key={index} className="flex items-center">
-            {item.href ? (
-              <Link href={item.href} className="hover:underline text-black/70">
-                {item.label}
-              </Link>
-            ) : (
-              <span className="text-black">{item.label}</span>
-            )}
-            {index < items.length - 1 && <span className="mx-2 text-gray-400">/</span>}
-          </li>
-        ))}
+        {items.map((item, index) => {
+          const isLast = index === items.length - 1;
+          return (
+            <li key={index} className="flex items-center">
+              {item.href && !isLast ? (
+                <Link href={item.href} className="hover:underline text-black/70">
+                  {item.label}
+                </Link>
+              ) : (
+                <span className="text-[#bd9254] font-semibold">{item.label}</span>
+              )}
+              {!isLast && <span className="mx-2 text-gray-300">/</span>}
+            </li>
+          );
+        })}
       </ol>
     </nav>
   );
