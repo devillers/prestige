@@ -4,7 +4,8 @@ export default function ProfilesGrid({ profiles }) {
   const safeProfiles = Array.isArray(profiles) ? profiles : [];
 
   return (
-    <div className="max-w-3xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 p-4 mx-auto">
+    <div className="grid grid-cols-2 md:grid-cols-2 gap-6 p-4 mx-auto max-w-3xl">
+
       {safeProfiles.map((profile) => {
         const image = profile._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
         const meta = profile.meta || {};
