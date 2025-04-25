@@ -4,8 +4,7 @@ export default function ProfilesGrid({ profiles }) {
   const safeProfiles = Array.isArray(profiles) ? profiles : [];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-2 gap-6 p-4 mx-auto max-w-3xl">
-
+    <div className="max-w-4xl grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6  mx-auto mb-11">
       {safeProfiles.map((profile) => {
         const image = profile._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
         const meta = profile.meta || {};
@@ -18,7 +17,9 @@ export default function ProfilesGrid({ profiles }) {
         } = meta;
 
         return (
-          <ProfileCard
+          <>
+          
+           <ProfileCard
             key={profile.id}
             title={profile.title.rendered}
             image={image}
@@ -27,9 +28,13 @@ export default function ProfilesGrid({ profiles }) {
             phone={phone}
             language={language}
             description={description}
-          />
+            />
+          </>
+         
+         
         );
       })}
     </div>
   );
 }
+
