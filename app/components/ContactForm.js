@@ -117,29 +117,26 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit} className="max-w-7xl mx-auto bg-white mt-12 ">
         <div className="flex flex-col md:flex-row gap-8 text-[12px]">
           <div className="md:w-1/2 flex flex-col   ">
-            <div className="flex text-3xl">
-              <h2 className="font-thin mb-7">Care Concierge</h2>
-              <span className="ml-2 text-[#bd9254] text-3xl font-thin">
-                Luxury
-              </span>
-            </div>
-            {/* <h3 className="text-xl font-thin mb-4">Contactez-nous</h3> */}
-            <div className="p-4 sm:p-0">
-            <p className="text-gray-700 max-w-md leading-6 text-center ">
+          <div className="flex justify-center items-center gap-2 text-3xl mb-7">
+  <h2 className="font-thin">Care Concierge</h2>
+  <span className="text-[#bd9254] font-thin">
+    Luxury
+  </span>
+</div>
+           
+            <p className="text-gray-700 leading-6 text-center ">
               Vous avez une question, une demande de réservation ou un besoin
               particulier ? Nous sommes là pour vous aider. Remplissez le
               formulaire ci-dessous et nous vous répondrons dans les plus brefs
               délais.
             </p>
-            <p className="text-gray-700 max-w-md mt-4 leading-6 text-center">
+            <p className="text-gray-700 mt-4 leading-6 text-center">
               Vous souhaitez louer l’un de nos biens pour un séminaire, un
               mariage, ou bien nous confier votre propre bien en gestion
               locative ? Utilisez notre formulaire de prise de contact.
               N’hésitez pas à joindre des photos si votre demande concerne la
               mise en gestion de votre bien.
             </p>
-            </div>
-       
           </div>
 
           <div className="md:w-1/2 space-y-4">
