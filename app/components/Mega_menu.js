@@ -14,7 +14,10 @@ export default function MegaMenu() {
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
-  const [isPageLoading, setIsPageLoading] = useState(false);
+
+  // progress percentage state
+  const [progress, setProgress] = useState(0);
+  const progressInterval = useRef(null);
 
   const menuContainerRef = useRef(null);
   const closeTimeoutRef = useRef(null);
@@ -23,15 +26,28 @@ export default function MegaMenu() {
   const colCount = activeSubmenu?.length ?? 0;
   const gridCols = colCount > 5 ? 'grid-cols-5' : `grid-cols-${colCount}`;
 
-  // Reset menu and loader on route change
-  useEffect(() => {
-    setActiveMenu(null);
-    setMobileOpen(false);
-    setIsPageLoading(false);
-  }, [pathname]);
+  // Start auto-incrementing progress up to 90%
+  const startProgress = () => {
+    clearInterval(progressInterval.current);
+    setProgress(0);
+    progressInterval.current = setInterval(() => {
+      setProgress((p) => {
+        const next = p + Math.random() * 10;
+        return next < 90 ? next : 90;
+      });
+    }, 200);
+  };
 
+  // Complete to 100% then reset
+  const completeProgress = () => {
+    clearInterval(progressInterval.current);
+    setProgress(100);
+    setTimeout(() => setProgress(0), 300);
+  };
+
+  // navigate with progress
   const navigate = (href, delay = 0) => {
-    setIsPageLoading(true);
+    startProgress();
     setActiveMenu(null);
     setMobileOpen(false);
     setTimeout(() => {
@@ -39,8 +55,29 @@ export default function MegaMenu() {
     }, delay);
   };
 
+  // on path change, finish progress and reset menus
+  useEffect(() => {
+    completeProgress();
+    setActiveMenu(null);
+    setMobileOpen(false);
+  }, [pathname]);
+
   return (
     <header className="border-b shadow-sm relative z-50">
+      {/* percentage loader bar */}
+      <AnimatePresence>
+        {progress > 0 && (
+          <motion.div
+            key="progress"
+            initial={{ width: 0 }}
+            animate={{ width: `${progress}%` }}
+            exit={{ width: 0 }}
+            transition={{ ease: 'linear', duration: 0.2 }}
+            className="fixed top-0 left-0 h-1 bg-[#bd9254] z-[100]"
+          />
+        )}
+      </AnimatePresence>
+
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -229,22 +266,6 @@ export default function MegaMenu() {
               </nav>
             </motion.div>
           </>
-        )}
-      </AnimatePresence>
-
-      {/* Loader Overlay */}
-      <AnimatePresence>
-        {isPageLoading && (
-          <motion.div
-            key="loader"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-white flex items-center justify-center z-[100]"
-          >
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#bd9254]" />
-          </motion.div>
         )}
       </AnimatePresence>
     </header>

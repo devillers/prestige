@@ -5,7 +5,8 @@ import { getMetadataForPage } from "./lib/metadata";
 
 export const metadata = getMetadataForPage({
   title: "Accueil | Care Concierge",
-  description: "Des chalets de luxe en Haute-Savoie avec un service d’exception.",
+  description:
+    "Des chalets de luxe en Haute-Savoie avec un service d’exception.",
   keywords: ["chalet", "conciergerie", "luxe", "haute savoie"],
 });
 
@@ -28,37 +29,39 @@ export default async function HomePage() {
             <li className="md:text-8xl text-6xl text-white ">service</li>
             <li className="md:text-6xl text-6xl text-white ">d’exception</li>
           </ul>
-
-         
         </div>
       </section>
 
       <div className="max-w-5xl mx-auto mb-12 p-4">
-      <div className="text-gray-800 max-w-6xl  p-6 mx-auto ">
+        <div className="text-gray-800 max-w-6xl  p-6 mx-auto ">
           <ul className="">
             <li>
               <h5 className="text-4xl md:text-6xl uppercase font-thin">
-                Organisons ensemble
+              Le service qui révèle
               </h5>
             </li>
             <li>
               <h6 className="text-4xl md:text-5xl uppercase font-thin">
-                votre événement
+              tout le potentiel
               </h6>
             </li>
             <li>
               <h6 className="text-3xl md:text-4xl uppercase font-thin">
-                hors du commun
+              de votre bien
               </h6>
             </li>
           </ul>
-          <div className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center"> 
-          <p className=" text-center md:text-left text-lg font-thin py-10 italic">
-            Imaginez votre prochain événement dans un cadre atypique, agrémenté
-            d’expériences extraordinaires. Oubliez les contraintes, notre équipe
-            s’occupe de tout et organise pour vous un moment inoubliable
-            entièrement sur-mesure.
-          </p>
+          <div className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center">
+            <p className=" text-center  text-lg font-thin py-10 italic">
+              Notre conciergerie premium orchestre chaque détail : shooting
+              photo professionnel, rédaction d’annonces optimisées, gestion
+              dynamique des calendriers et des tarifs, accueil personnalisé 7
+              j/7, linge hôtelier de qualité, ménage méticuleux, maintenance
+              préventive et assistance voyageurs en continu. Vous profitez d’une
+              valorisation maximale et d’avis cinq étoiles, tandis que nous
+              veillons à la sécurité de votre patrimoine et à la sérénité de
+              votre expérience propriétaire.
+            </p>
           </div>
         </div>
         <ProfilesGrid profiles={profiles} />
