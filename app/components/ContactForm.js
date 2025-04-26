@@ -124,6 +124,7 @@ export default function ContactForm() {
               </span>
             </div>
             {/* <h3 className="text-xl font-thin mb-4">Contactez-nous</h3> */}
+            <div className="p-4 sm:p-0">
             <p className="text-gray-700 max-w-md leading-6 text-center ">
               Vous avez une question, une demande de réservation ou un besoin
               particulier ? Nous sommes là pour vous aider. Remplissez le
@@ -137,6 +138,8 @@ export default function ContactForm() {
               N’hésitez pas à joindre des photos si votre demande concerne la
               mise en gestion de votre bien.
             </p>
+            </div>
+       
           </div>
 
           <div className="md:w-1/2 space-y-4">
