@@ -6,7 +6,7 @@ export default function ProfilesGrid({ profiles }) {
   return (
     <div className="text-gray-800 max-w-5xl mx-auto p-6">
       {/* En-tête affichée une seule fois */}
-      <h3 className="text-3xl font-thin">
+      <h3 className="text-3xl font-thin text-center">
         Les Visages de Care Concierge <span className="text-[#bd9254]">Luxury</span>
       </h3>
 

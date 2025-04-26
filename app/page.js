@@ -36,6 +36,11 @@ export default async function HomePage() {
         <div className="text-gray-800 max-w-6xl  p-6 mx-auto ">
           <ul className="">
             <li>
+              <h5 className="text-5xl md:text-6xl uppercase font-thin">
+              Le service 
+              </h5>
+            </li>
+            <li>
               <h5 className="text-4xl md:text-6xl uppercase font-thin">
               Le service qui révèle
               </h5>
@@ -51,7 +56,7 @@ export default async function HomePage() {
               </h6>
             </li>
           </ul>
-          <div className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center">
+          <div className="text-gray-800 max-w-6xl mx-auto flex flex-col items-center">
             <p className=" text-center  text-lg font-thin py-10 italic">
               Notre conciergerie premium orchestre chaque détail : shooting
               photo professionnel, rédaction d’annonces optimisées, gestion

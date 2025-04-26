@@ -55,7 +55,7 @@ const NewsletterForm = () => {
       </h2>
       <p className="text-gray-500 font-thin mt-4  ">
         Nos actualités sur{" "}
-        l'immobilier de luxe et nos
+        l'immobilier et nos
         évènements{" "}
       </p>
       <p className="font-thin text-sm my-6">Vous êtes intéressé(e) par ?</p>
@@ -68,7 +68,7 @@ const NewsletterForm = () => {
                 type="checkbox"
                 checked={selected.has(interest)}
                 onChange={() => toggleInterest(interest)}
-                className="mt-1 w-4 h-4 accent-[#bd9254] text-white "
+                className="mt-1 w-4 h-4 accent-[#bd9254]  text-white "
               />
               <span>{interest}</span>
             </label>
@@ -82,7 +82,7 @@ const NewsletterForm = () => {
             placeholder="Votre Email *"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="px-4 py-3 border border-gray-300 rounded-md w-full sm:w-96 focus:outline-none h-[40px] font-thin"
+            className="px-4 py-3 border border-gray-300 rounded-md w-full sm:w-96 focus:outline-none h-[30px] font-thin"
           />
           <button
             type="submit"
