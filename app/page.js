@@ -42,7 +42,7 @@ export default async function HomePage() {
             </li>
             <li>
               <h5 className="text-4xl md:text-6xl uppercase font-thin">
-              Le service qui révèle
+           qui révèle
               </h5>
             </li>
             <li>
