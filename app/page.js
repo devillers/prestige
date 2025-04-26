@@ -33,26 +33,26 @@ export default async function HomePage() {
       </section>
 
       <div className="max-w-5xl mx-auto mb-12 p-4">
-        <div className="text-gray-800 max-w-6xl  p-6 mx-auto ">
+        <div className="text-gray-800 max-w-7xl  p-6 mx-auto ">
           <ul className="">
             <li>
               <h5 className="text-5xl md:text-6xl uppercase font-thin">
-              Le service 
+                Le service qui 
               </h5>
             </li>
             <li>
               <h5 className="text-4xl md:text-6xl uppercase font-thin">
-           qui révèle
+                révèle tout le 
               </h5>
             </li>
             <li>
               <h6 className="text-4xl md:text-5xl uppercase font-thin">
-              tout le potentiel
+                potentiel de 
               </h6>
             </li>
             <li>
               <h6 className="text-3xl md:text-4xl uppercase font-thin">
-              de votre bien
+                votre bien
               </h6>
             </li>
           </ul>
