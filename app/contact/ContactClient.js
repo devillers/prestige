@@ -72,34 +72,34 @@ export default function ContactClient() {
         </div>
       </section>
 
-      <div className="text-gray-800 max-w-6xl mx-auto p-4 ">
+      <div className="text-gray-800 max-w-6xl mx-auto p-6  ">
         <ul className="">
           <li>
-            <h1 className="text-5xl md:text-7xl uppercase font-thin">
+            <h1 className="text-4xl md:text-6xl uppercase font-thin">
               Votre bien mérite
             </h1>
           </li>
           <li>
-            <h2 className="text-4xl md:text-6xl uppercase font-thin">
+            <h2 className="text-3xl md:text-5xl uppercase font-thin">
               une gestion
             </h2>
           </li>
           <li>
-            <h3 className="text-3xl md:text-5xl uppercase font-thin">
+            <h3 className="text-2xl md:text-4xl uppercase font-thin">
               d’exception
             </h3>
           </li>
         </ul>
-
-        <p className="font-thin py-4 text-sm my-4 text-center leading-7">
-          Chamonix, Megève ou Saint-Gervais, notre équipe vous accompagne dans
-          la gestion de votre propriété ou l’organisation d’événements
-          d’exception. Mariage, séminaire ou conciergerie locative : chaque
-          demande est traitée avec rigueur, discrétion et un sens aigu du
-          détail.
-        </p>
-
-        <ContactForm  />
+        <div className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center"> 
+        <p className="text-center text-black  text-md font-thin my-10 z-20 leading-8 italic">
+            Chamonix, Megève ou Saint-Gervais, notre équipe vous accompagne dans
+            la gestion de votre propriété ou l’organisation d’événements
+            d’exception. Mariage, séminaire ou conciergerie locative : chaque
+            demande est traitée avec rigueur, discrétion et un sens aigu du
+            détail.
+          </p>
+        </div>
+        <ContactForm />
       </div>
     </>
   );

@@ -100,22 +100,24 @@ export default function VentePageClient() {
               </h5>
             </li>
             <li>
-              <h6 className="text-4xl md:text-6xl uppercase font-thin">
+              <h6 className="text-3xl md:text-6xl uppercase font-thin">
                 votre événement
               </h6>
             </li>
             <li>
-              <h7 className="text-3xl md:text-5xl uppercase font-thin">
+              <h6 className="text-2xl md:text-5xl uppercase font-thin">
                 hors du commun
-              </h7>
+              </h6>
             </li>
           </ul>
-          <p className=" text-center md:text-left text-lg font-thin mt-10">
+          <div className="text-gray-800 max-w-6xl mx-auto p-6 flex flex-col items-center"> 
+          <p className="text-center text-black text-md font-thin my-10 z-20 leading-8 italic">
             Imaginez votre prochain événement dans un cadre atypique, agrémenté
             d’expériences extraordinaires. Oubliez les contraintes, notre équipe
             s’occupe de tout et organise pour vous un moment inoubliable
             entièrement sur-mesure.
           </p>
+          </div>
         </div>
       </div>
 

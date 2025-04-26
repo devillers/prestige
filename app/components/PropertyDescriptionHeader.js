@@ -47,13 +47,12 @@ const PropertyDescriptionHeader = ({ property }) => {
   style={{ backgroundImage: `url('${backgroundImage}')` }}
 >
           <div
-            className="absolute inset-0 rounded-sm flex flex-col justify-center items-start px-6"
-            style={{
-              background:
-                'linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0))',
-              borderRadius: '0.375rem',
-            }}
+            className="absolute inset-0 rounded-sm flex flex-col justify-center items-start px-6  bg-gradient-to-bl from-transparent to-black/70 z-1"
+   
+            
           >
+
+            
             {reviews && (
               <div className="text-yellow-400 text-xl flex items-center">
                 <span>{ratingStars}</span>
@@ -61,7 +60,7 @@ const PropertyDescriptionHeader = ({ property }) => {
               </div>
             )}
 
-            <h1 className="text-white text-7xl font-bold flex flex-col">
+            <h1 className="text-white text-7xl uppercase font-bold flex flex-col">
               {title?.rendered?.split(' ')[0]}
               <span>{title?.rendered?.split(' ').slice(1).join(' ')}</span>
             </h1>

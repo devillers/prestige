@@ -31,7 +31,7 @@ const PhotoGallery = ({ images = [] }) => {
 
   return (
     <div className="p-6" id="#picture">
-      <h3 className="text-3xl uppercase py-4 font-thin">
+      <h3 className="text-2xl uppercase py-2 font-thin">
         Aperçu de la propriété
       </h3>
 

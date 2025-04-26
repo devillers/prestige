@@ -55,7 +55,7 @@ export default async function PostPage({ params }) {
     <>
     <section className="relative">
   <div
-    className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-cover bg-center"
+    className="relative z-10 mx-auto justify-center flex flex-col min-h-[540px] p-6 bg-cover bg-center"
     style={{
       backgroundImage: `url(${imageUrl || '/images/blog.webp'})`,
     }}
@@ -92,7 +92,7 @@ export default async function PostPage({ params }) {
         /> */}
 
         <article
-          className="prose max-w-none"
+          className="prose max-w-none text-[14px] text-justify"
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}
         />
       </div>

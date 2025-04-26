@@ -101,7 +101,7 @@ export default function ClientDescription({ slug }) {
         </div>
 
         <section className="px-6 mt-6">
-          <div className="text-gray-700 text-sm leading-8">
+          <div className="text-gray-700 text-[13px] font-thin leading-8 text-justify">
             <div dangerouslySetInnerHTML={{ __html: content.split('</p>')[0] + '</p>' }} />
 
             {hasMoreContent && (
@@ -131,7 +131,7 @@ export default function ClientDescription({ slug }) {
         </section>
 
         {gallery.length > 0 && (
-          <section className="mt-8 px-6">
+          <section className="mt-8 ">
             <PhotoGallery images={gallery} />
           </section>
         )}

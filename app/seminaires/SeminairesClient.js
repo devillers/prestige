@@ -94,22 +94,24 @@ export default function SeminaireClientPage() {
               </h5>
             </li>
             <li>
-              <h6 className="text-5xl md:text-6xl uppercase font-thin">
+              <h6 className="text-3xl md:text-6xl uppercase font-thin">
                 votre événement
               </h6>
             </li>
             <li>
-              <h6 className="text-3xl md:text-5xl uppercase font-thin">
+              <h6 className="text-2xl md:text-5xl uppercase font-thin">
                 hors du commun
               </h6>
             </li>
           </ul>
-          <p className=" text-center md:text-left font-thin py-10">
-            Imaginez votre prochain événement dans un cadre atypique, agrémenté
-            d’expériences extraordinaires. Oubliez les contraintes, notre équipe
-            s’occupe de tout et organise pour vous un moment inoubliable
-            entièrement sur-mesure.
-          </p>
+          <div className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center">
+            <p className="text-center text-black md:text-left text-md font-thin my-10 z-20 leading-8 italic">
+              Imaginez votre prochain événement dans un cadre atypique,
+              agrémenté d’expériences extraordinaires. Oubliez les contraintes,
+              notre équipe s’occupe de tout et organise pour vous un moment
+              inoubliable entièrement sur-mesure.
+            </p>
+          </div>
         </div>
 
         <div className="relative max-w-7xl mx-auto" ref={containerRef}>

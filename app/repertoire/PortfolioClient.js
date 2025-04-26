@@ -138,67 +138,66 @@ export default function PortfolioClient() {
     }));
   };
 
-  
-
   return (
     <>
       <section className="relative">
-        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/repertoire.webp)] bg-cover bg-center">
-
+        <div className="relative z-10 p-6  mx-auto justify-center flex flex-col min-h-[640px]  bg-white bg-[url(/images/repertoire.webp)] bg-cover bg-center">
           <ul className=" max-w-[660px] z-20 ">
             <li>
-              <h1 className="text-6xl md:text-8xl uppercase text-white/70 font-bold py-1 ">
-              Séjour
+              <h1 className="text-6xl md:text-8xl uppercase text-white/70 font-bold ">
+                Séjour
               </h1>
             </li>
             <li>
-              <h2 className="text-6xl md:text-7xl uppercase  text-white font-bold py-1">
+              <h2 className="text-6xl md:text-7xl uppercase  text-white font-bold ">
                 {" "}
                 haut de gamme
               </h2>
             </li>
             <li>
-              <h3 className="text-6xl md:text-8xl uppercase text-white/70 font-bold py-1">
-              en haute savoie{" "}
+              <h3 className="text-6xl md:text-8xl uppercase text-white/70 font-bold ">
+                en haute savoie{" "}
               </h3>
             </li>
-
           </ul>
 
-        
-          <div className="absolute inset-0  bg-gradient-to-bl from-transparent to-black/60 z-1"></div>
+          <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/70 z-1"></div>
         </div>
       </section>
-      
+
       <div className="max-w-6xl mx-auto p-6 mb-12">
-      <ul className="py-4 ">
+        <ul className="py-4 ">
           <li>
             {" "}
-            <h1 className="text-5xl md:text-8xl uppercase font-thin">
+            <h1 className="text-5xl md:text-6xl uppercase font-thin">
               {" "}
               Le répertoire
             </h1>
           </li>
           <li>
             {" "}
-            <h2 className=" text-4xl md:text-6xl uppercase font-thin">
+            <h2 className=" text-4xl md:text-5xl uppercase font-thin">
               {" "}
               nos logements
             </h2>
           </li>
           <li>
             {" "}
-            <h3 className="text-4xl md:text-5xl uppercase  font-thin">
+            <h3 className="text-3xl md:text-4xl uppercase  font-thin">
               {" "}
               haut de gamme
             </h3>
           </li>
         </ul>
-          <p className="text-center text-black md:text-left text-lg md:text-xl font-thin my-10 z-20 leading-8">
-          Partez à la découverte de lieux exclusifs, conçus pour accueillir vos événements les plus raffinés.
-          Dans un décor alpin hors du commun, vivez une expérience sur-mesure, pensée dans les moindres détails. Notre équipe se charge de tout , pour que chaque instant soit unique, fluide, et inoubliable.
-          </p> 
-
+        <div className="text-gray-800 max-w-6xl mx-auto px-4 flex flex-col items-center">
+          <p className="text-center text-black text-md font-thin my-10 z-20 leading-8 italic">
+            Partez à la découverte de lieux exclusifs, conçus pour accueillir
+            vos événements les plus raffinés. Dans un décor alpin hors du
+            commun, vivez une expérience sur-mesure, pensée dans les moindres
+            détails. Notre équipe se charge de tout , pour que chaque instant
+            soit unique, fluide, et inoubliable.
+          </p>
+        </div>
         {/* Filter Form */}
         <div className="p-4 rounded-lg mb-12 flex flex-wrap gap-4 items-start shadow">
           {/* Localité - Checkbox Group */}
@@ -281,7 +280,7 @@ export default function PortfolioClient() {
               </label>
               <button
                 onClick={clearFilters}
-              className="inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95"
+                className="inline-flex items-center justify-center px-4 h-[30px] font-thin mt-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95"
               >
                 Reset
               </button>
