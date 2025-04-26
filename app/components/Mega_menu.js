@@ -13,6 +13,7 @@ export default function MegaMenu() {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
+  const [isPageLoading, setIsPageLoading] = useState(false);
   const menuContainerRef = useRef(null);
   const closeTimeoutRef = useRef(null);
 
@@ -25,9 +26,26 @@ export default function MegaMenu() {
     setMobileOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const handleComplete = () => {
+      setIsPageLoading(false);
+    };
+
+    router.events?.on('routeChangeComplete', handleComplete);
+    router.events?.on('routeChangeError', handleComplete);
+
+    return () => {
+      router.events?.off('routeChangeComplete', handleComplete);
+      router.events?.off('routeChangeError', handleComplete);
+    };
+  }, [router]);
+
   const handleDelayedNavigation = (href) => {
+    setIsPageLoading(true);
     setMobileOpen(false);
-    setTimeout(() => router.push(href), 500);
+    setTimeout(() => {
+      router.push(href);
+    }, 500);
   };
 
   return (
@@ -169,7 +187,7 @@ export default function MegaMenu() {
                     {item.href ? (
                       <button
                         onClick={() => handleDelayedNavigation(item.href)}
-                        className="font-semibold uppercase text-sm mb-3 cursor-pointer text-white hover:text-[#bd9254] hover:bg-white/80 rounded p-2 text-left w-full"
+                        className="font-semibold uppercase text-sm mb-3 cursor-pointer text-white hover:text-black hover:bg-white/80 rounded p-2 text-left w-full"
                       >
                         {item.title}
                       </button>
@@ -195,7 +213,7 @@ export default function MegaMenu() {
                                 <li key={idx}>
                                   <button
                                     onClick={() => handleDelayedNavigation(subItem.href)}
-                                    className="text-[10px] uppercase text-white hover:text-[#bd9254] hover:bg-white/80 block leading-7 text-left w-full"
+                                    className="text-[10px] uppercase text-white hover:text-black hover:bg-white/80 block leading-7 text-left w-full"
                                   >
                                     {subItem.title}
                                   </button>
@@ -211,6 +229,22 @@ export default function MegaMenu() {
               </nav>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* Loader Overlay */}
+      <AnimatePresence>
+        {isPageLoading && (
+          <motion.div
+            key="loader"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-white flex items-center justify-center z-[100]"
+          >
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#bd9254]" />
+          </motion.div>
         )}
       </AnimatePresence>
     </header>

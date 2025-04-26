@@ -51,43 +51,74 @@ function LayoutWrapper({ children }) {
 
       {/* Cookie Consent */}
       <CookieConsent
-        location="bottom"
-        enableDeclineButton
-        buttonText="J'accepte"
-        declineButtonText="Je refuse"
-        disableStyles={true}
-        containerClasses="fixed bottom-0 left-50 right-50 flex justify-center items-center h-20 bg-white shadow z-50 border border-gray-300 rounded-lg p-4"
-        contentClasses="w-full max-w-md text-center"
-        buttonWrapperClasses="flex flex-col sm:flex-row gap-2 sm:justify-end mt-4"
-        buttonClasses="bg-black text-white px-5 py-2 rounded-lg hover:bg-gray-800 transition font-light text-[12px]"
-        declineButtonClasses="bg-white border border-gray-400 text-gray-700 px-5 py-2 rounded-lg hover:bg-gray-100 transition font-light text-[12px]"
-        onAccept={() => {
-          window.gtag &&
-            window.gtag("consent", "update", {
-              analytics_storage: "granted",
-            });
-        }}
-        onDecline={() => {
-          window.gtag &&
-            window.gtag("consent", "update", {
-              analytics_storage: "denied",
-            });
-        }}
-      >
-        <div className="flex flex-col sm:flex-row items-start gap-4">
-          <img
-            src="/cookie.png"
-            alt="Cookie"
-            className="w-16 h-16 object-contain flex-shrink-0"
-          />
-          <div>
-            <p className="text-[12px]">
-              Ce site utilise des cookies pour améliorer votre expérience.
-              Vous pouvez accepter ou refuser leur utilisation.
-            </p>
-          </div>
-        </div>
-      </CookieConsent>
+  disableStyles={true}
+  // remove location so the default "bottom: 0" logic is not applied
+  location="none"
+
+  // full override of the container
+  style={{
+    position: 'fixed',
+    bottom: '50px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    width: '90%',
+    maxWidth: '400px',
+    background: '#fff',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+    border: '1px solid #ddd',
+    borderRadius: '0.5rem',
+    padding: '1rem',
+    zIndex: 1000,
+  }}
+
+  // your buttons can keep using style or class names
+  buttonStyle={{
+    background: '#000',
+    color: '#fff',
+    padding: '0.5rem 1rem',
+    borderRadius: '0.375rem',
+    fontSize: '0.75rem',
+    fontWeight: 300,
+    marginLeft: '1rem',
+    marginRight: '3rem',
+    marginTop: '1rem',
+  }}
+  declineButtonStyle={{
+    background: '#fff',
+    color: '#333',
+    padding: '0.5rem 1rem',
+    border: '1px solid #ccc',
+    borderRadius: '0.375rem',
+    fontSize: '0.75rem',
+    fontWeight: 300,
+  }}
+
+  enableDeclineButton
+  buttonText="J'accepte"
+  declineButtonText="Je refuse"
+
+  onAccept={() => {
+    window.gtag?.('consent', 'update', { analytics_storage: 'granted' });
+  }}
+  onDecline={() => {
+    window.gtag?.('consent', 'update', { analytics_storage: 'denied' });
+  }}
+>
+  <div className="flex flex-col sm:flex-row items-center gap-4">
+    <img
+      src="/cookie.png"
+      alt="Cookie"
+      className="w-24 h-24 object-contain flex-shrink-0"
+    />
+    <p className="text-[12px] text-center sm:text-left">
+      Ce site utilise des cookies pour améliorer votre expérience.
+      Vous pouvez accepter ou refuser leur utilisation.
+    </p>
+  </div>
+</CookieConsent>
+
+
+
     </>
   )
 }
