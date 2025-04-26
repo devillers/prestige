@@ -124,7 +124,7 @@ export default function ContactForm() {
   </span>
 </div>
            
-            <p className="text-gray-700 leading-6 text-center ">
+          <p className="text-gray-700 leading-6 text-center ">
               Vous avez une question, une demande de réservation ou un besoin
               particulier ? Nous sommes là pour vous aider. Remplissez le
               formulaire ci-dessous et nous vous répondrons dans les plus brefs
