@@ -6,51 +6,43 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import menuItems from '../data/menuItems'; // Adjust if needed
+import menuItems from '../data/menuItems';
 
 export default function MegaMenu() {
   const pathname = usePathname();
   const router = useRouter();
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [isPageLoading, setIsPageLoading] = useState(false);
+
   const menuContainerRef = useRef(null);
   const closeTimeoutRef = useRef(null);
 
-  const activeSubmenu = menuItems.find(m => m.title === activeMenu)?.submenu;
+  const activeSubmenu = menuItems.find((m) => m.title === activeMenu)?.submenu;
   const colCount = activeSubmenu?.length ?? 0;
   const gridCols = colCount > 5 ? 'grid-cols-5' : `grid-cols-${colCount}`;
 
+  // Reset menu and loader on route change
   useEffect(() => {
     setActiveMenu(null);
     setMobileOpen(false);
+    setIsPageLoading(false);
   }, [pathname]);
 
-  useEffect(() => {
-    const handleComplete = () => {
-      setIsPageLoading(false);
-    };
-
-    router.events?.on('routeChangeComplete', handleComplete);
-    router.events?.on('routeChangeError', handleComplete);
-
-    return () => {
-      router.events?.off('routeChangeComplete', handleComplete);
-      router.events?.off('routeChangeError', handleComplete);
-    };
-  }, [router]);
-
-  const handleDelayedNavigation = (href) => {
+  const navigate = (href, delay = 0) => {
     setIsPageLoading(true);
+    setActiveMenu(null);
     setMobileOpen(false);
     setTimeout(() => {
       router.push(href);
-    }, 500);
+    }, delay);
   };
 
   return (
     <header className="border-b shadow-sm relative z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        {/* Logo */}
         <div className="flex items-center gap-2">
           <img src="/pin.png" alt="Logo" className="h-10 w-auto" />
           <div className="md:hidden md:text-md lg:block lg:text-xl uppercase">
@@ -58,6 +50,7 @@ export default function MegaMenu() {
           </div>
         </div>
 
+        {/* Desktop nav */}
         <div className="hidden md:flex justify-center flex-1">
           <nav className="flex gap-8 items-center">
             {menuItems.map((item, i) => (
@@ -77,17 +70,24 @@ export default function MegaMenu() {
                 }}
               >
                 {item.href ? (
-                  <Link
+                  <a
                     href={item.href}
-                    className={`text-[11px] uppercase leading-4 hover:text-[#bd9254] ${
-                      pathname === item.href ? 'text-[#bd9254]/80' : 'text-[#293d4c]'
-                    }`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(item.href);
+                    }}
+                    className={`
+                      text-[11px] uppercase leading-4 hover:text-[#bd9254]
+                      ${pathname === item.href ? 'text-[#bd9254]/80' : 'text-[#293d4c]'}
+                    `}
                   >
                     {item.title}
-                  </Link>
+                  </a>
                 ) : (
                   <button
-                    onClick={() => setActiveMenu(activeMenu === item.title ? null : item.title)}
+                    onClick={() =>
+                      setActiveMenu(activeMenu === item.title ? null : item.title)
+                    }
                     aria-haspopup="true"
                     aria-expanded={activeMenu === item.title}
                     className="text-[11px] uppercase leading-4 text-[#293d4c] hover:text-[#bd9254]"
@@ -100,6 +100,7 @@ export default function MegaMenu() {
           </nav>
         </div>
 
+        {/* Mobile menu button */}
         {!mobileOpen && (
           <div className="md:hidden">
             <button onClick={() => setMobileOpen(true)}>
@@ -115,9 +116,9 @@ export default function MegaMenu() {
           <motion.div
             ref={menuContainerRef}
             onMouseEnter={() => clearTimeout(closeTimeoutRef.current)}
-            onMouseLeave={() => {
-              closeTimeoutRef.current = setTimeout(() => setActiveMenu(null), 500);
-            }}
+            onMouseLeave={() =>
+              (closeTimeoutRef.current = setTimeout(() => setActiveMenu(null), 500))
+            }
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -126,24 +127,26 @@ export default function MegaMenu() {
           >
             <div className="max-w-7xl mx-auto px-4">
               <div className={`grid ${gridCols} gap-6 text-[10px] text-[#293d4c]`}>
-                {activeSubmenu.map((col, index) => (
-                  <div key={index}>
+                {activeSubmenu.map((col, idx) => (
+                  <div key={idx}>
                     {col.title && (
-                      <div className="text-[12px] mb-2 text-[#bd9254] select-none">{col.title}</div>
+                      <div className="text-[12px] mb-2 text-[#bd9254] select-none">
+                        {col.title}
+                      </div>
                     )}
                     <ul className="space-y-1">
-                      {col.items?.filter(Boolean).map((subItem, idx) => (
-                        <li key={idx}>
-                          <Link
+                      {col.items?.filter(Boolean).map((subItem, j) => (
+                        <li key={j}>
+                          <a
                             href={subItem.href}
-                            onClick={() => {
-                              clearTimeout(closeTimeoutRef.current);
-                              setActiveMenu(null);
+                            onClick={(e) => {
+                              e.preventDefault();
+                              navigate(subItem.href);
                             }}
                             className="block w-full text-[10px] uppercase hover:text-[#bd9254]"
                           >
                             {subItem.title}
-                          </Link>
+                          </a>
                         </li>
                       ))}
                     </ul>
@@ -184,41 +187,38 @@ export default function MegaMenu() {
               <nav className="flex flex-col space-y-4 px-4 pb-6">
                 {menuItems.map((item, i) => (
                   <div key={i}>
-                    {item.href ? (
-                      <button
-                        onClick={() => handleDelayedNavigation(item.href)}
-                        className="font-semibold uppercase text-sm mb-3 cursor-pointer text-white hover:text-black hover:bg-white/80 rounded p-2 text-left w-full"
-                      >
-                        {item.title}
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => setActiveMenu(activeMenu === item.title ? null : item.title)}
-                        className="font-semibold uppercase text-sm mb-3 cursor-pointer text-white hover:text-black hover:bg-white/80 rounded p-2 text-left w-full"
-                      >
-                        {item.title}
-                      </button>
-                    )}
+                    <button
+                      onClick={() =>
+                        item.href
+                          ? navigate(item.href, 500)
+                          : setActiveMenu(activeMenu === item.title ? null : item.title)
+                      }
+                      className="font-semibold uppercase text-sm mb-3 cursor-pointer text-white hover:text-black hover:bg-white/80 rounded p-2 text-left w-full"
+                    >
+                      {item.title}
+                    </button>
                     {activeMenu === item.title && item.submenu && (
                       <div className="grid grid-cols-2 gap-4 pl-4">
-                        {item.submenu.map((col, index) => (
-                          <div key={index}>
+                        {item.submenu.map((col, idx) => (
+                          <div key={idx}>
                             {col.title && (
                               <div className="text-sm mb-1 font-thin text-[#bd9254] uppercase">
                                 {col.title}
                               </div>
                             )}
                             <ul className="space-y-1">
-                              {col.items.filter(Boolean).map((subItem, idx) => (
-                                <li key={idx}>
-                                  <button
-                                    onClick={() => handleDelayedNavigation(subItem.href)}
-                                    className="text-[10px] uppercase text-white hover:text-black hover:bg-white/80 block leading-7 text-left w-full"
-                                  >
-                                    {subItem.title}
-                                  </button>
-                                </li>
-                              ))}
+                              {col.items
+                                .filter(Boolean)
+                                .map((subItem, j) => (
+                                  <li key={j}>
+                                    <button
+                                      onClick={() => navigate(subItem.href, 500)}
+                                      className="text-[10px] uppercase text-white hover:text-black hover:bg-white/80 block leading-7 text-left w-full"
+                                    >
+                                      {subItem.title}
+                                    </button>
+                                  </li>
+                                ))}
                             </ul>
                           </div>
                         ))}
