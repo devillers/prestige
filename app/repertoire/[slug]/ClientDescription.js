@@ -141,13 +141,7 @@ export default function ClientDescription({ slug }) {
           </section>
         )}
 
-{booking_url && (
-  <p  className="inline-flex mt-5 items-center justify-center px-4 h-[30px] font-thin border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95" >
-    <a href={booking_url} target="_blank" rel="noopener noreferrer">
-      Réserver cette propriété
-    </a>
-  </p>
-)}
+
 
 
        
