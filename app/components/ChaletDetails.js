@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { FaSwimmer, FaSpa, FaFilm, FaWifi, FaUsers } from 'react-icons/fa';
-import chaletData from '../../data/chaletremy.json'; // Import JSON data
+//import chaletData from '../../data/chaletremy.json'; // Import JSON data
 
 // Icon mapping based on JSON keys
 const iconMapping = {
@@ -58,6 +58,7 @@ const ChaletDetails = () => {
           </div>
         </div>
       </div>
+      
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-8 rounded-sm">
         {chaletData.galleryImages.map((image, index) => (
           <Image

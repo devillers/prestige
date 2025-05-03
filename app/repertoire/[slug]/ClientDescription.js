@@ -8,7 +8,9 @@ import PropertyDescriptionHeader from '../../components/PropertyDescriptionHeade
 export default function ClientDescription({ slug }) {
   const [property, setProperty] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [hasMoreContent, setHasMoreContent] = useState(false);
+  const previewCount = 2;
+
+  const toggleAccordion = () => setIsExpanded(prev => !prev);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,17 +32,7 @@ export default function ClientDescription({ slug }) {
         }
 
         const prop = data[0];
-        if (prop) {
-          try {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(prop.content.rendered, 'text/html');
-            const pTags = doc.querySelectorAll('p');
-            setHasMoreContent(pTags.length > 1);
-          } catch {
-            setHasMoreContent(false);
-          }
-          setProperty(prop);
-        }
+        if (prop) setProperty(prop);
       } catch (error) {
         console.error('Erreur lors du chargement de la propriété :', error);
       }
@@ -49,11 +41,9 @@ export default function ClientDescription({ slug }) {
     fetchData();
   }, [slug]);
 
-  const toggleAccordion = () => setIsExpanded(prev => !prev);
-
   if (!property) {
     return (
-      <div className="text-center py-20 text-gray-500">
+      <div className="text-center py-20 text-gray-500 uppercase">
         Propriété introuvable ou en cours de chargement…
       </div>
     );
@@ -66,6 +56,19 @@ export default function ClientDescription({ slug }) {
     features: badges = [],
     gallery_images: gallery = [],
   } = property;
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(content, 'text/html');
+  const paragraphs = Array.from(doc.querySelectorAll('p'));
+  const previewHTML = paragraphs
+    .slice(0, previewCount)
+    .map(p => p.outerHTML)
+    .join('');
+  const hiddenHTML = paragraphs
+    .slice(previewCount)
+    .map(p => p.outerHTML)
+    .join('');
+  const hasMoreParagraphs = paragraphs.length > previewCount;
 
   return (
     <>
@@ -102,9 +105,9 @@ export default function ClientDescription({ slug }) {
 
         <section className="px-6 mt-6">
           <div className="text-gray-700 text-[13px] font-thin leading-8 text-justify">
-            <div dangerouslySetInnerHTML={{ __html: content.split('</p>')[0] + '</p>' }} />
+            <div dangerouslySetInnerHTML={{ __html: previewHTML }} />
 
-            {hasMoreContent && (
+            {hasMoreParagraphs && (
               <>
                 <div
                   className={`transition-all duration-500 ease-in-out ${
@@ -113,9 +116,7 @@ export default function ClientDescription({ slug }) {
                 >
                   <div
                     className="mt-2 text-[13px] font-thin leading-8"
-                    dangerouslySetInnerHTML={{
-                      __html: content.split('</p>').slice(1).join('</p>'),
-                    }}
+                    dangerouslySetInnerHTML={{ __html: hiddenHTML }}
                   />
                 </div>
                 <button
@@ -131,7 +132,7 @@ export default function ClientDescription({ slug }) {
         </section>
 
         {gallery.length > 0 && (
-          <section className="mt-8 ">
+          <section className="mt-8">
             <PhotoGallery images={gallery} />
           </section>
         )}

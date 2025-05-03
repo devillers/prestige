@@ -47,7 +47,7 @@ const PropertyDescriptionHeader = ({ property }) => {
   style={{ backgroundImage: `url('${backgroundImage}')` }}
 >
           <div
-            className="absolute inset-0 rounded-sm flex flex-col justify-center items-start px-6  bg-gradient-to-bl from-transparent to-black/70 z-1"
+            className="absolute inset-0 rounded-sm flex flex-col justify-center items-start px-6  bg-gradient-to-bl from-transparent to-black/40 z-1"
    
             
           >
