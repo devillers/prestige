@@ -55,6 +55,7 @@ export default function ClientDescription({ slug }) {
     content: { rendered: content },
     features: badges = [],
     gallery_images: gallery = [],
+    booking_url = null, // ✅ Ajout ici
   } = property;
 
   const parser = new DOMParser();
@@ -73,7 +74,7 @@ export default function ClientDescription({ slug }) {
   return (
     <>
       <div className="relative">
-        <PropertyDescriptionHeader property={property} />
+      <PropertyDescriptionHeader property={property} booking_url={booking_url} />
       </div>
 
       <section className="max-w-[900px] mx-auto text-slate-600 font-sans">
@@ -129,6 +130,9 @@ export default function ClientDescription({ slug }) {
               </>
             )}
           </div>
+
+
+       
         </section>
 
         {gallery.length > 0 && (
@@ -136,6 +140,17 @@ export default function ClientDescription({ slug }) {
             <PhotoGallery images={gallery} />
           </section>
         )}
+
+{booking_url && (
+  <p  className="inline-flex mt-5 items-center justify-center px-4 h-[30px] font-thin border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95" >
+    <a href={booking_url} target="_blank" rel="noopener noreferrer">
+      Réserver cette propriété
+    </a>
+  </p>
+)}
+
+
+       
       </section>
     </>
   );
