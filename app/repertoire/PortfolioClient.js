@@ -81,12 +81,12 @@ export default function PortfolioClient() {
     ).values(),
   ];
 
-  // Handlers for filters
+  // Handlers for filters (sans scroll)
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     setFilters((f) => ({ ...f, [name]: value }));
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   const handleFeatureToggle = (fid) => {
     setFilters((f) => {
       const has = f.features.includes(fid);
@@ -97,8 +97,8 @@ export default function PortfolioClient() {
           : [...f.features, fid],
       };
     });
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   const handleLocationToggle = (loc) => {
     setFilters((f) => {
       const has = f.locations.includes(loc);
@@ -110,9 +110,9 @@ export default function PortfolioClient() {
       };
     });
   };
+
   const clearFilters = () => {
     setFilters({ locations: [], capacity: "", priceMax: "", features: [] });
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // Apply filters
@@ -435,37 +435,37 @@ export default function PortfolioClient() {
               </div>
             );
           })}
- </div>
-          {/* Pagination Controls */}
-          {totalPages > 1 && (
-            <div className="flex justify-center items-center gap-4 mt-10">
-              <button
-                onClick={handlePrevPage}
-                disabled={currentPage === 1}
-                className="px-4 py-2 text-sm border rounded disabled:opacity-40"
-              >
-                Précédent
-              </button>
-              <span className="text-sm">
-                Page {currentPage} sur {totalPages}
-              </span>
-              <button
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-                className="px-4 py-2 text-sm border rounded disabled:opacity-40"
-              >
-                Suivant
-              </button>
-            </div>
-          )}
+        </div>
 
-          {/* No results */}
-          {filteredPortfolios.length === 0 && (
-            <div className="text-center text-gray-500 italic mt-12">
-              Aucun résultat ne correspond à vos critères de recherche.
-            </div>
-          )}
-       
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-4 mt-10">
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className="px-4 py-2 text-sm border rounded disabled:opacity-40"
+            >
+              Précédent
+            </button>
+            <span className="text-sm">
+              Page {currentPage} sur {totalPages}
+            </span>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 text-sm border rounded disabled:opacity-40"
+            >
+              Suivant
+            </button>
+          </div>
+        )}
+
+        {/* No results */}
+        {filteredPortfolios.length === 0 && (
+          <div className="text-center text-gray-500 italic mt-12">
+            Aucun résultat ne correspond à vos critères de recherche.
+          </div>
+        )}
 
         {/* Scroll-to-top */}
         {showScrollTop && (
