@@ -18,31 +18,25 @@ const menuItems = [
       {
         title: "Chamonix",
         items: [
-          { title: "Chalet Sia", href: "/repertoire/chalet-sia" },
+          { title: "Chalet Sia", href: "https://care-prestige.vercel.app/repertoire/chalet-sia-elegance-scandinave-au-coeur-de-chamonix" },
           { title: "Ecrin des Bossons", href: "/repertoire/ecrin-des-bossons" },
-          { title: "Moussoux", href: "/repertoire/ecrin-des-bossons" },
-          { title: "Soljanel", href: "/repertoire/ecrin-des-bossons" },
+        
         ],
       },
       {
         title: "Les Houches",
         items: [
-          { title: "Chalet Kieppi", href: "/repertoire/chalet-kieppi" },
-          { title: "Le 1000", href: "/repertoire/le-splendide" },
-          { title: "Bechar", href: "/repertoire/bechar" },
- 
-          {
-            title: "Chalet des Eaux Rousses",
-            href: "/repertoire/chalet-des-eaux-rousses",
-          },
+          { title: "Chalet Kieppi", href: "https://care-prestige.vercel.app/repertoire/chalet-kieppi" },
+          { title: "Le 1000", href: "https://care-prestige.vercel.app/repertoire/chalet-le-1000-lalliance-du-charme-alpin-et-du-confort-moderne" },
+      
         ],
       },
       {
         title: "Saint Nicolas",
         items: [
           { title: "La ferme Picherie", href: "/repertoire/la-ferme-picherie" },
-          { title: "L'anier rdc", href: "/repertoire/lanier-rdc" },
-          { title: "L'anier 1 etage", href: "/repertoire/lanier-1-etage" },
+          { title: "Résidence Lanier", href: "https://care-prestige.vercel.app/repertoire/residence-lanier-deux-appartements-spacieux-et-communicants-au-coeur-dun-village-savoyard-authentique" },
+      
         ],
       },
       {
@@ -51,7 +45,7 @@ const menuItems = [
           { title: "Chalet Remy", href: "/repertoire/chalet-remy" },
           {
             title: "La Ferme de Bionnassay",
-            href: "/repertoire/la-ferme-de-bionnassay",
+            href: "https://care-prestige.vercel.app/repertoire/ferme-de-bionnassay",
           },
         ],
       },

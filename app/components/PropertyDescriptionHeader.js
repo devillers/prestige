@@ -40,7 +40,7 @@ const PropertyDescriptionHeader = ({ property, booking_url }) => {
           className="relative h-[600px] bg-cover bg-center"
           style={{ backgroundImage: `url('${backgroundImage}')` }}
         >
-          <div className="absolute inset-0 rounded-sm flex flex-col justify-center items-start px-6  bg-gradient-to-bl from-transparent to-black/40 z-1">
+          <div className="absolute inset-0 rounded-sm flex flex-col justify-center items-start px-6  bg-gradient-to-bl from-transparent to-black/70 z-1">
             {reviews && (
               <div className="text-yellow-400 text-xl flex items-center">
                 <span>{ratingStars}</span>
