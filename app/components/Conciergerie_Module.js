@@ -58,9 +58,9 @@ export default function ServiceSection() {
                 <h2 className="text-xl text-center font-thin mb-4">
                   {decodeHTML(service.title)}
                 </h2>
-                <ul className="list-inside font-thin text-sm leading-7 text-gray-600">
+                <ul className="list-inside font-thin text-[13px] leading-7 text-gray-600">
                   {service.items.map((item, i) => (
-                    <li key={i}>{item}</li>
+                    <li className="ml-3" key={i}>{item} </li>
                   ))}
                 </ul>
               </div>

@@ -65,8 +65,8 @@ export default async function BlogPage() {
   return (
     <>
       <section className="relative">
-        <div className="relative z-10 mx-auto flex flex-col items-center justify-center min-h-[640px] p-6 bg-[url(/images/blog.webp)] bg-cover bg-center">
-          <ul className="max-w-[700px] z-20 space-y-2 text-center">
+        <div className="relative z-10 mx-auto flex flex-col  justify-center min-h-[640px] p-6 bg-[url(/images/blog.webp)] bg-cover bg-center">
+          <ul className="max-w-[700px] z-20 ">
             <li>
               <h1 className="text-6xl md:text-8xl uppercase text-white/70 font-bold">
                 Le Blog
@@ -88,7 +88,7 @@ export default async function BlogPage() {
       </section>
 
       <div className="text-gray-800 max-w-6xl mx-auto p-6">
-        <ul className="space-y-2 text-center mb-6">
+        <ul className="space-y-2  mb-6">
           <li>
             <h5 className="text-4xl md:text-7xl uppercase font-thin">
               Découvrez
