@@ -183,9 +183,9 @@ export default function PortfolioClient() {
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto p-2 mb-12">
+      <div className="max-w-6xl p-2 mx-auto mb-12">
         {/* Titles */}
-        <ul className="py-4">
+        <ul className="p-6">
           <li>
             <h1 className="text-5xl md:text-6xl uppercase font-thin">
               Le répertoire
@@ -204,7 +204,7 @@ export default function PortfolioClient() {
         </ul>
 
         {/* Intro */}
-        <div className="text-gray-800 max-w-6xl mx-auto px-4 flex flex-col items-center">
+        <div className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center">
           <p className="text-center text-black text-md font-thin my-10 leading-8 italic">
             Partez à la découverte de lieux exclusifs, conçus pour accueillir
             vos événements les plus raffinés. Dans un décor alpin hors du
@@ -298,7 +298,7 @@ export default function PortfolioClient() {
         </div>
 
         {/* Portfolio Cards */}
-        <div className="space-y-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+        <div className="space-y-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2">
           {paginatedPortfolios.map((item) => {
             const featured =
               item._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
@@ -435,7 +435,7 @@ export default function PortfolioClient() {
               </div>
             );
           })}
-
+ </div>
           {/* Pagination Controls */}
           {totalPages > 1 && (
             <div className="flex justify-center items-center gap-4 mt-10">
@@ -465,7 +465,7 @@ export default function PortfolioClient() {
               Aucun résultat ne correspond à vos critères de recherche.
             </div>
           )}
-        </div>
+       
 
         {/* Scroll-to-top */}
         {showScrollTop && (
