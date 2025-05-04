@@ -55,7 +55,7 @@ export default function ServiceSection() {
                     Image non disponible
                   </div>
                 )}
-                <h2 className="text-xl  font-thin mb-4">
+                <h2 className="text-md uppercase p-2 text-center mb-4">
                   {decodeHTML(service.title)}
                 </h2>
                 <ul className="list-inside font-thin text-[13px] leading-7 text-gray-600">
