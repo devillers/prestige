@@ -88,7 +88,7 @@ export default function PortfolioClient() {
         ? prev.locations.filter((l) => l !== loc)
         : [...prev.locations, loc],
     }));
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    //window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const clearFilters = () => {
