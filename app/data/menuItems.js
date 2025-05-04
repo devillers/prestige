@@ -9,7 +9,7 @@ const menuItems = [
         items: [
           {
             title: "La ferme des Choseaux",
-            href: "/repertoire/la-ferme-des-choseaux",
+            href: "https://care-prestige.vercel.app/repertoire/ferme-des-choseaux-grand-confort-et-ski",
           },
         
         ],
