@@ -40,31 +40,29 @@ export default function ConciergerieClient() {
               {" "}
               <h1 className="text-5xl md:text-6xl uppercase font-thin">
                 {" "}
-                nos services{" "}
+                Conciergerie de Luxe 
               </h1>
             </li>
             <li>
               {" "}
               <h2 className=" text-4xl md:text-5xl uppercase font-thin">
                 {" "}
-                de conciergerie
+                Des services sur-mesure 
               </h2>
             </li>
             <li>
               {" "}
               <h3 className="text-3xl md:text-4xl uppercase  font-thin">
                 {" "}
-                exclusifs
+                pour sublimer vos expériences alpines
               </h3>
             </li>
           </ul>
           <div className="text-gray-800 max-w-6xl mx-auto p-6 flex flex-col items-center">
             <p className="text-center text-black  text-md font-thin my-10 z-20 leading-8 italic">
-              Chamonix, Megève ou Saint-Gervais, notre équipe vous accompagne
-              dans la gestion de votre propriété ou l’organisation d’événements
-              d’exception. Mariage, séminaire ou conciergerie locative : chaque
-              demande est traitée avec rigueur, discrétion et un sens aigu du
-              détail.
+              Pour répondre aux attentes d’une clientèle exigeante, votre
+              conciergerie en Haute-Savoie propose des services
+              ultra-personnalisés, adaptés aux atouts exceptionnels de la région.
             </p>
           </div>
         </div>

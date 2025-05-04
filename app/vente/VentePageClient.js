@@ -94,27 +94,27 @@ export default function VentePageClient() {
         <div className="text-gray-800 max-w-6xl mx-auto">
           <ul>
             <li>
-              <h5 className="text-4xl md:text-7xl uppercase font-thin">
-                Organisons ensemble
+              <h5 className="text-4xl md:text-6xl uppercase font-thin">
+               Swixim
               </h5>
             </li>
             <li>
-              <h6 className="text-3xl md:text-6xl uppercase font-thin">
-                votre événement
+              <h6 className="text-3xl md:text-5xl uppercase font-thin">
+                international 
               </h6>
             </li>
             <li>
-              <h6 className="text-2xl md:text-5xl uppercase font-thin">
-                hors du commun
+              <h6 className="text-2xl md:text-4xl uppercase font-thin">
+                sallanches 
               </h6>
             </li>
           </ul>
           <div className="max-w-6xl mx-auto p-6 flex flex-col items-center">
             <p className="text-center text-black text-md font-thin my-10 leading-8 italic">
-              Imaginez votre prochain événement dans un cadre atypique, agrémenté
-              d’expériences extraordinaires. Oubliez les contraintes, notre
-              équipe s’occupe de tout et organise pour vous un moment inoubliable
-              entièrement sur-mesure.
+              Pour vous accompagner à chaque étape de vos projets immobiliers,
+              BARNES met à votre disposition une équipe d’experts, chacun
+              spécialiste de son domaine, qui se feront un plaisir de vous
+              assister de manière personnalisée.
             </p>
           </div>
         </div>
@@ -144,9 +144,7 @@ export default function VentePageClient() {
                         name="categories"
                         type="checkbox"
                         checked={filters.categories.includes(cat.slug)}
-                        onChange={() =>
-                          toggleFilter("categories", cat.slug)
-                        }
+                        onChange={() => toggleFilter("categories", cat.slug)}
                         className="accent-[#bd9254]"
                       />
                       <span>{cat.name}</span>
@@ -211,9 +209,7 @@ export default function VentePageClient() {
         {/* Grille des biens */}
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {biens.length > 0 ? (
-            biens.map((item) => (
-              <VenteImmoCard key={item.id} item={item} />
-            ))
+            biens.map((item) => <VenteImmoCard key={item.id} item={item} />)
           ) : (
             <p className="text-gray-500 italic col-span-full text-center py-8">
               Aucun bien ne correspond aux filtres sélectionnés.
@@ -223,4 +219,4 @@ export default function VentePageClient() {
       </div>
     </>
   );
-} 
+}
