@@ -183,7 +183,7 @@ export default function PortfolioClient() {
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto p-6 mb-12">
+      <div className="max-w-6xl mx-auto p-2 mb-12">
         {/* Titles */}
         <ul className="py-4">
           <li>
