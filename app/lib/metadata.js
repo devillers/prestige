@@ -1,3 +1,5 @@
+//app/lib/metadata.js
+
 export function getDefaultMetadata() {
     return {
       title: 'Care Concierge | Chalets de luxe en Haute-Savoie',
