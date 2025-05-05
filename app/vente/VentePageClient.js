@@ -123,7 +123,7 @@ export default function VentePageClient() {
       {/* Filtres et liste */}
       <div className="max-w-6xl mx-auto p-2 ">
         {/* UI des filtres */}
-        <div className="mb-8  bg-[#bd9254] p-3 rounded">
+        <div className="mb-8  bg-gray-500/60 p-3 rounded">
           <div className="flex flex-wrap items-baseline gap-8">
             {/* Types de bien */}
             <div>

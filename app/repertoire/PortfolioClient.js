@@ -215,17 +215,17 @@ export default function PortfolioClient() {
         </div>
 
         {/* Filter Form */}
-        <div className="p-4 rounded-lg mb-12 flex flex-wrap gap-4 items-start shadow">
+        <div className="p-4 rounded-lg mb-12 flex flex-wrap gap-4 items-start bg-gray-500/60">
           {/* Localités */}
           <div className="w-full">
-            <label className="block text-[11px] uppercase mb-5 font-semibold text-[#bd9254]">
+            <label className="block text-[13px] uppercase mb-5 font-semibold text-white">
               Localités
             </label>
             <div className="flex flex-wrap gap-2">
               {uniqueLocations.map((loc) => (
                 <label
                   key={loc}
-                  className="text-xs bg-white px-2 py-1 border rounded flex items-center cursor-pointer"
+                className="text-[11px] px-2 py-1 uppercase flex items-center cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -240,14 +240,14 @@ export default function PortfolioClient() {
           </div>
           {/* Équipements */}
           <div className="w-full">
-            <label className="block text-[11px] uppercase mb-5 font-semibold text-[#bd9254]">
+            <label className="block text-[13px] uppercase mb-5 font-semibold text-white">
               Équipements
             </label>
             <div className="flex flex-wrap gap-2">
               {uniqueFeatures.map((f) => (
                 <label
                   key={f.id}
-                  className="text-xs bg-white px-2 py-1 border rounded flex items-center cursor-pointer"
+                  className="text-[11px] px-2 py-1 uppercase flex items-center cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -263,7 +263,7 @@ export default function PortfolioClient() {
           {/* Capacity & Price */}
           <div className="flex flex-col md:flex-row md:items-end gap-4 w-full">
             <div className="w-full md:w-auto">
-              <label className="block text-[11px] uppercase mb-1 font-semibold text-[#bd9254]">
+              <label className="block text-[13px] uppercase mb-1 font-semibold text-white">
                 Capacité min
               </label>
               <input
@@ -275,7 +275,7 @@ export default function PortfolioClient() {
               />
             </div>
             <div className="w-full md:w-auto">
-              <label className="block text-[11px] uppercase mb-1 font-semibold text-[#bd9254]">
+              <label className="block text-[13px] uppercase mb-1 font-semibold text-white">
                 Prix maximum par nuit
               </label>
               <input
@@ -289,7 +289,7 @@ export default function PortfolioClient() {
             <div className="w-full md:w-auto">
               <button
                 onClick={clearFilters}
-                className="inline-flex items-center justify-center px-4 h-[30px] mt-4 border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95"
+                className="inline-flex items-center justify-center text-white px-4 h-[30px] mt-4 border border-white text-sm uppercase rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95"
               >
                 Reset
               </button>
