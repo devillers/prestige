@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FiPhone } from "react-icons/fi";
 
 export default function ContactForm() {
   useEffect(() => {
@@ -114,17 +116,18 @@ export default function ContactForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="max-w-7xl mx-auto bg-white mt-12 ">
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-7xl mx-auto bg-white mt-12 "
+      >
         <div className="flex flex-col md:flex-row gap-8 text-[12px]">
           <div className="md:w-1/2 flex flex-col   ">
-          <div className="flex justify-center items-center gap-2 text-3xl mb-7">
-  <h2 className="font-thin">Care Concierge</h2>
-  <span className="text-[#bd9254] font-thin">
-    Luxury
-  </span>
-</div>
-           
-          <p className="text-gray-700 leading-6 text-center ">
+            <div className="flex justify-center items-center gap-2 text-3xl mb-7">
+              <h2 className="font-thin">Care Concierge</h2>
+              <span className="text-[#bd9254] font-thin">Luxury</span>
+            </div>
+
+            <p className="text-gray-700 leading-6 text-center ">
               Vous avez une question, une demande de réservation ou un besoin
               particulier ? Nous sommes là pour vous aider. Remplissez le
               formulaire ci-dessous et nous vous répondrons dans les plus brefs
@@ -137,6 +140,49 @@ export default function ContactForm() {
               N’hésitez pas à joindre des photos si votre demande concerne la
               mise en gestion de votre bien.
             </p>
+            <div className="flex gap-4 mt-6">
+          {/* Téléphone */}
+          <a
+            href="tel:+33612345678"
+            className="inline-flex items-center justify-center w-9 h-9 border border-[#bd9254] text-[#bd9254] rounded-full hover:bg-[#bd9254] hover:text-white transition"
+            aria-label="Téléphone"
+          >
+            <FiPhone size={16} />
+          </a>
+
+          {/* Facebook */}
+          <a
+            href="https://www.facebook.com/careconciergechamonix/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center w-9 h-9 bg-[#1877f2] text-white rounded-full hover:bg-[#145dbf] transition"
+            aria-label="Facebook"
+          >
+            <FaFacebookF size={16} />
+          </a>
+
+          {/* Instagram */}
+          <a
+            href="https://www.instagram.com/careconcierge_chamonix/?next=%2F&hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center w-9 h-9 bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500 text-white rounded-full hover:opacity-90 transition"
+            aria-label="Instagram"
+          >
+            <FaInstagram size={16} />
+          </a>
+
+          {/* LinkedIn */}
+          <a
+            href="https://www.linkedin.com/in/careconcierge-properties/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center w-9 h-9 bg-[#0077b5] text-white rounded-full hover:bg-[#005582] transition"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedinIn size={16} />
+          </a>
+        </div>
           </div>
 
           <div className="md:w-1/2 space-y-4">
