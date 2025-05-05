@@ -1,5 +1,5 @@
 export async function GET() {
-    const baseUrl = 'https://care-prestige.vercel.app';
+    const baseUrl = process.env.SITE_URL;
   
     const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

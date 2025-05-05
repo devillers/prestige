@@ -8,7 +8,10 @@ const nextConfig = {
         pathname: '/wp-content/uploads/**',
       },
     ],
-    domains: ['localhost'], // optional, if still testing locally
+    domains: ['localhost'], // optional
+  },
+  experimental: {
+    serverActions: true,
   },
 };
 

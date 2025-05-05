@@ -1,5 +1,5 @@
 export async function GET() {
-    const baseUrl = 'https://care-prestige.vercel.app';
+    const baseUrl = process.env.SITE_URL;
   
     const staticPaths = [
       '',
