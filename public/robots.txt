@@ -1,5 +1,8 @@
+
+
 User-agent: *
 Disallow: /api/
 Allow: /
 
 Sitemap: https://care-prestige.vercel.app/sitemap.xml
+
