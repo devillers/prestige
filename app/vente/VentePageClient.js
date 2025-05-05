@@ -112,7 +112,7 @@ export default function VentePageClient() {
           <div className="max-w-6xl mx-auto p-6 flex flex-col items-center">
             <p className="text-center text-black text-md font-thin my-10 leading-8 italic">
               Pour vous accompagner à chaque étape de vos projets immobiliers,
-              BARNES met à votre disposition une équipe d’experts, chacun
+              Swixim International Sallanches met à votre disposition une équipe d’experts, chacun
               spécialiste de son domaine, qui se feront un plaisir de vous
               assister de manière personnalisée.
             </p>
