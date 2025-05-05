@@ -105,11 +105,30 @@ export default function SeminaireClientPage() {
             </li>
           </ul>
           <div className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center">
-            <p className="text-center text-black md:text-left text-md font-thin my-10 z-20 leading-8 italic">
-              Imaginez votre prochain événement dans un cadre atypique,
-              agrémenté d’expériences extraordinaires. Oubliez les contraintes,
-              notre équipe s’occupe de tout et organise pour vous un moment
-              inoubliable entièrement sur-mesure.
+            <p className="text-center text-black  text-md font-thin mt-10 mb-2 leading-8 italic">
+              Imaginez votre prochain séminaire dans un véritable écrin
+              d’exception, sublimé par des expériences inédites. Libérés de
+              toute contrainte, confiez à notre équipe l’organisation d’un
+              événement sur mesure et mémorable, de la conception à la
+              réalisation. Niché entre lac et sommets majestueux, le massif de
+              Haute-Savoie se prête idéalement à vos rendez-vous professionnels.
+            </p>
+            <p className="text-center text-black  text-md font-thin my-2 leading-8 italic">
+              {" "}
+              Care Concierge Luxury vous ouvre les portes de lieux
+              rigoureusement sélectionnés, où chalets d’exception, panoramas à
+              couper le souffle et prestations haut de gamme se conjuguent avec
+              élégance.
+            </p>
+            <p className="text-center text-black  text-md font-light mt-2 mb-10 leading-8 italic">
+              Au programme : sessions de travail stimulantes, pauses conviviales
+              au bord de l’eau, activités de cohésion en pleine nature
+              (randonnée, via ferrata, sports nautiques) et dégustation de
+              spécialités savoyardes dans une atmosphère chaleureuse.
+              Transferts, hébergement, restauration et animations sont pris en
+              charge dans les moindres détails, afin de faire de votre séminaire
+              l’incarnation parfaite de l’excellence et de l’authenticité de
+              votre entreprise.
             </p>
           </div>
         </div>
@@ -151,9 +170,9 @@ export default function SeminaireClientPage() {
                       />
                     </div>
                     <h3
-                      className="text-lg mt-4 text-center font-thin"
+                      className="text-[13px] mt-4 text-center uppercase font-thin"
                       dangerouslySetInnerHTML={{
-                        __html: property.title.rendered,
+                        __html: `${property.title.rendered} - ${property.location}`,
                       }}
                     />
                   </div>
