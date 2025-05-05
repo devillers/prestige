@@ -1,23 +1,36 @@
-export async function GET() {
+
+  
+  export async function GET() {
     const baseUrl = 'https://care-prestige.vercel.app';
     const wpApi = `${process.env.WORDPRESS_API_URL}/wp-json/wp/v2`;
   
-    const res = await fetch(`${wpApi}/seminaires?per_page=100`);
-    const items = await res.json();
+    try {
+      const res = await fetch(`${wpApi}/seminaires?per_page=100`);
+      if (!res.ok) throw new Error('Failed to fetch seminaires');
   
-    const urls = items.map(item => `
-      <url>
-        <loc>${baseUrl}/seminaires/${item.slug}</loc>
-        <lastmod>${item.modified}</lastmod>
-      </url>
-    `).join('');
+      const items = await res.json();
   
-    return new Response(
-      `<?xml version="1.0" encoding="UTF-8"?>
-       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-         ${urls}
-       </urlset>`,
-      { headers: { 'Content-Type': 'application/xml' } }
-    );
+      const urls = Array.isArray(items)
+        ? items.map(item => `
+            <url>
+              <loc>${baseUrl}/seminaires/${item.slug}</loc>
+              <lastmod>${item.modified || new Date().toISOString()}</lastmod>
+            </url>
+          `).join('')
+        : '';
+  
+      const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        ${urls}
+      </urlset>`;
+  
+      return new Response(sitemap, {
+        headers: { 'Content-Type': 'application/xml' }
+      });
+  
+    } catch (error) {
+      console.error('Sitemap seminaires error:', error);
+      return new Response('Internal Server Error', { status: 500 });
+    }
   }
   
