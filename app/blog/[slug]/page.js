@@ -3,6 +3,8 @@
 import { getMetadataForPage } from '../../lib/metadata';
 import { notFound } from 'next/navigation';
 import Breadcrumb from "../../components/BreadCrumb";
+import StructuredDataBlog from './StructuredDataBlog';
+
 
 export async function generateMetadata({ params }) {
   const { slug } = await Promise.resolve(params);
@@ -53,6 +55,12 @@ export default async function PostPage({ params }) {
 
   return (
     <>
+     <StructuredDataBlog
+    title={post.title.rendered.replace(/(<([^>]+)>)/gi, '')}
+    excerpt={post.excerpt?.rendered.replace(/(<([^>]+)>)/gi, '') ?? ''}
+    image={imageUrl}
+    url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug}`}
+  />
     <section className="relative">
   <div
     className="relative z-10 mx-auto justify-center flex flex-col min-h-[540px] p-6 bg-cover bg-center"
@@ -80,17 +88,7 @@ export default async function PostPage({ params }) {
           ].filter(Boolean)}
         />
 
-        {/* {imageUrl && (
-          <div className="mb-6 rounded-xl overflow-hidden">
-            <img src={imageUrl} alt={post.title.rendered} className="w-full object-cover" />
-          </div>
-        )}
-
-        <h1
-          className="text-4xl font-bold mb-6"
-          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-        /> */}
-
+   
         <article
           className="prose max-w-none text-[14px] text-justify"
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}

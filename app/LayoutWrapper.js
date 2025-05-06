@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import StructuredData from './components/StructuredData';
+import StructuredData from './StructuredData';
 
 export default function LayoutWrapper({ children, hideLayout = false }) {
   const pathname = usePathname();

@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import VenteImmoCard from "../components/VenteImmoCard";
+import StructuredDataVente from './StructuredDataVente';
 
 export default function VentePageClient() {
   const [biens, setBiens] = useState([]);
@@ -60,6 +61,7 @@ export default function VentePageClient() {
 
   return (
     <>
+      <StructuredDataVente />
       {/* Bannière */}
       <section className="relative">
         <div className="relative z-10 mx-auto flex flex-col justify-center min-h-[640px] p-6 bg-white bg-[url(/images/immo.webp)] bg-cover bg-center">

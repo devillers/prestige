@@ -1,10 +1,12 @@
 "use client";
 
 import Conciergerie_Module from "../components/Conciergerie_Module";
+import StructuredDataConciergerie from './StructuredDataConciergerie';
 
 export default function ConciergerieClient() {
   return (
     <>
+     <StructuredDataConciergerie />
        <section className="relative">
         <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/conciergerie.webp)] bg-cover bg-center">
           <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/40 z-0" />

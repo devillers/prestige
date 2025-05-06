@@ -1,16 +1,17 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { FaMapMarkerAlt, FaCheck } from 'react-icons/fa';
-import PhotoGallery from '../../components/PhotoGallery';
-import PropertyDescriptionHeader from '../../components/PropertyDescriptionHeader';
+import { useEffect, useState } from "react";
+import { FaMapMarkerAlt, FaCheck } from "react-icons/fa";
+import PhotoGallery from "../../components/PhotoGallery";
+import PropertyDescriptionHeader from "../../components/PropertyDescriptionHeader";
+import StructuredDataRepertoire from "./StructuredDataRepertoire";
 
 export default function ClientDescription({ slug }) {
   const [property, setProperty] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const previewCount = 2;
 
-  const toggleAccordion = () => setIsExpanded(prev => !prev);
+  const toggleAccordion = () => setIsExpanded((prev) => !prev);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +35,7 @@ export default function ClientDescription({ slug }) {
         const prop = data[0];
         if (prop) setProperty(prop);
       } catch (error) {
-        console.error('Erreur lors du chargement de la propriété :', error);
+        console.error("Erreur lors du chargement de la propriété :", error);
       }
     };
 
@@ -51,30 +52,42 @@ export default function ClientDescription({ slug }) {
 
   const {
     title: { rendered: title },
-    location = 'Localisation inconnue',
+    location = "Localisation inconnue",
     content: { rendered: content },
     features: badges = [],
     gallery_images: gallery = [],
     booking_url = null, // ✅ Ajout ici
+    prix = null // 👈 ajoute ceci
   } = property;
 
   const parser = new DOMParser();
-  const doc = parser.parseFromString(content, 'text/html');
-  const paragraphs = Array.from(doc.querySelectorAll('p'));
+  const doc = parser.parseFromString(content, "text/html");
+  const paragraphs = Array.from(doc.querySelectorAll("p"));
   const previewHTML = paragraphs
     .slice(0, previewCount)
-    .map(p => p.outerHTML)
-    .join('');
+    .map((p) => p.outerHTML)
+    .join("");
   const hiddenHTML = paragraphs
     .slice(previewCount)
-    .map(p => p.outerHTML)
-    .join('');
+    .map((p) => p.outerHTML)
+    .join("");
   const hasMoreParagraphs = paragraphs.length > previewCount;
 
   return (
     <>
+      <StructuredDataRepertoire
+        title={title.replace(/(<([^>]+)>)/gi, "")}
+        location={location}
+        description={paragraphs[0]?.textContent || "Propriété en Haute-Savoie"}
+        image={gallery?.[0]?.url || "/images/fallback.webp"}
+        slug={slug}
+        prix={prix}
+      />
       <div className="relative">
-      <PropertyDescriptionHeader property={property} booking_url={booking_url} />
+        <PropertyDescriptionHeader
+          property={property}
+          booking_url={booking_url}
+        />
       </div>
 
       <section className="max-w-[900px] mx-auto text-slate-600 font-sans">
@@ -91,7 +104,7 @@ export default function ClientDescription({ slug }) {
 
           {badges.length > 0 && (
             <div className="flex flex-wrap justify-center gap-3 px-6 mb-4">
-              {badges.map(feature => (
+              {badges.map((feature) => (
                 <div
                   key={feature.id}
                   className="flex items-center gap-2 px-4 py-2 bg-[#bd9254] text-white rounded-sm uppercase text-xs"
@@ -112,7 +125,9 @@ export default function ClientDescription({ slug }) {
               <>
                 <div
                   className={`transition-all duration-500 ease-in-out ${
-                    isExpanded ? 'max-h-full opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+                    isExpanded
+                      ? "max-h-full opacity-100"
+                      : "max-h-0 opacity-0 overflow-hidden"
                   }`}
                 >
                   <div
@@ -125,14 +140,11 @@ export default function ClientDescription({ slug }) {
                   className="text-yellow-600 font-thin mt-2 text-sm"
                   aria-expanded={isExpanded}
                 >
-                  {isExpanded ? 'fermer' : 'voir +'}
+                  {isExpanded ? "fermer" : "voir +"}
                 </button>
               </>
             )}
           </div>
-
-
-       
         </section>
 
         {gallery.length > 0 && (
@@ -140,11 +152,6 @@ export default function ClientDescription({ slug }) {
             <PhotoGallery images={gallery} />
           </section>
         )}
-
-
-
-
-       
       </section>
     </>
   );

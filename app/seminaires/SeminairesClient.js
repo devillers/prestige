@@ -4,6 +4,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import StructuredDataSeminaire from './StructuredDataSeminaire';
 
 export default function SeminaireClientPage() {
   const [properties, setProperties] = useState([]);
@@ -51,7 +52,9 @@ export default function SeminaireClientPage() {
   };
 
   return (
+    
     <>
+     <StructuredDataSeminaire />
       {/* Hero Section */}
       <section className="relative">
         <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/seminaire.webp)] bg-cover bg-center">
