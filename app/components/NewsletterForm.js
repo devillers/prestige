@@ -50,9 +50,9 @@ const NewsletterForm = () => {
 
   return (
     <div className="bg-gray-50 px-6 py-12 text-center max-w-5xl mx-auto  my-8">
-      <h2 className="text-3xl font-thin mb-2">
+      <h4 className="text-3xl font-thin mb-2">
         S'inscrire à notre newsletter.
-      </h2>
+      </h4>
       <p className="text-gray-500 font-thin mt-4  ">
         Nos actualités sur{" "}
         l'immobilier et nos

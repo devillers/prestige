@@ -4,7 +4,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import StructuredDataSeminaire from './StructuredDataSeminaire';
+import StructuredDataSeminaire from "./StructuredDataSeminaire";
 
 export default function SeminaireClientPage() {
   const [properties, setProperties] = useState([]);
@@ -52,36 +52,22 @@ export default function SeminaireClientPage() {
   };
 
   return (
-    
     <>
-     <StructuredDataSeminaire />
+      <StructuredDataSeminaire />
       {/* Hero Section */}
       <section className="relative">
         <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/seminaire.webp)] bg-cover bg-center">
-          <ul className=" max-w-[660px] z-20 ">
-            <li>
-              <h1 className="text-6xl md:text-8xl uppercase text-white/70 font-bold  ">
-                Votre
-              </h1>
-            </li>
-            <li>
-              <h2 className="text-6xl md:text-7xl uppercase  text-white font-bold ">
-                {" "}
-                événement
-              </h2>
-            </li>
-            <li>
-              <h3 className="text-6xl md:text-6xl uppercase text-white/70 font-bold ">
-                dans la vallée de{" "}
-              </h3>
-            </li>
-
-            <li>
-              <h4 className="text-6xl md:text-8xl uppercase text-white font-bold ">
-                chamonix{" "}
-              </h4>
-            </li>
-          </ul>
+          <h1 className=" uppercase font-bold max-w-[900px] p-6 z-20">
+            <span className="md:text-6xl text-6xl text-white/70 ">votre</span>
+            <br />
+            <span className="md:text-8xl text-6xl text-white ">événement</span>
+            <br />
+            <span className="md:text-7xl text-6xl text-white/70 ">dans la</span>
+            <br />
+            <span className="md:text-8xl text-6xl text-white "> vallée de</span>
+            <br />
+            <span className="md:text-6xl text-6xl text-white ">chamonix</span>
+          </h1>
 
           <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-10  " />
         </div>
@@ -90,23 +76,19 @@ export default function SeminaireClientPage() {
       {/* Carousel & CTA */}
       <section className="max-w-7xl mx-auto mb-12 p-6">
         <div className="text-gray-800 max-w-6xl mx-auto ">
-          <ul className="">
-            <li>
-              <h5 className="text-4xl md:text-7xl uppercase font-thin">
-                Organisons ensemble
-              </h5>
-            </li>
-            <li>
-              <h6 className="text-3xl md:text-6xl uppercase font-thin">
-                votre événement
-              </h6>
-            </li>
-            <li>
-              <h6 className="text-2xl md:text-5xl uppercase font-thin">
-                hors du commun
-              </h6>
-            </li>
-          </ul>
+          <h2 className="">
+            <span className="text-4xl md:text-7xl uppercase font-thin">
+              Organisons ensemble
+            </span>{" "}
+            <br />
+            <span className="text-3xl md:text-6xl uppercase font-thin">
+              votre événement
+            </span>{" "}
+            <br />
+            <span className="text-2xl md:text-5xl uppercase font-thin">
+              hors du commun
+            </span>
+          </h2>
           <div className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center">
             <p className="text-center text-black  text-md font-thin mt-10 mb-2 leading-8 italic">
               Imaginez votre prochain séminaire dans un véritable écrin

@@ -45,7 +45,9 @@ export default function PortfolioClient() {
         }
         setPortfolios(items);
         const initial = {};
-        items.forEach((i) => { initial[i.id] = 0 });
+        items.forEach((i) => {
+          initial[i.id] = 0;
+        });
         setCurrentImages(initial);
       } catch (e) {
         console.error("Erreur lors du chargement des logements:", e);
@@ -150,10 +152,7 @@ export default function PortfolioClient() {
   const handleImageNav = (id, len, dir) => {
     setCurrentImages((prev) => ({
       ...prev,
-      [id]:
-        dir === "next"
-          ? (prev[id] + 1) % len
-          : (prev[id] - 1 + len) % len,
+      [id]: dir === "next" ? (prev[id] + 1) % len : (prev[id] - 1 + len) % len,
     }));
   };
 
@@ -162,24 +161,21 @@ export default function PortfolioClient() {
       {/* Hero */}
       <section className="relative">
         <div className="relative z-10 p-6 mx-auto flex flex-col justify-center min-h-[640px] bg-[url(/images/repertoire.webp)] bg-cover bg-center">
-          <ul className="max-w-[660px] z-20">
-            <li>
-              <h1 className="text-6xl md:text-8xl uppercase text-white/70 font-bold">
-                Séjour
-              </h1>
-            </li>
-            <li>
-              <h2 className="text-6xl md:text-7xl uppercase text-white font-bold">
-                haut de gamme
-              </h2>
-            </li>
-            <li>
-              <h3 className="text-6xl md:text-8xl uppercase text-white/70 font-bold">
-                en haute savoie
-              </h3>
-            </li>
-          </ul>
-          <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/70 z-10 " />
+          <h1 className=" uppercase font-bold max-w-[900px] p-6 z-20">
+            <span className="md:text-6xl text-6xl text-white/70 ">Séjours</span>
+            <br />
+            <span className="md:text-8xl text-6xl text-white ">
+              haut de gamme
+            </span>
+            <br />
+            <span className="md:text-7xl text-6xl text-white/70 ">
+              en haute
+            </span>
+            <br />
+            <span className="md:text-8xl text-6xl text-white "> savoie</span>
+            <br />
+          </h1>
         </div>
       </section>
 
@@ -209,8 +205,8 @@ export default function PortfolioClient() {
             Partez à la découverte de lieux exclusifs, conçus pour accueillir
             vos événements les plus raffinés. Dans un décor alpin hors du
             commun, vivez une expérience sur-mesure, pensée dans les moindres
-            détails. Notre équipe se charge de tout, pour que chaque instant soit
-            unique, fluide, et inoubliable.
+            détails. Notre équipe se charge de tout, pour que chaque instant
+            soit unique, fluide, et inoubliable.
           </p>
         </div>
 
@@ -225,7 +221,7 @@ export default function PortfolioClient() {
               {uniqueLocations.map((loc) => (
                 <label
                   key={loc}
-                className="text-[11px] px-2 py-1 uppercase flex items-center cursor-pointer"
+                  className="text-[11px] px-2 py-1 uppercase flex items-center cursor-pointer"
                 >
                   <input
                     type="checkbox"
@@ -330,7 +326,11 @@ export default function PortfolioClient() {
                           <>
                             <button
                               onClick={() =>
-                                handleImageNav(item.id, allImages.length, "prev")
+                                handleImageNav(
+                                  item.id,
+                                  allImages.length,
+                                  "prev"
+                                )
                               }
                               className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/70 hover:bg-white text-black rounded-full p-2"
                             >
@@ -338,7 +338,11 @@ export default function PortfolioClient() {
                             </button>
                             <button
                               onClick={() =>
-                                handleImageNav(item.id, allImages.length, "next")
+                                handleImageNav(
+                                  item.id,
+                                  allImages.length,
+                                  "next"
+                                )
                               }
                               className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/70 hover:bg-white text-black rounded-full p-2"
                             >
@@ -370,7 +374,9 @@ export default function PortfolioClient() {
                     <div>
                       <h2
                         className="text-3xl font-bold uppercase"
-                        dangerouslySetInnerHTML={{ __html: item.title.rendered }}
+                        dangerouslySetInnerHTML={{
+                          __html: item.title.rendered,
+                        }}
                       />
                       <div className="flex flex-col mt-5 text-gray-600 text-[10px] uppercase">
                         <div className="flex items-center text-sm font-semibold text-gray-500">
@@ -394,14 +400,24 @@ export default function PortfolioClient() {
                             if (r >= i + 0.5) return <FaStarHalfAlt key={i} />;
                             return <FaRegStar key={i} />;
                           })}
-                          <span className="ml-2 text-gray-500">({reviews})</span>
+                          <span className="ml-2 text-gray-500">
+                            ({reviews})
+                          </span>
                         </div>
                       )}
                       <div className="grid grid-cols-4 gap-2 mt-4 text-[10px] uppercase text-gray-700">
-                        <div><strong>surf:</strong> {item.surface} m²</div>
-                        <div><strong>capacité:</strong> {item.capacity}</div>
-                        <div><strong>chamb:</strong> {item.bedrooms}</div>
-                        <div><strong>sdb:</strong> {item.bathrooms}</div>
+                        <div>
+                          <strong>surf:</strong> {item.surface} m²
+                        </div>
+                        <div>
+                          <strong>capacité:</strong> {item.capacity}
+                        </div>
+                        <div>
+                          <strong>chamb:</strong> {item.bedrooms}
+                        </div>
+                        <div>
+                          <strong>sdb:</strong> {item.bathrooms}
+                        </div>
                       </div>
                       {features.length > 0 && (
                         <div className="flex flex-wrap gap-2 mt-2">

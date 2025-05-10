@@ -5,7 +5,6 @@ import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-
 import menuItems from '../data/menuItems';
 
 export default function MegaMenu() {
@@ -14,48 +13,39 @@ export default function MegaMenu() {
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
-
-  // progress percentage state
   const [progress, setProgress] = useState(0);
   const progressInterval = useRef(null);
-
   const menuContainerRef = useRef(null);
   const closeTimeoutRef = useRef(null);
 
-  const activeSubmenu = menuItems.find((m) => m.title === activeMenu)?.submenu;
+  const activeSubmenu = menuItems.find(m => m.title === activeMenu)?.submenu;
   const colCount = activeSubmenu?.length ?? 0;
   const gridCols = colCount > 5 ? 'grid-cols-5' : `grid-cols-${colCount}`;
 
-  // Start auto-incrementing progress up to 90%
   const startProgress = () => {
     clearInterval(progressInterval.current);
     setProgress(0);
     progressInterval.current = setInterval(() => {
-      setProgress((p) => {
+      setProgress(p => {
         const next = p + Math.random() * 10;
         return next < 90 ? next : 90;
       });
     }, 200);
   };
 
-  // Complete to 100% then reset
   const completeProgress = () => {
     clearInterval(progressInterval.current);
     setProgress(100);
     setTimeout(() => setProgress(0), 300);
   };
 
-  // navigate with progress
   const navigate = (href, delay = 0) => {
     startProgress();
     setActiveMenu(null);
     setMobileOpen(false);
-    setTimeout(() => {
-      router.push(href);
-    }, delay);
+    setTimeout(() => router.push(href), delay);
   };
 
-  // on path change, finish progress and reset menus
   useEffect(() => {
     completeProgress();
     setActiveMenu(null);
@@ -64,7 +54,7 @@ export default function MegaMenu() {
 
   return (
     <header className="border-b shadow-sm relative z-50">
-      {/* percentage loader bar */}
+      {/* loader */}
       <AnimatePresence>
         {progress > 0 && (
           <motion.div
@@ -90,50 +80,54 @@ export default function MegaMenu() {
         {/* Desktop nav */}
         <div className="hidden md:flex justify-center flex-1">
           <nav className="flex gap-8 items-center">
-            {menuItems.map((item, i) => (
-              <div
-                key={i}
-                className="relative group"
-                onMouseEnter={() => {
-                  if (window.innerWidth > 768 && item.submenu) {
-                    clearTimeout(closeTimeoutRef.current);
-                    setActiveMenu(item.title);
-                  }
-                }}
-                onMouseLeave={() => {
-                  if (window.innerWidth > 768 && item.submenu) {
-                    closeTimeoutRef.current = setTimeout(() => setActiveMenu(null), 500);
-                  }
-                }}
-              >
-                {item.href ? (
-                  <a
-                    href={item.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate(item.href);
-                    }}
-                    className={`
-                      text-[11px] uppercase leading-4 hover:text-[#bd9254]
-                      ${pathname === item.href ? 'text-[#bd9254]/80' : 'text-[#293d4c]'}
-                    `}
-                  >
-                    {item.title}
-                  </a>
-                ) : (
-                  <button
-                    onClick={() =>
-                      setActiveMenu(activeMenu === item.title ? null : item.title)
+            {menuItems.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={i}
+                  className="relative group"
+                  onMouseEnter={() => {
+                    if (window.innerWidth > 768 && item.submenu) {
+                      clearTimeout(closeTimeoutRef.current);
+                      setActiveMenu(item.title);
                     }
-                    aria-haspopup="true"
-                    aria-expanded={activeMenu === item.title}
-                    className="text-[11px] uppercase leading-4 text-[#293d4c] hover:text-[#bd9254]"
-                  >
-                    {item.title}
-                  </button>
-                )}
-              </div>
-            ))}
+                  }}
+                  onMouseLeave={() => {
+                    if (window.innerWidth > 768 && item.submenu) {
+                      closeTimeoutRef.current = setTimeout(() => setActiveMenu(null), 500);
+                    }
+                  }}
+                >
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      onClick={e => {
+                        e.preventDefault();
+                        navigate(item.href);
+                      }}
+                      className={`
+                        flex items-center text-[11px] uppercase leading-4 hover:text-[#bd9254]
+                        ${pathname === item.href ? 'text-[#bd9254]/80' : 'text-[#293d4c]'}
+                      `}
+                    >
+                      {Icon && <Icon className="inline-block mr-1" size={14} />}
+                      {item.title}
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() =>
+                        setActiveMenu(activeMenu === item.title ? null : item.title)
+                      }
+                      aria-haspopup="true"
+                      aria-expanded={activeMenu === item.title}
+                      className="text-[11px] uppercase leading-4 text-[#293d4c] hover:text-[#bd9254]"
+                    >
+                      {item.title}
+                    </button>
+                  )}
+                </div>
+              );
+            })}
           </nav>
         </div>
 
@@ -176,7 +170,7 @@ export default function MegaMenu() {
                         <li key={j}>
                           <a
                             href={subItem.href}
-                            onClick={(e) => {
+                            onClick={e => {
                               e.preventDefault();
                               navigate(subItem.href);
                             }}
@@ -222,47 +216,51 @@ export default function MegaMenu() {
                 </button>
               </div>
               <nav className="flex flex-col space-y-4 px-4 pb-6">
-                {menuItems.map((item, i) => (
-                  <div key={i}>
-                    <button
-                      onClick={() =>
-                        item.href
-                          ? navigate(item.href, 500)
-                          : setActiveMenu(activeMenu === item.title ? null : item.title)
-                      }
-                      className="font-semibold uppercase text-sm mb-3 cursor-pointer text-white hover:text-black hover:bg-white/80 rounded p-2 text-left w-full"
-                    >
-                      {item.title}
-                    </button>
-                    {activeMenu === item.title && item.submenu && (
-                      <div className="grid grid-cols-2 gap-4 pl-4">
-                        {item.submenu.map((col, idx) => (
-                          <div key={idx}>
-                            {col.title && (
-                              <div className="text-sm mb-1 font-thin text-[#bd9254] uppercase">
-                                {col.title}
-                              </div>
-                            )}
-                            <ul className="space-y-1">
-                              {col.items
-                                .filter(Boolean)
-                                .map((subItem, j) => (
-                                  <li key={j}>
-                                    <button
-                                      onClick={() => navigate(subItem.href, 500)}
-                                      className="text-[10px] uppercase text-white hover:text-black hover:bg-white/80 block leading-7 text-left w-full"
-                                    >
-                                      {subItem.title}
-                                    </button>
-                                  </li>
-                                ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
+                {menuItems.map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={i}>
+                      <button
+                        onClick={() =>
+                          item.href
+                            ? navigate(item.href, 500)
+                            : setActiveMenu(activeMenu === item.title ? null : item.title)
+                        }
+                        className="font-semibold uppercase text-sm mb-3 cursor-pointer text-white hover:text-black hover:bg-white/80 rounded p-2 text-left w-full"
+                      >
+                        {Icon && <Icon className="inline-block mr-1" size={16} />}
+                        {item.title}
+                      </button>
+                      {activeMenu === item.title && item.submenu && (
+                        <div className="grid grid-cols-2 gap-4 pl-4">
+                          {item.submenu.map((col, idx) => (
+                            <div key={idx}>
+                              {col.title && (
+                                <div className="text-sm mb-1 font-thin text-[#bd9254] uppercase">
+                                  {col.title}
+                                </div>
+                              )}
+                              <ul className="space-y-1">
+                                {col.items
+                                  .filter(Boolean)
+                                  .map((subItem, j) => (
+                                    <li key={j}>
+                                      <button
+                                        onClick={() => navigate(subItem.href, 500)}
+                                        className="text-[10px] uppercase text-white hover:text-black hover:bg-white/80 block leading-7 text-left w-full"
+                                      >
+                                        {subItem.title}
+                                      </button>
+                                    </li>
+                                  ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </nav>
             </motion.div>
           </>

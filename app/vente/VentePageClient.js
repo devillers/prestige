@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import VenteImmoCard from "../components/VenteImmoCard";
-import StructuredDataVente from './StructuredDataVente';
+import StructuredDataVente from "./StructuredDataVente";
 
 export default function VentePageClient() {
   const [biens, setBiens] = useState([]);
@@ -65,58 +65,44 @@ export default function VentePageClient() {
       {/* Bannière */}
       <section className="relative">
         <div className="relative z-10 mx-auto flex flex-col justify-center min-h-[640px] p-6 bg-white bg-[url(/images/immo.webp)] bg-cover bg-center">
-          <ul className="max-w-[660px] z-20">
-            <li>
-              <h1 className="text-6xl sm:text-8xl uppercase text-white/70 font-bold">
-                Votre bien
-              </h1>
-            </li>
-            <li>
-              <h2 className="text-6xl sm:text-7xl uppercase text-white font-bold">
-                notre expertise
-              </h2>
-            </li>
-            <li>
-              <h3 className="text-6xl sm:text-6xl uppercase text-white/70 font-bold">
-                {/* Optionnel */}
-              </h3>
-            </li>
-            <li>
-              <h4 className="text-6xl sm:text-7xl uppercase text-white font-bold">
-                haut de gamme
-              </h4>
-            </li>
-          </ul>
-          <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-1" />
+          <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-10" />
+          <h1 className=" uppercase font-bold max-w-[900px] p-6 z-20">
+            <span className="md:text-6xl text-6xl text-white/70 ">
+              Votre bien
+            </span>
+            <br />
+            <span className="md:text-8xl text-6xl text-white ">
+              {" "}
+              notre expertise
+            </span>
+            <br />
+            <span className="md:text-7xl text-6xl text-white/70 ">
+              {" "}
+              haut de
+            </span>
+            <br />
+            <span className="md:text-8xl text-6xl text-white "> gamme</span>
+          </h1>
         </div>
       </section>
 
       {/* Présentation */}
       <div className="max-w-7xl mx-auto p-6">
         <div className="text-gray-800 max-w-6xl mx-auto">
-          <ul>
-            <li>
-              <h5 className="text-4xl md:text-6xl uppercase font-thin">
-               Swixim
-              </h5>
-            </li>
-            <li>
-              <h6 className="text-3xl md:text-5xl uppercase font-thin">
-                international 
-              </h6>
-            </li>
-            <li>
-              <h6 className="text-2xl md:text-4xl uppercase font-thin">
-                sallanches 
-              </h6>
-            </li>
-          </ul>
+          <h2 className="text-4xl md:text-6xl uppercase font-thin">
+            Swixim international
+          </h2>
+
+          <h3 className="text-3xl md:text-5xl uppercase font-thin">
+            sallanches
+          </h3>
+
           <div className="max-w-6xl mx-auto p-6 flex flex-col items-center">
             <p className="text-center text-black text-md font-thin my-10 leading-8 italic">
               Pour vous accompagner à chaque étape de vos projets immobiliers,
-              Swixim International Sallanches met à votre disposition une équipe d’experts, chacun
-              spécialiste de son domaine, qui se feront un plaisir de vous
-              assister de manière personnalisée.
+              Swixim International Sallanches met à votre disposition une équipe
+              d’experts, chacun spécialiste de son domaine, qui se feront un
+              plaisir de vous assister de manière personnalisée.
             </p>
           </div>
         </div>
@@ -179,7 +165,7 @@ export default function VentePageClient() {
                         onChange={() => toggleFilter("villes", ville)}
                         className="accent-[#bd9254] "
                       />
-                     <span className="ml-1">{ville}</span>
+                      <span className="ml-1">{ville}</span>
                     </label>
                   );
                 })}

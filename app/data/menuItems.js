@@ -1,4 +1,11 @@
+import { FiPhone } from 'react-icons/fi';
+
+
+
+
 const menuItems = [
+
+  
   { title: "Accueil", href: "/" },
   {
     title: "Le Répertoire",
@@ -96,6 +103,11 @@ const menuItems = [
   },
   { title: "Vente", href: "/vente" },
   { title: "Contact", href: "/contact" },
+  {
+    title: "06 07 85 90 58",
+    href: 'tel:+33607859058',
+    icon: FiPhone,          // ← icône téléphonique ici
+  },
 ];
 
 export default menuItems;
