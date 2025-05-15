@@ -27,7 +27,7 @@ export default function FloatingContact() {
 
   return (
     <a
-      href="tel:+33607859058"
+      href="tel:+33686020184"
       className={`
         fixed top-1/4 text-sm animate-bounce
         bg-[#bd9254] hover:bg-[#c29e68]

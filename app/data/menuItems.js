@@ -104,8 +104,8 @@ const menuItems = [
   { title: "Vente", href: "/vente" },
   { title: "Contact", href: "/contact" },
   {
-    title: "06 07 85 90 58",
-    href: 'tel:+33607859058',
+    title: "06 86 02 01 84",
+    href: 'tel:+33686020184',
     icon: FiPhone,          // ← icône téléphonique ici
   },
 ];

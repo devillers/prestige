@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import Link from 'next/link';
+
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import menuItems from '../data/menuItems';
