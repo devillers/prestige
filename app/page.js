@@ -68,7 +68,7 @@ export default async function HomePage() {
               votre bien{" "}
             </span>
           </h2>
-          <div className="text-gray-800 max-w-6xl mx-auto flex flex-col py-10">
+          <div className="text-gray-800 max-w-6xl mx-auto flex flex-col mt-10 ">
             <div className=" max-w-6xl mx-auto p-6 flex flex-col items-center bg-gray-500/10 rounded py-10">
               <p className=" text-[15px] font-thin text-center italic mb-4">
                 Offrez à votre bien une gestion locative sur-mesure, pensée pour

@@ -1,7 +1,8 @@
+//app/contact/ContactClient.js
+
 "use client";
 
 import { useEffect } from "react";
-import { FiChevronDown } from "react-icons/fi";
 import Head from "next/head";
 import ContactForm from "../components/ContactForm";
 
@@ -20,8 +21,13 @@ export default function ContactClient() {
 
   return (
     <>
-      {/* ✅ SEO local via Schema.org */}
       <Head>
+        <title>Contactez-nous | Care Concierge</title>
+        <meta
+          name="description"
+          content="Contactez Care Concierge pour la gestion locative haut de gamme, l'organisation de séminaires, mariages, ou événements sur mesure à Chamonix, Megève et Saint-Gervais."
+        />
+        {/* ✅ Schema.org local business */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -48,32 +54,30 @@ export default function ContactClient() {
       </Head>
 
       <section className="relative">
-        <div className="relative z-10 mx-auto justify-center flex flex-col  min-h-[640px]  bg-white bg-[url(/images/contact.webp)] bg-cover bg-center">
-          <ul className=" max-w-[600px] p-6 z-20 ">
+        <div className="relative z-10 mx-auto flex flex-col justify-center min-h-[640px] bg-white bg-[url(/images/contact.webp)] bg-cover bg-center">
+          <ul className="max-w-[600px] p-6 z-20">
             <li>
-              <h1 className="text-6xl md:text-8xl uppercase text-white font-bold  ">
+              <h1 className="text-6xl md:text-8xl uppercase text-white font-bold">
                 Votre projet
               </h1>
             </li>
             <li>
-              <h2 className="text-6xl md:text-6xl uppercase  text-white/70 font-bold ">
-                {" "}
+              <h2 className="text-6xl md:text-6xl uppercase text-white/70 font-bold">
                 mérite
               </h2>
             </li>
             <li>
-              <h3 className="text-6xl md:text-7xl uppercase text-white/70 font-bold ">
+              <h3 className="text-6xl md:text-7xl uppercase text-white/70 font-bold">
                 notre attention
               </h3>
             </li>
           </ul>
-
           <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-1" />
         </div>
       </section>
 
-      <div className="text-gray-800 max-w-6xl mx-auto p-6  ">
-        <ul className="">
+      <div className="text-gray-800 max-w-6xl mx-auto p-6">
+        <ul>
           <li>
             <h1 className="text-4xl md:text-6xl uppercase font-thin">
               Votre bien mérite
@@ -90,8 +94,8 @@ export default function ContactClient() {
             </h3>
           </li>
         </ul>
-        <div className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center"> 
-        <p className="text-center text-black  text-md font-thin my-10 z-20 leading-8 italic">
+        <div className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center">
+          <p className="text-center text-black text-md font-thin my-10 leading-8 italic">
             Chamonix, Megève ou Saint-Gervais, notre équipe vous accompagne dans
             la gestion de votre propriété ou l’organisation d’événements
             d’exception. Mariage, séminaire ou conciergerie locative : chaque
