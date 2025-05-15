@@ -1,30 +1,47 @@
 export async function GET() {
-  const baseUrl = process.env.SITE_URL;
-  const wpApi = `${process.env.WORDPRESS_API_URL}/wp-json/wp/v2`;
+  const baseUrl = process.env.SITE_URL || "https://careconcierge.fr";
+  const wpApi = process.env.WORDPRESS_API_URL || "https://api.careprestige.fr/wp-json/wp/v2";
 
   try {
-    const res = await fetch(`${wpApi}/blog?per_page=100`);
-    const items = res.ok ? await res.json() : [];
+    const res = await fetch(`${wpApi}/posts?per_page=100`, {
+      headers: { "Accept": "application/json" },
+      next: { revalidate: 60 * 60 }, // 1h de cache SEO friendly
+    });
 
-    const urls = Array.isArray(items) ? items.map(item => `
+    if (!res.ok) throw new Error(`Erreur API: ${res.status} ${res.statusText}`);
+
+    const items = await res.json();
+
+    const urls = Array.isArray(items)
+      ? items
+          .map(
+            (item) => `
       <url>
         <loc>${baseUrl}/blog/${item.slug}</loc>
-        <lastmod>${item.modified || new Date().toISOString()}</lastmod>
-      </url>
-    `).join('') : '';
+        <lastmod>${new Date(item.modified_gmt || item.modified).toISOString()}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+      </url>`
+          )
+          .join("")
+      : "";
 
-    return new Response(
-      `<?xml version="1.0" encoding="UTF-8"?>
-       <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-         ${urls}
-       </urlset>`,
-      { headers: { 'Content-Type': 'application/xml' } }
-    );
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>`;
 
-  } catch (error) {
-    console.error('Sitemap blog error:', error);
-    return new Response('<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>', {
-      headers: { 'Content-Type': 'application/xml' }
+    return new Response(sitemap, {
+      headers: {
+        "Content-Type": "application/xml; charset=utf-8",
+        "Cache-Control": "public, max-age=3600",
+      },
     });
+  } catch (error) {
+    console.error("❌ Sitemap blog error:", error);
+    return new Response(
+      `<?xml version="1.0" encoding="UTF-8"?><error>Erreur sitemap blog</error>`,
+      { status: 500, headers: { "Content-Type": "application/xml" } }
+    );
   }
 }
