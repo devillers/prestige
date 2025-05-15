@@ -49,24 +49,74 @@ export default async function HomePage() {
       <div className="max-w-5xl mx-auto mb-12 p-4">
         <div className="text-gray-800 max-w-7xl  p-6 mx-auto ">
           <h2 className="">
-            <span className="text-5xl md:text-6xl uppercase font-thin">Le service qui </span><br />
-            <span className="text-4xl md:text-6xl uppercase font-thin"> révèle tout le </span><br />
-            <span className="text-4xl md:text-5xl uppercase font-thin"> potentiel de </span><br />
-            <span className="text-3xl md:text-4xl uppercase font-thin"> votre bien </span>
+            <span className="text-5xl md:text-6xl uppercase font-thin">
+              Le service qui{" "}
+            </span>
+            <br />
+            <span className="text-4xl md:text-6xl uppercase font-thin">
+              {" "}
+              révèle tout le{" "}
+            </span>
+            <br />
+            <span className="text-4xl md:text-5xl uppercase font-thin">
+              {" "}
+              potentiel de{" "}
+            </span>
+            <br />
+            <span className="text-3xl md:text-4xl uppercase font-thin">
+              {" "}
+              votre bien{" "}
+            </span>
           </h2>
-          <div className="text-gray-800 max-w-6xl mx-auto flex flex-col items-center">
-            <p className=" text-center  text-lg font-thin py-10 italic">
-              Notre conciergerie premium orchestre chaque détail : shooting
-              photo professionnel, rédaction d’annonces optimisées, gestion
-              dynamique des calendriers et des tarifs, accueil personnalisé 7
-              j/7, linge hôtelier de qualité, ménage méticuleux, maintenance
-              préventive et assistance voyageurs en continu. Vous profitez d’une
-              valorisation maximale et d’avis cinq étoiles, tandis que nous
-              veillons à la sécurité de votre patrimoine et à la sérénité de
-              votre expérience propriétaire.
-            </p>
-
-            <div className=" text-center font-thin py-10 bg-gray-500/10  p-6">
+          <div className="text-gray-800 max-w-6xl mx-auto flex flex-col py-10">
+            <div className=" max-w-6xl mx-auto p-6 flex flex-col items-center bg-gray-500/10 rounded py-10">
+              <p className=" text-[15px] font-thin text-center italic mb-4">
+                Offrez à votre bien une gestion locative sur-mesure, pensée pour
+                le haut de gamme. Optimisez la rentabilité et la valorisation de
+                votre propriété sans contraintes. Notre conciergerie vous
+                propose deux solutions de gestion locative haut de gamme
+                adaptées à vos objectifs
+              </p>
+              <ul className="flex flex-col md:flex-row gap-4 text-center">
+                <li className="flex flex-col items-center ">
+                  <h3 className="text-[18px] p-2 font-light ">
+                    Gestion locative classique.
+                  </h3>
+                  <p className="text-[15px] px-4 font-thin italic">
+                    Mandat de gestion, vous restez maître de vos revenus, nous
+                    prenons en charge l’intégralité de la gestion en votre nom.
+                  </p>
+                </li>
+                <li className="flex flex-col items-center">
+                  <h3 className="text-[18px] p-2 font-light ">
+                    {" "}
+                    Gestion para-hôtelière
+                  </h3>
+                  <p className="text-[15px] px-4 font-thin italic  ">
+                    Nous exploitons votre bien avec services hôteliers intégrés
+                    et vous garantissons un revenu stable.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div className="text-center max-w-6xl mx-auto py-10 flex flex-col items-center p-6">
+              <h2 className="text-[18px]  font-light mb-4">
+                Des services sur-mesure
+              </h2>
+              <p className=" text-center text-[15px] font-thin  italic">
+               Shooting photo professionnel, rédaction d’annonces optimisées,
+                gestion dynamique des calendriers et des tarifs, accueil
+                personnalisé 7 j/7, linge hôtelier de qualité, ménage
+                méticuleux, maintenance préventive et assistance voyageurs en
+                continu. 
+              </p>
+              <p className=" text-center text-[15px]  font-thin py-10 italic">
+              Vous profitez d’une valorisation maximale et d’avis
+                cinq étoiles, tandis que nous veillons à la sécurité de votre
+                patrimoine et à la sérénité de votre expérience propriétaire.
+              </p>
+            </div>
+            <div className=" text-center font-thin py-10 bg-gray-500/10  rounded p-6">
               <h3 className="font-extralight text-[18px] mb-2">
                 Gestion et entretien sans accroc
               </h3>
@@ -81,7 +131,7 @@ export default async function HomePage() {
               <h4 className="font-extralight text-[18px] mb-2">
                 Maximisation de votre Potentiel Locatif
               </h4>
-             <p className="mb-4 text-[15px] italic">
+              <p className="mb-4 text-[15px] italic">
                 Grâce à une tarification dynamique alignée sur les tendances du
                 marché, à l’optimisation du calendrier pour réduire les périodes
                 d’inoccupation et à un suivi rigoureux des coûts d’exploitation,
