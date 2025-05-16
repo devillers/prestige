@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-
+import { FiPhone } from 'react-icons/fi';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import menuItems from '../data/menuItems';
@@ -131,6 +131,17 @@ export default function MegaMenu() {
           </nav>
         </div>
 
+        {/* Téléphone desktop */}
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="tel:+33686020184"
+            className="flex items-center bg-[#bd9254] text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow hover:bg-[#a67e3c] transition"
+          >
+            <FiPhone className="w-4 h-4 mr-2" />
+            06 86 02 01 84
+          </a>
+        </div>
+
         {/* Mobile menu button */}
         {!mobileOpen && (
           <div className="md:hidden">
@@ -208,7 +219,7 @@ export default function MegaMenu() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.5 }}
-              className="fixed top-0 right-0 w-3/5 h-full bg-white/30 shadow-lg z-50"
+              className="fixed top-0 right-0 w-3/5 h-full bg-white/30 shadow-lg z-50 flex flex-col"
             >
               <div className="flex justify-end p-4">
                 <button onClick={() => setMobileOpen(false)}>
@@ -262,6 +273,17 @@ export default function MegaMenu() {
                   );
                 })}
               </nav>
+
+              {/* Mobile phone call button */}
+              <div className="mt-8 px-4">
+                <a
+                  href="tel:+33686020184"
+                  className="flex items-center justify-center bg-[#bd9254] text-white text-sm font-bold px-4 py-3 rounded-full shadow hover:bg-[#a67e3c] transition w-full"
+                >
+                  <FiPhone className="w-5 h-5 mr-2" />
+                  06 86 02 01 84
+                </a>
+              </div>
             </motion.div>
           </>
         )}

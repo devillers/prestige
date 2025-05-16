@@ -70,7 +70,7 @@ export default async function HomePage() {
           </h2>
           <div className="text-gray-800 max-w-6xl mx-auto flex flex-col mt-10 ">
             <div className=" max-w-6xl mx-auto p-6 flex flex-col items-center bg-gray-500/10 rounded py-10">
-              <p className=" text-[15px] font-thin text-center italic mb-4">
+              <p className=" text-[20px] font-thin text-center italic mb-10">
                 Offrez à votre bien une gestion locative sur-mesure, pensée pour
                 le haut de gamme. Optimisez la rentabilité et la valorisation de
                 votre propriété sans contraintes. Notre conciergerie vous
@@ -83,8 +83,15 @@ export default async function HomePage() {
                     Gestion locative classique.
                   </h3>
                   <p className="text-[15px] px-4 font-thin italic">
-                    Mandat de gestion, vous restez maître de vos revenus, nous
-                    prenons en charge l’intégralité de la gestion en votre nom.
+                    Notre service de gestion locative classique vous offre la
+                    liberté de louer votre bien en toute sérénité, sans les
+                    contraintes du quotidien. Vous restez pleinement
+                    propriétaire et percevez directement vos loyers, tandis que
+                    nous prenons en charge l’intégralité de la gestion en votre
+                    nom. Grâce à notre accompagnement professionnel, transparent
+                    et rigoureux, vous sécurisez vos revenus locatifs, valorisez
+                    durablement votre patrimoine et vous libérez des tâches
+                    administratives, techniques et juridiques.
                   </p>
                 </li>
                 <li className="flex flex-col items-center">
@@ -93,26 +100,35 @@ export default async function HomePage() {
                     Gestion para-hôtelière
                   </h3>
                   <p className="text-[15px] px-4 font-thin italic  ">
-                    Nous exploitons votre bien avec services hôteliers intégrés
-                    et vous garantissons un revenu stable.
+                    Notre contrat de gestion locative en para-hôtellerie vous
+                    offre une solution clé en main pour valoriser votre bien
+                    comme un hébergement de prestige. Nous assurons
+                    l’exploitation complète du bien en notre nom, incluant les
+                    services hôteliers (accueil, ménage, linge,
+                    petits-déjeuners), la commercialisation sur les grandes
+                    plateformes et la gestion opérationnelle au quotidien. Ce
+                    modèle vous permet de bénéficier d’une fiscalité optimisée
+                    (régime para-hôtelier), d’une rentabilité renforcée et d’une
+                    tranquillité totale, tout en préservant la qualité d’accueil
+                    de vos clients.
                   </p>
                 </li>
               </ul>
             </div>
             <div className="text-center max-w-6xl mx-auto py-10 flex flex-col items-center p-6">
-              <h2 className="text-[18px]  font-light mb-4">
+              <h2 className="text-[20px]  font-light mb-4">
                 Des services sur-mesure
               </h2>
               <p className=" text-center text-[15px] font-thin  italic">
-               Shooting photo professionnel, rédaction d’annonces optimisées,
+                Shooting photo professionnel, rédaction d’annonces optimisées,
                 gestion dynamique des calendriers et des tarifs, accueil
                 personnalisé 7 j/7, linge hôtelier de qualité, ménage
                 méticuleux, maintenance préventive et assistance voyageurs en
-                continu. 
+                continu.
               </p>
               <p className=" text-center text-[15px]  font-thin py-10 italic">
-              Vous profitez d’une valorisation maximale et d’avis
-                cinq étoiles, tandis que nous veillons à la sécurité de votre
+                Vous profitez d’une valorisation maximale et d’avis cinq
+                étoiles, tandis que nous veillons à la sécurité de votre
                 patrimoine et à la sérénité de votre expérience propriétaire.
               </p>
             </div>
