@@ -6,14 +6,7 @@ import { MdOutlineEmojiPeople, MdMeetingRoom } from "react-icons/md";
 import { PiBathtubFill } from "react-icons/pi";
 import { FaRegSquareFull } from "react-icons/fa6";
 
-export default function PortfolioCard({
-  item,
-  allImages,
-  currentIndex,
-  onPrev,
-  onNext,
-  onVoirPlus,
-}) {
+export default function PortfolioCard({ item, allImages, currentIndex, onPrev, onNext, onVoirPlus }) {
   return (
     <div className="relative bg-white rounded-xl drop-shadow-xl overflow-hidden min-h-[350px] group">
       {/* Image + Carousel */}
@@ -42,7 +35,7 @@ export default function PortfolioCard({
       </div>
 
       {/* Infos principales */}
-      <div className="p-3 flex flex-col gap-2 mt-2">
+      <div className="p-3 flex flex-col gap-2">
         <div className="grid grid-cols-4 gap-2 text-[12px] font-light uppercase text-gray-500 text-center">
           <div className="flex flex-col items-center gap-1">
             <FaRegSquareFull className="text-lg" />
@@ -66,18 +59,19 @@ export default function PortfolioCard({
       {/* Drawer hover */}
       <div className="absolute bottom-0 left-0 w-full bg-white px-4 py-6 transition-all duration-500 ease-in-out translate-y-[95%] group-hover:translate-y-0 z-20">
         <div className="text-sm text-gray-800 font-light">
+          <h3 className="text-base font-semibold mb-2" dangerouslySetInnerHTML={{ __html: item.title?.rendered || item.title }} />
           {item.favourite_sentence && (
             <p className="mb-1">{item.favourite_sentence}</p>
           )}
           {item.reference && (
-            <p className="text-[#bd9254] text-xs uppercase">
+            <p className="text-[#bd9254] text-[10px] uppercase">
               Réf. {item.reference}
             </p>
           )}
         </div>
         <button
           onClick={() => onVoirPlus(item.slug)}
-          className="mt-4 border border-[#bd9254] text-[#bd9254] px-4 py-1 rounded-full text-xs uppercase hover:bg-[#bd9254] hover:text-white transition"
+          className="mt-4 border border-[#bd9254] text-[#bd9254] px-4 py-1 rounded-full text-[10px] uppercase hover:bg-[#bd9254] hover:text-white transition"
         >
           voir +
         </button>
