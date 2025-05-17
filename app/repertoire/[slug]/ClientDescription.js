@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { FaMapMarkerAlt, FaCheck } from "react-icons/fa";
-import PhotoGallery from "../../components/PhotoGallery";
-import PropertyDescriptionHeader from "../../components/PropertyDescriptionHeader";
+import PhotoGallery from "../../components/repertoire-components/PhotoGallery";
+import PropertyDescriptionHeader from "../../components/repertoire-components/PropertyDescriptionHeader";
 import StructuredDataRepertoire from "./StructuredDataRepertoire";
 
 export default function ClientDescription({ slug }) {

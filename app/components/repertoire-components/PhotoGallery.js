@@ -30,7 +30,7 @@ const PhotoGallery = ({ images = [] }) => {
   if (!images.length) return null;
 
   return (
-    <div className="p-6" id="#picture">
+    <div className="p-4" id="#picture">
       <h3 className="text-2xl uppercase py-2 font-thin">
         Aperçu de la propriété
       </h3>
@@ -38,7 +38,7 @@ const PhotoGallery = ({ images = [] }) => {
       {/* Top full image */}
       {images[0] && (
         <div
-          className="w-full h-[300px] md:h-[450px] overflow-hidden mb-4 cursor-pointer "
+          className="w-full rounded h-[300px] md:h-[450px] overflow-hidden mb-2 cursor-pointer "
           onClick={() => openModal(0)}
         >
           <img
@@ -50,7 +50,7 @@ const PhotoGallery = ({ images = [] }) => {
       )}
 
       {/* Grid of next 5 images */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
         {images.slice(1, 7).map((photo, index) => (
           <div
             key={index + 1}

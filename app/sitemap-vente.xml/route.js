@@ -1,3 +1,5 @@
+//app/sitemap-vente.xml/route.js
+
 export async function GET() {
     const baseUrl = process.env.SITE_URL;
     const wpApi = `${process.env.WORDPRESS_API_URL}/wp-json/wp/v2`;

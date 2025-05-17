@@ -25,7 +25,7 @@ export default function ConciergerieClient() {
               pensée pour{" "}
             </span>
             <br />
-            <span className="md:text-8xl text-6xl text-white "> vous </span>
+            <span className="md:text-8xl text-6xl text-white ">          vous </span>
             <br />
           </h1>
         </div>
