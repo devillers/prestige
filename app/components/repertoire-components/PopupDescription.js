@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaTimes, FaMapMarkerAlt, FaCheck } from "react-icons/fa";
+import {  FaMapMarkerAlt, FaCheck } from "react-icons/fa";
+import { X } from "lucide-react";
 import PhotoGallery from "./PhotoGallery";
 import PropertyDescriptionHeader from "./PropertyDescriptionHeader";
 
@@ -40,14 +41,14 @@ export default function PopupDescription({ slug, onClose }) {
         >
           <motion.div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white p-4 rounded-xl max-w-4xl w-full h-[90vh] overflow-y-auto relative"
+            className="bg-white p-4 rounded-xl max-w-4xl w-full h-[90vh] overflow-y-auto relative no-scrollbar"
           >
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 text-gray-500 hover:text-black text-xl"
-            >
-              <FaTimes />
-            </button>
+             <button
+                onClick={onClose}
+                className="absolute top-6 border-[1px] border-yellow-400 drop-shadow-2xl right-6 text-yellow-400  text-xl z-50 bg-slate-50/20 hover:text-[#f8d750]  hover:bg-slate-50/30 rounded-full p-2 cursor-pointer"
+              >
+                <X size={16} />
+              </button>
 
             {property ? (
               <>

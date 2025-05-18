@@ -13,12 +13,18 @@ export default function FilterForm({
   priceMax,
   onPriceMaxChange,
   onClear,
+  onSubmit,           // ← nouvelle prop
 }) {
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmit && onSubmit();   // ferme le drawer au "Enter"
+      }}
+    >
       {/* Localisation */}
       <div className="mb-4">
-        <h4 className="text-lg font-light text-[#bd9254] mb-1 mt-4  tracking-wide uppercase">Localisation</h4>
+        <h4 className="text-lg font-light text-[#bd9254] mb-2 uppercase">Localisation</h4>
         {locationOptions.map((loc) => (
           <div key={loc} className="flex items-center mb-1">
             <input
@@ -32,9 +38,9 @@ export default function FilterForm({
                 onLocationsChange(newArr);
               }}
               checked={selectedLocations.includes(loc)}
-              className="mr-2 accent-[#bd9254] focus:outline-none  focus:ring-0"
+              className="mr-2 accent-[#bd9254]  focus:outline-none focus:ring-0"
             />
-            <label htmlFor={`loc-${loc}`} className="text-[12px] font-light uppercase leading-7">
+            <label htmlFor={`loc-${loc}`} className="text-[12px] text-gray-700 uppercase leading-6">
               {loc}
             </label>
           </div>
@@ -43,7 +49,7 @@ export default function FilterForm({
 
       {/* Amenities */}
       <div className="mb-4">
-        <h4 className="text-lg font-light text-[#bd9254] mb-1 mt-4  tracking-wide uppercase">Amenities</h4>
+        <h4 className="text-lg font-light text-[#bd9254] mb-2 uppercase">Amenities</h4>
         {featureOptions.map((feat) => (
           <div key={feat} className="flex items-center mb-1">
             <input
@@ -59,7 +65,7 @@ export default function FilterForm({
               checked={selectedFeatures.includes(feat)}
               className="mr-2 accent-[#bd9254] focus:outline-none focus:ring-0"
             />
-            <label htmlFor={`feat-${feat}`} className="text-[12px] font-light uppercase leading-7">
+            <label htmlFor={`feat-${feat}`} className="text-[12px] text-gray-700 uppercase leading-6">
               {feat}
             </label>
           </div>
@@ -68,23 +74,21 @@ export default function FilterForm({
 
       {/* Price & Capacity */}
       <div className="mb-4 flex flex-col">
-         <h4 className="text-lg font-light text-[#bd9254] mb-1 mt-4  tracking-wide uppercase">prix max par nuit </h4>
         <input
           type="number"
           min="0"
           placeholder="prix max"
           value={priceMax}
           onChange={(e) => onPriceMaxChange(e.target.value)}
-          className="w-1/2 mb-2 p-2 border rounded focus:outline-none text-[12px] font-light focus:ring-0"
+          className="w-1/2 mb-2 p-2 border rounded focus:outline-none focus:ring-0 text-[12px]"
         />
-         <h4 className="text-lg font-light text-[#bd9254] mb-1 mt-4 tracking-wide uppercase">capacité</h4>
         <input
           type="number"
           min="0"
-          placeholder="capacité" 
+          placeholder="capacite"
           value={capacity}
           onChange={(e) => onCapacityChange(e.target.value)}
-          className="w-1/2 p-2 border rounded text-[12px] font-light focus:outline-none focus:ring-0"
+          className="w-1/2 p-2 border rounded focus:outline-none focus:ring-0 text-[12px]"
         />
       </div>
 
@@ -95,7 +99,7 @@ export default function FilterForm({
           onClick={onClear}
           className="text-sm rounded bg-[#bd9254] text-white px-4 py-2 hover:bg-[#a67e3c] transition focus:outline-none focus:ring-0"
         >
-          Reset
+          Clear filters
         </button>
       </div>
     </form>

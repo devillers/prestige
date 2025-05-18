@@ -44,8 +44,11 @@ export default function DrawerFilter({
               <h2 className="text-lg uppercase font-light text-[#bd9254] tracking-wide">
                 Filtres
               </h2>
-              <button onClick={onClose}>
-                <X size={24} />
+              <button
+                onClick={onClose}
+                className="absolute top-6 border-[1px] border-[#bd9254] drop-shadow-lg right-6 text-[#bd9254] text-xl z-50 bg-slate-50 rounded-full p-2 cursor-pointer"
+              >
+                <X size={16} />
               </button>
             </div>
             <div className="p-6 overflow-y-auto flex-1">
