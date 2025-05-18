@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaMapMarkerAlt, FaCheck } from "react-icons/fa";
-import PhotoGallery from "./repertoire-components/PhotoGallery";
-import PropertyDescriptionHeader from "./repertoire-components/PropertyDescriptionHeader";
+import PhotoGallery from "./PhotoGallery";
+import PropertyDescriptionHeader from "./PropertyDescriptionHeader";
 
 export default function PopupDescription({ slug, onClose }) {
   const [property, setProperty] = useState(null);

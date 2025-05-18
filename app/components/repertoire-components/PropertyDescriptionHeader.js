@@ -48,7 +48,7 @@ const PropertyDescriptionHeader = ({ property, booking_url }) => {
               </div>
             )}
 
-            <h1 className="text-white text-7xl uppercase font-bold flex flex-col">
+            <h1 className="text-white text-5xl sm:text-5xl uppercase font-bold flex flex-col">
               {title?.rendered?.split(" ")[0]}
               <span>{title?.rendered?.split(" ").slice(1).join(" ")}</span>
             </h1>

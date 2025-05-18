@@ -6,7 +6,14 @@ import { MdOutlineEmojiPeople, MdMeetingRoom } from "react-icons/md";
 import { PiBathtubFill } from "react-icons/pi";
 import { FaRegSquareFull } from "react-icons/fa6";
 
-export default function PortfolioCard({ item, allImages, currentIndex, onPrev, onNext, onVoirPlus }) {
+export default function PortfolioCard({
+  item,
+  allImages,
+  currentIndex,
+  onPrev,
+  onNext,
+  onVoirPlus,
+}) {
   return (
     <div className="relative bg-white rounded-xl drop-shadow-xl overflow-hidden min-h-[350px] group">
       {/* Image + Carousel */}
@@ -58,23 +65,30 @@ export default function PortfolioCard({ item, allImages, currentIndex, onPrev, o
 
       {/* Drawer hover */}
       <div className="absolute bottom-0 left-0 w-full bg-white px-4 py-6 transition-all duration-500 ease-in-out translate-y-[95%] group-hover:translate-y-0 z-20">
-        <div className="text-sm text-gray-800 font-light">
-          <h3 className="text-base font-semibold mb-2" dangerouslySetInnerHTML={{ __html: item.title?.rendered || item.title }} />
-          {item.favourite_sentence && (
-            <p className="mb-1">{item.favourite_sentence}</p>
-          )}
-          {item.reference && (
-            <p className="text-[#bd9254] text-[10px] uppercase">
-              Réf. {item.reference}
-            </p>
-          )}
+        <div className="flex justify-between items-center">
+          <div className="text-sm text-gray-800 font-light ">
+            <h3
+              className="text-base font-semibold mb-2"
+              dangerouslySetInnerHTML={{
+                __html: item.title?.rendered || item.title,
+              }}
+            />
+            {item.favourite_sentence && (
+              <p className="mb-1">{item.favourite_sentence}</p>
+            )}
+            {item.reference && (
+              <p className="text-[#bd9254] text-[10px] uppercase">
+               {item.reference}
+              </p>
+            )}
+          </div>
+          <button
+            onClick={() => onVoirPlus(item.slug)}
+            className="border border-[#bd9254] text-[#bd9254] px-2 py-1 rounded-full text-[10px] uppercase hover:bg-[#bd9254] hover:text-white transition"
+          >
+            voir +
+          </button>
         </div>
-        <button
-          onClick={() => onVoirPlus(item.slug)}
-          className="mt-4 border border-[#bd9254] text-[#bd9254] px-4 py-1 rounded-full text-[10px] uppercase hover:bg-[#bd9254] hover:text-white transition"
-        >
-          voir +
-        </button>
       </div>
     </div>
   );
