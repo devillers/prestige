@@ -29,7 +29,7 @@ export default function FloatingContact() {
     <a
       href="tel:+33686020184"
       className={`
-        fixed top-[650px] text-sm animate-bounce
+        fixed top-[100px] text-sm animate-bounce
         bg-[#bd9254] hover:bg-[#c29e68]
         text-whited font-light uppercase text-white
         px-4 py-2 rounded-r-full
