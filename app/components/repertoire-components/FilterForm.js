@@ -15,23 +15,23 @@ export default function FilterForm({ filters, onChange, onClear, uniqueLocations
   };
 
   return (
-    <div className="p-4 rounded-lg mb-12 flex flex-wrap gap-4 items-start bg-gray-500/60">
+    <div className="p-6 rounded mb-12 flex flex-col gap-6 bg-gray-50 text-gray-600">
       {/* Localités */}
-      <div className="w-full">
-        <label className="block text-[13px] uppercase mb-5 font-semibold text-white">
+      <div>
+        <label className="block text-sm uppercase font-thin mb-2 text-gray-900 tracking-wide">
           Localités
         </label>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-3">
           {uniqueLocations.map((loc) => (
             <label
               key={loc}
-              className="text-[11px] px-2 py-1 uppercase flex items-center cursor-pointer"
+              className="flex items-center gap-2 text-xs uppercase cursor-pointer bg-gray-300/80 px-3 py-1.5 rounded-full hover:bg-[#bd9254]/20 transition"
             >
               <input
                 type="checkbox"
                 checked={filters.locations.includes(loc)}
                 onChange={() => toggleLocation(loc)}
-                className="mr-1 accent-[#bd9254] focus:ring-0"
+                className="accent-[#bd9254] focus:ring-0"
               />
               {loc}
             </label>
@@ -40,21 +40,21 @@ export default function FilterForm({ filters, onChange, onClear, uniqueLocations
       </div>
 
       {/* Équipements */}
-      <div className="w-full">
-        <label className="block text-[13px] uppercase mb-5 font-semibold text-white">
+      <div>
+        <label className="block text-sm uppercase font-semibold mb-2 tracking-wide">
           Équipements
         </label>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-3">
           {uniqueFeatures.map((f) => (
             <label
               key={f.id}
-              className="text-[11px] px-2 py-1 uppercase flex items-center cursor-pointer"
+              className="flex items-center gap-2 text-xs uppercase cursor-pointer bg-gray-300/80 px-3 py-1.5 rounded-full hover:bg-[#bd9254]/20 transition"
             >
               <input
                 type="checkbox"
                 checked={filters.features.includes(f.id)}
                 onChange={() => toggleFeature(f.id)}
-                className="mr-1 accent-[#bd9254] focus:ring-0"
+                className="accent-[#bd9254] focus:ring-0"
               />
               {f.name}
             </label>
@@ -63,9 +63,9 @@ export default function FilterForm({ filters, onChange, onClear, uniqueLocations
       </div>
 
       {/* Capacity & Price */}
-      <div className="flex flex-col md:flex-row md:items-end gap-4 w-full">
-        <div className="w-full md:w-auto">
-          <label className="block text-[13px] uppercase mb-1 font-semibold text-white">
+      <div className="flex flex-col md:flex-row md:items-end gap-4">
+        <div className="flex-1">
+          <label className="block text-sm uppercase font-thin mb-2 text-gray-900 ">
             Capacité min
           </label>
           <input
@@ -73,11 +73,11 @@ export default function FilterForm({ filters, onChange, onClear, uniqueLocations
             name="capacity"
             value={filters.capacity}
             onChange={handleChange}
-            className="border px-3 py-2 rounded w-full h-7 text-xs focus:outline-none focus:ring-0"
+            className="w-full px-4 py-2 rounded-lg text-sm text-gray-700 focus:outline-none"
           />
         </div>
-        <div className="w-full md:w-auto">
-          <label className="block text-[13px] uppercase mb-1 font-semibold text-white">
+        <div className="flex-1">
+          <label className="block text-sm uppercase font-thin mb-2 text-gray-900">
             Prix maximum
           </label>
           <input
@@ -85,13 +85,13 @@ export default function FilterForm({ filters, onChange, onClear, uniqueLocations
             name="priceMax"
             value={filters.priceMax}
             onChange={handleChange}
-            className="border px-3 py-2 rounded w-full h-7 text-xs focus:outline-none focus:ring-0"
+            className="w-full px-4 py-2 rounded-lg text-sm text-gray-700 focus:outline-none"
           />
         </div>
-        <div className="w-full md:w-auto">
+        <div className="md:w-auto">
           <button
             onClick={onClear}
-            className="inline-flex items-center justify-center text-white px-4 h-[30px] mt-4 border border-white text-sm uppercase rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95"
+            className="mt-6 md:mt-0 px-6 py-2 rounded-full border border-[#bd9254] text-sm uppercase hover:bg-[#71542c] hover:text-white transition"
           >
             Reset
           </button>
