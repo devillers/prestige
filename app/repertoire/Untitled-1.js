@@ -124,89 +124,26 @@ export default function PortfolioClient() {
 
   return (
     <>
-      {/* ——— Hero ——— */}
-      <section className="relative">
-        <div className="relative z-10 p-6 mx-auto flex flex-col justify-center min-h-[640px] bg-[url(/images/repertoire.webp)] bg-cover bg-center">
-          <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/70 z-10" />
-          <h1 className="uppercase font-bold max-w-[900px] p-6 z-20">
-            <span className="md:text-6xl text-6xl text-white/70">
-              Séjours
-            </span>
-            <br />
-            <span className="md:text-8xl text-6xl text-white">
-              haut de gamme
-            </span>
-            <br />
-            <span className="md:text-7xl text-6xl text-white/70">
-              en haute
-            </span>
-            <br />
-            <span className="md:text-8xl text-6xl text-white">
-              savoie
-            </span>
-          </h1>
-        </div>
-      </section>
+      {/* — Hero, Filters button, etc. — */}
+      <button onClick={() => setDrawerOpen(true)}>FILTRES</button>
 
-      {/* ——— Bouton FILTRES ——— */}
-      <button
-        onClick={() => setDrawerOpen(true)}
-        className="fixed top-[500px] right-0 z-30 bg-[#bd9254] text-white uppercase text-xs font-semibold px-5 py-2 rounded-tl-md rounded-bl-md shadow hover:bg-[#a67e3c] transition duration-300 ease-in-out"
-      >
-        FILTRES
-      </button>
-
-      {/* ——— DrawerFilter ——— */}
       <DrawerFilter
-             isOpen={drawerOpen}
-             onClose={() => setDrawerOpen(false)}
-             locationOptions={locationOptions}
-             selectedLocations={filters.locations}
-             onLocationsChange={onLocationsChange}
-             featureOptions={featureOptions}
-             selectedFeatures={filters.features}
-             onFeaturesChange={onFeaturesChange}
-             capacity={filters.capacity}
-             onCapacityChange={onCapacityChange}
-             priceMax={filters.priceMax}
-             onPriceMaxChange={onPriceMaxChange}
-             onClear={clearFilters}
-           />
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        locationOptions={locationOptions}
+        selectedLocations={filters.locations}
+        onLocationsChange={onLocationsChange}
+        featureOptions={featureOptions}
+        selectedFeatures={filters.features}
+        onFeaturesChange={onFeaturesChange}
+        capacity={filters.capacity}
+        onCapacityChange={onCapacityChange}
+        priceMax={filters.priceMax}
+        onPriceMaxChange={onPriceMaxChange}
+        onClear={clearFilters}
+      />
 
-      {/* ——— Titres ——— */}
-      <section className="max-w-5xl mx-auto py-12">
-        <ul>
-          <li>
-            <h1 className="text-5xl md:text-6xl uppercase font-thin">
-              Le répertoire
-            </h1>
-          </li>
-          <li>
-            <h2 className="text-4xl md:text-5xl uppercase font-thin">
-              nos logements
-            </h2>
-          </li>
-          <li>
-            <h3 className="text-3xl md:text-4xl uppercase font-thin">
-              haut de gamme
-            </h3>
-          </li>
-        </ul>
-      </section>
-
-      {/* ——— Intro ——— */}
-      <section className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center">
-        <p className="text-center text-black text-md font-thin my-10 leading-8 italic">
-          Partez à la découverte de lieux exclusifs, conçus pour accueillir vos
-          événements les plus raffinés. Dans un décor alpin hors du commun,
-          vivez une expérience sur-mesure, pensée dans les moindres détails.
-          Notre équipe se charge de tout, pour que chaque instant soit unique,
-          fluide, et inoubliable.
-        </p>
-      </section>
-
-      {/* ——— Grid des Portfolios ——— */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto p-12 sm:p-6">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {filtered.map((item) => {
           const featured =
             item._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
@@ -234,12 +171,8 @@ export default function PortfolioClient() {
         })}
       </section>
 
-      {/* ——— Popup Description ——— */}
       {popupSlug && (
-        <PopupDescription
-          slug={popupSlug}
-          onClose={() => setPopupSlug(null)}
-        />
+        <PopupDescription slug={popupSlug} onClose={() => setPopupSlug(null)} />
       )}
     </>
   );

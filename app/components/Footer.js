@@ -2,7 +2,9 @@ import React from "react";
 import Link from "next/link";
 
 const Footer = () => {
+   const url = "https://careconcierge.fr";
   return (
+     
     <footer className=" py-8 mt-[20px] ">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
         <div>
@@ -11,7 +13,7 @@ const Footer = () => {
             <span className="text-[#bd9254] text-[12px]">Luxury</span>
           </div>
           <p className="text-[10px] text-gray-600 mt-2 text-justify pr-6 leading-6">
-            est une marque de Care Concierge & Properties, société de gestion
+            est une marque de  <Link href={url} target="_blank" rel="noopener noreferrer" >Care Concierge & Properties </Link> Care Concierge & Properties, société de gestion
             immobilière et mobilière spécialisée dans la gestion locative courte
             durée.
           </p>
