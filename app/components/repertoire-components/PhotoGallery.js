@@ -22,7 +22,7 @@ const PhotoGallery = ({ images = [] }) => {
   const PREVIEW_COUNT = 2;
 
   return (
-    <div className="p-4" id="picture">
+    <div className="p-2" id="picture">
       <h3 className="text-2xl uppercase py-2 font-thin">
         Aperçu de la propriété
       </h3>
