@@ -74,6 +74,7 @@ export default function FilterForm({
 
       {/* Price & Capacity */}
       <div className="mb-4 flex flex-col">
+         <h4 className="text-lg font-light text-[#bd9254] mb-2 uppercase">Prix maximum</h4>
         <input
           type="number"
           min="0"
@@ -82,6 +83,7 @@ export default function FilterForm({
           onChange={(e) => onPriceMaxChange(e.target.value)}
           className="w-1/2 mb-2 p-2 border rounded focus:outline-none focus:ring-0 text-[12px]"
         />
+         <h4 className="text-lg font-light text-[#bd9254] mb-2 uppercase">Capacité</h4>
         <input
           type="number"
           min="0"
