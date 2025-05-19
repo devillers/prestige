@@ -76,7 +76,7 @@ const PhotoGallery = ({ images = [] }) => {
                 return (
                   <div
                     key={idx}
-                    className={`${col} ${row} overflow-hidden rounded`}
+                    className={`${col} ${row} overflow-hidden`}
                   >
                     <img
                       src={img.url}
