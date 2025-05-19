@@ -4,14 +4,22 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Nouveau pattern cyclique pour plus d’homogénéité
+const LAYOUT_PATTERN = [
+  { col: "col-span-2", row: "row-span-1" },
+  { col: "col-span-2", row: "row-span-1" },
+  { col: "col-span-4", row: "row-span-2" },
+  { col: "col-span-2", row: "row-span-1" },
+  { col: "col-span-2", row: "row-span-1" },
+  { col: "col-span-4", row: "row-span-1" },
+];
+
 const PhotoGallery = ({ images = [] }) => {
   const [open, setOpen] = useState(false);
   if (!images.length) return null;
 
   const toggle = () => setOpen((v) => !v);
-
-  // Combien d’images en preview
-  const PREVIEW_COUNT = 5;
+  const PREVIEW_COUNT = 2;
 
   return (
     <div className="p-4" id="picture">
@@ -19,14 +27,18 @@ const PhotoGallery = ({ images = [] }) => {
         Aperçu de la propriété
       </h3>
 
-      {/* PREVIEW : les 5 premières images */}
+      {/* Preview : les 2 premières images avec coins arrondis uniquement à l’extérieur */}
       {!open && (
         <>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 mb-6">
+          <div className="grid grid-cols-2 gap-1 mb-6">
             {images.slice(0, PREVIEW_COUNT).map((img, idx) => (
               <div
                 key={idx}
-                className="overflow-hidden cursor-pointer"
+                className={`overflow-hidden cursor-pointer ${
+                  idx === 0
+                    ? "rounded-tl-2xl"  // coin top-left de la 1ʳᵉ image
+                    : "rounded-tr-2xl"  // coin top-right de la 2ᵉ image
+                }`}
                 onClick={toggle}
               >
                 <img
@@ -48,7 +60,7 @@ const PhotoGallery = ({ images = [] }) => {
         </>
       )}
 
-      {/* DRAWER : galerie complète */}
+      {/* Drawer animé : galerie complète */}
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
@@ -56,26 +68,15 @@ const PhotoGallery = ({ images = [] }) => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden bg-white rounded-t-xl "
+            className="overflow-hidden bg-white rounded-t-xl"
           >
-            <div className="grid grid-cols-4 auto-rows-[200px] gap-1">
+            <div className="grid grid-cols-4 grid-flow-row-dense auto-rows-[200px] gap-1 p-4">
               {images.map((img, idx) => {
-                let col = "col-span-2", row = "row-span-1";
-                const m = idx % 6;
-                if (m === 0) {
-                  col = "col-span-4";
-                  row = "row-span-2";
-                } else if (m === 3) {
-                  col = "col-span-2";
-                  row = "row-span-2";
-                } else if (m === 4 || m === 5) {
-                  col = "col-span-1";
-                  row = "row-span-2";
-                }
+                const { col, row } = LAYOUT_PATTERN[idx % LAYOUT_PATTERN.length];
                 return (
                   <div
                     key={idx}
-                    className={`${col} ${row} overflow-hidden `}
+                    className={`${col} ${row} overflow-hidden rounded`}
                   >
                     <img
                       src={img.url}
