@@ -73,8 +73,8 @@ export default function PortfolioCard({
                 __html: item.title?.rendered || item.title,
               }}
             />
-            {item.favourite_sentence && (
-              <p className="mb-1">{item.favourite_sentence}</p>
+            {item.location && (
+              <p className="mb-1">{item.location}</p>
             )}
             {item.reference && (
               <p className="text-[#bd9254] text-[10px] uppercase">
