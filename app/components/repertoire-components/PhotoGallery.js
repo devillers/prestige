@@ -70,7 +70,7 @@ const PhotoGallery = ({ images = [] }) => {
       {images.length > 6 && (
         <button
           onClick={() => openModal(0)}
-                className="inline-flex mt-5 items-center justify-center px-4 h-[30px] font-thin border border-[#bd9254] text-sm uppercase text-[#bd9254] rounded-full transition-all duration-200 hover:bg-[#bd9254] hover:text-white active:scale-95"
+                className="mt-4 text-[#bd9254] font-light  text-sm border border-[#bd9254] rounded-full px-4 py-2 hover:bg-[#bd9254] hover:text-white transition"
         >
           Voir toutes les photos
         </button>
