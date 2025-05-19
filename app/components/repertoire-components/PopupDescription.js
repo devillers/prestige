@@ -103,7 +103,7 @@ export default function PopupDescription({ slug, onClose }) {
                     initial={{ height: expanded ? "auto" : 200 }}
                     animate={{ height: expanded ? "auto" : 200 }}
                     transition={{ duration: 0.3 }}
-                    className={`mx-auto max-w-none prose p-4 text-gray-600 prose-md leading-8 prose-p:mb-6 prose-li:mb-2 overflow-hidden wd-3/4
+                    className={`mx-auto max-w-none prose p-4 text-gray-600 prose-sm leading-8 prose-p:mb-6 prose-li:mb-2 overflow-hidden wd-3/4
     ${expanded ? "" : "line-clamp-[13]"} 
   `}
                   >

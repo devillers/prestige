@@ -1,137 +1,103 @@
+// app/components/repertoire-components/PhotoGallery.js
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Modal from "react-modal";
-import { IoShareSocialOutline } from "react-icons/io5";
-import { AiOutlineClose } from "react-icons/ai";
-
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const PhotoGallery = ({ images = [] }) => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    Modal.setAppElement(document.body);
-  }, []);
-
-  const openModal = (index) => {
-    setCurrentIndex(index);
-    setModalOpen(true);
-  };
-
-  const closeModal = () => setModalOpen(false);
-
-  const goToPrevious = () =>
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-
-  const goToNext = () =>
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-
+  const [open, setOpen] = useState(false);
   if (!images.length) return null;
 
+  const toggle = () => setOpen((v) => !v);
+
+  // Combien d’images en preview
+  const PREVIEW_COUNT = 5;
+
   return (
-    <div className="p-4" id="#picture">
+    <div className="p-4" id="picture">
       <h3 className="text-2xl uppercase py-2 font-thin">
         Aperçu de la propriété
       </h3>
 
-      {/* Top full image */}
-      {images[0] && (
-        <div
-          className="w-full rounded h-[300px] md:h-[450px] overflow-hidden mb-2 cursor-pointer "
-          onClick={() => openModal(0)}
-        >
-          <img
-            src={images[0].url}
-            alt={images[0].alt || "Image 1"}
-            className="w-full h-full object-cover "
-          />
-        </div>
-      )}
-
-      {/* Grid of next 5 images */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-        {images.slice(1, 7).map((photo, index) => (
-          <div
-            key={index + 1}
-            className="overflow-hidden rounded cursor-pointer"
-            onClick={() => openModal(index + 1)}
-          >
-            <img
-              src={photo.url}
-              alt={photo.alt || `Image ${index + 2}`}
-              className="w-full h-40 object-cover"
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Voir toutes les photos */}
-      {images.length > 6 && (
-        <button
-          onClick={() => openModal(0)}
-                className="mt-4 text-[#bd9254] font-light  text-sm border border-[#bd9254] rounded-full px-4 py-2 hover:bg-[#bd9254] hover:text-white transition"
-        >
-          Voir toutes les photos
-        </button>
-      )}
-
-      {/* Lightbox modal */}
-      <Modal
-        isOpen={modalOpen}
-        onRequestClose={closeModal}
-        className="
-         w-full mx-auto max-h-none outline-none"
-        overlayClassName="fixed inset-0 z-50 bg-white overflow-y-auto px-4 py-10"
-      >
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <h2 className="text-2xl font-light mb-8 mt-2">Galerie complète</h2>
-          <div className="flex jsustify-between items-center gap-4">
-           
-            <div className="flex items-center  gap-2 cursor-pointer">
-            <IoShareSocialOutline className="text-[20px]" />
-            <a className="uppercase text-sm font-thin">partager</a>
-            </div>
-            <AiOutlineClose
-              onClick={closeModal}
-              className=" text-[35px] p-2  border-[1px] text-gray-500 z-50 bg-white rounded-full cursor-pointer  shadow"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-4 auto-rows-[200px] gap-4 max-w-7xl mx-auto">
-          {images.map((img, index) => {
-            let colSpan = "col-span-2";
-            let rowSpan = "row-span-1";
-            const mod = index % 6;
-
-            if (mod === 0) {
-              colSpan = "col-span-4";
-              rowSpan = "row-span-2"; // full-width banner
-            } else if (mod === 3) {
-              colSpan = "col-span-2";
-              rowSpan = "row-span-2"; // tall
-            } else if (mod === 4 || mod === 5) {
-              colSpan = "col-span-1";
-              rowSpan = "row-span-2"; // small fillers
-            }
-
-            return (
+      {/* PREVIEW : les 5 premières images */}
+      {!open && (
+        <>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6">
+            {images.slice(0, PREVIEW_COUNT).map((img, idx) => (
               <div
-                key={index}
-                className={`relative ${colSpan} ${rowSpan} overflow-hidden  cursor-pointer`}
-                onClick={() => setCurrentIndex(index)}
+                key={idx}
+                className="overflow-hidden rounded cursor-pointer"
+                onClick={toggle}
               >
                 <img
                   src={img.url}
-                  alt={img.alt || `Image ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  alt={img.alt || `Image ${idx + 1}`}
+                  className="w-full h-40 object-cover"
                 />
               </div>
-            );
-          })}
-        </div>
-      </Modal>
+            ))}
+          </div>
+          <div className="flex justify-center mb-6">
+            <button
+              onClick={toggle}
+              className="text-[#bd9254] font-light text-sm border border-[#bd9254] rounded-full px-4 py-2 hover:bg-[#bd9254] hover:text-white transition"
+            >
+              Voir toutes les photos
+            </button>
+          </div>
+        </>
+      )}
+
+      {/* DRAWER : galerie complète */}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden bg-white rounded-t-xl shadow-lg"
+          >
+            <div className="p-4 grid grid-cols-4 auto-rows-[200px] gap-2">
+              {images.map((img, idx) => {
+                let col = "col-span-2", row = "row-span-1";
+                const m = idx % 6;
+                if (m === 0) {
+                  col = "col-span-4";
+                  row = "row-span-2";
+                } else if (m === 3) {
+                  col = "col-span-2";
+                  row = "row-span-2";
+                } else if (m === 4 || m === 5) {
+                  col = "col-span-1";
+                  row = "row-span-2";
+                }
+                return (
+                  <div
+                    key={idx}
+                    className={`${col} ${row} overflow-hidden rounded cursor-pointer`}
+                  >
+                    <img
+                      src={img.url}
+                      alt={img.alt || `Image ${idx + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="flex justify-center p-4 border-t">
+              <button
+                onClick={toggle}
+                className="text-[#bd9254] font-light text-sm border border-[#bd9254] rounded-full px-6 py-2 hover:bg-[#bd9254] hover:text-white transition"
+              >
+                Fermer la galerie
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
