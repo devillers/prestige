@@ -68,7 +68,9 @@ export default function PortfolioClient() {
       );
       if (!res.ok) return;
       const terms = await res.json();
-      setFeatureOptions(terms.map((t) => t.name));
+      // keep only used terms
+      const used = terms.filter((t) => t.count > 0);
+      setFeatureOptions(used.map((t) => t.name));
     }
     fetchFeatures();
   }, []);
@@ -85,12 +87,10 @@ export default function PortfolioClient() {
       filters.locations.includes(item.location);
 
     const byCap =
-      !filters.capacity ||
-      Number(item.capacity) >= Number(filters.capacity);
+      !filters.capacity || Number(item.capacity) >= Number(filters.capacity);
 
     const byPrice =
-      !filters.priceMax ||
-      Number(item.price) <= Number(filters.priceMax);
+      !filters.priceMax || Number(item.price) <= Number(filters.priceMax);
 
     const byFeat =
       filters.features.length === 0 ||
@@ -115,10 +115,7 @@ export default function PortfolioClient() {
   const handleImageNav = (id, len, dir) => {
     setCurrentImages((prev) => ({
       ...prev,
-      [id]:
-        dir === "next"
-          ? (prev[id] + 1) % len
-          : (prev[id] - 1 + len) % len,
+      [id]: dir === "next" ? (prev[id] + 1) % len : (prev[id] - 1 + len) % len,
     }));
   };
 
@@ -129,21 +126,15 @@ export default function PortfolioClient() {
         <div className="relative z-10 p-6 mx-auto flex flex-col justify-center min-h-[640px] bg-[url(/images/repertoire.webp)] bg-cover bg-center">
           <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/70 z-10" />
           <h1 className="uppercase font-bold max-w-[900px] p-6 z-20">
-            <span className="md:text-6xl text-6xl text-white/70">
-              Séjours
-            </span>
+            <span className="md:text-6xl text-6xl text-white/70">Séjours</span>
             <br />
             <span className="md:text-8xl text-6xl text-white">
               haut de gamme
             </span>
             <br />
-            <span className="md:text-7xl text-6xl text-white/70">
-              en haute
-            </span>
+            <span className="md:text-7xl text-6xl text-white/70">en haute</span>
             <br />
-            <span className="md:text-8xl text-6xl text-white">
-              savoie
-            </span>
+            <span className="md:text-8xl text-6xl text-white">savoie</span>
           </h1>
         </div>
       </section>
@@ -158,20 +149,20 @@ export default function PortfolioClient() {
 
       {/* ——— DrawerFilter ——— */}
       <DrawerFilter
-             isOpen={drawerOpen}
-             onClose={() => setDrawerOpen(false)}
-             locationOptions={locationOptions}
-             selectedLocations={filters.locations}
-             onLocationsChange={onLocationsChange}
-             featureOptions={featureOptions}
-             selectedFeatures={filters.features}
-             onFeaturesChange={onFeaturesChange}
-             capacity={filters.capacity}
-             onCapacityChange={onCapacityChange}
-             priceMax={filters.priceMax}
-             onPriceMaxChange={onPriceMaxChange}
-             onClear={clearFilters}
-           />
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        locationOptions={locationOptions}
+        selectedLocations={filters.locations}
+        onLocationsChange={onLocationsChange}
+        featureOptions={featureOptions}
+        selectedFeatures={filters.features}
+        onFeaturesChange={onFeaturesChange}
+        capacity={filters.capacity}
+        onCapacityChange={onCapacityChange}
+        priceMax={filters.priceMax}
+        onPriceMaxChange={onPriceMaxChange}
+        onClear={clearFilters}
+      />
 
       {/* ——— Titres ——— */}
       <section className="max-w-5xl mx-auto py-12">
@@ -222,12 +213,8 @@ export default function PortfolioClient() {
               item={item}
               allImages={allImages}
               currentIndex={idx}
-              onPrev={() =>
-                handleImageNav(item.id, allImages.length, "prev")
-              }
-              onNext={() =>
-                handleImageNav(item.id, allImages.length, "next")
-              }
+              onPrev={() => handleImageNav(item.id, allImages.length, "prev")}
+              onNext={() => handleImageNav(item.id, allImages.length, "next")}
               onVoirPlus={() => setPopupSlug(item.slug)}
             />
           );
@@ -236,10 +223,7 @@ export default function PortfolioClient() {
 
       {/* ——— Popup Description ——— */}
       {popupSlug && (
-        <PopupDescription
-          slug={popupSlug}
-          onClose={() => setPopupSlug(null)}
-        />
+        <PopupDescription slug={popupSlug} onClose={() => setPopupSlug(null)} />
       )}
     </>
   );
