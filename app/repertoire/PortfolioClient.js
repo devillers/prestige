@@ -142,7 +142,7 @@ export default function PortfolioClient() {
       {/* ——— Bouton FILTRES ——— */}
       <button
         onClick={() => setDrawerOpen(true)}
-        className="fixed top-[500px] right-0 z-30 bg-[#bd9254] text-white uppercase text-xs font-semibold px-5 py-2 rounded-tl-md rounded-bl-md shadow hover:bg-[#a67e3c] transition duration-300 ease-in-out"
+        className="fixed top-[500px] right-0 z-30 bg-[#bd9254] text-white uppercase text-xs font-semibold px-5 py-2 rounded-tl-full rounded-bl-full drop-shadow-2xl hover:bg-[#a67e3c] transition duration-300 ease-in-out"
       >
         FILTRES
       </button>
