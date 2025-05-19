@@ -22,11 +22,11 @@ const PhotoGallery = ({ images = [] }) => {
       {/* PREVIEW : les 5 premières images */}
       {!open && (
         <>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 mb-6">
             {images.slice(0, PREVIEW_COUNT).map((img, idx) => (
               <div
                 key={idx}
-                className="overflow-hidden rounded cursor-pointer"
+                className="overflow-hidden cursor-pointer"
                 onClick={toggle}
               >
                 <img
@@ -56,9 +56,9 @@ const PhotoGallery = ({ images = [] }) => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden bg-white rounded-t-xl shadow-lg"
+            className="overflow-hidden bg-white rounded-t-xl "
           >
-            <div className="p-4 grid grid-cols-4 auto-rows-[200px] gap-2">
+            <div className="grid grid-cols-4 auto-rows-[200px] gap-1">
               {images.map((img, idx) => {
                 let col = "col-span-2", row = "row-span-1";
                 const m = idx % 6;
@@ -75,7 +75,7 @@ const PhotoGallery = ({ images = [] }) => {
                 return (
                   <div
                     key={idx}
-                    className={`${col} ${row} overflow-hidden rounded cursor-pointer`}
+                    className={`${col} ${row} overflow-hidden `}
                   >
                     <img
                       src={img.url}

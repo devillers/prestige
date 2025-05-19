@@ -73,7 +73,7 @@ export default function PopupDescription({ slug, onClose }) {
 
                 <section className="max-w-[900px] mx-auto text-slate-600 font-sans">
                   <h1
-                    className="text-5xl md:text-7xl font-thin text-center leading-tight"
+                    className="text-5xl md:text-7xl font-thin text-center leading-tight mt-4"
                     dangerouslySetInnerHTML={{
                       __html: property.title.rendered,
                     }}
