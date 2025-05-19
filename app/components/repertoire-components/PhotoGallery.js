@@ -70,7 +70,7 @@ const PhotoGallery = ({ images = [] }) => {
             transition={{ duration: 0.3 }}
             className="overflow-hidden bg-white rounded-t-xl"
           >
-            <div className="grid grid-cols-4 grid-flow-row-dense auto-rows-[200px] gap-1 p-4">
+            <div className="grid grid-cols-4 grid-flow-row-dense auto-rows-[200px] gap-1 ">
               {images.map((img, idx) => {
                 const { col, row } = LAYOUT_PATTERN[idx % LAYOUT_PATTERN.length];
                 return (
