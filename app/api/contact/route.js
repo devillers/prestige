@@ -75,7 +75,7 @@ export async function POST(req) {
         <p><strong>Société:</strong> ${societe}</p>
         <p><strong>Type:</strong> ${type}</p>
         ${
-          type === 'demande de Gestion Locative'
+          type === 'demande'
             ? `
             <h3>Informations sur le bien</h3>
             <p><strong>Localisation:</strong> ${localisation}</p>
