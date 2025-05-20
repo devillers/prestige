@@ -1,7 +1,7 @@
 //app/conciergierie/page.js
 
 
-import { getMetadataForPage } from "../lib/metadata";
+import { getMetadataForPage } from "../../lib/metadata";
 import ConciergerieClient from "./ConciergerieClient";
 
 export const metadata = getMetadataForPage({

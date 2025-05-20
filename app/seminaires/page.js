@@ -1,5 +1,5 @@
 // ✅ /app/seminaires/page.js
-import { getMetadataForPage } from '../lib/metadata';
+import { getMetadataForPage } from '../../lib/metadata';
 import SeminaireClientPage from './SeminairesClient';
 
 export const metadata = getMetadataForPage({

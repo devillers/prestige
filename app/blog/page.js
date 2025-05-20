@@ -1,6 +1,6 @@
 // app/blog/page.js
 
-import { getMetadataForPage } from "../lib/metadata";
+import { getMetadataForPage } from "../../lib/metadata";
 import BlogGrid from "../components/BlogGrid";
 import Breadcrumb from "../components/BreadCrumb";
 

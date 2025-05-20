@@ -1,7 +1,7 @@
 //app/vente/[slug]/page.js
 
 
-import { getMetadataForPage } from '../../lib/metadata';
+import { getMetadataForPage } from '../../../lib/metadata';
 import { notFound } from 'next/navigation';
 
 export async function generateMetadata({ params }) {

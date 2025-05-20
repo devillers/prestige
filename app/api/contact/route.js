@@ -1,7 +1,10 @@
+//app/api/contact/route.js
+
+
 import formidable from 'formidable';
 import { Readable } from 'stream';
 import fs from 'fs';
-import { createTransporter } from '../../lib/mailer';
+import { createTransporter } from '../../../lib/mailer.js';
 
 export const config = {
   api: {
@@ -60,7 +63,7 @@ export async function POST(req) {
         }));
       }
 
-      const transporter = createTransporter();
+      const transporter = await createTransporter();
 
       // 💡 Template HTML propre
       const htmlMessage = `

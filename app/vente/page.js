@@ -1,5 +1,5 @@
 //app/vente/page.js
-import { getMetadataForPage } from '../lib/metadata';
+import { getMetadataForPage } from '../../lib/metadata';
 import VentePageClient from './VentePageClient';
 
 export const metadata = getMetadataForPage({

@@ -1,7 +1,7 @@
 // ✅ CORRECTION : app/page.js (Home)
 import ProfilesGrid from "./components/ProfilesGrid";
 //import NewsletterForm from "./components/NewsletterForm";
-import { getMetadataForPage } from "./lib/metadata";
+import { getMetadataForPage } from "../lib/metadata";
 
 export const metadata = getMetadataForPage({
   title: "Accueil | Care Concierge",

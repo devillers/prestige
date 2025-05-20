@@ -1,4 +1,4 @@
-import { getMetadataForPage } from '../lib/metadata';
+import { getMetadataForPage } from '../../lib/metadata';
 import ContactClient from './ContactClient';
 
 export const metadata = getMetadataForPage({

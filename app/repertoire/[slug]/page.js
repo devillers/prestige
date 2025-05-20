@@ -1,6 +1,6 @@
 // app/repertoire/[slug]/page.js
 
-import { getMetadataForPage } from '../../lib/metadata';
+import { getMetadataForPage } from '../../../lib/metadata';
 import { notFound } from 'next/navigation';
 import ClientDescription from './ClientDescription';
 

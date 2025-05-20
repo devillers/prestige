@@ -1,6 +1,6 @@
 //app/blog/[slug]/page.js
 
-import { getMetadataForPage } from '../../lib/metadata';
+import { getMetadataForPage } from '../../../lib/metadata';
 import { notFound } from 'next/navigation';
 import Breadcrumb from "../../components/BreadCrumb";
 import StructuredDataBlog from './StructuredDataBlog';
