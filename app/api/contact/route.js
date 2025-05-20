@@ -4,6 +4,7 @@ import formidable from 'formidable';
 import { Readable } from 'stream';
 import fs from 'fs';
 import path from 'path';
+import { NextResponse } from 'next/server';
 import { createTransporter } from '../../../lib/mailer.js';
 
 export const config = {
@@ -12,7 +13,6 @@ export const config = {
   },
 };
 
-// Fonction de sécurisation générique des champs
 const safeField = (field) => {
   if (Array.isArray(field)) return field[0];
   if (typeof field === 'string') return field;
@@ -28,18 +28,20 @@ export async function POST(req) {
 
   return new Promise((resolve) => {
     form.parse(fakeReq, async (err, fields, files) => {
-      console.log('▶️ fields reçus :', fields);
       if (err) {
-        console.error('Erreur parsing form:', err);
+        console.error('Erreur parsing form :', err);
         return resolve(
-          new Response(
-            JSON.stringify({ message: 'Erreur parsing form' }),
+          NextResponse.json(
+            { message: 'Erreur lors de la lecture du formulaire' },
             { status: 500 }
           )
         );
       }
 
-      // Sécurisation des champs
+      // --- Affichage pour debug (optionnel) ---
+       console.log('▶️ fields reçus :', fields);
+
+      // --- Sécurisation des champs ---
       const nom = safeField(fields.nom);
       const prenom = safeField(fields.prenom);
       const email = safeField(fields.email);
@@ -51,35 +53,49 @@ export async function POST(req) {
       const surface = safeField(fields.surface);
       const chambres = safeField(fields.chambres);
       const sallesDeBain = safeField(fields.sallesDeBain);
-
-      // Nettoyage message
       const displayMessage = message.replace(/\n/g, '<br/>');
 
-      // Gestion pièces jointes photos
-      const uploadedFiles = files.photos;
-      let attachments = [];
+      // --- Construction des pièces jointes ---
+      const attachments = [];
 
-      if (uploadedFiles) {
-        const fileArray = Array.isArray(uploadedFiles)
-          ? uploadedFiles
-          : [uploadedFiles];
-        attachments = fileArray.map((file) => ({
-          filename: file.originalFilename,
-          content: fs.createReadStream(file.filepath),
-        }));
+      // 1) logo (si présent)
+      try {
+        const logoPath = path.resolve('./public/logo.png');
+        if (fs.existsSync(logoPath)) {
+          attachments.push({
+            filename: 'logo.png',
+            path: logoPath,
+            cid: 'logo@careconcierge',
+          });
+        } else {
+          console.warn(`Logo introuvable (${logoPath}), on l'ignore.`);
+        }
+      } catch (e) {
+        console.warn('Erreur lors de la vérification du logo :', e);
       }
 
-      // Logo en CID
-      const logoAttachment = {
-        filename: 'logo.png',
-        path: path.resolve('./public/logo.png'),
-        cid: 'logo@careconcierge',
-      };
-      attachments = [logoAttachment, ...attachments];
+      // 2) photos uploadées
+      if (files.photos) {
+        const fileArray = Array.isArray(files.photos)
+          ? files.photos
+          : [files.photos];
+        fileArray.forEach((file) => {
+          try {
+            if (fs.existsSync(file.filepath)) {
+              attachments.push({
+                filename: file.originalFilename,
+                content: fs.createReadStream(file.filepath),
+              });
+            } else {
+              console.warn(`Fichier uploadé introuvable : ${file.filepath}`);
+            }
+          } catch (e) {
+            console.warn('Erreur sur pièce jointe :', e);
+          }
+        });
+      }
 
-      const transporter = await createTransporter();
-
-      // Template HTML avec styles et logo
+      // --- Préparation du HTML ---
       const htmlMessage = `
 <!DOCTYPE html>
 <html lang="fr">
@@ -87,53 +103,19 @@ export async function POST(req) {
   <meta charset="UTF-8">
   <title>Nouvelle demande de contact</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      font-family: Arial, sans-serif;
-    }
-    .container {
-      width: 600px;
-      margin: 20px auto;
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 8px;
-    }
-    h1 {
-      font-size: 24px;
-      text-align: center;
-      color: #333333;
-      margin-bottom: 10px;
-    }
-    h2, h3 {
-      color: #555555;
-      margin-top: 20px;
-    }
-    p {
-      line-height: 1.5;
-      color: #666666;
-    }
-    .field-label {
-      font-weight: bold;
-      color: #333333;
-    }
-    .logo {
-      display: block;
-      margin: 0 auto 20px;
-      max-width: 150px;
-    }
+    body { margin:0; padding:0; background:#f4f4f4; font-family:Arial,sans-serif }
+    .container { width:600px; margin:20px auto; background:#fff; padding:20px; border-radius:8px }
+    h1 { font-size:24px; text-align:center; color:#333; margin-bottom:10px }
+    h2,h3 { color:#555; margin-top:20px }
+    p { line-height:1.5; color:#666 }
+    .field-label { font-weight:bold; color:#333 }
+    .logo { display:block; margin:0 auto 20px; max-width:150px }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Logo -->
-    <img src="cid:logo@careconcierge" alt="Care Concierge Logo" class="logo" />
-
-    <!-- Titre -->
+    <img src="cid:logo@careconcierge" alt="Logo Care Concierge" class="logo"/>
     <h1>Nouvelle demande de contact</h1>
-
-    <!-- Infos contact -->
     <p><span class="field-label">Nom :</span> ${nom}</p>
     <p><span class="field-label">Prénom :</span> ${prenom}</p>
     <p><span class="field-label">Email :</span> ${email}</p>
@@ -142,7 +124,8 @@ export async function POST(req) {
     <p><span class="field-label">Type :</span> ${type}</p>
 
     ${
-      type === 'demande de Gestion Locative'
+      // On teste désormais 'demande' tel qu'envoyé par le front
+      type === 'demande'
         ? `
       <h2>Informations sur le bien</h2>
       <p><span class="field-label">Localisation :</span> ${localisation}</p>
@@ -160,7 +143,9 @@ export async function POST(req) {
 </html>
 `;
 
+      // --- Envoi du mail ---
       try {
+        const transporter = await createTransporter();
         await transporter.sendMail({
           from: `"${prenom} ${nom}" <${process.env.MAIL_USER}>`,
           to: 'contact@careconcierge.fr',
@@ -168,18 +153,17 @@ export async function POST(req) {
           html: htmlMessage,
           attachments,
         });
-
         return resolve(
-          new Response(
-            JSON.stringify({ message: 'Message envoyé avec succès' }),
+          NextResponse.json(
+            { message: 'Message envoyé avec succès' },
             { status: 200 }
           )
         );
       } catch (error) {
-        console.error('Erreur d’envoi:', error);
+        console.error('Erreur d’envoi du mail :', error);
         return resolve(
-          new Response(
-            JSON.stringify({ message: 'Échec de l’envoi du message' }),
+          NextResponse.json(
+            { message: 'Échec de l’envoi du message' },
             { status: 500 }
           )
         );
