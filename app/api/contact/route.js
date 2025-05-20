@@ -28,6 +28,7 @@ export async function POST(req) {
 
   return new Promise((resolve) => {
     form.parse(fakeReq, async (err, fields, files) => {
+      console.log('▶️ fields reçus :', fields);
       if (err) {
         console.error('Erreur parsing form:', err);
         return resolve(
