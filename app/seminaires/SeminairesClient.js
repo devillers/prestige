@@ -118,7 +118,7 @@ export default function SeminaireClientPage() {
           </div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto" ref={containerRef}>
+        <div className="relative max-w-3xl mx-auto" ref={containerRef}>
           <button
             onClick={handlePrev}
             className="absolute left-[10px] top-1/2 -translate-y-1/2 z-10 bg-white/70 shadow p-2 rounded-full hover:bg-white"
