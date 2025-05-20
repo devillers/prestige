@@ -66,7 +66,7 @@ export default function ConciergerieServicesSection() {
             <article
               key={idx}
               className={
-                `bg-white rounded-lg shadow p-6 flex items-center ` +
+                `bg-white rounded-lg drop-shadow-lg p-6 flex items-center ` +
                 (isEven
                   ? "flex-row space-x-6"
                   : "flex-row-reverse space-x-6 space-x-reverse")
@@ -78,7 +78,7 @@ export default function ConciergerieServicesSection() {
                   <img
                     src={service.image}
                     alt={decodeHTML(service.title)}
-                    className="w-48 h-48 object-cover rounded-full transition-transform duration-300 hover:scale-105"
+                    className="w-48 h-48 object-cover rounded-full transition-transform drop-shadow-lg duration-300 hover:scale-105"
                   />
                 ) : (
                   <div className="w-48 h-48 bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
@@ -100,7 +100,7 @@ export default function ConciergerieServicesSection() {
                 )}
 
                 <div
-                  className="prose prose-sm max-w-none mx-0 text-gray-700"
+                  className="prose prose-sm max-w-none mx-0 p-4 text-gray-700"
                   dangerouslySetInnerHTML={{ __html: service.content }}
                 />
               </div>
