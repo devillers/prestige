@@ -101,7 +101,7 @@ const menuItems = [
       },
     ],
   },
-  { title: "Vente", href: "/vente" },
+  // { title: "Vente", href: "/vente" },
   { title: "Contact", href: "/contact" },
 
 ];

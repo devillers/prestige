@@ -123,7 +123,7 @@ export default function PortfolioClient() {
     <>
       {/* ——— Hero ——— */}
       <section className="relative">
-        <div className="relative z-10 p-6 mx-auto flex flex-col justify-center min-h-[640px] bg-[url(/images/repertoire.webp)] bg-cover bg-center">
+        <div className="relative z-10 p-6 mx-auto flex flex-col justify-center min-h-[640px] bg-[url(/images/immo.webp)] bg-cover bg-center">
           <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/70 z-10" />
           <h1 className="uppercase font-bold max-w-[900px] p-6 z-20">
             <span className="md:text-6xl text-6xl text-white/70">Séjours</span>
