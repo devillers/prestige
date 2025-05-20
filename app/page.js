@@ -47,30 +47,30 @@ export default async function HomePage() {
       </section>
 
       <div className="max-w-5xl mx-auto mb-12 p-4">
-        <div className="text-gray-800 max-w-7xl  p-6 mx-auto ">
+        <div className="text-gray-600 max-w-7xl p-6 mx-auto ">
           <h2 className="">
-            <span className="text-5xl md:text-6xl uppercase font-thin">
+            <span className="text-5xl md:text-6xl uppercase font-light">
               Le service qui{" "}
             </span>
             <br />
-            <span className="text-4xl md:text-6xl uppercase font-thin">
+            <span className="text-4xl md:text-6xl uppercase font-light">
               {" "}
               révèle tout le{" "}
             </span>
             <br />
-            <span className="text-4xl md:text-5xl uppercase font-thin">
+            <span className="text-4xl md:text-5xl uppercase font-light">
               {" "}
               potentiel de{" "}
             </span>
             <br />
-            <span className="text-3xl md:text-4xl uppercase font-thin">
+            <span className="text-3xl md:text-4xl uppercase font-light">
               {" "}
               votre bien{" "}
             </span>
           </h2>
           <div className="text-gray-800 max-w-6xl mx-auto flex flex-col mt-10 ">
             <div className=" max-w-6xl mx-auto p-6 flex flex-col items-center bg-gray-500/10 rounded py-10">
-              <p className=" text-[20px] font-thin text-center italic mb-10">
+              <p className=" text-[20px] font-light text-center italic mb-10">
                 Offrez à votre bien une gestion locative sur-mesure, pensée pour
                 le haut de gamme. Optimisez la rentabilité et la valorisation de
                 votre propriété sans contraintes. Notre conciergerie vous
@@ -79,10 +79,10 @@ export default async function HomePage() {
               </p>
               <ul className="flex flex-col md:flex-row gap-4 text-center">
                 <li className="flex flex-col items-center ">
-                  <h3 className="text-[18px] p-2 font-light ">
+                  <h3 className="text-[18px] p-2 font-medium ">
                     Gestion locative classique.
                   </h3>
-                  <p className="text-[15px] px-4 font-thin italic">
+                  <p className="text-[15px] px-4 font-light italic">
                     Notre service de gestion locative classique vous offre la
                     liberté de louer votre bien en toute sérénité, sans les
                     contraintes du quotidien. Vous restez pleinement
@@ -95,11 +95,11 @@ export default async function HomePage() {
                   </p>
                 </li>
                 <li className="flex flex-col items-center">
-                  <h3 className="text-[18px] p-2 font-light ">
+                  <h3 className="text-[18px] p-2 font-medium   ">
                     {" "}
                     Gestion para-hôtelière
                   </h3>
-                  <p className="text-[15px] px-4 font-thin italic  ">
+                  <p className="text-[15px] px-4 font-light italic  ">
                     Notre contrat de gestion locative en para-hôtellerie vous
                     offre une solution clé en main pour valoriser votre bien
                     comme un hébergement de prestige. Nous assurons
@@ -116,24 +116,24 @@ export default async function HomePage() {
               </ul>
             </div>
             <div className="text-center max-w-6xl mx-auto py-10 flex flex-col items-center p-6">
-              <h2 className="text-[20px]  font-light mb-4">
+              <h2 className="text-[20px] font-medium mb-4">
                 Des services sur-mesure
               </h2>
-              <p className=" text-center text-[15px] font-thin  italic">
+              <p className=" text-center text-[15px] font-light  italic">
                 Shooting photo professionnel, rédaction d’annonces optimisées,
                 gestion dynamique des calendriers et des tarifs, accueil
                 personnalisé 7 j/7, linge hôtelier de qualité, ménage
                 méticuleux, maintenance préventive et assistance voyageurs en
                 continu.
               </p>
-              <p className=" text-center text-[15px]  font-thin py-10 italic">
+              <p className=" text-center text-[15px]  font-light py-10 italic">
                 Vous profitez d’une valorisation maximale et d’avis cinq
                 étoiles, tandis que nous veillons à la sécurité de votre
                 patrimoine et à la sérénité de votre expérience propriétaire.
               </p>
             </div>
-            <div className=" text-center font-thin py-10 bg-gray-500/10  rounded p-6">
-              <h3 className="font-extralight text-[18px] mb-2">
+            <div className=" text-center font-light py-10 bg-gray-500/10  rounded p-6">
+              <h3 className="font-medium text-[18px] mb-2">
                 Gestion et entretien sans accroc
               </h3>
               <p className="mb-6 text-[15px] italic">
@@ -144,7 +144,7 @@ export default async function HomePage() {
                 au quotidien.
               </p>
 
-              <h4 className="font-extralight text-[18px] mb-2">
+              <h4 className="font-medium text-[18px] mb-2">
                 Maximisation de votre Potentiel Locatif
               </h4>
               <p className="mb-4 text-[15px] italic">
@@ -155,7 +155,7 @@ export default async function HomePage() {
                 possible. Revenus optimisés, rentabilité durable.
               </p>
 
-              <h5 className="font-extralight text-[18px] mb-2">
+              <h5 className="font-medium text-[18px] mb-2">
                 Hôtes premium, confiance reconnue
               </h5>
               <p className="mb-4 text-[15px] italic">

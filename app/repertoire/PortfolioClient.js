@@ -94,7 +94,7 @@ export default function PortfolioClient() {
 
     const byFeat =
       filters.features.length === 0 ||
-      item.features.some((f) => filters.features.includes(f));
+      filters.features.every((f) => item.features.includes(f));
 
     return byLoc && byCap && byPrice && byFeat;
   });
@@ -187,7 +187,7 @@ export default function PortfolioClient() {
 
       {/* ——— Intro ——— */}
       <section className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center">
-        <p className="text-center text-black text-md font-thin my-10 leading-8 italic">
+        <p className="text-center text-black text-md font-light my-10 leading-8 italic">
           Partez à la découverte de lieux exclusifs, conçus pour accueillir vos
           événements les plus raffinés. Dans un décor alpin hors du commun,
           vivez une expérience sur-mesure, pensée dans les moindres détails.
