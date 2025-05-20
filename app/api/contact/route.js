@@ -75,7 +75,7 @@ export async function POST(req) {
         <p><strong>Société:</strong> ${societe}</p>
         <p><strong>Type:</strong> ${type}</p>
         ${
-          type === 'demande'
+          type === 'demande de Gestion Locative'
             ? `
             <h3>Informations sur le bien</h3>
             <p><strong>Localisation:</strong> ${localisation}</p>
@@ -93,7 +93,7 @@ export async function POST(req) {
         await transporter.sendMail({
           from: `"${prenom} ${nom}" <${process.env.MAIL_USER}>`,
           to: 'contact@careconcierge.fr',
-          subject: 'Nouveau message depuis le formulaire de contact',
+          subject: 'Nouveau message depuis Care Concierge Luxury',
           html: htmlMessage,
           attachments,
         });
