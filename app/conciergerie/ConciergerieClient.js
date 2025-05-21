@@ -33,19 +33,19 @@ export default function ConciergerieClient() {
       <section>
         <div className="max-w-6xl mx-auto p-6 mb-12">
           <h2 className="">
-            <span className="text-5xl md:text-6xl uppercase font-thin">
+            <span className="text-4xl md:text-6xl uppercase font-thin">
               des services sur
             </span>
             <br />
             <span className="text-4xl md:text-5xl uppercase font-thin">
-              mesure pour sublimer vos
+              mesure pour sublimer 
             </span>
             <br />
-            <span className="text-4xl md:text-5xl uppercase font-thin">
-              experiences aplines et
+            <span className="text-3xl md:text-5xl uppercase font-thin">
+              vos experiences aplines et
             </span>
             <br />
-            <span className="text-3xl md:text-4xl uppercase font-thin">
+            <span className="text-2xl md:text-4xl uppercase font-thin">
               celles de vos locataires
             </span>
           </h2>

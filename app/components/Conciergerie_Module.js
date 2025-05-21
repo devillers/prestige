@@ -67,7 +67,7 @@ export default function ConciergerieServicesSection() {
             <article
               key={idx}
               className={
-                `bg-white rounded-lg shadow p-6 flex flex-col items-start \
+                `bg-white rounded-lg drop-shadow-lg p-[4px] sm:p-6 flex flex-col items-start \
                  space-y-6 md:space-y-0 md:space-x-6 md:items-center ` +
                 (isEven
                   ? "md:flex-row"
@@ -81,13 +81,12 @@ export default function ConciergerieServicesSection() {
                     src={service.image}
                     alt={decodeHTML(service.title)}
                     className="
-                      w-full h-48 rounded-md
+                      w-full h-48 rounded-bl-none rounded-br-none rounded-sm
                       object-cover transition-transform duration-300 hover:scale-105
-                      md:w-48 md:h-48 md:rounded-full
-                    "
+                      md:w-48 md:h-48 md:rounded-full drop-shadow                    "
                   />
                 ) : (
-                  <div className="w-full h-48 bg-gray-200 rounded-md md:rounded-full md:w-48 md:h-48 flex items-center justify-center text-gray-500">
+                  <div className="w-full h-48 bg-gray-200 rounded-bl-sm rounded-br-sm md:rounded-full md:w-48 md:h-48 flex items-center justify-center text-gray-500">
                     Pas d’image
                   </div>
                 )}
