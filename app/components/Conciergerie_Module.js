@@ -95,7 +95,7 @@ export default function ConciergerieServicesSection() {
 
               {/* Texte */}
               <div className="flex-1">
-                <h2 className=" text-xl md:text-2xl font-thin mb-2">
+                <h2 className=" uppercase text-xl md:text-2xl font-thin mb-2">
                   {decodeHTML(service.title)}
                 </h2>
 
