@@ -95,7 +95,7 @@ export default function ConciergerieServicesSection() {
 
               {/* Texte */}
               <div className="flex-1">
-                <h2 className="text-2xl font-semibold mb-2">
+                <h2 className=" text-xl md:text-2xl font-thin mb-2">
                   {decodeHTML(service.title)}
                 </h2>
 
@@ -106,7 +106,7 @@ export default function ConciergerieServicesSection() {
                 )}
 
                 <div
-                  className="prose prose-sm max-w-none mx-0 text-gray-700"
+                  className="prose text-[13px] p-2 max-w-none mx-0 text-gray-700"
                   dangerouslySetInnerHTML={{ __html: service.content }}
                 />
               </div>
