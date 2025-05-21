@@ -1,3 +1,5 @@
+"use client";
+
 import ProfileCard from "./ProfileCard";
 
 export default function ProfilesGrid({ profiles }) {
