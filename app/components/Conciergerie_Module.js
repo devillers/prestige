@@ -75,15 +75,15 @@ export default function ConciergerieServicesSection() {
               }
             >
               {/* Image */}
-              <div className="flex-shrink-0 w-full md:w-auto">
+              <div className="flex-shrink-0 w-full md:w-auto rounded-bl-none rounded-br-none rounded-tl-md rounded-tr-md ">
                 {service.image ? (
                   <img
                     src={service.image}
                     alt={decodeHTML(service.title)}
                     className="
-                      w-full h-48 rounded-bl-none rounded-br-none rounded-sm
-                      object-cover transition-transform duration-300 hover:scale-105
-                      md:w-48 md:h-48 md:rounded-full drop-shadow                    "
+                      w-full h-48  p-2 
+                      object-cover transition-transform duration-300 
+                      md:w-48 md:h-48 md:rounded-full                    "
                   />
                 ) : (
                   <div className="w-full h-48 bg-gray-200 rounded-bl-sm rounded-br-sm md:rounded-full md:w-48 md:h-48 flex items-center justify-center text-gray-500">
@@ -94,12 +94,12 @@ export default function ConciergerieServicesSection() {
 
               {/* Texte */}
               <div className="flex-1">
-                <h2 className=" uppercase text-xl md:text-2xl font-thin mb-2">
+                <h2 className=" uppercase text-xl md:text-2xl font-thin mb-2 pl-2">
                   {decodeHTML(service.title)}
                 </h2>
 
                 {service.categories.length > 0 && (
-                  <p className="text-sm italic text-gray-600 mb-4">
+                  <p className="text-sm italic text-gray-600 mb-4 pl-2">
                     Catégories : {service.categories.join(", ")}
                   </p>
                 )}
