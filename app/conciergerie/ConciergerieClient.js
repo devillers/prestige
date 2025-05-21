@@ -11,21 +11,21 @@ export default function ConciergerieClient() {
         <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/conciergerie.webp)] bg-cover bg-center">
           <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/40 z-0" />
           <h1 className=" uppercase font-bold max-w-[900px] p-6 z-20">
-            <span className="md:text-6xl text-6xl text-white/70 ">
+            <span className="md:text-6xl text-5xl text-white/70 ">
               une conciergerie
             </span>
             <br />
-            <span className="md:text-8xl text-6xl text-white ">
+            <span className="md:text-8xl text-5xl text-white ">
               {" "}
               d'exception
             </span>
             <br />
-            <span className="md:text-7xl text-6xl text-white/70 ">
+            <span className="md:text-7xl text-5xl text-white/70 ">
               {" "}
               pensée pour{" "}
             </span>
             <br />
-            <span className="md:text-8xl text-6xl text-white ">          vous </span>
+            <span className="md:text-8xl text-5xl text-white ">          vous </span>
             <br />
           </h1>
         </div>
