@@ -25,7 +25,7 @@ export default function ConciergerieServicesSection() {
           const title = item.title.rendered;
           const content = item.content.rendered;
 
-          // récupération de l'image
+          // Récupération de l'image
           let image = item.featured_image_url || "";
           if (!image) {
             const fm = item._embedded?.["wp:featuredmedia"];
@@ -38,7 +38,7 @@ export default function ConciergerieServicesSection() {
             }
           }
 
-          // récupération des catégories
+          // Récupération des catégories
           let categories = [];
           const terms = item._embedded?.["wp:term"];
           if (terms?.length) {
@@ -62,26 +62,32 @@ export default function ConciergerieServicesSection() {
       <div className="max-w-6xl mx-auto p-6 space-y-6">
         {services.map((service, idx) => {
           const isEven = idx % 2 === 0;
+
           return (
             <article
               key={idx}
               className={
-                `bg-white rounded-lg drop-shadow-lg p-6 flex items-center ` +
+                `bg-white rounded-lg shadow p-6 flex flex-col items-start \
+                 space-y-6 md:space-y-0 md:space-x-6 md:items-center ` +
                 (isEven
-                  ? "flex-row space-x-6"
-                  : "flex-row-reverse space-x-6 space-x-reverse")
+                  ? "md:flex-row"
+                  : "md:flex-row-reverse md:space-x-reverse")
               }
             >
               {/* Image */}
-              <div className="flex-shrink-0">
+              <div className="flex-shrink-0 w-full md:w-auto">
                 {service.image ? (
                   <img
                     src={service.image}
                     alt={decodeHTML(service.title)}
-                    className="w-48 h-48 object-cover rounded-full transition-transform drop-shadow-lg duration-300 hover:scale-105"
+                    className="
+                      w-full h-48 rounded-md
+                      object-cover transition-transform duration-300 hover:scale-105
+                      md:w-48 md:h-48 md:rounded-full
+                    "
                   />
                 ) : (
-                  <div className="w-48 h-48 bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
+                  <div className="w-full h-48 bg-gray-200 rounded-md md:rounded-full md:w-48 md:h-48 flex items-center justify-center text-gray-500">
                     Pas d’image
                   </div>
                 )}
@@ -89,7 +95,7 @@ export default function ConciergerieServicesSection() {
 
               {/* Texte */}
               <div className="flex-1">
-                <h2 className="text-2xl font-light uppercase mb-2">
+                <h2 className="text-2xl font-semibold mb-2">
                   {decodeHTML(service.title)}
                 </h2>
 
@@ -100,7 +106,7 @@ export default function ConciergerieServicesSection() {
                 )}
 
                 <div
-                  className="prose prose-sm max-w-none mx-0 p-4 text-gray-700"
+                  className="prose prose-sm max-w-none mx-0 text-gray-700"
                   dangerouslySetInnerHTML={{ __html: service.content }}
                 />
               </div>
