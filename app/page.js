@@ -1,10 +1,10 @@
 // ✅ CORRECTION : app/page.js (Home)
-import ProfilesGrid from "./components/ProfilesGrid";
+import ProfilesGrid from "./components/ProfilesGrid.js";
 //import NewsletterForm from "./components/NewsletterForm";
 import { getMetadataForPage } from "../lib/metadata";
 
 export const metadata = getMetadataForPage({
-  title: "Accueil | Care Concierge",
+  title: "Accueil | Care Concierge Luxury",
   description:
     "Des chalets de luxe en Haute-Savoie avec un service d’exception.",
   keywords: ["chalet", "conciergerie", "luxe", "haute savoie"],

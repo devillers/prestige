@@ -1,3 +1,5 @@
+//app/components/ProfileCard.js
+
 export default function ProfileCard({
   title,
   image,
