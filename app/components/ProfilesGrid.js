@@ -2,10 +2,15 @@
 "use client";
 import { useProfiles } from "../context/ProfilesContext";
 import ProfileCard from "./ProfileCard";
+import { useEffect } from "react";
 
 export default function ProfilesGrid() {
   const profiles = useProfiles();
-  console.log("Profiles from context:", profiles);
+
+  useEffect(() => {
+    console.log("[ProfilesGrid] profiles updated:", profiles);
+  }, [profiles]);
+
   const safeProfiles = Array.isArray(profiles) ? profiles : [];
 
   return (
@@ -23,7 +28,6 @@ export default function ProfilesGrid() {
           const image = profile._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "";
           const meta = profile.meta || {};
           const { first_name = "", last_name = "", phone = "", language = "", description = "" } = meta;
-
           return (
             <ProfileCard
               key={profile.id}

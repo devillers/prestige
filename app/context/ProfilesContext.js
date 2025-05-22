@@ -8,16 +8,21 @@ export function ProfilesProvider({ children }) {
   const [profiles, setProfiles] = useState([]);
 
   useEffect(() => {
-    async function load() {
+    async function loadProfiles() {
       const baseUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
-      const res = await fetch(
-        `${baseUrl}/wp-json/wp/v2/member_profile?_embed`,
-        { next: { revalidate: 60 } }
-      );
-      const data = await res.json();
-      setProfiles(data);
+      try {
+        const res = await fetch(
+          `${baseUrl}/wp-json/wp/v2/member_profile?_embed`,
+          { next: { revalidate: 60 } }
+        );
+        const data = await res.json();
+        console.log("[ProfilesProvider] fetched profiles:", data);
+        setProfiles(data || []);
+      } catch (err) {
+        console.error("[ProfilesProvider] fetch error:", err);
+      }
     }
-    load();
+    loadProfiles();
   }, []);
 
   return (
