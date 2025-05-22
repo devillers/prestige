@@ -104,17 +104,26 @@ const PropertyDescriptionHeader = ({ property, booking_url }) => {
             </div>
           </div>
 
-        
+          <div className=" flex-col " />
           {booking_url && (
             <a
               href={booking_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute left-10 bottom-10 items-center justify-center px-5 py-2 bg-gray-900/60 font-bold border border-white text-[12px] uppercase text-white rounded-full transition-all duration-200 hover:bg-[#bd9254]/60 hover:text-white active:scale-95 z-20"
+              className="absolute mb-12 left-10 bottom-10 items-center justify-center px-5 py-2 bg-gray-900/60 font-bold border border-white text-[12px] uppercase text-white rounded-full transition-all duration-200 hover:bg-[#bd9254]/60 hover:text-white active:scale-95 z-20"
             >
               Réserver cette propriété
             </a>
           )}
+
+          <a
+            href=""
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute left-10 bottom-10 items-center justify-center px-5 py-2 bg-gray-900/60 font-bold border border-white text-[12px] uppercase text-white rounded-full transition-all duration-200 hover:bg-[#bd9254]/60 hover:text-white active:scale-95 z-20"
+          >
+            demande spéciale
+          </a>
         </div>
       </div>
     </section>

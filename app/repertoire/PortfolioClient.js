@@ -221,6 +221,21 @@ export default function PortfolioClient() {
         })}
       </section>
 
+      <section className="text-gray-800 max-w-5xl mx-auto p-4 flex flex-col items-center bg-gray-500/10 rounded py-10">
+        <h2 className="text-5xl md:text-6xl uppercase font-thin mb-10">
+          Care Concierge Luxury
+          </h2>
+        <p className="text-center text-black text-md font-light my-10 leading-8 italic">
+          Care Concierge Luxury vous propose une sélection de chalets et
+          appartements d’exception, pour un séjour inoubliable en Haute-Savoie.
+          Que vous soyez à la recherche d’un chalet traditionnel ou d’un
+          appartement moderne, nous avons le bien idéal pour vous. Nos
+          propriétés sont soigneusement sélectionnées pour leur qualité et leur
+          emplacement, afin de vous offrir une expérience unique.
+        </p>
+
+      </section>
+
       {/* ——— Popup Description ——— */}
       {popupSlug && (
         <PopupDescription slug={popupSlug} onClose={() => setPopupSlug(null)} />

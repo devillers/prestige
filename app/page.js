@@ -48,22 +48,22 @@ export default async function HomePage() {
 
       <div className="max-w-5xl mx-auto mb-12 p-4">
         <div className="text-gray-600 max-w-7xl p-6 mx-auto ">
-          <h2 className="">
-            <span className="text-5xl md:text-6xl uppercase font-light">
+          <h2 className="font-thin">
+            <span className="text-5xl md:text-6xl uppercase ">
               Le service qui{" "}
             </span>
             <br />
-            <span className="text-4xl md:text-6xl uppercase font-light">
+            <span className="text-4xl md:text-6xl uppercase ">
               {" "}
               révèle tout le{" "}
             </span>
             <br />
-            <span className="text-4xl md:text-5xl uppercase font-light">
+            <span className="text-4xl md:text-5xl uppercase ">
               {" "}
               potentiel de{" "}
             </span>
             <br />
-            <span className="text-3xl md:text-4xl uppercase font-light">
+            <span className="text-3xl md:text-4xl uppercase ">
               {" "}
               votre bien{" "}
             </span>
