@@ -5,6 +5,7 @@ import ProfileCard from "./ProfileCard";
 
 export default function ProfilesGrid() {
   const profiles = useProfiles();
+  console.log("Profiles from context:", profiles);
   const safeProfiles = Array.isArray(profiles) ? profiles : [];
 
   return (
@@ -14,7 +15,7 @@ export default function ProfilesGrid() {
       </h3>
 
       <p className="font-thin mt-4 text-sm leading-7 text-center mb-12 p-4">
-        À l’origine de chaque réservation parfaite et de chaque séjour mémorable se tiennent nos agents, véritables ambassadeurs de Care Concierge Luxury. Polyglottes et experts de leur territoire, ils mobilisent leur sens aigu du détail et leur réactivité pour satisfaire la moindre de vos exigences : accueil multilingue attentif, recommandations personnalisées pour explorer la région et prise en charge méticuleuse de vos demandes 24 h/24.
+        À l’origine de chaque réservation parfaite et de chaque séjour mémorable se tiennent nos agents...  
       </p>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

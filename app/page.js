@@ -10,6 +10,7 @@ export const metadata = getMetadataForPage({
 });
 
 export default function HomePage() {
+  console.log("HomePage rendered on client");
   return (
     <ProfilesProvider>
       <>
@@ -152,7 +153,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-           <ProfilesGrid />
+            <ProfilesGrid />
           {/* <NewsletterForm /> */}
         </div>
       </>
