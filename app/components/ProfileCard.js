@@ -1,16 +1,7 @@
-//app/components/ProfileCard.js
-
-export default function ProfileCard({
-  title,
-  image,
-  first_name,
-  last_name,
-  phone,
-  language,
-  description,
-}) {
+// app/components/ProfileCard.js
+export default function ProfileCard({ title, image, first_name, last_name, phone, language, description }) {
   return (
-    <div className="bg-white rounded-3xl shadow  w-full max-w-[200px] aspect-[3/4] mx-auto flex flex-col items-center justify-start text-center pt-6">
+    <div className="bg-white rounded-3xl shadow w-full max-w-[200px] aspect-[3/4] mx-auto flex flex-col items-center text-center pt-6">
       {image && (
         <img
           src={image}
@@ -19,7 +10,7 @@ export default function ProfileCard({
         />
       )}
 
-      <h2 className="text-md font-semibold leading-tight mb-1 break-words text-center">
+      <h2 className="text-md font-semibold leading-tight mb-1 break-words">
         {first_name || title} {last_name}
       </h2>
 
@@ -31,9 +22,7 @@ export default function ProfileCard({
         </a>
       </p>
 
-      {description && (
-        <p className="text-sm text-gray-700">{description}</p>
-      )}
+      {description && <p className="text-sm text-gray-700 px-2">{description}</p>}
     </div>
   );
 }
