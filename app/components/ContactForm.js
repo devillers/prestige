@@ -83,7 +83,9 @@ export default function ContactForm() {
     const filesArray = Array.from(e.target.files).slice(0, 10);
     setFiles(filesArray);
     previewImages.forEach((img) => URL.revokeObjectURL(img.url));
-    setPreviewImages(filesArray.map((file) => ({ file, url: URL.createObjectURL(file) })));
+    setPreviewImages(
+      filesArray.map((file) => ({ file, url: URL.createObjectURL(file) }))
+    );
   };
 
   const handleRemoveImage = (index) => {
@@ -118,8 +120,11 @@ export default function ContactForm() {
   return (
     <>
       <Toaster />
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-7xl mx-auto bg-white mt-12">
-        <div className="flex flex-col md:flex-row gap-8 text-[12px]">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="max-w-7xl mx-auto bg-white mt-12"
+      >
+        <div className="flex flex-col md:flex-row gap-8 text-sm">
           {/* Bloc gauche avec branding et réseaux */}
           <div className="md:w-1/2 flex flex-col">
             <div className="flex justify-center items-center gap-2 text-3xl mb-7">
@@ -127,23 +132,84 @@ export default function ContactForm() {
               <span className="text-[#bd9254] font-thin">Luxury</span>
             </div>
             <p className="text-gray-700 leading-6 text-center">
-              Vous avez une question, une demande de réservation ou un besoin particulier ?
-              Remplissez le formulaire ci-dessous et nous vous répondrons rapidement.
+              Vous avez un projet, une réservation ou un besoin sur-mesure ?
+              Remplissez notre formulaire express ci-dessous et bénéficiez d’une
+              réponse sous 24 h. Pour la gestion locative, utilisez notre
+              formulaire dédié et joignez vos photos pour une étude
+              personnalisée.
             </p>
             <p className="text-gray-700 mt-4 leading-6 text-center">
-              Pour une gestion locative ou événement : utilisez notre formulaire et joignez des photos.
+              Envie d’un contact immédiat ? Nos conseillers sont à votre écoute
             </p>
+
+            <div className="flex justify-center items-center space-x-4 mx-auto py-1 mt-6">
+              <h2 className="text-md font-thin text-[#bd9254]">
+                David Devillers
+              </h2>
+
+              <p className="text-sm font-light text-gray-600">Français</p>
+
+              <p className="text-sm font-light break-words">
+                <a href="tel:+33686020184" className="hover:text-[#bd9254]">
+                  06 86 02 01 84
+                </a>
+              </p>
+            </div>
+
+            <div className="flex justify-center items-center space-x-4 mx-auto py-1 ">
+              <h2 className="text-md font-thin text-[#bd9254]">Layla D'Ham</h2>
+
+              <p className="text-sm font-light text-gray-600">
+                Arabe - Français
+              </p>
+
+              <p className="text-sm font-light break-words">
+                <a href="tel:+33766646731" className="hover:text-[#bd9254]">
+                  07 66 64 67 31
+                </a>
+              </p>
+            </div>
+
+            <div className="flex justify-center items-center space-x-4 mx-auto py-1 ">
+              <h2 className="text-md font-thin text-[#bd9254]">
+                Matthew Flammia
+              </h2>
+
+              <p className="text-sm font-light text-gray-600">Anglais</p>
+
+              <p className="text-sm font-light break-words">
+                <a href="tel:+33766797364" className="hover:text-[#bd9254]">
+                  07 66 79 73 64
+                </a>
+              </p>
+            </div>
+
             <div className="flex gap-4 mt-6 justify-center">
               <a href="tel:+33612345678" className="icon-link">
                 <FiPhone size={16} />
               </a>
-              <a href="https://www.facebook.com/careconciergechamonix/" target="_blank" rel="noopener noreferrer" className="icon-link ">
+              <a
+                href="https://www.facebook.com/careconciergechamonix/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-link "
+              >
                 <FaFacebookF size={16} />
               </a>
-              <a href="https://www.instagram.com/careconcierge_chamonix/" target="_blank" rel="noopener noreferrer" className="icon-link ">
+              <a
+                href="https://www.instagram.com/careconcierge_chamonix/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-link "
+              >
                 <FaInstagram size={16} />
               </a>
-              <a href="https://www.linkedin.com/in/careconcierge-properties/" target="_blank" rel="noopener noreferrer" className="icon-link ">
+              <a
+                href="https://www.linkedin.com/in/careconcierge-properties/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-link "
+              >
                 <FaLinkedinIn size={16} />
               </a>
             </div>
@@ -154,21 +220,42 @@ export default function ContactForm() {
             <input {...register("nom")} placeholder="Nom" className="input" />
             <p className="error">{errors.nom?.message}</p>
 
-            <input {...register("prenom")} placeholder="Prénom" className="input" />
+            <input
+              {...register("prenom")}
+              placeholder="Prénom"
+              className="input"
+            />
             <p className="error">{errors.prenom?.message}</p>
 
-            <input {...register("email")} placeholder="Email" className="input" />
+            <input
+              {...register("email")}
+              placeholder="Email"
+              className="input"
+            />
             <p className="error">{errors.email?.message}</p>
 
-            <input {...register("tel")} placeholder="Téléphone" className="input" />
+            <input
+              {...register("tel")}
+              placeholder="Téléphone"
+              className="input"
+            />
             <p className="error">{errors.tel?.message}</p>
 
-            <input {...register("societe")} placeholder="Société" className="input" />
+            <input
+              {...register("societe")}
+              placeholder="Société"
+              className="input"
+            />
 
             <div className="space-y-2">
               {["seminaire", "mariage", "demande"].map((type) => (
                 <label key={type} className="block">
-                  <input type="radio" value={type} {...register("type")} className="mr-2" />
+                  <input
+                    type="radio"
+                    value={type}
+                    {...register("type")}
+                    className="mr-2"
+                  />
                   {type === "seminaire" && "Séminaire"}
                   {type === "mariage" && "Mariage"}
                   {type === "demande" && "Demande de Gestion Locative"}
@@ -177,107 +264,134 @@ export default function ContactForm() {
               <p className="error">{errors.type?.message}</p>
             </div>
 
-            <textarea {...register("message")} placeholder="Message" className="input h-32" />
+            <textarea
+              {...register("message")}
+              placeholder="Message"
+              className="input h-32"
+            />
             <p className="error">{errors.message?.message}</p>
 
             {selectedType === "demande" && (
               <div className="space-y-2 bg-gray-50 p-4 rounded">
-                <input {...register("localisation")} placeholder="Localisation" className="input" />
+                <input
+                  {...register("localisation")}
+                  placeholder="Localisation"
+                  className="input"
+                />
                 <p className="error">{errors.localisation?.message}</p>
 
-                <input {...register("surface")} placeholder="Surface (m²)" className="input" />
+                <input
+                  {...register("surface")}
+                  placeholder="Surface (m²)"
+                  className="input"
+                />
                 <p className="error">{errors.surface?.message}</p>
 
-                <input {...register("chambres")} placeholder="Nombre de chambres" className="input" />
+                <input
+                  {...register("chambres")}
+                  placeholder="Nombre de chambres"
+                  className="input"
+                />
                 <p className="error">{errors.chambres?.message}</p>
 
-                <input {...register("sallesDeBain")} placeholder="Nombre de salles de bain" className="input" />
+                <input
+                  {...register("sallesDeBain")}
+                  placeholder="Nombre de salles de bain"
+                  className="input"
+                />
                 <p className="error">{errors.sallesDeBain?.message}</p>
               </div>
             )}
 
-           <div>
-  <label className="block font-medium mb-1">Photos (max 10)</label>
-  
-  {/* Bouton custom */}
-  <button
-    type="button"
-    onClick={() => fileInputRef.current.click()}
-    className="px-4 py-2 bg-[#bd9254] text-white rounded hover:bg-[#a67c44] transition"
-  >
-    Sélectionner fichiers
-  </button>
+            <div>
+              <label className="block font-medium mb-1">Photos (max 10)</label>
 
-  {/* Input caché */}
-  <input
-    ref={fileInputRef}
-    type="file"
-    multiple
-    accept="image/*"
-    onChange={handleFilesChange}
-    className="hidden"
-  />
-
-  {previewImages.length > 0 && (
-    <div className="grid grid-cols-3 gap-2 mt-2">
-      {previewImages.map((img, index) => (
-        <div key={index} className="relative">
-          <img src={img.url} alt={`Preview ${index}`} className="h-20 w-full object-cover rounded border" />
-          <button
-            type="button"
-            onClick={() => handleRemoveImage(index)}
-            className="absolute top-0 right-0 bg-white text-black text-xs px-1 rounded-bl"
-          >
-            ✕
-          </button>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-
-
-              <button type="submit" disabled={isSubmitting} className="btn-submit ">
-                {isSubmitting ? "Envoi..." : "Envoyer"}
+              {/* Bouton custom */}
+              <button
+                type="button"
+                onClick={() => fileInputRef.current.click()}
+                className="px-4 py-2 bg-[#bd9254] text-white rounded hover:bg-[#a67c44] transition"
+              >
+                Sélectionner fichiers
               </button>
-            </div>
-          </div>
-        </form>
 
-        <style jsx>{`
-          .input {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-          }
-          .error {
-            color: #e53e3e;
-            font-size: 0.75rem;
-          }
-          .icon-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.25rem;
-            height: 2.25rem;
-            border: 1px solid #bd9254;
-            color: #bd9254;
-            border-radius: 9999px;
-            transition: all 0.2s;
-          }
-          .btn-submit {
-            background: #bd9254;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background 0.2s;
-            corner-radius: 10px
-          }
-          .btn-submit:hover {
-            background: #a67c44;
-          }
-        `}</style>
+              {/* Input caché */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handleFilesChange}
+                className="hidden"
+              />
+
+              {previewImages.length > 0 && (
+                <div className="grid grid-cols-3 gap-2 mt-2">
+                  {previewImages.map((img, index) => (
+                    <div key={index} className="relative">
+                      <img
+                        src={img.url}
+                        alt={`Preview ${index}`}
+                        className="h-20 w-full object-cover rounded border"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveImage(index)}
+                        className="absolute top-0 right-0 bg-white text-black text-xs px-1 rounded-bl"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="btn-submit "
+            >
+              {isSubmitting ? "Envoi..." : "Envoyer"}
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <style jsx>{`
+        .input {
+          width: 100%;
+          padding: 0.5rem;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+        }
+        .error {
+          color: #e53e3e;
+          font-size: 0.75rem;
+        }
+        .icon-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 2.25rem;
+          height: 2.25rem;
+          border: 1px solid #bd9254;
+          color: #bd9254;
+          border-radius: 9999px;
+          transition: all 0.2s;
+        }
+        .btn-submit {
+          background: #bd9254;
+          color: white;
+          padding: 0.5rem 1rem;
+          border-radius: 4px;
+          transition: background 0.2s;
+          corner-radius: 10px;
+        }
+        .btn-submit:hover {
+          background: #a67c44;
+        }
+      `}</style>
     </>
   );
 }
