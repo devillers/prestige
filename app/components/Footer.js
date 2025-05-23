@@ -13,7 +13,7 @@ const Footer = () => {
             <span className="text-[#bd9254] text-[12px]">Luxury</span>
           </div>
           <p className="text-[10px] text-gray-600 mt-2 text-justify pr-6 leading-6">
-            est une marque de  <Link href={url} target="_blank" rel="noopener noreferrer" >Care Concierge & Properties </Link> Care Concierge & Properties, société de gestion
+            est une marque de  <Link href={url} target="_blank" className="font-semibold" rel="noopener noreferrer" >Care Concierge & Properties </Link> Care Concierge & Properties, société de gestion
             immobilière et mobilière spécialisée dans la gestion locative courte
             durée.
           </p>
