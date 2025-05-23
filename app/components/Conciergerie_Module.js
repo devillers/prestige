@@ -105,7 +105,7 @@ export default function ConciergerieServicesSection() {
                 )}
 
                 <div
-                  className="prose text-[13px] p-2 max-w-none mx-0 text-gray-700"
+                  className="prose text-[13px] p-2 text-justify max-w-none mx-0 text-gray-700"
                   dangerouslySetInnerHTML={{ __html: service.content }}
                 />
               </div>
