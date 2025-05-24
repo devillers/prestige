@@ -1,11 +1,10 @@
 import PortfolioClient from './PortfolioClient';
-import { Metadata } from 'next';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-domain.com';
 
 export const metadataBase = new URL(siteUrl);
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Le Répertoire | Care Concierge Luxury',
   description:
     'Découvrez nos logements haut de gamme à louer en Haute-Savoie pour vos séjours et événements d’exception.',
