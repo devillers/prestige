@@ -25,7 +25,7 @@ export default function StructuredDataConciergerie() {
       "@type": "Place",
       "name": "Haute-Savoie"
     },
-    "description": "Care Concierge propose des services de conciergerie sur mesure pour les propriétaires et voyageurs en quête d’excellence dans les Alpes françaises.",
+    "description": "Care Concierge Luxury propose des services de conciergerie sur mesure pour les propriétaires et voyageurs en quête d’excellence dans les Alpes françaises.",
     "url": `${process.env.NEXT_PUBLIC_SITE_URL}/conciergerie`
   }
 
