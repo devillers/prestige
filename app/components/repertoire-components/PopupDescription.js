@@ -14,7 +14,7 @@ export default function PopupDescription({ slug, onClose }) {
   const [expanded, setExpanded] = useState(false);
   const [truncatedHTML, setTruncatedHTML] = useState("");
 
-  // 1) Fetch the property data by slug
+  // 1) Fetch the property
   useEffect(() => {
     if (!slug) return;
     (async () => {
@@ -25,13 +25,13 @@ export default function PopupDescription({ slug, onClose }) {
         if (!res.ok) return;
         const [data] = await res.json();
         setProperty(data || null);
-      } catch (err) {
-        console.error(err);
+      } catch (e) {
+        console.error(e);
       }
     })();
   }, [slug]);
 
-  // 2) Build a 200-word preview for on-screen truncation
+  // 2) Build 200-word preview
   useEffect(() => {
     if (!property?.content?.rendered) {
       setTruncatedHTML("");
@@ -46,9 +46,9 @@ export default function PopupDescription({ slug, onClose }) {
 
   const toggle = () => setExpanded((v) => !v);
 
-  // Helper to extract your featured image URL from WP _embedded
-  function getFeatureImageUrl(prop) {
-    const media = prop?._embedded?.["wp:featuredmedia"]?.[0];
+  // Extract the feature image URL from WP embed
+  function getFeatureImageUrl(p) {
+    const media = p?._embedded?.["wp:featuredmedia"]?.[0];
     if (!media) return "";
     return (
       media.media_details?.sizes?.full?.source_url ||
@@ -57,38 +57,40 @@ export default function PopupDescription({ slug, onClose }) {
     );
   }
 
-  // 3) Share handler — tries file + link, then link only, then clipboard
+  // 3) Share handler
   const handleShare = async () => {
     if (!property) return;
 
-    const featureImageUrl = getFeatureImageUrl(property);
-    console.log("👉 featureImageUrl =", featureImageUrl);
-
-    const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/repertoire/${slug}`;
+    // build correct page URL
+    const origin = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
+    const pageUrl = `${origin}/repertoire/${slug}`;
     const title   = property.title?.rendered || "Découvrir ce chalet";
     const text    = `Regardez ce chalet d’exception : ${title}`;
 
-    // Try Web Share API Level 2 (files + link)
-    if (navigator.canShare && featureImageUrl) {
+    // try to fetch the image (CORS first, then no-cors)
+    const featUrl = getFeatureImageUrl(property);
+    if (featUrl && navigator.canShare) {
       try {
-        const res  = await fetch(featureImageUrl);
+        let res;
+        try {
+          res = await fetch(featUrl);
+        } catch {
+          console.warn("CORS fetch failed, retrying no-cors");
+          res = await fetch(featUrl, { mode: "no-cors" });
+        }
         const blob = await res.blob();
-        const name = featureImageUrl.split("/").pop().split("?")[0] || "image.jpg";
+        const name = featUrl.split("/").pop().split("?")[0] || "image.jpg";
         const file = new File([blob], name, { type: blob.type });
-
         if (navigator.canShare({ files: [file] })) {
           await navigator.share({ files: [file], title, text, url: pageUrl });
           return;
         }
-      } catch (err) {
-        console.warn(
-          "⚠️ file‐share failed, falling back to link‐only share",
-          err
-        );
+      } catch (e) {
+        console.warn("File share failed, falling back to link-only", e);
       }
     }
 
-    // Fallback: Web Share (link only)
+    // fallback: share link only
     if (navigator.share) {
       try {
         await navigator.share({ title, text, url: pageUrl });
@@ -98,7 +100,7 @@ export default function PopupDescription({ slug, onClose }) {
       }
     }
 
-    // Final fallback: copy URL to clipboard
+    // final fallback: copy to clipboard
     try {
       await navigator.clipboard.writeText(pageUrl);
       alert("🔗 Lien copié dans le presse-papiers !");
@@ -122,7 +124,7 @@ export default function PopupDescription({ slug, onClose }) {
             onClick={(e) => e.stopPropagation()}
             className="bg-white p-4 rounded-xl max-w-4xl w-full h-[90vh] overflow-y-auto relative no-scrollbar"
           >
-            {/* Close + Share buttons */}
+            {/* Close & Share */}
             <div className="absolute top-6 right-6 z-50 flex gap-2">
               <button
                 onClick={onClose}
@@ -149,7 +151,9 @@ export default function PopupDescription({ slug, onClose }) {
                 <section className="max-w-[900px] mx-auto text-slate-600 font-sans">
                   <h1
                     className="text-5xl md:text-7xl font-thin text-center leading-tight mt-4"
-                    dangerouslySetInnerHTML={{ __html: property.title.rendered }}
+                    dangerouslySetInnerHTML={{
+                      __html: property.title.rendered,
+                    }}
                   />
 
                   <p className="text-gray-600 my-6 text-xl text-center font-thin flex justify-center items-center gap-2">
@@ -190,7 +194,7 @@ export default function PopupDescription({ slug, onClose }) {
 
                   <div className="px-3 mt-4">
                     <button
-                      onClick={() => setExpanded((v) => !v)}
+                      onClick={toggle}
                       className="text-[#bd9254] font-light mt-2 text-sm border border-[#bd9254] rounded-full px-4 py-2 hover:bg-[#bd9254] hover:text-white transition"
                     >
                       {expanded ? "Voir moins" : "Voir plus"}
