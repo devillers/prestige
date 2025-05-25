@@ -65,29 +65,31 @@ export default function PortfolioCard({
 
       {/* Drawer hover */}
       <div className="absolute bottom-0 left-0 w-full bg-white px-4 py-6 transition-all duration-500 ease-in-out translate-y-[95%] group-hover:translate-y-0 z-20">
-        <div className="flex justify-between items-center">
-          <div className="text-sm text-gray-800 font-light ">
-            <h3
-              className="text-base font-semibold mb-2"
-              dangerouslySetInnerHTML={{
-                __html: item.title?.rendered || item.title,
-              }}
-            />
-            {item.location && (
-              <p className="mb-1">{item.location}</p>
-            )}
-            {item.reference && (
-              <p className="text-[#bd9254] text-[10px] uppercase">
-               {item.reference}
-              </p>
-            )}
+        <div className="text-sm text-gray-800 font-light">
+          <h3
+            className="text-base font-semibold mb-2"
+            dangerouslySetInnerHTML={{
+              __html: item.title?.rendered || item.title,
+            }}
+          />
+
+          {/* Nouvelle rangée : location à gauche, bouton à droite */}
+          <div className="flex justify-between items-center mb-1">
+            {item.location && <p>{item.location}</p>}
+
+            <button
+              onClick={() => onVoirPlus(item.slug)}
+              className="border border-[#bd9254] text-[#bd9254] px-2 py-1 rounded-full text-[10px] uppercase hover:bg-[#bd9254] hover:text-white transition"
+            >
+              voir +
+            </button>
           </div>
-          <button
-            onClick={() => onVoirPlus(item.slug)}
-            className="border border-[#bd9254] text-[#bd9254] px-2 py-1 rounded-full text-[10px] uppercase hover:bg-[#bd9254] hover:text-white transition"
-          >
-            voir +
-          </button>
+
+          {item.reference && (
+            <p className="text-[#bd9254] text-[10px] uppercase">
+              {item.reference}
+            </p>
+          )}
         </div>
       </div>
     </div>
