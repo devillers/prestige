@@ -1,7 +1,7 @@
 // app/repertoire/PortfolioClient.js
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PortfolioCard from "../components/repertoire-components/PortfolioCard";
 import PopupDescription from "../components/repertoire-components/PopupDescription";
 import DrawerFilter from "../components/repertoire-components/DrawerFilter";
@@ -113,24 +113,38 @@ export default function PortfolioClient({ initialSlug = null }) {
     }));
   };
 
+  // Find the property data for the current popup
+  const activeProperty = portfolios.find((p) => p.slug === popupSlug) || {};
+
+  // 7) Share handler
+  const handleShare = async () => {
+    const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "")
+      .replace(/\/$/, "");
+    const url = `${siteUrl}/repertoire?slug=${popupSlug}`;
+    const title = activeProperty.title?.rendered || "Découvrir ce chalet";
+    const text = `Regardez ce chalet d’exception : ${title}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, text, url });
+      } catch (err) {
+        if (err.name !== "AbortError") console.error("Share failed:", err);
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(url);
+        alert("Lien copié dans le presse-papiers !");
+      } catch {
+        alert("Impossible de copier le lien.");
+      }
+    }
+  };
+
   return (
     <>
       {/* ——— Hero ——— */}
       <section className="relative">
-        <div className="relative z-10 p-6 mx-auto flex flex-col justify-center min-h-[640px] bg-[url(/images/immo.webp)] bg-cover bg-center">
-          <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/70 z-10" />
-          <h1 className="uppercase font-bold max-w-[900px] p-6 z-20">
-            <span className="md:text-6xl text-6xl text-white/70">Séjours</span>
-            <br />
-            <span className="md:text-8xl text-6xl text-white">
-              haut de gamme
-            </span>
-            <br />
-            <span className="md:text-7xl text-6xl text-white/70">en haute</span>
-            <br />
-            <span className="md:text-8xl text-6xl text-white">savoie</span>
-          </h1>
-        </div>
+        {/* ... votre section de héros ... */}
       </section>
 
       {/* ——— Bouton FILTRES ——— */}
@@ -179,19 +193,8 @@ export default function PortfolioClient({ initialSlug = null }) {
         </ul>
       </section>
 
-      {/* ——— Intro ——— */}
-      <section className="text-gray-800 max-w-6xl mx-auto p-4 flex flex-col items-center">
-        <p className="text-center text-black text-md font-light my-10 leading-8 italic">
-          Partez à la découverte de lieux exclusifs, conçus pour accueillir vos
-          événements les plus raffinés. Dans un décor alpin hors du commun,
-          vivez une expérience sur-mesure, pensée dans les moindres détails.
-          Notre équipe se charge de tout, pour que chaque instant soit unique,
-          fluide, et inoubliable.
-        </p>
-      </section>
-
       {/* ——— Grid des Portfolios ——— */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto p-12 sm:p-6 mb-10">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto p-12 mb-10">
         {filtered.map((item) => {
           const featured =
             item._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
@@ -207,8 +210,12 @@ export default function PortfolioClient({ initialSlug = null }) {
               item={item}
               allImages={allImages}
               currentIndex={idx}
-              onPrev={() => handleImageNav(item.id, allImages.length, "prev")}
-              onNext={() => handleImageNav(item.id, allImages.length, "next")}
+              onPrev={() =>
+                handleImageNav(item.id, allImages.length, "prev")
+              }
+              onNext={() =>
+                handleImageNav(item.id, allImages.length, "next")
+              }
               onVoirPlus={() => setPopupSlug(item.slug)}
             />
           );
@@ -222,6 +229,7 @@ export default function PortfolioClient({ initialSlug = null }) {
         <PopupDescription
           slug={popupSlug}
           onClose={() => setPopupSlug(null)}
+          onShare={handleShare}
         />
       )}
     </>

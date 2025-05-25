@@ -47,7 +47,7 @@ export const metadata = {
 };
 
 export default function PortfolioPage({ searchParams }) {
-  // Récupère le slug éventuel dans l'URL : /repertoire?slug=chalet-remy
-  const initialSlug = searchParams?.slug ?? null;
-  return <PortfolioClient initialSlug={initialSlug} />;
+  // take ?slug=chalet-remy and open that popup on load
+  const { slug } = searchParams;
+  return <PortfolioClient initialSlug={slug || null} />;
 }
