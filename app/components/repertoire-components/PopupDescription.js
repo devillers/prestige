@@ -14,7 +14,7 @@ export default function PopupDescription({ slug, onClose }) {
   const [expanded, setExpanded] = useState(false);
   const [truncatedHTML, setTruncatedHTML] = useState("");
 
-  // 1) Load the property (with featured media)
+  // 1) Load property
   useEffect(() => {
     if (!slug) return;
     (async () => {
@@ -22,16 +22,16 @@ export default function PopupDescription({ slug, onClose }) {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/wp/v2/portfolio?slug=${slug}&_embed`
         );
-        if (!res.ok) throw new Error("Network response not ok");
-        const [data] = await res.json();
-        setProperty(data);
+        if (!res.ok) return;
+        const data = await res.json();
+        setProperty(data[0] || null);
       } catch (err) {
-        console.error("Failed to fetch property:", err);
+        console.error(err);
       }
     })();
   }, [slug]);
 
-  // 2) Build a 200-word preview for on-screen
+  // 2) 200-word snippet
   useEffect(() => {
     if (!property?.content?.rendered) {
       setTruncatedHTML("");
@@ -44,72 +44,31 @@ export default function PopupDescription({ slug, onClose }) {
     setTruncatedHTML(slice + (slice.length < text.length ? " …" : ""));
   }, [property]);
 
+  // toggle full text
   const toggle = () => setExpanded((v) => !v);
 
-  // 3) Extract feature image URL from embedded media
-  function getFeatureImageUrl(p) {
-    const media = p?._embedded?.["wp:featuredmedia"]?.[0];
-    if (!media) return "";
-    // prefer full size if available
-    return (
-      media.media_details?.sizes?.full?.source_url ||
-      media.source_url ||
-      ""
-    );
-  }
-
-  // 4) Share handler
+  // Share handler
   const handleShare = async () => {
-    if (!property) return;
+    const url = `${process.env.NEXT_PUBLIC_SITE_URL}/repertoire/${slug}`;
+    const title = property?.title?.rendered || "Découvrir ce chalet";
+    const text = `Regardez ce chalet d’exception : ${title}`;
 
-    const origin  = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
-    const pageUrl = `${origin}/repertoire/${slug}`;
-    const title   = property.title?.rendered || "Chalet d'exception";
-    const text    = `Découvrez ce chalet : ${title}`;
-
-    const featUrl = getFeatureImageUrl(property);
-
-    // Try to share image + link
-    if (featUrl && navigator.canShare) {
-      try {
-        let res;
-        try {
-          // 1st: normal fetch (CORS)
-          res = await fetch(featUrl);
-        } catch {
-          // on CORS failure, retry no-cors
-          res = await fetch(featUrl, { mode: "no-cors" });
-        }
-        const blob = await res.blob();
-        const name = featUrl.split("/").pop().split("?")[0] || "image.jpg";
-        const file = new File([blob], name, { type: blob.type });
-
-        if (navigator.canShare({ files: [file] })) {
-          await navigator.share({ files: [file], title, text, url: pageUrl });
-          return;
-        }
-      } catch (err) {
-        console.warn("Image share failed, falling back to link:", err);
-      }
-    }
-
-    // Fallback #1: Web Share link only
     if (navigator.share) {
       try {
-        await navigator.share({ title, text, url: pageUrl });
-        return;
+        await navigator.share({ title, text, url });
       } catch (err) {
+        // Ignore abort/cancel, log others
         if (err.name !== "AbortError") console.error("Share failed:", err);
       }
-    }
-
-    // Fallback #2: Copy to clipboard
-    try {
-      await navigator.clipboard.writeText(pageUrl);
-      alert("🔗 Lien copié dans le presse-papiers !");
-    } catch (err) {
-      console.error("Clipboard copy failed:", err);
-      alert("Impossible de copier le lien.");
+    } else {
+      // Fallback: copy link
+      try {
+        await navigator.clipboard.writeText(url);
+        alert("Lien copié dans le presse-papiers !");
+      } catch (err) {
+        console.error("Clipboard write failed:", err);
+        alert("Impossible de copier le lien.");
+      }
     }
   };
 
@@ -128,22 +87,25 @@ export default function PopupDescription({ slug, onClose }) {
             onClick={(e) => e.stopPropagation()}
             className="bg-white p-4 rounded-xl max-w-4xl w-full h-[90vh] overflow-y-auto relative no-scrollbar"
           >
-            {/* — Close & Share controls */}
+            {/* Close & Share */}
             <div className="absolute top-6 right-6 z-50 flex gap-2">
               <button
                 onClick={onClose}
-                className="p-2 rounded-full border border-white bg-slate-50/20 text-white hover:bg-slate-50/30 hover:text-[#f8d750]"
+                className="flex items-center p-2  w-8 h-8 rounded-full border border-white bg-slate-50/20 text-white hover:bg-slate-50/30 hover:text-[#f8d750]"
               >
-                <X size={16} />
+                <X size={20} />
               </button>
+
               <button
                 onClick={handleShare}
-                className="flex items-center p-2 rounded-full border border-white bg-slate-50/20 text-white hover:bg-slate-50/30 hover:text-[#f8d750]"
+                className="flex items-center h-8 p-2 rounded-full border border-white bg-slate-50/20 text-white hover:bg-slate-50/30 hover:text-[#f8d750]"
               >
-                <FaShareAlt className="mr-2" /> Partager
+                <FaShareAlt className="mr-2" />
+                Partager
               </button>
             </div>
 
+            {/* Content */}
             {property ? (
               <>
                 <PropertyDescriptionHeader
@@ -154,11 +116,14 @@ export default function PopupDescription({ slug, onClose }) {
                 <section className="max-w-[900px] mx-auto text-slate-600 font-sans">
                   <h1
                     className="text-5xl md:text-7xl font-thin text-center leading-tight mt-4"
-                    dangerouslySetInnerHTML={{ __html: property.title.rendered }}
+                    dangerouslySetInnerHTML={{
+                      __html: property.title.rendered,
+                    }}
                   />
 
                   <p className="text-gray-600 my-6 text-xl text-center font-thin flex justify-center items-center gap-2">
-                    <FaMapMarkerAlt /> {property.location || "Localisation inconnue"}
+                    <FaMapMarkerAlt />{" "}
+                    {property.location || "Localisation inconnue"}
                   </p>
 
                   {property.features?.length > 0 && (
@@ -168,12 +133,14 @@ export default function PopupDescription({ slug, onClose }) {
                           key={f.id}
                           className="flex items-center gap-2 px-4 py-2 bg-[#bd9254] text-white rounded-sm uppercase text-xs"
                         >
-                          <FaCheck className="text-sm" /> {f.name}
+                          <FaCheck className="text-white text-sm" />
+                          {f.name}
                         </div>
                       ))}
                     </div>
                   )}
 
+                  {/* Snippet / Full content */}
                   <motion.div
                     initial={{ height: expanded ? "auto" : 200 }}
                     animate={{ height: expanded ? "auto" : 200 }}
@@ -218,3 +185,9 @@ export default function PopupDescription({ slug, onClose }) {
     </AnimatePresence>
   );
 }
+
+
+
+
+
+
