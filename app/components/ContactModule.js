@@ -3,7 +3,7 @@ import Logo from "/public/pin2.png"; // asset in public root
 
 export default function ContactModule() {
   return (
-    <section className="text-gray-800 max-w-5xl mx-auto bg-gray-500/10 rounded-3xl py-10 flex flex-col items-center">
+    <section className="text-gray-800 max-w-4xl mx-auto bg-gray-500/10 rounded-3xl py-4 flex flex-col items-center shadow-md">
       <div className="flex-col mb-6 space-x-4">
         <div className="flex items-center justify-center mb-6 space-x-4">
           <Image

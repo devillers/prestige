@@ -199,7 +199,7 @@ export default function PortfolioClient() {
       </section>
 
       {/* ——— Grid des Portfolios ——— */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto p-12 sm:p-6">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto p-12 sm:p-6 mb-10">
         {filtered.map((item) => {
           const featured =
             item._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
@@ -223,7 +223,7 @@ export default function PortfolioClient() {
         })}
       </section>
 
-      <ContactModule />
+      <ContactModule  />
 
       {/* ——— Popup Description ——— */}
       {popupSlug && (

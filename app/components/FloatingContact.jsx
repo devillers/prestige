@@ -34,7 +34,7 @@ export default function FloatingContact() {
         text-whited font-light uppercase text-white
         px-4 py-2 rounded-r-full
         flex items-center gap-2
-        shadow-lg z-50
+        shadow-lg z-50 no-print
         transition-opacity duration-500  /* <-- animation */
         ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}
       `}
