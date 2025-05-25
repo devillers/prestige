@@ -14,7 +14,7 @@ export default function PopupDescription({ slug, onClose }) {
   const [expanded, setExpanded] = useState(false);
   const [truncatedHTML, setTruncatedHTML] = useState("");
 
-  // 1) Chargement des données via l’API WP
+  // 1) Load property
   useEffect(() => {
     if (!slug) return;
     (async () => {
@@ -31,7 +31,7 @@ export default function PopupDescription({ slug, onClose }) {
     })();
   }, [slug]);
 
-  // 2) Préparer l’aperçu à 200 mots
+  // 2) 200-word snippet
   useEffect(() => {
     if (!property?.content?.rendered) {
       setTruncatedHTML("");
@@ -44,31 +44,27 @@ export default function PopupDescription({ slug, onClose }) {
     setTruncatedHTML(slice + (slice.length < text.length ? " …" : ""));
   }, [property]);
 
-  // bascule « Voir plus / Voir moins »
+  // toggle full text
   const toggle = () => setExpanded((v) => !v);
 
-  // 3) Handler pour le partage
+  // Share handler
   const handleShare = async () => {
-    if (!slug) return;
-
-    // on construit le lien en forçant `/repertoire?slug=…`
-    const pageUrl = `${window.location.origin}/repertoire?slug=${slug}`;
+    const url = `${process.env.NEXT_PUBLIC_SITE_URL}/repertoire/${slug}`;
     const title = property?.title?.rendered || "Découvrir ce chalet";
     const text = `Regardez ce chalet d’exception : ${title}`;
 
     if (navigator.share) {
       try {
-        // on partage titre, texte et URL
-        await navigator.share({ title, text, url: pageUrl });
+        await navigator.share({ title, text, url });
       } catch (err) {
-        // on ignore l’annulation par l’utilisateur
+        // Ignore abort/cancel, log others
         if (err.name !== "AbortError") console.error("Share failed:", err);
       }
     } else {
-      // fallback : on copie dans le presse-papier
+      // Fallback: copy link
       try {
-        await navigator.clipboard.writeText(pageUrl);
-        alert("Lien copié dans le presse-papier !");
+        await navigator.clipboard.writeText(url);
+        alert("Lien copié dans le presse-papiers !");
       } catch (err) {
         console.error("Clipboard write failed:", err);
         alert("Impossible de copier le lien.");
@@ -91,24 +87,25 @@ export default function PopupDescription({ slug, onClose }) {
             onClick={(e) => e.stopPropagation()}
             className="bg-white p-4 rounded-xl max-w-4xl w-full h-[90vh] overflow-y-auto relative no-scrollbar"
           >
-            {/* Boutons Fermer & Partager */}
+            {/* Close & Share */}
             <div className="absolute top-6 right-6 z-50 flex gap-2">
               <button
                 onClick={onClose}
-                className="flex items-center justify-center w-8 h-8 rounded-full border border-white bg-slate-50/20 text-white hover:bg-slate-50/30 hover:text-[#f8d750]"
+                className="flex items-center p-2  w-8 h-8 rounded-full border border-white bg-slate-50/20 text-white hover:bg-slate-50/30 hover:text-[#f8d750]"
               >
                 <X size={20} />
               </button>
+
               <button
                 onClick={handleShare}
-                className="flex items-center h-8 px-3 rounded-full border border-white bg-slate-50/20 text-white hover:bg-slate-50/30 hover:text-[#f8d750]"
+                className="flex items-center h-8 p-2 rounded-full border border-white bg-slate-50/20 text-white hover:bg-slate-50/30 hover:text-[#f8d750]"
               >
                 <FaShareAlt className="mr-2" />
                 Partager
               </button>
             </div>
 
-            {/* Contenu détaillé */}
+            {/* Content */}
             {property ? (
               <>
                 <PropertyDescriptionHeader
@@ -143,7 +140,7 @@ export default function PopupDescription({ slug, onClose }) {
                     </div>
                   )}
 
-                  {/* Aperçu / Corps du texte */}
+                  {/* Snippet / Full content */}
                   <motion.div
                     initial={{ height: expanded ? "auto" : 200 }}
                     animate={{ height: expanded ? "auto" : 200 }}
@@ -188,3 +185,9 @@ export default function PopupDescription({ slug, onClose }) {
     </AnimatePresence>
   );
 }
+
+
+
+
+
+

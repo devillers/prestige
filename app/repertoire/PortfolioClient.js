@@ -7,11 +7,10 @@ import PopupDescription from "../components/repertoire-components/PopupDescripti
 import DrawerFilter from "../components/repertoire-components/DrawerFilter";
 import ContactModule from "../components/ContactModule";
 
-
-export default function PortfolioClient() {
+export default function PortfolioClient({ initialSlug = null }) {
   const [portfolios, setPortfolios] = useState([]);
   const [currentImages, setCurrentImages] = useState({});
-  const [popupSlug, setPopupSlug] = useState(null);
+  const [popupSlug, setPopupSlug] = useState(initialSlug);
 
   // drawer open/close
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -38,12 +37,10 @@ export default function PortfolioClient() {
         const items = await res.json();
 
         const withFeatures = items.map((item) => {
-          // flatten any embedded term arrays
           const allTerms = (item._embedded?.["wp:term"] || []).flat();
-          const features =
-            allTerms
-              .filter((t) => t.taxonomy === "portfolio_feature")
-              .map((t) => t.name) || [];
+          const features = allTerms
+            .filter((t) => t.taxonomy === "portfolio_feature")
+            .map((t) => t.name);
           return { ...item, features };
         });
 
@@ -70,7 +67,6 @@ export default function PortfolioClient() {
       );
       if (!res.ok) return;
       const terms = await res.json();
-      // keep only used terms
       const used = terms.filter((t) => t.count > 0);
       setFeatureOptions(used.map((t) => t.name));
     }
@@ -87,17 +83,13 @@ export default function PortfolioClient() {
     const byLoc =
       filters.locations.length === 0 ||
       filters.locations.includes(item.location);
-
     const byCap =
       !filters.capacity || Number(item.capacity) >= Number(filters.capacity);
-
     const byPrice =
       !filters.priceMax || Number(item.price) <= Number(filters.priceMax);
-
     const byFeat =
       filters.features.length === 0 ||
       filters.features.every((f) => item.features.includes(f));
-
     return byLoc && byCap && byPrice && byFeat;
   });
 
@@ -223,11 +215,14 @@ export default function PortfolioClient() {
         })}
       </section>
 
-      <ContactModule  />
+      <ContactModule />
 
       {/* ——— Popup Description ——— */}
       {popupSlug && (
-        <PopupDescription slug={popupSlug} onClose={() => setPopupSlug(null)} />
+        <PopupDescription
+          slug={popupSlug}
+          onClose={() => setPopupSlug(null)}
+        />
       )}
     </>
   );
