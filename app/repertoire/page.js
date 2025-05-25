@@ -1,12 +1,21 @@
+// app/repertoire/page.js
 import PortfolioClient from './PortfolioClient';
+
+// <-- add this
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://careconciergeluxury.com';
 
 export const metadata = {
   title: 'Le Répertoire | Care Concierge Luxury',
   description:
     'Découvrez nos logements haut de gamme à louer en Haute-Savoie pour vos séjours et événements d’exception.',
   keywords: [
-    'répertoire', 'conciergerie', 'chalet',
-    'prestige', 'haute-savoie', 'location de luxe', 'événements',
+    'répertoire',
+    'conciergerie',
+    'chalet',
+    'prestige',
+    'haute-savoie',
+    'location de luxe',
+    'événements',
   ],
   openGraph: {
     url: '/repertoire',
@@ -33,7 +42,7 @@ export const metadata = {
     images: ['/images/immo.webp'],
   },
   robots: { index: true, follow: true },
-  authors: [{ name: 'Care Concierge Luxury', url: siteUrl }],
+  authors: [{ name: 'Care Concierge Luxury', url: siteUrl }],  // now defined
   publisher: 'Care Concierge Luxury',
   creator: 'Care Concierge Luxury',
 };

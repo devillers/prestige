@@ -9,9 +9,7 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    serverActions: true,
-  },
+  // no more experimental.serverActions
 };
 
 export default nextConfig;
