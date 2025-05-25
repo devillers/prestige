@@ -22,7 +22,7 @@ export default function ContactClient() {
   return (
     <>
       <Head>
-        <title>Contactez-nous | Care Concierge</title>
+        <title>Contactez-nous | Care Concierge Luxury</title>
         <meta
           name="description"
           content="Contactez Care Concierge pour la gestion locative haut de gamme, l'organisation de séminaires, mariages, ou événements sur mesure à Chamonix, Megève et Saint-Gervais."
@@ -35,12 +35,13 @@ export default function ContactClient() {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Care Concierge",
-              url: "https://care-concierge.fr",
-              logo: "https://care-concierge.fr/logo.svg",
+              url: "https://careconciergeluxury.com",
+              logo: "https://careconciergeluxury.com/public/favicon.ico",
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+33-6-12-34-56-78",
-                contactType: "Customer Service",
+                telephone: "+33686020184",
+                contactType: "contactez nos services",  
+                email: "contact@careconcierge.fr",
                 areaServed: "FR",
                 availableLanguage: ["French", "English"],
               },
@@ -103,7 +104,7 @@ export default function ContactClient() {
             détail.
           </p>
         </div>
-        <ContactForm />
+        <ContactForm  id="contact"/>
       </div>
     </>
   );
