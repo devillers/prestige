@@ -118,21 +118,21 @@ export default function PortfolioClient({ initialSlug = null }) {
 
   // 7) Share handler
   const handleShare = async () => {
-    const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "")
-      .replace(/\/$/, "");
-    const url = `${siteUrl}/repertoire?slug=${popupSlug}`;
+    // ensure no trailing slash
+    const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "").replace(/\/$/, "");
+    const shareUrl = `${siteUrl}/repertoire?slug=${popupSlug}`;
     const title = activeProperty.title?.rendered || "Découvrir ce chalet";
     const text = `Regardez ce chalet d’exception : ${title}`;
 
     if (navigator.share) {
       try {
-        await navigator.share({ title, text, url });
+        await navigator.share({ title, text, url: shareUrl });
       } catch (err) {
         if (err.name !== "AbortError") console.error("Share failed:", err);
       }
     } else {
       try {
-        await navigator.clipboard.writeText(url);
+        await navigator.clipboard.writeText(shareUrl);
         alert("Lien copié dans le presse-papiers !");
       } catch {
         alert("Impossible de copier le lien.");
@@ -144,7 +144,7 @@ export default function PortfolioClient({ initialSlug = null }) {
     <>
       {/* ——— Hero ——— */}
       <section className="relative">
-        {/* ... votre section de héros ... */}
+        {/* … votre section de mise en avant … */}
       </section>
 
       {/* ——— Bouton FILTRES ——— */}

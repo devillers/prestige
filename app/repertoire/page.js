@@ -46,8 +46,11 @@ export const metadata = {
   creator: "Care Concierge Luxury",
 };
 
+
+
 export default function PortfolioPage({ searchParams }) {
-  // take ?slug=chalet-remy and open that popup on load
-  const { slug } = searchParams;
-  return <PortfolioClient initialSlug={slug || null} />;
+  // grab the `slug` query param (will be undefined if none)
+  const { slug: initialSlug } = searchParams;
+
+  return <PortfolioClient initialSlug={initialSlug || null} />;
 }
