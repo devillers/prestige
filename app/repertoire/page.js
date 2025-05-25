@@ -27,7 +27,7 @@ export const metadata = {
     locale: 'fr_FR',
     images: [
       {
-        url: '/images/immo.webp',
+        url: '/images/opengraph.png',
         width: 1200,
         height: 630,
         alt: 'Répertoire de logements haut de gamme en Haute-Savoie',
@@ -39,7 +39,7 @@ export const metadata = {
     title: 'Le Répertoire | Care Concierge Luxury',
     description:
       'Découvrez nos logements haut de gamme à louer en Haute-Savoie pour vos séjours et événements d’exception.',
-    images: ['/images/immo.webp'],
+    images: ['/images/opengraph.png'],
   },
   robots: { index: true, follow: true },
   authors: [{ name: 'Care Concierge Luxury', url: siteUrl }],  // now defined
