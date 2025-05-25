@@ -14,7 +14,7 @@ export default function PopupDescription({ slug, onClose }) {
   const [expanded, setExpanded] = useState(false);
   const [truncatedHTML, setTruncatedHTML] = useState("");
 
-  // 1) Load property
+  // Fetch property data
   useEffect(() => {
     if (!slug) return;
     (async () => {
@@ -23,15 +23,15 @@ export default function PopupDescription({ slug, onClose }) {
           `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/wp/v2/portfolio?slug=${slug}&_embed`
         );
         if (!res.ok) return;
-        const data = await res.json();
-        setProperty(data[0] || null);
+        const [data] = await res.json();
+        setProperty(data);
       } catch (err) {
         console.error(err);
       }
     })();
   }, [slug]);
 
-  // 2) 200-word snippet
+  // Build truncated text
   useEffect(() => {
     if (!property?.content?.rendered) {
       setTruncatedHTML("");
@@ -44,29 +44,56 @@ export default function PopupDescription({ slug, onClose }) {
     setTruncatedHTML(slice + (slice.length < text.length ? " …" : ""));
   }, [property]);
 
-  // toggle full text
   const toggle = () => setExpanded((v) => !v);
 
-  // Share handler
+  // Share handler with image support
   const handleShare = async () => {
-    const url = `${process.env.NEXT_PUBLIC_SITE_URL}/repertoire/${slug}`;
-    const title = property?.title?.rendered || "Découvrir ce chalet";
-    const text = `Regardez ce chalet d’exception : ${title}`;
+    if (!property) return;
 
+    const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/repertoire/${slug}`;
+    const title = property.title?.rendered || "Chalet d’exception";
+    const text = `Découvrez ce chalet : ${title}`;
+
+    // Determine image URL (featuredMedia or first gallery)
+    const feat =
+      property._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
+      property.gallery_images?.[0] ||
+      "";
+    try {
+      // Try to share image file + link
+      if (navigator.canShare && feat) {
+        const res = await fetch(feat);
+        const blob = await res.blob();
+        const fileName = feat.split("/").pop().split("?")[0] || "image.jpg";
+        const file = new File([blob], fileName, { type: blob.type });
+
+        if (navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title,
+            text,
+            url: pageUrl,
+          });
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn("File share failed, falling back to link", err);
+    }
+
+    // Fallback: share only link
     if (navigator.share) {
       try {
-        await navigator.share({ title, text, url });
+        await navigator.share({ title, text, url: pageUrl });
       } catch (err) {
-        // Ignore abort/cancel, log others
         if (err.name !== "AbortError") console.error("Share failed:", err);
       }
     } else {
-      // Fallback: copy link
+      // Clipboard fallback
       try {
-        await navigator.clipboard.writeText(url);
-        alert("Lien copié dans le presse-papiers !");
-      } catch (err) {
-        console.error("Clipboard write failed:", err);
+        await navigator.clipboard.writeText(pageUrl);
+        alert("Lien copié !");
+      } catch {
         alert("Impossible de copier le lien.");
       }
     }
@@ -87,25 +114,24 @@ export default function PopupDescription({ slug, onClose }) {
             onClick={(e) => e.stopPropagation()}
             className="bg-white p-4 rounded-xl max-w-4xl w-full h-[90vh] overflow-y-auto relative no-scrollbar"
           >
-            {/* Close & Share */}
+            {/* Close + Share */}
             <div className="absolute top-6 right-6 z-50 flex gap-2">
               <button
                 onClick={onClose}
-                className="flex items-center p-2  w-8 h-8 rounded-full border border-white bg-slate-50/20 text-white hover:bg-slate-50/30 hover:text-[#f8d750]"
+                className="p-2 rounded-full border border-white bg-slate-50/20 text-white hover:bg-slate-50/30 hover:text-[#f8d750]"
               >
-                <X size={20} />
+                <X size={16} />
               </button>
-
               <button
                 onClick={handleShare}
-                className="flex items-center h-8 p-2 text-[13px] rounded-full border border-white bg-slate-50/20 text-white hover:bg-slate-50/30 hover:text-[#f8d750]"
+                className="flex items-center p-2 rounded-full border border-white bg-slate-50/20 text-white hover:bg-slate-50/30 hover:text-[#f8d750]"
               >
                 <FaShareAlt className="mr-2" />
                 Partager
               </button>
             </div>
 
-            {/* Content */}
+            {/* Main content */}
             {property ? (
               <>
                 <PropertyDescriptionHeader
@@ -140,7 +166,6 @@ export default function PopupDescription({ slug, onClose }) {
                     </div>
                   )}
 
-                  {/* Snippet / Full content */}
                   <motion.div
                     initial={{ height: expanded ? "auto" : 200 }}
                     animate={{ height: expanded ? "auto" : 200 }}
@@ -185,9 +210,3 @@ export default function PopupDescription({ slug, onClose }) {
     </AnimatePresence>
   );
 }
-
-
-
-
-
-
