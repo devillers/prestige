@@ -154,7 +154,7 @@ export default function PortfolioClient({ initialSlug = null }) {
             <br />
             <span className="md:text-8xl text-6xl text-white ">en haute</span>
             <br />
-            <span className="md:text-6xl text-6xl text-white ">savoie</span>
+            <span className="md:text-6xl text-6xl text-white ">savoie </span> 
           </h1>
 
           <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-10  " />
