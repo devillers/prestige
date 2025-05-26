@@ -148,9 +148,9 @@ export default function PortfolioClient({ initialSlug = null }) {
           <h1 className=" uppercase font-bold max-w-[900px] p-6 z-20">
             <span className="md:text-6xl text-6xl text-white/70 ">séjours</span>
             <br />
-            <span className="md:text-8xl text-6xl text-white ">haut de </span>
+            <span className="md:text-6xl text-6xl text-white ">haut de </span>
             <br />
-            <span className="md:text-7xl text-6xl text-white/70 ">gamme</span>
+            <span className="md:text-8xl text-6xl text-white/70 ">gamme</span>
             <br />
             <span className="md:text-8xl text-6xl text-white ">en haute</span>
             <br />
@@ -187,7 +187,7 @@ export default function PortfolioClient({ initialSlug = null }) {
       />
 
       {/* ——— Titres ——— */}
-      <section className="max-w-5xl mx-auto py-12">
+      <section className="max-w-5xl mx-auto py-12 p-6">
         <ul>
           <li>
             <h1 className="text-5xl md:text-6xl uppercase font-thin">
