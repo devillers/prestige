@@ -183,6 +183,9 @@ export default function SeminaireClientPage() {
           </Link>
         </div>
       </section>
+      <section className="p-2">
+        <ContactModule />
+      </section>
     </>
   );
 }

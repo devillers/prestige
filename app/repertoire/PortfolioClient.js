@@ -154,7 +154,7 @@ export default function PortfolioClient({ initialSlug = null }) {
             <br />
             <span className="md:text-8xl text-6xl text-white ">en haute</span>
             <br />
-            <span className="md:text-6xl text-6xl text-white ">savoie </span> 
+            <span className="md:text-6xl text-6xl text-white ">savoie </span>
           </h1>
 
           <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-10  " />
@@ -224,19 +224,16 @@ export default function PortfolioClient({ initialSlug = null }) {
               item={item}
               allImages={allImages}
               currentIndex={idx}
-              onPrev={() =>
-                handleImageNav(item.id, allImages.length, "prev")
-              }
-              onNext={() =>
-                handleImageNav(item.id, allImages.length, "next")
-              }
+              onPrev={() => handleImageNav(item.id, allImages.length, "prev")}
+              onNext={() => handleImageNav(item.id, allImages.length, "next")}
               onVoirPlus={() => setPopupSlug(item.slug)}
             />
           );
         })}
       </section>
-
-      <ContactModule />
+      <section className="p-2">
+        <ContactModule />
+      </section>
 
       {/* ——— Popup Description ——— */}
       {popupSlug && (
