@@ -144,7 +144,21 @@ export default function PortfolioClient({ initialSlug = null }) {
     <>
       {/* ——— Hero ——— */}
       <section className="relative">
-        {/* … votre section de mise en avant … */}
+        <div className="relative z-10 mx-auto justify-center flex flex-col min-h-[640px] p-6 bg-white bg-[url(/images/immo.webp)] bg-cover bg-center">
+          <h1 className=" uppercase font-bold max-w-[900px] p-6 z-20">
+            <span className="md:text-6xl text-6xl text-white/70 ">séjours</span>
+            <br />
+            <span className="md:text-8xl text-6xl text-white ">haut de </span>
+            <br />
+            <span className="md:text-7xl text-6xl text-white/70 ">gamme</span>
+            <br />
+            <span className="md:text-8xl text-6xl text-white ">en haute</span>
+            <br />
+            <span className="md:text-6xl text-6xl text-white ">savoie</span>
+          </h1>
+
+          <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/60 z-10  " />
+        </div>
       </section>
 
       {/* ——— Bouton FILTRES ——— */}
