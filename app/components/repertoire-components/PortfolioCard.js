@@ -17,7 +17,7 @@ export default function PortfolioCard({
   onVoirPlus,
 }) {
   return (
-    <div className="relative bg-white rounded-xl drop-shadow-xl overflow-hidden min-h-[350px] group">
+    <div className="relative bg-white rounded-xl shadow-lg overflow-hidden min-h-[350px] group">
       {/* Image + Carousel */}
       <div className="w-full h-[300px] relative overflow-hidden">
         <img
