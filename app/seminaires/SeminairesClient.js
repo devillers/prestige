@@ -1,6 +1,6 @@
 // ✅ /app/seminaires/SeminairesClient.js
 "use client";
-
+import ContactModule from "../components/ContactModule";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
