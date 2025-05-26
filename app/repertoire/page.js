@@ -48,9 +48,7 @@ export const metadata = {
 
 
 
-export default function PortfolioPage({ searchParams }) {
-  // grab the `slug` query param (will be undefined if none)
-  const { slug: initialSlug } = searchParams;
-
-  return <PortfolioClient initialSlug={initialSlug || null} />;
+export default async function PortfolioPage({ searchParams }) {
+  const { slug } = await searchParams;
+return <PortfolioClient initialSlug={slug || null} />;
 }

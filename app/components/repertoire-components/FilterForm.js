@@ -1,13 +1,8 @@
+//app/components/repertoire-components/FilterForm.js
 "use client";
-
 import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { X } from "lucide-react";
-import FilterForm from "./FilterForm";
 
-export default function DrawerFilter({
-  isOpen,
-  onClose,
+export default function FilterForm({
   locationOptions,
   selectedLocations,
   onLocationsChange,
@@ -19,56 +14,97 @@ export default function DrawerFilter({
   priceMax,
   onPriceMaxChange,
   onClear,
+  onSubmit,           // ← nouvelle prop
 }) {
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          <motion.div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={onClose}
-          />
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmit && onSubmit();   // ferme le drawer au "Enter"
+      }}
+    >
+      {/* Localisation */}
+      <div className="mb-4">
+        <h4 className="text-lg font-light text-[#bd9254] mb-2 uppercase">Localisation</h4>
+        {locationOptions.map((loc) => (
+          <div key={loc} className="flex items-center mb-1">
+            <input
+              id={`loc-${loc}`}
+              type="checkbox"
+              value={loc}
+              onChange={(e) => {
+                const newArr = e.target.checked
+                  ? [...selectedLocations, loc]
+                  : selectedLocations.filter((l) => l !== loc);
+                onLocationsChange(newArr);
+              }}
+              checked={selectedLocations.includes(loc)}
+              className="mr-2 accent-[#bd9254]  focus:outline-none focus:ring-0"
+            />
+            <label htmlFor={`loc-${loc}`} className="text-[12px] text-gray-700 uppercase leading-6">
+              {loc}
+            </label>
+          </div>
+        ))}
+      </div>
 
-          <motion.div
-            className="fixed top-0 right-0 h-full w-2/3 sm:w-[300px] bg-white backdrop-blur-lg  z-[10000] flex flex-col"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "tween", duration: 0.5 }}
-          >
-            <div className="flex items-center justify-between p-4 border-b border-white/20">
-              <h2 className="text-lg uppercase font-light text-[#bd9254] tracking-wide">
-                Filtres
-              </h2>
-              <button
-                onClick={onClose}
-                className="absolute top-6 border-[1px] border-[#bd9254] drop-shadow-lg right-6 text-[#bd9254] text-xl z-50 bg-slate-50 rounded-full p-2 cursor-pointer"
-              >
-                <X size={16} />
-              </button>
-            </div>
-            <div className="p-6 overflow-y-auto flex-1">
-              <FilterForm
-                locationOptions={locationOptions}
-                selectedLocations={selectedLocations}
-                onLocationsChange={onLocationsChange}
-                featureOptions={featureOptions}
-                selectedFeatures={selectedFeatures}
-                onFeaturesChange={onFeaturesChange}
-                capacity={capacity}
-                onCapacityChange={onCapacityChange}
-                priceMax={priceMax}
-                onPriceMaxChange={onPriceMaxChange}
-                onClear={onClear}
-              />
-            </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+      {/* Amenities */}
+      <div className="mb-4">
+        <h4 className="text-lg font-light text-[#bd9254] mb-2 uppercase">Amenities</h4>
+        {featureOptions.map((feat) => (
+          <div key={feat} className="flex items-center mb-1">
+            <input
+              id={`feat-${feat}`}
+              type="checkbox"
+              value={feat}
+              onChange={(e) => {
+                const newArr = e.target.checked
+                  ? [...selectedFeatures, feat]
+                  : selectedFeatures.filter((f) => f !== feat);
+                onFeaturesChange(newArr);
+              }}
+              checked={selectedFeatures.includes(feat)}
+              className="mr-2 accent-[#bd9254] focus:outline-none focus:ring-0"
+            />
+            <label htmlFor={`feat-${feat}`} className="text-[12px] text-gray-700 uppercase leading-6">
+              {feat}
+            </label>
+          </div>
+        ))}
+      </div>
+
+      {/* Price & Capacity */}
+      <div className="mb-4 flex flex-col">
+         <h4 className="text-lg font-light text-[#bd9254] mb-2 uppercase">Prix maximum</h4>
+        <input
+          type="number"
+          min="0"
+          placeholder="prix max"
+          value={priceMax}
+          onChange={(e) => onPriceMaxChange(e.target.value)}
+          className="w-1/2 mb-2 p-2 border rounded focus:outline-none focus:ring-0 text-[12px]"
+        />
+         <h4 className="text-lg font-light text-[#bd9254] mb-2 uppercase">Capacité</h4>
+        <input
+          type="number"
+          min="0"
+          placeholder="capacite"
+          value={capacity}
+          onChange={(e) => onCapacityChange(e.target.value)}
+          className="w-1/2 p-2 border rounded focus:outline-none focus:ring-0 text-[12px]"
+        />
+      </div>
+
+      {/* Clear */}
+      <div className="flex justify-start">
+        <button
+          type="button"
+          onClick={onClear}
+          className="text-sm rounded bg-[#bd9254] text-white px-4 py-2 hover:bg-[#a67e3c] transition focus:outline-none focus:ring-0"
+        >
+          Clear filters
+        </button>
+      </div>
+    </form>
   );
 }
