@@ -16,13 +16,13 @@ export default function HomePage() {
       <>
         <section className="relative">
           <div className="relative z-10 mx-auto flex flex-col justify-center min-h-[640px] bg-white bg-[url(/images/home.webp)] bg-cover bg-center">
-            <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/70 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-bl from-transparent to-black/40 z-10" />
             <h1 className="uppercase font-bold max-w-[900px] p-6 z-20 text-white">
-              <span className="md:text-6xl text-6xl text-white/70">Valorisez</span><br/>
-              <span className="md:text-8xl text-6xl text-white">votre bien</span><br/>
-              <span className="md:text-7xl text-6xl text-white/70">avec un</span><br/>
-              <span className="md:text-8xl text-6xl text-white">service</span><br/>
-              <span className="md:text-6xl text-6xl text-white">d’exception</span>
+              <span className="md:text-6xl text-6xl text-white/70">Fédérez</span><br/>
+              <span className="md:text-8xl text-6xl text-white">vos équipes</span><br/>
+              <span className="md:text-7xl text-6xl text-white/70">dans un chalet</span><br/>
+              <span className="md:text-8xl text-6xl text-white">haut de </span><br/>
+              <span className="md:text-6xl text-6xl text-white">gamme</span>
             </h1>
           </div>
         </section>
