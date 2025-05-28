@@ -1,36 +1,32 @@
 export async function GET() {
-  const baseUrl = process.env.SITE_URL || "https://careconciergeluxury.com";
+  const baseUrl = process.env.SITE_URL ?? 'https://careconciergeluxury.com';
   const wpApi =
-    process.env.WORDPRESS_API_URL ||
-    "https://api.careconciergeluxury.com/wp-json/wp/v2"; // fallback
+    process.env.WORDPRESS_API_URL ??
+    'https://api.careconciergeluxury.com/wp-json/wp/v2';
 
   try {
-    const res = await fetch(`${wpApi}/blog?per_page=100`, {
-      headers: { Accept: "application/json" },
-      next: { revalidate: 3600 },
+    // ✅ correct WP endpoint
+    const endpoint = `${wpApi}/posts?per_page=100&_fields=slug,modified,modified_gmt`;
+    const res = await fetch(endpoint, {
+      headers: { Accept: 'application/json' },
+      next:    { revalidate: 3600 },
     });
 
-    if (!res.ok) {
-      console.error(`❌ Sitemap blog fetch failed: ${res.status} ${res.statusText}`);
-      throw new Error("Bad API response");
+    const isJson = res.headers.get('content-type')?.includes('application/json');
+    if (!res.ok || !isJson) {
+      throw new Error(
+        `WP returned ${res.status} (${res.statusText}) or non-JSON data`,
+      );
     }
 
     const items = await res.json();
     if (!Array.isArray(items) || items.length === 0) {
-      // No posts → empty sitemap
-      return new Response(
-        `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"/>`,
-        { headers: { "Content-Type": "application/xml; charset=utf-8" } }
-      );
+      return new Response(emptyXml, xmlHeaders);
     }
 
     const urls = items
-      .map((item) => {
-        const slug = item.slug || "";
-        const lastmod = item.modified_gmt
-          ? new Date(item.modified_gmt).toISOString()
-          : new Date(item.modified || Date.now()).toISOString();
+      .map(({ slug = '', modified, modified_gmt }) => {
+        const lastmod = new Date(modified_gmt ?? modified).toISOString();
         return `
   <url>
     <loc>${baseUrl}/blog/${slug}</loc>
@@ -39,23 +35,19 @@ export async function GET() {
     <priority>0.8</priority>
   </url>`;
       })
-      .join("");
+      .join('');
 
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls}
-</urlset>`;
-
-    return new Response(sitemap, {
-      headers: { "Content-Type": "application/xml; charset=utf-8" },
-    });
-  } catch (error) {
-    // Log and return empty sitemap with 200
-    console.error("❌ Sitemap blog error:", error);
-    return new Response(
-      `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"/>`,
-      { headers: { "Content-Type": "application/xml; charset=utf-8" } }
-    );
+    return new Response(wrapXml(urls), xmlHeaders);
+  } catch (err) {
+    console.error('❌ sitemap-blog:', err);
+    return new Response(emptyXml, xmlHeaders); // still 200, empty sitemap
   }
 }
+
+const xmlHeaders = { 'Content-Type': 'application/xml; charset=utf-8' };
+const emptyXml   = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"/>`;
+const wrapXml    = (body) => `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${body}
+</urlset>`;
