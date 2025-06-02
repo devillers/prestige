@@ -63,43 +63,43 @@ const menuItems = [
   {
     title: "Blog",
     href: "/blog",
-    submenu: [
-      {
-        title: "Sortir à Megeve",
-        items: [
-          {
-            title: "7 Jours pour Explorer le Massif du Mont-Blanc",
-            href: "/blog/7-jours-pour-explorer-le-massif-du-mont-blanc",
-          },
-        ],
-      },
-      {
-        title: "Sortir à Chamonix",
-        items: [
-          {
-            title: "7 Jours pour Explorer le Massif du Mont-Blanc",
-            href: "/blog/7-jours-pour-explorer-le-massif-du-mont-blanc",
-          },
-        ],
-      },
-      {
-        title: "Sortir à Saint Nicolas",
-        items: [],
-      },
-      {
-        title: "Sortir à Saint Gervais",
-        items: [
-          {
-            title: "7 Jours d’Aventure dans les Alpes",
-            href: "/blog/7-jours-daventure-dans-les-alpes",
-          },
-          {
-            title: "Un Paradis pour les Amateurs de Vélo",
-            href: "/blog/un-paradis-pour-les-amateurs-de-velo",
-          },
-        ],
-      },
-    ],
+    // submenu: [
+    //   {
+    //     title: "Sortir à Megeve",
+    //     items: [
+    //       {
+    //         title: "7 Jours pour Explorer le Massif du Mont-Blanc",
+    //         href: "/blog/7-jours-pour-explorer-le-massif-du-mont-blanc",
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     title: "Sortir à Chamonix",
+    //     items: [
+    //       {
+    //         title: "7 Jours pour Explorer le Massif du Mont-Blanc",
+    //         href: "/blog/7-jours-pour-explorer-le-massif-du-mont-blanc",
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     title: "Sortir à Saint Nicolas",
+    //     items: [],
+    //   },
+    //   {
+    //     title: "Sortir à Saint Gervais",
+    //     items: [
+    //       {
+    //         title: "7 Jours d’Aventure dans les Alpes",
+    //         href: "/blog/7-jours-daventure-dans-les-alpes",
+    //       },
+    //       {
+    //         title: "Un Paradis pour les Amateurs de Vélo",
+    //         href: "/blog/un-paradis-pour-les-amateurs-de-velo",
+    //       },
+    //     ],
+    //   },
+    // ],
   },
   // { title: "Vente", href: "/vente" },
   { title: "Contact", href: "/contact" },
