@@ -1,6 +1,6 @@
 // app/components/ProfilesGrid.jsx  – server component (no "use client")
 import Image from 'next/image';
-import { resolveProfileThumb } from '@/lib/resolveImage';
+import { resolveProfileThumb } from '../../lib/resolveImage';
 
 export default function ProfilesGrid({ profiles = [] }) {
   return (
