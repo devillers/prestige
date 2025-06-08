@@ -9,11 +9,11 @@ import Head from 'next/head';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import FloatingContact from './components/FloatingContact';
-
 import { LayoutProvider, useLayout } from './LayoutContext';
 
 function LayoutWrapper({ children }) {
   const { hideLayout } = useLayout();
+  const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
     <>
@@ -25,18 +25,27 @@ function LayoutWrapper({ children }) {
         />
       </Head>
 
-      {/* Google Analytics */}
+      {/* 1️⃣ Charger gtag.js */}
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-FER4ECWWK3"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
         strategy="afterInteractive"
       />
-      <Script id="ga-init" strategy="afterInteractive">
+
+      {/* 2️⃣ Initialisation & Consent Mode v2 par défaut */}
+      <Script id="gtag-init" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
+
+          // 2a) Consent default = DENIED pour analytics + ads
+          gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied'
+          });
+
+          // 2b) Chargement de la config GA4
           gtag('js', new Date());
-          gtag('consent', 'default', { analytics_storage: 'denied' });
-          gtag('config', 'G-FER4ECWWK3', {
+          gtag('config', '${GA_ID}', {
             anonymize_ip: true,
             page_path: window.location.pathname
           });
@@ -50,6 +59,7 @@ function LayoutWrapper({ children }) {
       {!hideLayout && <Footer />}
       {!hideLayout && <FloatingContact />}
 
+      {/* 3️⃣ Bannière cookie */}
       <CookieConsent
         disableStyles
         location="none"
@@ -90,11 +100,20 @@ function LayoutWrapper({ children }) {
         enableDeclineButton
         buttonText="J'accepte"
         declineButtonText="Je refuse"
+
+        // 3a) L’utilisateur accepte ⇒ on passe analytics & ads en granted
         onAccept={() =>
-          window.gtag?.('consent', 'update', { analytics_storage: 'granted' })
+          window.gtag('consent', 'update', {
+            'analytics_storage': 'granted',
+            'ad_storage': 'granted'
+          })
         }
+        // 3b) L’utilisateur refuse ⇒ on reste en denied
         onDecline={() =>
-          window.gtag?.('consent', 'update', { analytics_storage: 'denied' })
+          window.gtag('consent', 'update', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied'
+          })
         }
       >
         <div className="flex flex-col sm:flex-row items-center gap-4">
