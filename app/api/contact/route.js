@@ -1,5 +1,3 @@
-
-
 // app/api/contact/route.js
 import formidable from 'formidable';
 import { Readable } from 'stream';
@@ -8,7 +6,8 @@ import path from 'path';
 import { NextResponse } from 'next/server';
 import { createTransporter } from '../../../lib/mailer.js';
 
-export const runtime = 'node';           // ← impératif pour fs & formidable
+// Utilisez 'nodejs' pour Next.js App Router
+export const runtime = 'nodejs';
 export const config = {
   api: {
     bodyParser: false,
@@ -22,11 +21,11 @@ const safeField = (field) => {
 };
 
 export async function POST(req) {
-  // 1) on convertit la ReadableStream Web en flux Node
+  // Conversion du flux Web en flux Node
   const nodeStream = Readable.fromWeb(await req.body);
   nodeStream.headers = Object.fromEntries(req.headers);
 
-  // 2) on parse en promisifiant formidable
+  // Parsing du formulaire avec formidable
   const { fields, files } = await new Promise((resolve, reject) => {
     const form = formidable({ multiples: true, keepExtensions: true });
     form.parse(nodeStream, (err, fields, files) => {
@@ -38,7 +37,7 @@ export async function POST(req) {
     throw new Error('Échec parsing formulaire');
   });
 
-  // 3) sécurisation des champs
+  // Sécurisation des champs
   const nom          = safeField(fields.nom);
   const prenom       = safeField(fields.prenom);
   const email        = safeField(fields.email);
@@ -51,10 +50,10 @@ export async function POST(req) {
   const chambres     = safeField(fields.chambres);
   const sallesDeBain = safeField(fields.sallesDeBain);
 
-  // 4) constitution des attachments
+  // Constitution des attachments
   const attachments = [];
 
-  // 4.a) logo
+  // Logo
   const logoPath = path.join(process.cwd(), 'public', 'logo.png');
   if (fs.existsSync(logoPath)) {
     attachments.push({
@@ -64,7 +63,7 @@ export async function POST(req) {
     });
   }
 
-  // 4.b) photos uploadées
+  // Photos uploadées
   if (files.photos) {
     const uploaded = Array.isArray(files.photos) ? files.photos : [files.photos];
     for (const file of uploaded) {
@@ -77,7 +76,7 @@ export async function POST(req) {
     }
   }
 
-  // 5) construction du HTML
+  // Construction du HTML
   const html = `
     <!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
     <style>
@@ -122,7 +121,7 @@ export async function POST(req) {
     </div></body></html>
   `;
 
-  // 6) envoi du mail
+  // Envoi du mail
   try {
     const transporter = await createTransporter();
     await transporter.sendMail({
@@ -133,12 +132,10 @@ export async function POST(req) {
       attachments,
     });
 
-    // 7) suppression des fichiers temporaires
+    // Cleanup fichiers temporaires
     if (files.photos) {
       const uploaded = Array.isArray(files.photos) ? files.photos : [files.photos];
-      for (const file of uploaded) {
-        fs.unlink(file.filepath, () => {});
-      }
+      for (const file of uploaded) fs.unlink(file.filepath, () => {});
     }
 
     return NextResponse.json({ message: 'Message envoyé avec succès' }, { status: 200 });
