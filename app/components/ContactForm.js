@@ -236,7 +236,7 @@ export default function ContactForm() {
           </div>
 
           {/* Bloc formulaire */}
-          <div className="md:w-1/2 space-y-4">
+              <div className="md:w-1/2 space-y-4">
             <input {...register("nom")} placeholder="Nom" className="input" />
             <p className="error">{errors.nom?.message}</p>
 
@@ -254,10 +254,15 @@ export default function ContactForm() {
             />
             <p className="error">{errors.email?.message}</p>
 
+            {/* Champ tel en numérique */}
             <input
-              {...register("tel")}
+              {...register("tel", { valueAsNumber: true })}
               placeholder="Téléphone"
               className="input"
+              type="number"
+              inputMode="numeric"
+              min={0}
+              step={1}
             />
             <p className="error">{errors.tel?.message}</p>
 
@@ -300,24 +305,37 @@ export default function ContactForm() {
                 />
                 <p className="error">{errors.localisation?.message}</p>
 
+                {/* Champs numériques, interdit lettres et négatif */}
                 <input
-                  {...register("surface")}
+                  {...register("surface", { valueAsNumber: true })}
                   placeholder="Surface (m²)"
                   className="input"
+                  type="number"
+                  inputMode="numeric"
+                  min={0}
+                  step={1}
                 />
                 <p className="error">{errors.surface?.message}</p>
 
                 <input
-                  {...register("chambres")}
+                  {...register("chambres", { valueAsNumber: true })}
                   placeholder="Nombre de chambres"
                   className="input"
+                  type="number"
+                  inputMode="numeric"
+                  min={0}
+                  step={1}
                 />
                 <p className="error">{errors.chambres?.message}</p>
 
                 <input
-                  {...register("sallesDeBain")}
+                  {...register("sallesDeBain", { valueAsNumber: true })}
                   placeholder="Nombre de salles de bain"
                   className="input"
+                  type="number"
+                  inputMode="numeric"
+                  min={0}
+                  step={1}
                 />
                 <p className="error">{errors.sallesDeBain?.message}</p>
               </div>
