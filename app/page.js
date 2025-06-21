@@ -154,7 +154,7 @@ export default function HomePage() {
             </div>
           </div>
             <ProfilesGrid />
-          {/* <NewsletterForm /> */}
+         
         </div>
       </>
     </ProfilesProvider>

@@ -386,7 +386,7 @@ export default function ContactForm() {
           padding: 0.5rem 1rem;
           border-radius: 4px;
           transition: background 0.2s;
-          corner-radius: 10px;
+          borner-radius: 10px;
         }
         .btn-submit:hover {
           background: #a67c44;
