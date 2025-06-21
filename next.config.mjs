@@ -1,24 +1,22 @@
-// next.config.mjs  (ESM format)
+// next.config.mjs
 const nextConfig = {
   images: {
     remotePatterns: [
+      // Prod API - Hostinger (HTTPS)
       {
-        protocol: 'https',                       // no trailing colon!
-        hostname: 'api.careconciergeluxury.com', // Hostinger WP API
-        port: '',                                // optional but explicit
+        protocol: 'https',
+        hostname: 'api.careconciergeluxury.com',
+        port: '', // optionnel
         pathname: '/wp-content/uploads/**',
       },
-      // If some images come from the root domain, add a second entry:
-      // {
-      //   protocol: 'https',
-      //   hostname: 'careconciergeluxury.com',
-      //   port: '',
-      //   pathname: '/wp-content/uploads/**',
-      // },
+      // Dev Localhost (HTTP)
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '8888', // ton port local WordPress
+        pathname: '/wordpress/wp-content/uploads/**', // adapte si besoin
+      },
     ],
-
-    // Trim the largest generated variants so 96-px avatars
-    // don’t get up-scaled to 4 K.
     deviceSizes: [320, 640, 768, 1024],
   },
 };

@@ -30,6 +30,6 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
- 
+    // Ajoute ici d'autres plugins si besoin (forms, aspect-ratio, etc)
   ],
 };

@@ -1,8 +1,17 @@
-// app/components/ProfilesGrid.jsx  – server component (no "use client")
+// app/components/ProfilesGrid.jsx
 import Image from 'next/image';
 import { resolveProfileThumb } from '../../lib/resolveImage';
 
-export default function ProfilesGrid({ profiles = [] }) {
+export default async function ProfilesGrid() {
+  // Utilise un fallback simple si aucune variable n'est définie
+  const apiUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL
+    ? `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/wp/v2/member_profile?_embed`
+    : `/wordpress/wp-json/wp/v2/member_profile?_embed`;
+
+  // Fetch côté serveur (pas de CORS)
+  const res = await fetch(apiUrl, { next: { revalidate: 60 } });
+  const profiles = await res.json();
+
   return (
     <div className="max-w-5xl mx-auto p-6 text-gray-800">
       <h3 className="text-3xl font-thin text-center mb-6">
