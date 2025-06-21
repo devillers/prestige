@@ -237,20 +237,22 @@ export default function ContactForm() {
 
           {/* Bloc formulaire */}
           <div className="md:w-1/2 space-y-4">
-            <input {...register("nom")} placeholder="Nom" className="input" />
+            <input {...register("nom")} placeholder="Nom"  className="input focus:border-[#bd9254] focus:outline-none focus:ring-0" />
             <p className="error">{errors.nom?.message}</p>
 
             <input
               {...register("prenom")}
               placeholder="Prénom"
-              className="input"
+              className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
+
             />
             <p className="error">{errors.prenom?.message}</p>
 
             <input
               {...register("email")}
               placeholder="Email"
-              className="input"
+              className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
+
             />
             <p className="error">{errors.email?.message}</p>
 
@@ -258,7 +260,8 @@ export default function ContactForm() {
             <input
               {...register("tel", { valueAsNumber: true })}
               placeholder="Téléphone"
-              className="input"
+              className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
+
               type="number"
               inputMode="numeric"
               min={0}
@@ -269,7 +272,8 @@ export default function ContactForm() {
             <input
               {...register("societe")}
               placeholder="Société"
-              className="input"
+              className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
+
             />
 
             <div className="space-y-2">
@@ -279,7 +283,7 @@ export default function ContactForm() {
                     type="radio"
                     value={type}
                     {...register("type")}
-                    className="mr-2 accent-[#bd9254]"
+                    className="mr-2 accent-[#bd9254]  "
                   />
                   {type === "seminaire" && "Séminaire"}
                   {type === "mariage" && "Mariage"}
@@ -292,7 +296,8 @@ export default function ContactForm() {
             <textarea
               {...register("message")}
               placeholder="Message"
-              className="input h-32"
+              className="input h-32 input focus:border-[#bd9254] focus:outline-none focus:ring-0" 
+
             />
             <p className="error">{errors.message?.message}</p>
 
@@ -301,7 +306,7 @@ export default function ContactForm() {
                 <input
                   {...register("localisation")}
                   placeholder="Localisation"
-                  className="input"
+                  className="input focus:outline-none focus:ring-2 focus:ring-[#bd9254]"
                 />
                 <p className="error">{errors.localisation?.message}</p>
 
@@ -309,7 +314,7 @@ export default function ContactForm() {
                 <input
                   {...register("surface", { valueAsNumber: true })}
                   placeholder="Surface (m²)"
-                  className="input"
+                 className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
                   type="number"
                   inputMode="numeric"
                   min={0}
@@ -320,7 +325,8 @@ export default function ContactForm() {
                 <input
                   {...register("chambres", { valueAsNumber: true })}
                   placeholder="Nombre de chambres"
-                  className="input"
+                  className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
+
                   type="number"
                   inputMode="numeric"
                   min={0}
@@ -331,7 +337,7 @@ export default function ContactForm() {
                 <input
                   {...register("sallesDeBain", { valueAsNumber: true })}
                   placeholder="Nombre de salles de bain"
-                  className="input"
+                  className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
                   type="number"
                   inputMode="numeric"
                   min={0}
@@ -427,6 +433,11 @@ export default function ContactForm() {
         }
         .btn-submit:hover {
           background: #a67c44;
+        }
+
+        .input:focus {
+          border-color: #bd9254 !important;
+          box-shadow: none !important;
         }
       `}</style>
     </>
