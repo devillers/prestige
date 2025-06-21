@@ -236,7 +236,7 @@ export default function ContactForm() {
           </div>
 
           {/* Bloc formulaire */}
-              <div className="md:w-1/2 space-y-4">
+          <div className="md:w-1/2 space-y-4">
             <input {...register("nom")} placeholder="Nom" className="input" />
             <p className="error">{errors.nom?.message}</p>
 
@@ -279,7 +279,7 @@ export default function ContactForm() {
                     type="radio"
                     value={type}
                     {...register("type")}
-                    className="mr-2"
+                    className="mr-2 accent-[#bd9254]"
                   />
                   {type === "seminaire" && "Séminaire"}
                   {type === "mariage" && "Mariage"}
@@ -424,7 +424,6 @@ export default function ContactForm() {
           padding: 0.5rem 1rem;
           border-radius: 4px;
           transition: background 0.2s;
-          border-radius: 10px;
         }
         .btn-submit:hover {
           background: #a67c44;
@@ -433,6 +432,3 @@ export default function ContactForm() {
     </>
   );
 }
-
-
-
