@@ -15,7 +15,10 @@ const schema = yup.object().shape({
   nom: yup.string().required("Nom obligatoire"),
   prenom: yup.string().required("Prénom obligatoire"),
   email: yup.string().email("Email invalide").required("Email obligatoire"),
-  tel: yup.string().required("Téléphone obligatoire"),
+  tel: yup
+    .number()
+    .typeError("Téléphone doit être un nombre")
+    .required("Téléphone obligatoire"),
   societe: yup.string(),
   message: yup.string().required("Message obligatoire"),
   type: yup.string().required("Veuillez choisir une option"),
@@ -23,18 +26,27 @@ const schema = yup.object().shape({
     is: "demande",
     then: (schema) => schema.required("Localisation requise"),
   }),
-  surface: yup.string().when("type", {
-    is: "demande",
-    then: (schema) => schema.required("Surface requise"),
-  }),
-  chambres: yup.string().when("type", {
-    is: "demande",
-    then: (schema) => schema.required("Chambres requises"),
-  }),
-  sallesDeBain: yup.string().when("type", {
-    is: "demande",
-    then: (schema) => schema.required("Salles de bain requises"),
-  }),
+  surface: yup
+    .number()
+    .typeError("Surface doit être un nombre")
+    .when("type", {
+      is: "demande",
+      then: (schema) => schema.required("Surface requise"),
+    }),
+  chambres: yup
+    .number()
+    .typeError("Nombre de chambres doit être un nombre")
+    .when("type", {
+      is: "demande",
+      then: (schema) => schema.required("Chambres requises"),
+    }),
+  sallesDeBain: yup
+    .number()
+    .typeError("Nombre de salles de bain doit être un nombre")
+    .when("type", {
+      is: "demande",
+      then: (schema) => schema.required("Salles de bain requises"),
+    }),
 });
 
 export default function ContactForm() {
@@ -157,241 +169,4 @@ export default function ContactForm() {
             </div>
 
             <div className="flex justify-center items-center space-x-4 mx-auto py-1 ">
-              <h2 className="text-md font-thin text-[#bd9254]">Layla D'Ham</h2>
-
-              <p className="text-sm font-light text-gray-600">
-                Arabe - Français
-              </p>
-
-              <p className="text-sm font-light break-words">
-                <a href="tel:+33766646731" className="hover:text-[#bd9254]">
-                  07 66 64 67 31
-                </a>
-              </p>
-            </div>
-
-            <div className="flex justify-center items-center space-x-4 mx-auto py-1 ">
-              <h2 className="text-md font-thin text-[#bd9254]">
-                Matthew Flammia
-              </h2>
-
-              <p className="text-sm font-light text-gray-600">Anglais</p>
-
-              <p className="text-sm font-light break-words">
-                <a href="tel:+33766797364" className="hover:text-[#bd9254]">
-                  07 66 79 73 64
-                </a>
-              </p>
-            </div>
-
-            <div className="flex gap-4 mt-6 justify-center">
-              <a href="tel:+33612345678" className="icon-link">
-                <FiPhone size={16} />
-              </a>
-              <a
-                href="https://www.facebook.com/careconciergechamonix/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="icon-link "
-              >
-                <FaFacebookF size={16} />
-              </a>
-              <a
-                href="https://www.instagram.com/careconcierge_chamonix/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="icon-link "
-              >
-                <FaInstagram size={16} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/careconcierge-properties/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="icon-link "
-              >
-                <FaLinkedinIn size={16} />
-              </a>
-            </div>
-          </div>
-
-          {/* Bloc formulaire */}
-          <div className="md:w-1/2 space-y-4">
-            <input {...register("nom")} placeholder="Nom" className="input" />
-            <p className="error">{errors.nom?.message}</p>
-
-            <input
-              {...register("prenom")}
-              placeholder="Prénom"
-              className="input"
-            />
-            <p className="error">{errors.prenom?.message}</p>
-
-            <input
-              {...register("email")}
-              placeholder="Email"
-              className="input"
-            />
-            <p className="error">{errors.email?.message}</p>
-
-            <input
-              {...register("tel")}
-              placeholder="Téléphone"
-              className="input"
-            />
-            <p className="error">{errors.tel?.message}</p>
-
-            <input
-              {...register("societe")}
-              placeholder="Société"
-              className="input"
-            />
-
-            <div className="space-y-2">
-              {["seminaire", "mariage", "demande"].map((type) => (
-                <label key={type} className="block">
-                  <input
-                    type="radio"
-                    value={type}
-                    {...register("type")}
-                    className="mr-2"
-                  />
-                  {type === "seminaire" && "Séminaire"}
-                  {type === "mariage" && "Mariage"}
-                  {type === "demande" && "Demande de Gestion Locative"}
-                </label>
-              ))}
-              <p className="error">{errors.type?.message}</p>
-            </div>
-
-            <textarea
-              {...register("message")}
-              placeholder="Message"
-              className="input h-32"
-            />
-            <p className="error">{errors.message?.message}</p>
-
-            {selectedType === "demande" && (
-              <div className="space-y-2 bg-gray-50 p-4 rounded">
-                <input
-                  {...register("localisation")}
-                  placeholder="Localisation"
-                  className="input"
-                />
-                <p className="error">{errors.localisation?.message}</p>
-
-                <input
-                  {...register("surface")}
-                  placeholder="Surface (m²)"
-                  className="input"
-                />
-                <p className="error">{errors.surface?.message}</p>
-
-                <input
-                  {...register("chambres")}
-                  placeholder="Nombre de chambres"
-                  className="input"
-                />
-                <p className="error">{errors.chambres?.message}</p>
-
-                <input
-                  {...register("sallesDeBain")}
-                  placeholder="Nombre de salles de bain"
-                  className="input"
-                />
-                <p className="error">{errors.sallesDeBain?.message}</p>
-              </div>
-            )}
-
-            <div>
-              <label className="block font-medium mb-1">Photos (max 10)</label>
-
-              {/* Bouton custom */}
-              <button
-                type="button"
-                onClick={() => fileInputRef.current.click()}
-                className="px-4 py-2 bg-[#bd9254] text-white rounded hover:bg-[#a67c44] transition"
-              >
-                Sélectionner fichiers
-              </button>
-
-              {/* Input caché */}
-              <input
-                ref={fileInputRef}
-                type="file"
-                multiple
-                accept="image/*"
-                onChange={handleFilesChange}
-                className="hidden"
-              />
-
-              {previewImages.length > 0 && (
-                <div className="grid grid-cols-3 gap-2 mt-2">
-                  {previewImages.map((img, index) => (
-                    <div key={index} className="relative">
-                      <img
-                        src={img.url}
-                        alt={`Preview ${index}`}
-                        className="h-20 w-full object-cover rounded border"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveImage(index)}
-                        className="absolute top-0 right-0 bg-white text-black text-xs px-1 rounded-bl"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="btn-submit "
-            >
-              {isSubmitting ? "Envoi..." : "Envoyer"}
-            </button>
-          </div>
-        </div>
-      </form>
-
-      <style jsx>{`
-        .input {
-          width: 100%;
-          padding: 0.5rem;
-          border: 1px solid #ddd;
-          border-radius: 4px;
-        }
-        .error {
-          color: #e53e3e;
-          font-size: 0.75rem;
-        }
-        .icon-link {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 2.25rem;
-          height: 2.25rem;
-          border: 1px solid #bd9254;
-          color: #bd9254;
-          border-radius: 9999px;
-          transition: all 0.2s;
-        }
-        .btn-submit {
-          background: #bd9254;
-          color: white;
-          padding: 0.5rem 1rem;
-          border-radius: 4px;
-          transition: background 0.2s;
-          borner-radius: 10px;
-        }
-        .btn-submit:hover {
-          background: #a67c44;
-        }
-      `}</style>
-    </>
-  );
-}
+              <h2 className="text-md font-thin text-[#bd9254]">Layla D'Ham
