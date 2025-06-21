@@ -15,7 +15,12 @@ const schema = yup.object().shape({
   nom: yup.string().required("Nom obligatoire"),
   prenom: yup.string().required("Prénom obligatoire"),
   email: yup.string().email("Email invalide").required("Email obligatoire"),
-  tel: yup.number().typeError("Téléphone doit être un nombre").required("Téléphone obligatoire"),
+  tel: yup
+    .number()
+    .typeError("Téléphone doit être un nombre")
+    .positive("Téléphone ne peut pas être négatif")
+    .integer("Téléphone doit être un entier")
+    .required("Téléphone obligatoire"),
   societe: yup.string(),
   message: yup.string().required("Message obligatoire"),
   type: yup.string().required("Veuillez choisir une option"),
@@ -23,18 +28,33 @@ const schema = yup.object().shape({
     is: "demande",
     then: (schema) => schema.required("Localisation requise"),
   }),
-  surface: yup.number().typeError("Surface doit être un nombre").when("type", {
-    is: "demande",
-    then: (schema) => schema.required("Surface requise"),
-  }),
-  chambres: yup.number().typeError("Nombre de chambres doit être un nombre").when("type", {
-    is: "demande",
-    then: (schema) => schema.required("Chambres requises"),
-  }),
-  sallesDeBain: yup.number().typeError("Nombre de salles de bain doit être un nombre").when("type", {
-    is: "demande",
-    then: (schema) => schema.required("Salles de bain requises"),
-  }),
+  surface: yup
+    .number()
+    .typeError("Surface doit être un nombre")
+    .positive("Surface ne peut pas être négative")
+    .integer("Surface doit être un entier")
+    .when("type", {
+      is: "demande",
+      then: (schema) => schema.required("Surface requise"),
+    }),
+  chambres: yup
+    .number()
+    .typeError("Nombre de chambres doit être un nombre")
+    .positive("Nombre de chambres ne peut pas être négatif")
+    .integer("Nombre de chambres doit être un entier")
+    .when("type", {
+      is: "demande",
+      then: (schema) => schema.required("Chambres requises"),
+    }),
+  sallesDeBain: yup
+    .number()
+    .typeError("Nombre de salles de bain doit être un nombre")
+    .positive("Nombre de salles de bain ne peut pas être négatif")
+    .integer("Nombre de salles de bain doit être un entier")
+    .when("type", {
+      is: "demande",
+      then: (schema) => schema.required("Salles de bain requises"),
+    }),
 });
 
 export default function ContactForm() {

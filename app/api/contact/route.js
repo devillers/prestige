@@ -80,7 +80,7 @@ export async function POST(req) {
     .container{max-width:600px;background:#fff;padding:20px;border-radius:8px;margin:auto}
     .field{margin:10px 0}.label{font-weight:bold;color:#555}
   </style></head><body><div class="container">
-    <img src="cid:logo@careconcierge" alt="Logo" style="display:block;margin:0 auto 20px;max-width:150px"/>
+    <img src="cid:logo@careconcierge" alt="Logo" style="display:block;margin:0 auto 20px;max-width:250px"/>
     <h1>Nouvelle demande de contact</h1>
     ${[
       ['Nom', nom],['Prénom', prenom],['Email', email],['Téléphone', tel],['Société', societe],['Type', type]
