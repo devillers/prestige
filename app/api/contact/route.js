@@ -6,6 +6,7 @@ import path from 'path';
 import { NextResponse } from 'next/server';
 import { createTransporter } from '../../../lib/mailer.js';
 
+// Runtime Node.js pour App Router
 export const runtime = 'nodejs';
 export const config = {
   api: {
@@ -20,38 +21,29 @@ const safeField = (field) => {
 };
 
 export async function POST(req) {
-  console.log('→ [API] POST /api/contact appelée');
-
   // Convertir ReadableStream Web en flux Node
   const nodeStream = Readable.fromWeb(await req.body);
   nodeStream.headers = Object.fromEntries(req.headers);
 
   // Parser le formulaire avec des limites accrues pour éviter le 413
-  let parsed;
-  try {
-    parsed = await new Promise((resolve, reject) => {
-      const form = formidable({
-        multiples: true,
-        keepExtensions: true,
-        maxFileSize: 50 * 1024 * 1024,
-        maxTotalFileSize: 200 * 1024 * 1024,
-      });
-      form.parse(nodeStream, (err, fields, files) => {
-        if (err) return reject(err);
-        resolve({ fields, files });
-      });
+  const { fields, files } = await new Promise((resolve, reject) => {
+    const form = formidable({
+      multiples: true,
+      keepExtensions: true,
+      maxFileSize: 50 * 1024 * 1024,        // Limite 50 Mo par fichier
+      maxTotalFileSize: 200 * 1024 * 1024,  // Limite totale 200 Mo
     });
-  } catch (err) {
-    console.error('[API] Erreur parsing formidable :', err);
+    form.parse(nodeStream, (err, fields, files) => {
+      if (err) return reject(err);
+      resolve({ fields, files });
+    });
+  }).catch((err) => {
+    console.error('Erreur parsing formidable :', err);
     return NextResponse.json(
       { message: 'Échec parsing formulaire ou fichier trop volumineux' },
       { status: err.httpCode || 500 }
     );
-  }
-
-  const { fields, files } = parsed;
-  console.log('[API] Champs reçus :', fields);
-  console.log('[API] Fichiers reçus :', files);
+  });
 
   // Sécuriser et récupérer les champs
   const nom          = safeField(fields.nom);
@@ -80,7 +72,6 @@ export async function POST(req) {
       }
     }
   }
-  console.log('[API] Attachments prêts :', attachments.map(a => a.filename));
 
   // Générer le HTML du mail
   const html = `
@@ -102,17 +93,14 @@ export async function POST(req) {
 
   // Envoyer l’email
   try {
-    console.log('[API] Création du transporteur nodemailer...');
     const transporter = await createTransporter();
-    console.log('[API] Transporteur prêt, envoi mail...');
     await transporter.sendMail({
       from: `"${prenom} ${nom}" <${process.env.MAIL_USER}>`,
-      to: 'david@careconcierge.fr',
+      to: 'contact@careconcierge.fr',
       subject: 'Nouveau message depuis Care Concierge Luxury',
       html,
       attachments,
     });
-    console.log('[API] ✅ Mail envoyé !');
 
     // Nettoyer les fichiers temporaires
     if (files.photos) {
@@ -122,7 +110,7 @@ export async function POST(req) {
 
     return NextResponse.json({ message: 'Message envoyé avec succès' }, { status: 200 });
   } catch (err) {
-    console.error('[API] ❌ Erreur d’envoi du mail :', err);
+    console.error('Erreur d’envoi du mail :', err);
     return NextResponse.json({ message: 'Échec de l’envoi' }, { status: 500 });
   }
 }
