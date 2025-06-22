@@ -63,7 +63,8 @@ function LayoutWrapper({ children }) {
 
       {!hideLayout && <Footer />}
       {/* S'affiche partout SAUF sur /contact */}
-      {!hideLayout && pathname !== '/contact' && <FloatingContact />}
+     {!hideLayout && !['/contact', '/mentions-legales', '/politique-de-confidentialite'].includes(pathname) && <FloatingContact />}
+
 
       {/* 3️⃣ Bannière cookie */}
       <CookieConsent
