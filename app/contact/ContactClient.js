@@ -104,7 +104,7 @@ export default function ContactClient() {
             détail.
           </p>
         </div>
-        <ContactForm id="contact" />
+        <ContactForm />
       </div>
     </>
   );

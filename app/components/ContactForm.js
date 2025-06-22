@@ -1,5 +1,3 @@
-//app/components/ContactForm.js
-
 "use client";
 
 import { useEffect, useState, useRef } from "react";
@@ -55,18 +53,24 @@ const schema = yup.object().shape({
       is: "demande",
       then: (schema) => schema.required("Salles de bain requises"),
     }),
+  consentement: yup
+    .boolean()
+    .oneOf([true], "Vous devez accepter le traitement de vos données (RGPD)"),
 });
 
 export default function ContactForm() {
   const [previewImages, setPreviewImages] = useState([]);
   const [files, setFiles] = useState([]);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef();
+
   const {
     register,
     handleSubmit,
     watch,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -81,6 +85,7 @@ export default function ContactForm() {
       surface: "",
       chambres: "",
       sallesDeBain: "",
+      consentement: false,
     },
   });
 
@@ -115,25 +120,59 @@ export default function ContactForm() {
   };
 
   const onSubmit = async (data) => {
+    setUploadProgress(0);
+    setIsUploading(true);
+
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => formData.append(key, value));
     files.forEach((file) => formData.append("photos", file));
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        body: formData,
+      await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/api/contact");
+        xhr.upload.onprogress = (event) => {
+          if (event.lengthComputable) {
+            const percent = Math.round((event.loaded / event.total) * 100);
+            setUploadProgress(percent);
+          }
+        };
+        xhr.onload = () => {
+          setUploadProgress(100);
+          setIsUploading(false);
+          // Lecture de la réponse (doit être JSON dans ton cas)
+          let response = {};
+          try {
+            response = JSON.parse(xhr.responseText);
+          } catch (e) {
+            response = { message: xhr.responseText };
+          }
+          if (xhr.status >= 200 && xhr.status < 300) {
+            toast.success(response.message || "Message envoyé avec succès !");
+            resolve();
+          } else {
+            toast.error(response.message || "Erreur serveur");
+            reject(new Error(response.message || "Erreur serveur"));
+          }
+        };
+        xhr.onerror = () => {
+          setIsUploading(false);
+          toast.error("Erreur réseau");
+          reject(new Error("Erreur réseau"));
+        };
+        xhr.send(formData);
       });
-      if (!res.ok) throw new Error("Erreur serveur");
-      toast.success("Message envoyé avec succès !");
+
       reset();
       setFiles([]);
       previewImages.forEach((img) => URL.revokeObjectURL(img.url));
       setPreviewImages([]);
-      fileInputRef.current.value = null;
+      if (fileInputRef.current) fileInputRef.current.value = null;
+      setTimeout(() => setUploadProgress(0), 700); // barre disparaît après 0.7s
     } catch (error) {
-      console.error(error);
-      toast.error("Erreur lors de l'envoi.");
+      setIsUploading(false);
+      setUploadProgress(0);
+      console.error("[FRONT] Erreur lors de l’envoi:", error);
     }
   };
 
@@ -166,9 +205,7 @@ export default function ContactForm() {
               <h2 className="text-md font-thin text-[#bd9254]">
                 David Devillers
               </h2>
-
               <p className="text-sm font-light text-gray-600">Français</p>
-
               <p className="text-sm font-light break-words">
                 <a href="tel:+33686020184" className="hover:text-[#bd9254]">
                   06 86 02 01 84
@@ -178,11 +215,9 @@ export default function ContactForm() {
 
             <div className="flex justify-center items-center space-x-4 mx-auto py-1 ">
               <h2 className="text-md font-thin text-[#bd9254]">Layla D'Ham</h2>
-
               <p className="text-sm font-light text-gray-600">
                 Arabe - Français
               </p>
-
               <p className="text-sm font-light break-words">
                 <a href="tel:+33766646731" className="hover:text-[#bd9254]">
                   07 66 64 67 31
@@ -194,9 +229,7 @@ export default function ContactForm() {
               <h2 className="text-md font-thin text-[#bd9254]">
                 Matthew Flammia
               </h2>
-
               <p className="text-sm font-light text-gray-600">Anglais</p>
-
               <p className="text-sm font-light break-words">
                 <a href="tel:+33766797364" className="hover:text-[#bd9254]">
                   07 66 79 73 64
@@ -237,14 +270,17 @@ export default function ContactForm() {
 
           {/* Bloc formulaire */}
           <div className="md:w-1/2 space-y-4">
-            <input {...register("nom")} placeholder="Nom"  className="input focus:border-[#bd9254] focus:outline-none focus:ring-0" />
+            <input
+              {...register("nom")}
+              placeholder="Nom"
+              className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
+            />
             <p className="error">{errors.nom?.message}</p>
 
             <input
               {...register("prenom")}
               placeholder="Prénom"
               className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
-
             />
             <p className="error">{errors.prenom?.message}</p>
 
@@ -252,7 +288,6 @@ export default function ContactForm() {
               {...register("email")}
               placeholder="Email"
               className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
-
             />
             <p className="error">{errors.email?.message}</p>
 
@@ -261,7 +296,6 @@ export default function ContactForm() {
               {...register("tel", { valueAsNumber: true })}
               placeholder="Téléphone"
               className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
-
               type="number"
               inputMode="numeric"
               min={0}
@@ -273,7 +307,6 @@ export default function ContactForm() {
               {...register("societe")}
               placeholder="Société"
               className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
-
             />
 
             <div className="space-y-2">
@@ -283,7 +316,7 @@ export default function ContactForm() {
                     type="radio"
                     value={type}
                     {...register("type")}
-                    className="mr-2 accent-[#bd9254]  "
+                    className="mr-2 accent-[#bd9254]"
                   />
                   {type === "seminaire" && "Séminaire"}
                   {type === "mariage" && "Mariage"}
@@ -296,8 +329,7 @@ export default function ContactForm() {
             <textarea
               {...register("message")}
               placeholder="Message"
-              className="input h-32 input focus:border-[#bd9254] focus:outline-none focus:ring-0" 
-
+              className="input h-32 input focus:border-[#bd9254] focus:outline-none focus:ring-0"
             />
             <p className="error">{errors.message?.message}</p>
 
@@ -309,31 +341,26 @@ export default function ContactForm() {
                   className="input focus:outline-none focus:ring-2 focus:ring-[#bd9254]"
                 />
                 <p className="error">{errors.localisation?.message}</p>
-
-                {/* Champs numériques, interdit lettres et négatif */}
                 <input
                   {...register("surface", { valueAsNumber: true })}
                   placeholder="Surface (m²)"
-                 className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
+                  className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
                   type="number"
                   inputMode="numeric"
                   min={0}
                   step={1}
                 />
                 <p className="error">{errors.surface?.message}</p>
-
                 <input
                   {...register("chambres", { valueAsNumber: true })}
                   placeholder="Nombre de chambres"
                   className="input focus:border-[#bd9254] focus:outline-none focus:ring-0"
-
                   type="number"
                   inputMode="numeric"
                   min={0}
                   step={1}
                 />
                 <p className="error">{errors.chambres?.message}</p>
-
                 <input
                   {...register("sallesDeBain", { valueAsNumber: true })}
                   placeholder="Nombre de salles de bain"
@@ -349,8 +376,6 @@ export default function ContactForm() {
 
             <div>
               <label className="block font-medium mb-1">Photos (max 10)</label>
-
-              {/* Bouton custom */}
               <button
                 type="button"
                 onClick={() => fileInputRef.current.click()}
@@ -358,8 +383,6 @@ export default function ContactForm() {
               >
                 Sélectionner fichiers
               </button>
-
-              {/* Input caché */}
               <input
                 ref={fileInputRef}
                 type="file"
@@ -368,7 +391,6 @@ export default function ContactForm() {
                 onChange={handleFilesChange}
                 className="hidden"
               />
-
               {previewImages.length > 0 && (
                 <div className="grid grid-cols-3 gap-2 mt-2">
                   {previewImages.map((img, index) => (
@@ -391,12 +413,52 @@ export default function ContactForm() {
               )}
             </div>
 
+            {/* Progress bar */}
+            {uploadProgress > 0 && uploadProgress < 100 && (
+              <div className="w-full bg-gray-200 rounded h-2 my-2">
+                <div
+                  className="bg-[#bd9254] h-2 rounded"
+                  style={{
+                    width: `${uploadProgress}%`,
+                    transition: "width 0.2s",
+                  }}
+                />
+                <span className="text-xs text-gray-500 block text-right">
+                  {uploadProgress}%
+                </span>
+              </div>
+            )}
+
+            {/* Consentement RGPD */}
+            <div className="flex items-start my-2">
+              <input
+                type="checkbox"
+                {...register("consentement")}
+                id="consentement"
+                className="mr-2 accent-[#bd9254]"
+              />
+              <label htmlFor="consentement" className="text-xs text-gray-600">
+                J’accepte que mes données soient utilisées pour être contacté
+                dans le cadre de ma demande, conformément à la{" "}
+                <a
+                  href="/politique-de-confidentialite"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline text-[#bd9254]"
+                >
+                  politique de confidentialité
+                </a>
+                .
+              </label>
+            </div>
+            <p className="error">{errors.consentement?.message}</p>
+
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isUploading}
               className="btn-submit "
             >
-              {isSubmitting ? "Envoi..." : "Envoyer"}
+              {isUploading ? "Envoi..." : "Envoyer"}
             </button>
           </div>
         </div>
@@ -434,7 +496,6 @@ export default function ContactForm() {
         .btn-submit:hover {
           background: #a67c44;
         }
-
         .input:focus {
           border-color: #bd9254 !important;
           box-shadow: none !important;
