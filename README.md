@@ -20,6 +20,23 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Environment Variables
+
+The application requires a few environment variables to connect to Gmail and your WordPress API.
+
+1. Copy `.env.example` to `.env.local` and fill in the values for local development.
+2. When deploying to Vercel, add the same variables in the **Environment Variables** section of your project settings.
+
+The variables you need are:
+
+```
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GOOGLE_REFRESH_TOKEN=
+MAIL_USER=
+NEXT_PUBLIC_WORDPRESS_API_URL=
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
