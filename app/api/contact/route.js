@@ -126,8 +126,10 @@ export async function POST(req) {
     </div></body></html>`;
 
   // Envoyer l’email
+  // ... (reste du code inchangé)
   try {
     const transporter = await createTransporter();
+    console.log("[API] Prêt à envoyer le mail...");
     const info = await transporter.sendMail({
       from: `"${prenom} ${nom}" <${process.env.MAIL_USER}>`,
       to: "contact@careconcierge.fr",
@@ -136,11 +138,9 @@ export async function POST(req) {
       html,
       attachments,
     });
+    console.log("[API] Email envoyé !", info);
 
-    // Log d'info (pour debug, tu pourras le retirer ensuite)
-    console.log("[API] Résultat sendMail:", info);
-
-    // Nettoyer les fichiers temporaires
+    // Nettoyage des fichiers temporaires
     if (files?.photos) {
       const uploaded = Array.isArray(files.photos)
         ? files.photos
@@ -149,11 +149,11 @@ export async function POST(req) {
     }
 
     return NextResponse.json(
-      { message: "Message envoyé avec succès", info },
+      { message: "Message envoyé avec succès" },
       { status: 200 }
     );
   } catch (err) {
-    console.error("[API] Erreur envoi mail:", err);
+    console.error("[API] Erreur d’envoi du mail :", err);
     return NextResponse.json({ message: "Échec de l’envoi" }, { status: 500 });
   }
 }
