@@ -1,5 +1,5 @@
 // app/page.js
-import { ProfilesProvider } from "./context/ProfilesContext";
+import { ProfilesProvider } from "./_context/ProfilesContext";
 import ProfilesGrid from "./components/ProfilesGrid";
 import { getMetadataForPage } from "../lib/metadata";
 

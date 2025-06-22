@@ -6,11 +6,8 @@ import path from "path";
 import { NextResponse } from "next/server";
 import { createTransporter } from "../../../lib/mailer.js";
 
-// Runtime Node.js pour App Router
 export const runtime = "nodejs";
-export const config = {
-  api: { bodyParser: false },
-};
+export const config = { api: { bodyParser: false } };
 
 const safeField = (field) => {
   if (Array.isArray(field)) return field[0];
@@ -42,7 +39,7 @@ export async function POST(req) {
         });
       }));
     } catch (error) {
-      console.error("💥 [API/CONTACT] ERREUR :", error); // ← log serveur
+      console.error("💥 [API/CONTACT] ERREUR :", error);
       return NextResponse.json(
         { message: "Erreur API contact: " + String(error.message || error) },
         { status: 500 }
@@ -54,15 +51,7 @@ export async function POST(req) {
     const prenom = safeField(fields.prenom);
     const email = safeField(fields.email);
     const tel = safeField(fields.tel);
-    const societe = safeField(fields.societe);
     const message = safeField(fields.message)?.replace(/\n/g, "<br/>") || "";
-    const type = safeField(fields.type);
-    const localisation = safeField(fields.localisation);
-    const surface = safeField(fields.surface);
-    const chambres = safeField(fields.chambres);
-    const sallesDeBain = safeField(fields.sallesDeBain);
-
-    console.log("[API] Champs récupérés :", { nom, prenom, email, tel, type });
 
     // 3. Attachments (logo + images)
     const attachments = [];
@@ -88,48 +77,24 @@ export async function POST(req) {
       }
     }
 
-    // 4. Générer HTML
+    // 4. Générer HTML clean
     const html = `
       <!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><style>
         body{font-family:sans-serif;background:#f4f4f4;margin:0;padding:20px}
-        .container{max-width:600px;background:#fff;padding:20px;border-radius:8px;margin:auto}
-        .field{margin:10px 0}.label{font-weight:bold;color:#555}
+        .container{max-width:600px;background:#fff;padding:20px 32px;border-radius:8px;margin:auto}
+        .field{margin:14px 0 6px 0}.label{font-weight:bold;color:#bd9254}
+        h1{font-size:1.8rem;margin-bottom:1.5rem;}
+        h2{font-size:1.2rem;margin-top:2.2rem;margin-bottom:1rem;color:#222;}
+        a{color:#bd9254;text-decoration:none;}
       </style></head><body><div class="container">
         <img src="cid:logo@careconcierge" alt="Logo" style="display:block;margin:0 auto 20px;max-width:450px"/>
         <h1>Nouvelle demande de contact</h1>
-        ${[
-          ["Nom", nom],
-          ["Prénom", prenom],
-          ["Email", email],
-          ["Téléphone", tel],
-          ["Société", societe],
-          ["Type", type],
-        ]
-          .map(
-            ([label, value]) =>
-              `<div class="field"><span class="label">${label} :</span> ${
-                value || "—"
-              }</div>`
-          )
-          .join("")}
-        ${
-          type === "demande"
-            ? `<h2>Infos Bien</h2>${[
-                ["Localisation", localisation],
-                ["Surface", surface && `${surface} m²`],
-                ["Chambres", chambres],
-                ["Salles de bain", sallesDeBain],
-              ]
-                .map(
-                  ([label, value]) =>
-                    `<div class="field"><span class="label">${label} :</span> ${
-                      value || "—"
-                    }</div>`
-                )
-                .join("")}`
-            : ""
-        }
-        <h2>Message</h2><p>${message}</p>
+        <div class="field"><span class="label">Nom :</span> ${nom || "-"}</div>
+        <div class="field"><span class="label">Prénom :</span> ${prenom || "-"}</div>
+        <div class="field"><span class="label">Email :</span> <a href="mailto:${email}">${email || "-"}</a></div>
+        <div class="field"><span class="label">Téléphone :</span> ${tel || "-"}</div>
+        <h2>Message</h2>
+        <div class="field" style="margin-top:8px;">${message}</div>
       </div></body></html>`;
 
     // 5. Envoi mail
