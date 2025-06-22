@@ -83,8 +83,8 @@ export async function POST(req) {
         body{font-family:sans-serif;background:#f4f4f4;margin:0;padding:20px}
         .container{max-width:600px;background:#fff;padding:20px 32px;border-radius:8px;margin:auto}
         .field{margin:14px 0 6px 0}.label{font-weight:bold;color:#bd9254}
-        h1{font-size:1.8rem;margin-bottom:1.5rem;}
-        h2{font-size:1.2rem;margin-top:2.2rem;margin-bottom:1rem;color:#222;}
+        h1{font-size:1rem;margin-bottom:1.5rem;}
+        h2{font-size:0.9rem;margin-top:2.2rem;margin-bottom:1rem;color:#222;}
         a{color:#bd9254;text-decoration:none;}
       </style></head><body><div class="container">
         <img src="cid:logo@careconcierge" alt="Logo" style="display:block;margin:0 auto 20px;max-width:450px"/>

@@ -154,17 +154,17 @@ export default function ContactForm() {
               <span className="text-[#bd9254] font-thin">Luxury</span>
             </div>
             <p className="text-gray-700 leading-6 text-center">
-              Vous avez un projet, une réservation ou un besoin sur-mesure ?
-              Remplissez notre formulaire express ci-dessous et bénéficiez d’une
-              réponse sous 24 h. Pour la gestion locative, utilisez notre
-              formulaire dédié et joignez vos photos pour une étude
+              Vous avez un projet de séminaire ou un besoin spécifique ?
+              Remplissez notre formulaire ci-dessous et recevez une réponse sous
+              24 heures. Pour toute demande de gestion locative, n’hésitez pas à
+              joindre quelques photos afin que nous puissions réaliser une étude
               personnalisée.
             </p>
             <p className="text-gray-700 mt-4 leading-6 text-center">
               Envie d’un contact immédiat ? Nos conseillers sont à votre écoute
             </p>
             <div className="flex justify-center items-center space-x-4 mx-auto py-1 mt-6">
-              <h2 className="text-md font-thin text-[#bd9254]">
+              <h2 className="text-md font-light text-[#bd9254]">
                 David Devillers
               </h2>
               <p className="text-sm font-light text-gray-600">Français</p>
@@ -175,7 +175,7 @@ export default function ContactForm() {
               </p>
             </div>
             <div className="flex justify-center items-center space-x-4 mx-auto py-1 ">
-              <h2 className="text-md font-thin text-[#bd9254]">Layla D'Ham</h2>
+              <h2 className="text-md font-light text-[#bd9254]">Layla D'Ham</h2>
               <p className="text-sm font-light text-gray-600">
                 Arabe - Français
               </p>
@@ -186,7 +186,7 @@ export default function ContactForm() {
               </p>
             </div>
             <div className="flex justify-center items-center space-x-4 mx-auto py-1 ">
-              <h2 className="text-md font-thin text-[#bd9254]">
+              <h2 className="text-md font-light text-[#bd9254]">
                 Matthew Flammia
               </h2>
               <p className="text-sm font-light text-gray-600">Anglais</p>
@@ -268,7 +268,7 @@ export default function ContactForm() {
                 maxLength={15}
               />
             </div>
-           
+
             <p className="error">{errors.tel?.message}</p>
 
             <textarea
@@ -285,7 +285,7 @@ export default function ContactForm() {
                 onClick={() => fileInputRef.current.click()}
                 className="px-4 py-2 bg-[#bd9254] text-white rounded hover:bg-[#a67c44] transition"
               >
-                Sélectionner fichiers
+                Sélectionner Photos
               </button>
               <input
                 ref={fileInputRef}
@@ -373,7 +373,7 @@ export default function ContactForm() {
           padding: 0.5rem;
           border: 1px solid #ddd;
           border-radius: 4px;
-           transition: border-color 0.2s;
+          transition: border-color 0.2s;
         }
 
         .input:focus {
