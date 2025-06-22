@@ -1,3 +1,5 @@
+//app/layout.js
+
 'use client';
 
 import './globals.css';
