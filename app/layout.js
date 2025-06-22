@@ -12,10 +12,13 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import FloatingContact from './components/FloatingContact';
 import { LayoutProvider, useLayout } from './LayoutContext';
+import { usePathname } from 'next/navigation';
+
 
 function LayoutWrapper({ children }) {
   const { hideLayout } = useLayout();
   const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+    const pathname = usePathname();   // <-- Ajout
 
   return (
     <>
@@ -54,12 +57,13 @@ function LayoutWrapper({ children }) {
         `}
       </Script>
 
-      {!hideLayout && <Header />}
+       {!hideLayout && <Header />}
 
       <main>{children}</main>
 
       {!hideLayout && <Footer />}
-      {!hideLayout && <FloatingContact />}
+      {/* S'affiche partout SAUF sur /contact */}
+      {!hideLayout && pathname !== '/contact' && <FloatingContact />}
 
       {/* 3️⃣ Bannière cookie */}
       <CookieConsent
