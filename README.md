@@ -35,6 +35,9 @@ GOOGLE_CLIENT_SECRET=
 GOOGLE_REFRESH_TOKEN=
 MAIL_USER=
 NEXT_PUBLIC_WORDPRESS_API_URL=
+Oauth2ClientId=
+Oauth2Clientsecret=
+authcdode=
 ```
 
 ## Learn More
