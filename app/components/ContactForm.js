@@ -122,6 +122,7 @@ export default function ContactForm() {
   };
 
   const onSubmit = async (data) => {
+    console.log("Soumission formulaire", data);
     setUploadProgress(0);
     setIsUploading(true);
 
