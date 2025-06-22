@@ -9,12 +9,12 @@ export default function MentionsLegales() {
         <h2 className="text-lg  mb-2">1. Éditeur du site</h2>
         <ul className="list-inside text-sm">
           <li>
-            Nom de l'entreprise : <strong>Care Concierge</strong>
+           <strong> SAS CARE CONCIERGE & PROPERTIES</strong>
           </li>
-          <li>Statut juridique : SASU</li>
-          <li>Adresse : 74170 Saint-Gervais-les-Bains, France</li>
+          
+          <li>33 QUAI DE WARENS 74700 SALLANCHES</li>
           <li>Email : contact@careconcierge.fr</li>
-          <li>Téléphone : +33 6 00 00 00 00</li>
+         
           <li>SIRET : 123 456 789 00012</li>
           <li>Directeur de la publication : M. David Devillers</li>
         </ul>
@@ -37,7 +37,7 @@ export default function MentionsLegales() {
             Site web :{" "}
             <a
               href="https://www.hostinger.fr"
-              className="text-blue-600 underline"
+              className="text-orange-600 "
             >
               www.hostinger.fr
             </a>
@@ -53,7 +53,7 @@ export default function MentionsLegales() {
             Site web :{" "}
             <a
               href="https://www.vercel.com"
-              className="text-blue-600 underline"
+              className="text-orange-600 "
             >
               www.vercel.com
             </a>
@@ -92,7 +92,7 @@ export default function MentionsLegales() {
           la page dédiée :{" "}
           <a
             href="/politique-de-confidentialite"
-            className="text-blue-600 underline"
+            className="text-orange-600 "
           >
             Politique de confidentialité
           </a>

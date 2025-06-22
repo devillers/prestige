@@ -15,10 +15,10 @@ export default function PolitiqueDeConfidentialite() {
       <div className="mb-6">
         <h2 className="text-lg  mb-2">2. Responsable du traitement</h2>
         <ul className=" list-inside text-sm">
-          <li>Nom : <strong>Care Concierge</strong></li>
+          <li>Nom : <strong>CARE PROPERTIES MANAGEMENT&ADVISORY</strong></li>
           <li>Email : contact@careconcierge.fr</li>
-          <li>Adresse : 74300 Les Houches, France</li>
-          <li>SIRET : 123 456 789 00012</li>
+          <li>Adresse :275 AVENUE DES ALPAGES 74310 LES HOUCHES</li>
+          <li>SIRET : 89397450100031</li>
         </ul>
       </div>
 
