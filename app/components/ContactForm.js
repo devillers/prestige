@@ -1,3 +1,6 @@
+
+//app/components/ContactForm.js
+
 "use client";
 
 import { useEffect, useState, useRef } from "react";
@@ -59,6 +62,8 @@ const schema = yup.object().shape({
 });
 
 export default function ContactForm() {
+  console.log("ContactForm monté", typeof window, Date.now());
+
   const [previewImages, setPreviewImages] = useState([]);
   const [files, setFiles] = useState([]);
   const [uploadProgress, setUploadProgress] = useState(0);

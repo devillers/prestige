@@ -126,7 +126,7 @@ export async function POST(req) {
     </div></body></html>`;
 
   // Envoyer l’email
-  // ... (reste du code inchangé)
+ 
   try {
     const transporter = await createTransporter();
     console.log("[API] Prêt à envoyer le mail...");
