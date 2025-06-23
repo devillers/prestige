@@ -92,7 +92,7 @@ export default function ConciergerieServicesSection() {
                   <div className="text-gray-700 text-3xl sm:text-4xl italic font-bold ">
                     {idx + 1}
                   </div>
-                  <h2 className="text-gray-700 text-xl font-thin sm:text-2xl italic ml-3">
+                  <h2 className="text-gray-700 uppercase text-xl font-thin sm:text-2xl italic ml-3">
                     {decodeHTML(service.title)}
                   </h2>
                 </div>
