@@ -103,7 +103,7 @@ export default function ConciergerieServicesSection() {
                   </p>
                 )}
                 <div
-                  className="text-gray-700 italic text-[12px] leading-relaxed text-justify"
+                  className="text-gray-700 italic text-[12px] leading-5 text-justify "
                   dangerouslySetInnerHTML={{ __html: service.content }}
                 />
               </div>
