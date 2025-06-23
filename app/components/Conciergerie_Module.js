@@ -87,9 +87,9 @@ export default function ConciergerieServicesSection() {
               </div>
 
               {/* Texte */}
-              <div className="w-full md:w-2/3 space-y-4  md:text-left md:max-w-xl">
+              <div className="w-full md:w-2/3 space-y-4 md:text-left md:max-w-xl">
                 <div className="flex items-center xjustify-start mb-4">
-                  <div className="text-gray-700 text-3xl sm:text-4xl italic font-bold ">
+                  <div className="text-gray-700 text-4xl sm:text-5xl italic font-bold ">
                     {idx + 1}
                   </div>
                   <h2 className="text-gray-700 uppercase text-xl font-thin sm:text-2xl italic ml-3">
@@ -103,7 +103,7 @@ export default function ConciergerieServicesSection() {
                   </p>
                 )}
                 <div
-                  className="text-gray-700 italic text-[12px] leading-5 text-justify "
+                  className="text-gray-500 italic text-[12px] leading-5 text-justify "
                   dangerouslySetInnerHTML={{ __html: service.content }}
                 />
               </div>

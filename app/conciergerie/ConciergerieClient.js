@@ -25,7 +25,7 @@ export default function ConciergerieClient() {
               pensée pour{" "}
             </span>
             <br />
-            <span className="md:text-8xl text-5xl text-white ">          vous </span>
+            <span className="md:text-8xl text-5xl text-white "> vous </span>
             <br />
           </h1>
         </div>
@@ -38,7 +38,7 @@ export default function ConciergerieClient() {
             </span>
             <br />
             <span className="text-4xl md:text-5xl uppercase font-thin">
-              mesure pour sublimer 
+              mesure pour sublimer
             </span>
             <br />
             <span className="text-3xl md:text-5xl uppercase font-thin">
@@ -51,10 +51,12 @@ export default function ConciergerieClient() {
           </h2>
           <div className="text-gray-800 max-w-6xl mx-auto p-6 flex flex-col items-center">
             <p className="text-center text-black  text-md font-thin my-10 z-20 leading-8 italic">
-              Pour répondre aux attentes d’une clientèle exigeante, votre
-              conciergerie en Haute-Savoie propose des services
-              ultra-personnalisés, adaptés aux atouts exceptionnels de la
-              région.
+              Des services exclusifs pour un séjour sur-mesure. Care Concierge
+              Luxury met à votre disposition une sélection de prestations haut
+              de gamme : accueil personnalisé, chef à domicile, location de
+              skis, excursions encadrées, transferts, et bien plus. Chaque
+              service est pensé pour vous offrir confort, liberté et sérénité
+              tout au long de votre séjour.
             </p>
           </div>
         </div>
