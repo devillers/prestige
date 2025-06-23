@@ -87,8 +87,8 @@ export default function ConciergerieServicesSection() {
               </div>
 
               {/* Texte */}
-              <div className="w-full md:w-2/3 space-y-4 text-center md:text-left md:max-w-xl">
-                <div className="flex items-center justify-center md:justify-start mb-4">
+              <div className="w-full md:w-2/3 space-y-4  md:text-left md:max-w-xl">
+                <div className="flex items-center justify-start mb-4">
                   <div className="text-gray-700 text-3xl sm:text-4xl italic font-bold ">
                     {idx + 1}
                   </div>
