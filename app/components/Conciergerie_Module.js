@@ -67,45 +67,43 @@ export default function ConciergerieServicesSection() {
             <article
               key={idx}
               className={
-                `bg-white rounded-lg drop-shadow-lg p-[4px] sm:p-6 flex flex-col items-start \
-                 space-y-6 md:space-y-0 md:space-x-6 md:items-center ` +
-                (isEven
-                  ? "md:flex-row"
-                  : "md:flex-row-reverse md:space-x-reverse")
-              }
+    `relative bg-white rounded-md shadow-xl p-6 sm:p-8 flex flex-col-reverse md:flex-row items-center justify-center md:items-center md:gap-8` +
+    (idx % 2 !== 0 ? " md:flex-row-reverse" : "")
+  }
             >
               {/* Image */}
-              <div className="flex-shrink-0 w-full md:w-auto rounded-bl-none rounded-br-none rounded-tl-md rounded-tr-md ">
+              <div className="w-full md:w-1/3 flex justify-center ">
                 {service.image ? (
                   <img
                     src={service.image}
                     alt={decodeHTML(service.title)}
-                    className="
-                      w-full h-48  p-2 
-                      object-cover transition-transform duration-300 
-                      md:w-48 md:h-48 md:rounded-full                    "
+                    className=" hidden md:block w-48 h-48  object-cover rounded-full items-center max-w-md"
                   />
                 ) : (
-                  <div className="w-full h-48 bg-gray-200 rounded-bl-sm rounded-br-sm md:rounded-full md:w-48 md:h-48 flex items-center justify-center text-gray-500">
+                  <div className="w-full h-48 sm:h-64 bg-gray-200 rounded-md flex items-center justify-center text-gray-500 max-w-md">
                     Pas d’image
                   </div>
                 )}
               </div>
 
               {/* Texte */}
-              <div className="flex-1">
-                <h2 className=" uppercase text-xl md:text-2xl font-thin mb-2 pl-2">
-                  {decodeHTML(service.title)}
-                </h2>
+              <div className="w-full md:w-2/3 space-y-4 text-center md:text-left md:max-w-xl">
+                <div className="flex items-center justify-center md:justify-start mb-4">
+                  <div className="text-gray-700 text-3xl sm:text-4xl italic font-bold ">
+                    {idx + 1}
+                  </div>
+                  <h2 className="text-gray-700 text-xl sm:text-2xl italic font-semibold ml-3">
+                    {decodeHTML(service.title)}
+                  </h2>
+                </div>
 
                 {service.categories.length > 0 && (
-                  <p className="text-sm italic text-gray-600 mb-4 pl-2">
+                  <p className="text-sm italic text-gray-500">
                     Catégories : {service.categories.join(", ")}
                   </p>
                 )}
-
                 <div
-                  className="prose text-[13px] p-2 text-justify max-w-none mx-0 text-gray-700"
+                  className="text-gray-700 italic text-[15px] leading-relaxed text-justify"
                   dangerouslySetInnerHTML={{ __html: service.content }}
                 />
               </div>
