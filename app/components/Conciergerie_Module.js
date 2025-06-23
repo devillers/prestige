@@ -67,9 +67,9 @@ export default function ConciergerieServicesSection() {
             <article
               key={idx}
               className={
-    `relative bg-white rounded-md shadow-xl p-6 sm:p-8 flex flex-col-reverse md:flex-row items-center justify-center md:items-center md:gap-8` +
-    (idx % 2 !== 0 ? " md:flex-row-reverse" : "")
-  }
+                `relative bg-white rounded-md shadow-xl p-6 sm:p-8 flex flex-col-reverse md:flex-row items-center justify-center md:items-center md:gap-8` +
+                (idx % 2 !== 0 ? " md:flex-row-reverse" : "")
+              }
             >
               {/* Image */}
               <div className="w-full md:w-1/3 flex justify-center ">
@@ -88,11 +88,11 @@ export default function ConciergerieServicesSection() {
 
               {/* Texte */}
               <div className="w-full md:w-2/3 space-y-4  md:text-left md:max-w-xl">
-                <div className="flex items-center justify-start mb-4">
+                <div className="flex items-center xjustify-start mb-4">
                   <div className="text-gray-700 text-3xl sm:text-4xl italic font-bold ">
                     {idx + 1}
                   </div>
-                  <h2 className="text-gray-700 text-xl sm:text-2xl italic font-semibold ml-3">
+                  <h2 className="text-gray-700 text-xl font-thin sm:text-2xl italic ml-3">
                     {decodeHTML(service.title)}
                   </h2>
                 </div>
@@ -103,7 +103,7 @@ export default function ConciergerieServicesSection() {
                   </p>
                 )}
                 <div
-                  className="text-gray-700 italic text-[15px] leading-relaxed text-justify"
+                  className="text-gray-700 italic text-[12px] leading-relaxed text-justify"
                   dangerouslySetInnerHTML={{ __html: service.content }}
                 />
               </div>
