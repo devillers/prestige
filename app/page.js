@@ -1,5 +1,5 @@
 // app/page.js
-import { ProfilesProvider } from "./_context/ProfilesContext";
+
 import ProfilesGrid from "./components/ProfilesGrid";
 import { getMetadataForPage } from "../lib/metadata";
 
@@ -12,7 +12,7 @@ export const metadata = getMetadataForPage({
 export default function HomePage() {
   console.log("HomePage rendered on client");
   return (
-    <ProfilesProvider>
+  
       <>
         <section className="relative">
           <div className="relative z-10 mx-auto flex flex-col justify-center min-h-[640px] bg-white bg-[url(/images/home.webp)] bg-cover bg-center">
@@ -157,6 +157,6 @@ export default function HomePage() {
          
         </div>
       </>
-    </ProfilesProvider>
+  
   );
 }
