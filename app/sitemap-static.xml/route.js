@@ -6,6 +6,9 @@ export async function GET() {
       '/conciergerie',
       '/mentions-legales',
       '/politique-de-confidentialite',
+      '/blog',
+      '/repertoire',
+      '/seminaires',
     ];
   
     const urls = staticPaths.map(path => `
@@ -23,4 +26,3 @@ export async function GET() {
       { headers: { 'Content-Type': 'application/xml' } }
     );
   }
-  
