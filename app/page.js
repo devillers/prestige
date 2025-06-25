@@ -6,7 +6,16 @@ import { getMetadataForPage } from "../lib/metadata";
 export const metadata = getMetadataForPage({
   title: "Accueil | Care Concierge Luxury",
   description: "Des chalets de luxe en Haute-Savoie avec un service d’exception.",
-  keywords: ["chalet", "conciergerie", "luxe", "haute savoie"],
+  keywords: ["chalet", "conciergerie", "luxe", "haute savoie", "saint gervais les bains", "megeve", "chamonix"],
+   openGraph: {
+    title: "Care Concierge Luxury",
+    description: "Conciergerie Haut de Gamme - Séminaires.",
+    url: "https://www.careconciergeluxury.com/",
+    siteName: "Care Concierge Luxury",
+    images: [{ url: "/images/contact.webp" }],
+    locale: "fr_FR",
+    type: "website"
+  }
 });
 
 export default function HomePage() {
