@@ -1,23 +1,25 @@
+
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.careconciergeluxury.com/</loc>
-    <lastmod>2025-05-05</lastmod>
-    <priority>1.0</priority>
+    <lastmod>2025-06-25</lastmod>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.careconciergeluxury.com/</loc>
-    <lastmod>2025-05-05</lastmod>
+    <loc>https://www.careconciergeluxury.com/seminaires</loc>
+    <lastmod>2025-06-25</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.careconciergeluxury.com/e</loc>
-    <lastmod>2025-05-05</lastmod>
-    <priority>0.7</priority>
+    <loc>https://www.careconciergeluxury.com/repertoire</loc>
+    <lastmod>2025-06-25</lastmod>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.careconciergeluxury.com/</loc>
-    <lastmod>2025-05-05</lastmod>
-    <priority>0.6</priority>
+    <loc>https://www.careconciergeluxury.com/blog</loc>
+    <lastmod>2025-06-25</lastmod>
+    <priority>0.7</priority>
   </url>
 </urlset>
