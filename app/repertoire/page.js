@@ -15,6 +15,10 @@ export const metadata = {
     "haute-savoie",
     "location de luxe",
     "événements",
+     "saint gervais les bains",
+      "megeve",
+       "saint nicolas de veroce",
+        "les contamines montjoie",
   ],
   openGraph: {
     url: "/repertoire",
