@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const LAYOUT_PATTERN = [
   { col: "col-span-2", row: "row-span-1" },
   { col: "col-span-2", row: "row-span-1" },
-  { col: "col-span-4", row: "row-span-2" },
+  { col: "col-span-2", row: "row-span-2" },
   { col: "col-span-2", row: "row-span-1" },
   { col: "col-span-2", row: "row-span-1" },
   { col: "col-span-4", row: "row-span-1" },
