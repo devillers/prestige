@@ -1,6 +1,7 @@
 'use client';
 
 import './globals.css';
+import Script from "next/script";
 import React, { useEffect } from 'react';
 import Script from 'next/script';
 import CookieConsent from 'react-cookie-consent';
@@ -140,7 +141,9 @@ function LayoutWrapper({ children }) {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
+      
       <body className="relative">
+        <script src="https://t.contentsquare.net/uxa/708cd1d211e9c.js"></script>
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
