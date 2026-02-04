@@ -1,9 +1,11 @@
 'use client';
 
 import './globals.css';
+import Script from "next/script";
 import React, { useEffect } from 'react';
-import Script from 'next/script';
+
 import CookieConsent from 'react-cookie-consent';
+import Head from 'next/head';
 import { usePathname } from 'next/navigation';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -14,6 +16,7 @@ function LayoutWrapper({ children }) {
   const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
   const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL || ''}${pathname}`;
 
+  // Détection des pages sans layout
   const hideLayout = ['/admin', '/login', '/not-found'].some((path) =>
     pathname.startsWith(path)
   );
@@ -26,52 +29,40 @@ function LayoutWrapper({ children }) {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      window.gtag =
-        window.gtag ||
-        function () {
-          (window.dataLayer = window.dataLayer || []).push(arguments);
-        };
+      window.gtag = window.gtag || function () {
+        (window.dataLayer = window.dataLayer || []).push(arguments);
+      };
     }
   }, []);
 
   return (
     <>
-      {/* Head (App Router) */}
-      <head>
+      <Head>
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link
-          rel="apple-touch-icon-precomposed"
-          href="/apple-touch-icon-precomposed.png"
-        />
-        {process.env.NEXT_PUBLIC_SITE_URL ? (
-          <link rel="canonical" href={canonicalUrl} />
-        ) : null}
-      </head>
+        <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png" />
+        <link rel="canonical" href={canonicalUrl} />
+      </Head>
 
-      {/* Google Analytics (si GA_ID est défini) */}
-      {GA_ID ? (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-            strategy="afterInteractive"
-          />
-          <Script id="gtag-init" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){window.dataLayer.push(arguments);}
-              gtag('consent', 'default', {
-                'analytics_storage': 'denied',
-                'ad_storage': 'denied'
-              });
-              gtag('js', new Date());
-              gtag('config', '${GA_ID}', {
-                anonymize_ip: true,
-                page_path: window.location.pathname
-              });
-            `}
-          </Script>
-        </>
-      ) : null}
+      {/* Google Analytics */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="gtag-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied'
+          });
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}', {
+            anonymize_ip: true,
+            page_path: window.location.pathname
+          });
+        `}
+      </Script>
 
       {!hideLayout && <Header />}
       <main>{children}</main>
@@ -119,13 +110,13 @@ function LayoutWrapper({ children }) {
         buttonText="J'accepte"
         declineButtonText="Je refuse"
         onAccept={() =>
-          window.gtag?.('consent', 'update', {
+          window.gtag('consent', 'update', {
             analytics_storage: 'granted',
             ad_storage: 'granted',
           })
         }
         onDecline={() =>
-          window.gtag?.('consent', 'update', {
+          window.gtag('consent', 'update', {
             analytics_storage: 'denied',
             ad_storage: 'denied',
           })
@@ -150,12 +141,9 @@ function LayoutWrapper({ children }) {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
+      
       <body className="relative">
-        {/* Contentsquare */}
-        <Script
-          src="https://t.contentsquare.net/uxa/708cd1d211e9c.js"
-          strategy="afterInteractive"
-        />
+        <script src="https://t.contentsquare.net/uxa/708cd1d211e9c.js"></script>
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
